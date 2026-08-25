@@ -1,8 +1,5 @@
----
-
 ### 📄 Arquivo: `docs/architecture.md`
 
-```markdown
 # 🛠️ Especificação Técnica (Tech Spec) - SobrouQuanto?
 
 Este documento detalha a arquitetura técnica, os frameworks e bibliotecas de interface, o modelo de dados, as rotas e a estrutura da API simulada (JSON Server) necessários para o funcionamento da aplicação **SobrouQuanto?**.

@@ -1,153 +1,134 @@
-### 📄 Arquivo: `docs/architecture.md`
+# 🛠️ Arquitetura e Especificação Técnica - Sobrou Quanto?
 
-# 🛠️ Especificação Técnica (Tech Spec) - SobrouQuanto?
-
-Este documento detalha a arquitetura técnica, os frameworks e bibliotecas de interface, o modelo de dados, as rotas e a estrutura da API simulada (JSON Server) necessários para o funcionamento da aplicação **SobrouQuanto?**.
+Este documento descreve a arquitetura técnica, o modelo de dados, a integração com o JSON Server e as regras de negócio para a aplicação **Sobrou Quanto?**, adaptada a partir da especificação do sistema bancário Roubank.
 
 ---
 
-## 1. Visão Geral da Arquitetura e Frameworks CSS
+## 1. Visão Geral da Arquitetura
 
-A aplicação foi concebida no modelo **Multi-Page Application (MPA)** responsiva e opera inteiramente em nível de cliente no frontend. O ecossistema é composto por 4 páginas HTML distintas (`login.html`, `index.html`, `cadastros.html` e `transacoes.html`), consumindo serviços REST assíncronos e bibliotecas CSS/JS de estilização.
+A aplicação opera no modelo client-side (Single Page Application ou multi-páginas estáticas) integrada a uma API REST simulada localmente via JSON Server.
 
 ```mermaid
 graph TD
-    A[Navegador / Cliente] -->|HTML5 + CSS3| B[Frontend - Vanilla JS ES6+]
-    
-    subgraph Frameworks CSS & Interface
-        B --> C[Bootstrap 5 - Grid System & Flexbox]
-        B --> D[Materialize CSS - Form Inputs & Modais]
-        B --> E[Design Tokens - Variáveis CSS Customizadas]
+    A[Navegador / Cliente] -->|HTML5 + CSS3 + Vanilla JS| B[Frontend - Sobrou Quanto?]
+    subgraph Fluxo de Transações & Regras
+        B --> C[Autenticação por CPF / Senha]
+        B --> D[Lançamento de Depósito / Saque]
+        D -->|Gera Automático via JS| E[Transação Secundária de TAXA]
     end
-
-    subgraph Módulos JS (Client-Side)
-        B --> F[Autenticação & Sessão - auth.js]
-        B --> G[Renderização do DOM - render.js]
-        B --> H[Validações & REGEX - validacao.js]
-        B --> I[Cliente HTTP Async/Await - api.js]
-    end
-
     subgraph Persistência & APIs
-        I -->|Fetch REST| J[JSON Server - db.json Local]
-        I -->|Fetch REST| K[AwesomeAPI - Cotações]
-        F -->|Web Storage| L[SessionStorage - Dados do Login]
-        H -->|Web Storage| M[LocalStorage - Preferências]
+        B -->|Fetch REST| F[JSON Server - db.json Local]
+        F --> G[Coleção: clientes]
+        F --> H[Coleção: transacoes]
     end
-
 ```
-
----
-
 ## 2. Modelo de Dados (Diagrama ER)
-
-Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura das coleções no nosso "banco de dados" (`db.json`) e como as informações se conectam.
+O Diagrama Entidade-Relacionamento (DER) abaixo representa a estrutura de dados persistida no db.json e o relacionamento entre os clientes e suas movimentações financeiras:
 
 ```mermaid
 erDiagram
-    CATEGORIA ||--o{ TRANSACAO : "possui"
-
+    CLIENTE ||--o{ TRANSACAO : "realiza (e paga taxa)"
+    CLIENTE {
+        string id PK "Gerado automaticamente pelo JSON Server"
+        string nome "Nome do cliente"
+        string cpf "Usado para validação/login"
+        string senha "Credencial do usuário"
+        float saldo "Atualizado a cada operação"
+    }
     TRANSACAO {
-        string id PK
-        string descricao
-        number valor
-        string tipo "RECEITA | DESPESA"
-        string categoriaId FK
-        string data
-        boolean recorrente
+        string id PK "Gerado automaticamente"
+        string clienteId FK "Chave estrangeira vinculada ao Cliente"
+        string tipo "SAQUE, DEPOSITO ou TAXA"
+        float valor "Sempre valor positivo"
+        string data "Formato ISO (YYYY-MM-DD)"
+        string descricao "Ex: 'Taxa de manutenção respiratória'"
     }
-
-    CATEGORIA {
-        string id PK
-        string nome
-        string icone
-    }
-
 ```
 
----
-
 ## 3. Dicionário de Dados
+####Clientes
+Armazena as informações dos usuários, credenciais de acesso e saldo atualizado.
 
-Breve explicação das tabelas principais:
+* `id`: Identificador único do usuário (String/Hash gerado pelo JSON Server).
 
-* **Categorias:** Armazena os grupos de classificação criados pelo usuário para organizar os orçamentos.
-* `id`: Identificador único gerado pelo JSON Server (String ou Hash).
-* `nome`: Nome identificador da categoria (ex: Alimentação, Moradia, Salário).
-* `icone`: Classe do ícone ou identificador visual associado.
+* `nome`: Nome completo do cliente.
 
+* `cpf`: Chave de acesso e identificação (validação realizada no front-end).
 
-* **Transações:** Registra o histórico financeiro de receitas e despesas.
-* `id`: Identificador único da movimentação.
-* `categoriaId`: Chave estrangeira que vincula a transação à categoria (padrão de nomenclatura exigido pelo JSON Server para rotas aninhadas).
-* `descricao`: Texto explicativo sobre o lançamento.
-* `tipo`: Aceita apenas os valores `"RECEITA"` ou `"DESPESA"`.
-* `valor`: Valor numérico (Float). O frontend utiliza este campo e o tipo para somar ou subtrair no saldo acumulado.
-* `data`: Data do lançamento (formato YYYY-MM-DD).
+* `senha`: Senha de autenticação do usuário.
 
+* `saldo`: Valor numérico (`float`) acumulado. Pode ser negativo devido ao débito automático de taxas.
 
+#### Transações
+Registra todas as movimentações de entradas, saídas e taxas operacionais.
 
----
+* `id`: Identificador único da transação.
 
-## 4. Rotas da API (JSON Server e APIs Externas)
+* `clienteId`: Chave estrangeira que vincula a transação ao cliente correspondente (GET /transacoes?clienteId=:id).
 
-A aplicação consome a API local simulada pelo JSON Server e a API pública AwesomeAPI. Principais endpoints:
+* `tipo`: Tipo da operação, restrito aos valores "SAQUE", "DEPOSITO" ou "TAXA".
 
-* **GET /categorias** - Retorna a lista de categorias cadastradas.
-* **POST /categorias** - Cadastra uma nova categoria no banco local.
-* **GET /transacoes** - Retorna a lista completa de lançamentos financeiros.
-* **POST /transacoes** - Cadastra uma nova receita ou despesa.
-* **DELETE /transacoes/:id** - Remove uma transação específica por ID.
-* **GET https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL** - Consulta a cotação do Dólar e do Euro em tempo real para exibição no Dashboard.
+* `valor`: Montante numérico positivo da transação.
 
----
+* `data`: Data do lançamento no formato ISO (YYYY-MM-DD).
 
-## 5. Estrutura do Banco de Dados (`server/db.json`)
+* `descricao`: Texto descritivo do lançamento ou justificativa da taxa cobrada.
 
-Esta é a representação em formato JSON do banco de dados simulado. Esta estrutura serve de contexto para o JSON Server inicializar a API Fake local:
+#### Regra de Negócio Crítica 
+Sempre que o usuário efetuar um SAQUE ou DEPOSITO, a aplicação JS deve disparar automaticamente uma segunda transação do tipo TAXA, subtraindo o valor estipulado do saldo do cliente.
 
-```json
+##4. Rotas e Endpoints da API (JSON Server)
+A aplicação consome a API REST simulada através dos seguintes endpoints:
+
+* `GET /clientes`: Retorna a lista de clientes cadastrados.
+
+* `POST /clientes`: Realiza o cadastro de um novo cliente.
+
+* `GET /transacoes?clienteId=:id`: Retorna o extrato e histórico financeiro de um cliente específico.
+
+* `POST /transacoes`: Registra uma nova transação (DEPOSITO, SAQUE ou TAXA).
+
+* `PATCH /clientes/:id`: Atualiza o saldo consolidado do cliente após as operações.
+
+## 5. Estrutura Inicial do Banco de Dados (`db.json`)
+Modelo inicial para carregar e rodar a API fake do projeto:
+
+```JSON
 {
-  "categorias": [
+  "clientes": [
     {
       "id": "1",
-      "nome": "Alimentação",
-      "icone": "utensils"
-    },
-    {
-      "id": "2",
-      "nome": "Moradia",
-      "icone": "home"
-    },
-    {
-      "id": "3",
-      "nome": "Renda / Salário",
-      "icone": "wallet"
+      "nome": "João da Silva",
+      "cpf": "12345678900",
+      "senha": "senha_super_segura",
+      "saldo": 850.50
     }
   ],
   "transacoes": [
     {
-      "id": "101",
-      "categoriaId": "3",
-      "descricao": "Salário Mensal",
-      "tipo": "RECEITA",
-      "valor": 3500.00,
-      "data": "2026-08-01",
-      "recorrente": true
+      "id": "1",
+      "clienteId": "1",
+      "tipo": "DEPOSITO",
+      "valor": 1000.00,
+      "data": "2026-03-16",
+      "descricao": "Depósito inicial em espécie"
     },
     {
-      "id": "102",
-      "categoriaId": "1",
-      "descricao": "Supermercado",
-      "tipo": "DESPESA",
-      "valor": 280.50,
-      "data": "2026-08-20",
-      "recorrente": false
+      "id": "2",
+      "clienteId": "1",
+      "tipo": "TAXA",
+      "valor": 50.00,
+      "data": "2026-03-16",
+      "descricao": "Taxa de boas-vindas do Roubank"
+    },
+    {
+      "id": "3",
+      "clienteId": "1",
+      "tipo": "SAQUE",
+      "valor": 99.50,
+      "data": "2026-03-17",
+      "descricao": "Saque no caixa eletrônico"
     }
   ]
 }
-
-```
-
-```
-
 ```

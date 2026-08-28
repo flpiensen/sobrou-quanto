@@ -40,7 +40,7 @@ erDiagram
         string clienteId FK "Chave estrangeira vinculada ao Cliente"
         string tipo "SAQUE, DEPOSITO ou TAXA"
         float valor "Sempre valor positivo"
-        string data "Formato ISO (YYYY-MM-DD)"
+        string data "Formato ISO (DD-MM-AAAA)"
         string descricao "Ex: 'Taxa de manutenção respiratória'"
     }
 ```

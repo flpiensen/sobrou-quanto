@@ -29,14 +29,14 @@ O Diagrama Entidade-Relacionamento (DER) abaixo representa a estrutura de dados 
 erDiagram
     CLIENTE ||--o{ TRANSACAO : "realiza (e paga taxa)"
     CLIENTE {
-        string id PK "Gerado automaticamente pelo JSON Server"
+        int id PK "Gerado automaticamente pelo JSON Server"
         string nome "Nome do cliente"
         string cpf "Usado para validação/login"
         string senha "Credencial do usuário"
-        float saldo "Atualizado a cada operação"
+        int saldo "Atualizado a cada operação"
     }
     TRANSACAO {
-        string id PK "Gerado automaticamente"
+        int id PK "Gerado automaticamente"
         string clienteId FK "Chave estrangeira vinculada ao Cliente"
         string tipo "SAQUE, DEPOSITO ou TAXA"
         float valor "Sempre valor positivo"
@@ -57,7 +57,7 @@ Armazena as informações dos usuários, credenciais de acesso e saldo atualizad
 
 * `senha`: Senha de autenticação do usuário.
 
-* `saldo`: Valor numérico (`float`) acumulado. Pode ser negativo devido ao débito automático de taxas.
+* `saldo`: Valor numérico (`int`) acumulado. Pode ser negativo devido ao débito automático de taxas.
 
 #### Transações
 Registra todas as movimentações de entradas, saídas e taxas operacionais.

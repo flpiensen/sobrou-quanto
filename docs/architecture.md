@@ -46,7 +46,7 @@ erDiagram
 ```
 
 ## 3. Dicionário de Dados
-####Clientes
+#### Clientes
 Armazena as informações dos usuários, credenciais de acesso e saldo atualizado.
 
 * `id`: Identificador único do usuário (String/Hash gerado pelo JSON Server).
@@ -77,7 +77,7 @@ Registra todas as movimentações de entradas, saídas e taxas operacionais.
 #### Regra de Negócio Crítica 
 Sempre que o usuário efetuar um SAQUE ou DEPOSITO, a aplicação JS deve disparar automaticamente uma segunda transação do tipo TAXA, subtraindo o valor estipulado do saldo do cliente.
 
-##4. Rotas e Endpoints da API (JSON Server)
+## 4. Rotas e Endpoints da API (JSON Server)
 A aplicação consome a API REST simulada através dos seguintes endpoints:
 
 * `GET /clientes`: Retorna a lista de clientes cadastrados.

@@ -22,6 +22,18 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 
 ---
 
+## 🛠️ Tecnologias e Dependências
+
+### **Framework CSS**
+* **[MaterializeWeb (Material Design 3.0)](https://materializeweb.com/)**
+  * **Justificativa:** Escolhido por implementar o padrão de design moderno da Google (Material You / M3), oferecendo componentes web nativos (*Web Components*) com ótima experiência de uso e acessibilidade. Ele foi selecionado por se alinhar com a proposta visual prototipada no Stitch e por fornecer componentes limpos, responsivos e prontos para uso sem exigir dependências legadas como jQuery.
+
+### **API Pública**
+* **[AwesomeAPI (Cotações de Moedas)](https://docs.awesomeapi.com.br/api-de-moedas)**
+  * **Justificativa:** Utilizada para buscar cotações de moedas em tempo real (como USD, EUR e BTC para BRL). A API agrega valor ao sistema permitindo converter valores de receitas e despesas ou exibir o saldo da conta atualizado de acordo com a variação cambial do dia, enriquecendo a gestão financeira pessoal com dados reais do mercado.
+
+---
+
 ## 🌐 Site em Produção - GitHub Pages
 
 - [Link do Projeto publicado no GitHub Pages](https://flpiensen.github.io/sobrou-quanto/)

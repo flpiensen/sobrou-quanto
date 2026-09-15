@@ -27,6 +27,17 @@ graph TD
     I --> K[Coleção: transacoes]
     I --> L[Coleção: categorias]
 ```
+### 1.1. Tecnologias e Dependências
+
+* **Framework CSS:** [MaterializeWeb / Beer CSS](https://materializeweb.com/) (`v3.8.0`)
+  * **Uso:** Implementação de componentes visuais baseados em Material Design 3 / Material You via Web Components nativos.
+  * **Inclusão:**
+    * CSS: `https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.css`
+    * JS: `https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.js`
+
+* **API Pública de Cotações:** [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas) (`v1`)
+  * **Uso:** Consumo de cotações de moedas em tempo real para exibição no Dashboard.
+  * **Endpoint:** `GET https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL`
 
 ## 2. Modelo de Dados (Diagrama ER)
 

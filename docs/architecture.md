@@ -1,156 +1,186 @@
----
+# 🛠️ Arquitetura e Especificação Técnica - Sobrou Quanto?
 
-### 📄 Arquivo: `docs/architecture.md`
+Este documento descreve a arquitetura técnica, o modelo de dados, a integração com o JSON Server e as regras de negócio para a aplicação **Sobrou Quanto?**, uma plataforma Single Page Application (SPA) para gestão de finanças pessoais.
 
-```markdown
-# 🛠️ Especificação Técnica (Tech Spec) - SobrouQuanto?
+## 1. Visão Geral da Arquitetura e Telas
 
-Este documento detalha a arquitetura técnica, os frameworks e bibliotecas de interface, o modelo de dados, as rotas e a estrutura da API simulada (JSON Server) necessários para o funcionamento da aplicação **SobrouQuanto?**.
+A aplicação opera no modelo client-side, sem recarregamento de páginas, integrada a uma API REST simulada localmente via JSON Server. 
 
----
-
-## 1. Visão Geral da Arquitetura e Frameworks CSS
-
-A aplicação foi concebida no modelo **Multi-Page Application (MPA)** responsiva e opera inteiramente em nível de cliente no frontend. O ecossistema é composto por 4 páginas HTML distintas (`login.html`, `index.html`, `cadastros.html` e `transacoes.html`), consumindo serviços REST assíncronos e bibliotecas CSS/JS de estilização.
+O sistema é composto pelas seguintes **Telas (Views)** principais:
+1. **Login:** Autenticação do usuário e acesso ao sistema.
+2. **Dashboard:** Visão geral financeira, exibindo Saldo Total, cards de Receitas/Despesas, Cotações de Moedas em tempo real e um Gráfico de Fluxo de Caixa gerado dinamicamente com base nas transações.
+3. **Categorias:** Gerenciamento (CRUD) de categorias de classificação (ex: Alimentação, Moradia, Salário).
+4. **Transações:** Histórico de lançamentos com filtros avançados e o **Modal de Nova Transação** (que permite inserir valor, data, descrição, selecionar a categoria e anexar comprovantes).
 
 ```mermaid
 graph TD
-    A[Navegador / Cliente] -->|HTML5 + CSS3| B[Frontend - Vanilla JS ES6+]
+    A[Navegador / Cliente] --> B[HTML5 + CSS3 + Vanilla JS]
+    B --> C{Views SPA}
+    C --> D[Login]
+    C --> E[Dashboard]
+    C --> F[Categorias]
+    C --> G[Transações]
+    G -.->|Modal| H[Nova Transação c/ Upload]
     
-    subgraph Frameworks CSS & Interface
-        B --> C[Bootstrap 5 - Grid System & Flexbox]
-        B --> D[Materialize CSS - Form Inputs & Modais]
-        B --> E[Design Tokens - Variáveis CSS Customizadas]
-    end
-
-    subgraph Módulos JS (Client-Side)
-        B --> F[Autenticação & Sessão - auth.js]
-        B --> G[Renderização do DOM - render.js]
-        B --> H[Validações & REGEX - validacao.js]
-        B --> I[Cliente HTTP Async/Await - api.js]
-    end
-
-    subgraph Persistência & APIs
-        I -->|Fetch REST| J[JSON Server - db.json Local]
-        I -->|Fetch REST| K[AwesomeAPI - Cotações]
-        F -->|Web Storage| L[SessionStorage - Dados do Login]
-        H -->|Web Storage| M[LocalStorage - Preferências]
-    end
-
+    B -->|Fetch REST| I[(JSON Server - db.json Local)]
+    I --> J[Coleção: clientes]
+    I --> K[Coleção: transacoes]
+    I --> L[Coleção: categorias]
 ```
+### 1.1. Tecnologias e Dependências
 
----
+* **Framework CSS:** [MaterializeWeb / Beer CSS](https://materializeweb.com/) (`v3.8.0`)
+  * **Uso:** Implementação de componentes visuais baseados em Material Design 3 / Material You via Web Components nativos.
+  * **Inclusão:**
+    * CSS: `https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.css`
+    * JS: `https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.js`
+
+* **API Pública de Cotações:** [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas) (`v1`)
+  * **Uso:** Consumo de cotações de moedas em tempo real para exibição no Dashboard.
+  * **Endpoint:** `GET https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL`
 
 ## 2. Modelo de Dados (Diagrama ER)
 
-Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura das coleções no nosso "banco de dados" (`db.json`) e como as informações se conectam.
+O Diagrama Entidade-Relacionamento (DER) abaixo representa a estrutura de dados persistida no db.json. A entidade CATEGORIA foi adicionada para classificar as transações, facilitando a filtragem e a geração dos gráficos no Dashboard.
 
 ```mermaid
 erDiagram
-    CATEGORIA ||--o{ TRANSACAO : "possui"
+    CLIENTE ||--o{ TRANSACAO : "realiza (e paga taxa)"
+    CATEGORIA ||--o{ TRANSACAO : "classifica"
 
-    TRANSACAO {
-        string id PK
-        string descricao
-        number valor
-        string tipo "RECEITA | DESPESA"
-        string categoriaId FK
-        string data
-        boolean recorrente
+    CLIENTE {
+        int id PK "Gerado automaticamente"
+        string nome "Nome do cliente"
+        string cpf "Usado para validação/login"
+        string senha "Credencial do usuário"
+        int saldo "Atualizado a cada operação"
     }
 
     CATEGORIA {
-        string id PK
-        string nome
-        string icone
+        int id PK "Gerado automaticamente"
+        string nome "Ex: Alimentação, Salário"
+        string tipo "RECEITA ou DESPESA"
+        string icone "Classe Bootstrap Icon (ex: bi-basket)"
     }
 
+    TRANSACAO {
+        int id PK "Gerado automaticamente"
+        int clienteId FK "Chave estrangeira vinculada ao Cliente"
+        int categoriaId FK "Chave estrangeira vinculada à Categoria"
+        string tipo "SAQUE, DEPOSITO ou TAXA"
+        int valor "Sempre valor positivo"
+        string data "Formato ISO (YYYY-MM-DD)"
+        string descricao "Ex: 'Compra no mercado'"
+        string comprovanteUrl "Opcional: Caminho/Base64 do arquivo"
+    }
 ```
 
----
-
 ## 3. Dicionário de Dados
+#### Clientes
+Armazena as informações dos usuários, credenciais de acesso e saldo atualizado.
 
-Breve explicação das tabelas principais:
+`id`: Identificador único do usuário (String/Hash gerado pelo JSON Server).
 
-* **Categorias:** Armazena os grupos de classificação criados pelo usuário para organizar os orçamentos.
-* `id`: Identificador único gerado pelo JSON Server (String ou Hash).
-* `nome`: Nome identificador da categoria (ex: Alimentação, Moradia, Salário).
-* `icone`: Classe do ícone ou identificador visual associado.
+`nome`: Nome completo do cliente.
 
+`cpf`: Chave de acesso e identificação.
 
-* **Transações:** Registra o histórico financeiro de receitas e despesas.
-* `id`: Identificador único da movimentação.
-* `categoriaId`: Chave estrangeira que vincula a transação à categoria (padrão de nomenclatura exigido pelo JSON Server para rotas aninhadas).
-* `descricao`: Texto explicativo sobre o lançamento.
-* `tipo`: Aceita apenas os valores `"RECEITA"` ou `"DESPESA"`.
-* `valor`: Valor numérico (Float). O frontend utiliza este campo e o tipo para somar ou subtrair no saldo acumulado.
-* `data`: Data do lançamento (formato YYYY-MM-DD).
+`senha`: Senha de autenticação do usuário.
 
+`saldo`: Valor numérico acumulado, calculado com base nas transações.
 
+#### Categorias
+Permite a personalização da organização financeira.
 
----
+`id`: Identificador único da categoria.
 
-## 4. Rotas da API (JSON Server e APIs Externas)
+`nome`: Título da categoria (ex: "Moradia").
 
-A aplicação consome a API local simulada pelo JSON Server e a API pública AwesomeAPI. Principais endpoints:
+`tipo`: Define se a categoria é de entrada (RECEITA) ou saída (DESPESA).
 
-* **GET /categorias** - Retorna a lista de categorias cadastradas.
-* **POST /categorias** - Cadastra uma nova categoria no banco local.
-* **GET /transacoes** - Retorna a lista completa de lançamentos financeiros.
-* **POST /transacoes** - Cadastra uma nova receita ou despesa.
-* **DELETE /transacoes/:id** - Remove uma transação específica por ID.
-* **GET https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL** - Consulta a cotação do Dólar e do Euro em tempo real para exibição no Dashboard.
+`icone`: Classe de ícone visual para renderização na UI (ex: bi-house).
 
----
+#### Transações
+Registra todas as movimentações financeiras.
 
-## 5. Estrutura do Banco de Dados (`server/db.json`)
+`id`: Identificador único da transação.
 
-Esta é a representação em formato JSON do banco de dados simulado. Esta estrutura serve de contexto para o JSON Server inicializar a API Fake local:
+`clienteId`: Chave estrangeira que vincula a transação ao cliente (GET /transacoes?clienteId=:id).
 
-```json
+`categoriaId`: Chave estrangeira que classifica a transação.
+
+`tipo`: Tipo da operação (SAQUE, DEPOSITO ou TAXA).
+
+`valor`: Montante numérico absoluto da transação.
+
+`data`: Data do lançamento no formato ISO (YYYY-MM-DD).
+
+`descricao`: Texto descritivo.
+
+`comprovanteUrl`: URL ou string base64 do arquivo anexado no modal.
+
+## 4. Rotas e Endpoints da API (JSON Server)
+A aplicação consome a API REST simulada através dos seguintes endpoints básicos:
+
+`GET /clientes | POST /clientes` : Gestão de usuários.
+
+`PATCH /clientes/:id` : Atualização de saldos e perfil.
+
+`GET /categorias | POST /categorias` : Listagem e criação de categorias cadastradas na tela "Cadastros".
+
+`GET /transacoes?clienteId=:id` : Histórico financeiro para popular a tabela e gerar o gráfico no Dashboard.
+
+`POST /transacoes` : Registro gerado através do Modal de "Nova Transação".
+
+## 5. Estrutura Inicial do Banco de Dados (db.json)
+Modelo de estrutura inicial sugerida para subir a API local:
+
+```JSON
 {
+  "clientes": [
+    {
+      "id": "1",
+      "nome": "Usuário SobrouQuanto",
+      "cpf": "12345678900",
+      "senha": "senha_super_segura",
+      "saldo": 14350.00
+    }
+  ],
   "categorias": [
     {
       "id": "1",
       "nome": "Alimentação",
-      "icone": "utensils"
+      "tipo": "DESPESA",
+      "icone": "bi-basket"
     },
     {
       "id": "2",
-      "nome": "Moradia",
-      "icone": "home"
-    },
-    {
-      "id": "3",
-      "nome": "Renda / Salário",
-      "icone": "wallet"
+      "nome": "Salário",
+      "tipo": "RECEITA",
+      "icone": "bi-cash-coin"
     }
   ],
   "transacoes": [
     {
-      "id": "101",
-      "categoriaId": "3",
+      "id": "1",
+      "clienteId": "1",
+      "categoriaId": "2",
+      "tipo": "DEPOSITO",
+      "valor": 18500.00,
+      "data": "2026-08-24",
       "descricao": "Salário Mensal",
-      "tipo": "RECEITA",
-      "valor": 3500.00,
-      "data": "2026-08-01",
-      "recorrente": true
+      "comprovanteUrl": ""
     },
     {
-      "id": "102",
+      "id": "2",
+      "clienteId": "1",
       "categoriaId": "1",
-      "descricao": "Supermercado",
-      "tipo": "DESPESA",
-      "valor": 280.50,
-      "data": "2026-08-20",
-      "recorrente": false
+      "tipo": "SAQUE",
+      "valor": 450.00,
+      "data": "2026-08-26",
+      "descricao": "Mercado Central",
+      "comprovanteUrl": "data:image/png;base64,iVBORw0KG..."
     }
   ]
 }
-
-```
-
-```
-
 ```

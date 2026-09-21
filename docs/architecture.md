@@ -32,8 +32,8 @@ graph TD
 * **Framework CSS:** [MaterializeWeb](https://materializeweb.com/) (`v2.3.3`)
   * **Uso:** Implementação de componentes visuais baseados em Material Design 3 / Material You via Web Components nativos.
   * **Inclusão:**
-    * CSS: `[https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.css]`
-    * JS: `[https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.js]`
+    * CSS: `[[https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.css]](https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.2.2/dist/css/materialize.min.css")`
+    * JS: `[[https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.js]](https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.2.2/dist/js/materialize.min.js)`
 
 * **API Pública de Cotações:** [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas) (`v1`)
   * **Uso:** Consumo de cotações de moedas em tempo real para exibição no Dashboard.

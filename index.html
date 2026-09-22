@@ -1,54 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<html lang="pt-BR">
+  <html lang="pt-BR">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>SobrouQuanto?</title>
+      <link
+        rel="stylesheet"
+        href="node_modules/@materializecss/materialize/dist/css/materialize.min.css"
+      />
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+      />
+      
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SobrouQuanto?</title>
-    <link rel="stylesheet" href="node_modules/@materializecss/materialize/dist/css/materialize.min.css">
-
-    <!-- Google Material Icons (obrigatório para as tags <i class="material-icons">) -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Materialize CSS (CDN) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.3.3/dist/css/materialize.min.css">
-
-    <!-- Estilos customizados da aplicação -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    <a class="btn">Standard Button</a>
-    <a tabindex="0" class="btn filled">Create</a>
-    <a tabindex="0" class="btn filled icon-left">
+    <body>
+      <a class="btn">Standard Button</a>
+      <a tabindex="0" class="btn filled">Create</a>
+      <a tabindex="0" class="btn filled icon-left">
         <i class="material-icons">add</i>Create
-    </a>
-    <a tabindex="0" class="btn filled icon-right rounded waves-effect waves-light">
+      </a>
+      <a
+        tabindex="0"
+        class="btn filled icon-right rounded waves-effect waves-light"
+      >
         <i class="material-icons">edit</i>Update
-    </a>
-    <div class="container" style="margin-top: 2rem;">
+      </a>
+      <div class="container" style="margin-top: 2rem">
         <a class="btn">Standard Button</a>
         <a tabindex="0" class="btn filled">Create</a>
         <a tabindex="0" class="btn filled icon-left">
-            <i class="material-icons">add</i>Create
+          <i class="material-icons">add</i>Create
         </a>
-        <a tabindex="0" class="btn filled icon-right rounded waves-effect waves-light">
-            <i class="material-icons">edit</i>Update
+        <a
+          tabindex="0"
+          class="btn filled icon-right rounded waves-effect waves-light"
+        >
+          <i class="material-icons">edit</i>Update
         </a>
-    </div>
+      </div>
 
-    <!-- Materialize JavaScript (CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.3.3/dist/js/materialize.min.js"></script>
+      <!-- Materialize JavaScript (CDN) -->
+      <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.3.3/dist/js/materialize.min.js"></script>
 
-    <!-- Scripts da aplicação e inicialização dos componentes -->
-    <script src="js/main.js"></script>
-    <script>
+      <!-- Scripts da aplicação e inicialização dos componentes -->
+      <script src="js/main.js"></script>
+      <script>
         // Inicializa automaticamente todos os componentes do Materialize (Waves, Modais, etc.)
-        document.addEventListener('DOMContentLoaded', function() {
-            M.AutoInit();
+        document.addEventListener("DOMContentLoaded", function () {
+          M.AutoInit();
         });
-    </script>
-</body>
-
+      </script>
+    </body>
+  </html>
 </html>

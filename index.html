@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SobrouQuanto?</title>
+    <link rel="stylesheet" href="node_modules/@materializecss/materialize/dist/css/materialize.min.css">
 </head>
+
 <body>
-    
+    <div class="container" style="margin-top: 2rem;">
+        <a class="btn">Standard Button</a>
+        <a tabindex="0" class="btn filled">Create</a>
+        <a tabindex="0" class="btn filled icon-left">
+            <i class="material-icons">add</i>Create
+        </a>
+        <a tabindex="0" class="btn filled icon-right rounded waves-effect waves-light">
+            <i class="material-icons">edit</i>Update
+        </a>
+    </div>
+
+    <!-- Materialize JavaScript (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.3.3/dist/js/materialize.min.js"></script>
+
+    <!-- Scripts da aplicação e inicialização dos componentes -->
+    <script src="js/main.js"></script>
+    <script>
+        // Inicializa automaticamente todos os componentes do Materialize (Waves, Modais, etc.)
+        document.addEventListener('DOMContentLoaded', function() {
+            M.AutoInit();
+        });
+    </script>
 </body>
+
 </html>

@@ -24,7 +24,7 @@ Abaixo estão as funcionalidades principais do MVP (Minimum Viable Product), org
 - *US05 - Cotação de Moedas Hoje:* Como um Cliente, quero consultar a cotação em tempo real do Dólar, do Euro e da Libra no Dashboard para acompanhar o mercado cambial.
 - *Critérios de Aceitação:* A cotação deve ser obtida via requisição assíncrona à AwesomeAPI e exibida nos cards correspondentes indicando se houve alta ou baixa.
 
-## 🏷️ Épico 3: Gestão de Categorias ( cadastros.html )
+## 🏷️ Épico 3: Gestão de Categorias ( cadastro.html )
 - *US06 - Cadastrar Categoria:* Como um Cliente, quero cadastrar e listar categorias (ex: Alimentação, Moradia, Salário) para organizar minhas movimentações.
 - *Critérios de Aceitação:* O nome da categoria, o tipo (Receita/Despesa) e a escolha de um ícone representativo são obrigatórios; o envio é feito via POST para o JSON Server e a lista é atualizada dinamicamente no DOM com botões de edição e exclusão.
 
@@ -36,7 +36,7 @@ Abaixo estão as funcionalidades principais do MVP (Minimum Viable Product), org
 - *US09 - Excluir Transação:* Como um Cliente, quero remover um lançamento cadastrado incorretamente.
 - *Critérios de Aceitação:* Um Modal de Confirmação de segurança deve ser exibido antes de disparar a requisição DELETE para o JSON Server.
 
-## 👤 Épico 5: Perfil do Usuário ( profile.html )
+## 👤 Épico 5: Perfil do Usuário ( perfil.html )
 - *US10 - Visualizar e Editar Perfil:* Como um Cliente, quero acessar uma tela de perfil para visualizar e atualizar meus dados pessoais.
 - *Critérios de Aceitação:* A tela deve conter a foto de perfil (avatar editável), Nome Completo, Profissão/Ocupação e uma área de Bio/Descrição.
 - *US11 - Preferências da Conta:* Como um Cliente, quero gerenciar configurações básicas da minha experiência de uso.

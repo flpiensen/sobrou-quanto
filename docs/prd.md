@@ -1,7 +1,7 @@
 # 📄 Product Requirements Document (PRD) - SobrouQuanto?
 
 ## 1. Visão Geral e Objetivo
-O *SobrouQuanto?* é uma aplicação web didática voltada ao gerenciamento de finanças pessoais em nível de cliente. O objetivo principal da aplicação é permitir que os usuários façam login no sistema, cadastrem categorias de gastos/receitas, registrem movimentações financeiras do dia a dia (com opção de anexar comprovantes), acompanhem o saldo restante em tempo real através de gráficos e visualizem as cotações atualizadas das principais moedas estrangeiras.
+O *SobrouQuanto?* é uma aplicação web didática voltada ao gerenciamento de finanças pessoais em nível de cliente. O objetivo principal da aplicação é permitir que os usuários façam login no sistema, cadastrem categorias de gastos/receitas, registrem movimentações financeiras do dia a dia (com opção de anexar comprovantes), acompanhem o saldo restante em tempo real através de gráficos e visualizem as cotações atualizadas das principais moedas estrangeiras. A interface responsiva (mobile e desktop) é construída com o framework CSS **Bootstrap 5** (`v5.3.8`) e a biblioteca **Bootstrap Icons** (`v1.13.1`), detalhados em `docs/architecture.md`.
 
 ## 2. Atores do Sistema
 - *Visitante:* Usuário não autenticado que acessa a página inicial e é direcionado para a tela de autenticação.

@@ -1,0 +1,567 @@
+<!DOCTYPE html><html class="light" lang="pt-BR" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Meu Perfil e Preferências - SobrouQuanto?</title>
+<!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "surface-variant": "#e0e3e5",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#e6e8ea",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#bec6e0",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#3d4a42",
+            "tertiary-fixed": "#ffddb8",
+            "surface-container-highest": "#e0e3e5",
+            "secondary-fixed": "#dae2fd",
+            "inverse-primary": "#68dba9",
+            "inverse-on-surface": "#eff1f3",
+            "secondary": "#565e74",
+            "on-tertiary-fixed-variant": "#653e00",
+            "surface-container-low": "#f2f4f6",
+            "primary-container": "#00855d",
+            "inverse-surface": "#2d3133",
+            "primary": "#006948",
+            "tertiary-fixed-dim": "#ffb95f",
+            "outline-variant": "#bccac0",
+            "on-tertiary": "#ffffff",
+            "primary-fixed": "#85f8c4",
+            "on-primary-fixed-variant": "#005137",
+            "on-surface": "#191c1e",
+            "surface-tint": "#006c4a",
+            "on-secondary-container": "#5c647a",
+            "primary-fixed-dim": "#68dba9",
+            "on-secondary-fixed-variant": "#3f465c",
+            "on-tertiary-container": "#fffbff",
+            "on-primary-container": "#f5fff7",
+            "outline": "#6d7a72",
+            "on-primary-fixed": "#002114",
+            "tertiary-container": "#a36700",
+            "surface-bright": "#f7f9fb",
+            "background": "#f7f9fb",
+            "error": "#ba1a1a",
+            "surface-dim": "#d8dadc",
+            "secondary-container": "#dae2fd",
+            "on-background": "#191c1e",
+            "on-secondary": "#ffffff",
+            "tertiary": "#825100",
+            "on-secondary-fixed": "#131b2e",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed": "#2a1700",
+            "surface-container": "#eceef0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "max-content-width": "1440px",
+            "space-xs": "0.5rem",
+            "sidebar-width": "260px",
+            "space-sm": "0.75rem",
+            "space-xxs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-lg": [
+              "Plus Jakarta Sans"
+            ],
+            "label-numeric-sm": [
+              "JetBrains Mono"
+            ],
+            "display-hero": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-lg": [
+              "Plus Jakarta Sans"
+            ],
+            "caption-caps": [
+              "Plus Jakarta Sans"
+            ],
+            "label-numeric-md": [
+              "JetBrains Mono"
+            ],
+            "label-numeric-lg": [
+              "JetBrains Mono"
+            ],
+            "headline-md": [
+              "Plus Jakarta Sans"
+            ],
+            "body-sm": [
+              "Plus Jakarta Sans"
+            ],
+            "body-md": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-sm": [
+              "Plus Jakarta Sans"
+            ]
+          },
+          "fontSize": {
+            "body-lg": [
+              "16px",
+              {
+                "lineHeight": "24px",
+                "fontWeight": "400"
+              }
+            ],
+            "label-numeric-sm": [
+              "12px",
+              {
+                "lineHeight": "16px",
+                "fontWeight": "500"
+              }
+            ],
+            "display-hero": [
+              "36px",
+              {
+                "lineHeight": "44px",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "700"
+              }
+            ],
+            "headline-lg": [
+              "28px",
+              {
+                "lineHeight": "36px",
+                "letterSpacing": "-0.015em",
+                "fontWeight": "700"
+              }
+            ],
+            "caption-caps": [
+              "11px",
+              {
+                "lineHeight": "14px",
+                "letterSpacing": "0.05em",
+                "fontWeight": "600"
+              }
+            ],
+            "label-numeric-md": [
+              "14px",
+              {
+                "lineHeight": "20px",
+                "fontWeight": "500"
+              }
+            ],
+            "label-numeric-lg": [
+              "24px",
+              {
+                "lineHeight": "32px",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-md": [
+              "22px",
+              {
+                "lineHeight": "30px",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "600"
+              }
+            ],
+            "body-sm": [
+              "12px",
+              {
+                "lineHeight": "16px",
+                "fontWeight": "400"
+              }
+            ],
+            "body-md": [
+              "14px",
+              {
+                "lineHeight": "20px",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-sm": [
+              "18px",
+              {
+                "lineHeight": "26px",
+                "letterSpacing": "-0.005em",
+                "fontWeight": "600"
+              }
+            ]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased flex overflow-hidden flex-col" data-mode="connect" style="width: 1440px; max-width: 100%; height: 1024px; max-height: 1024px; overflow: hidden; display: flex; flex-direction: column; margin: 0px auto;">
+<!-- ==================== SIDEBAR COMPONENT (Shared Component) ==================== -->
+
+<!-- ==================== MAIN CONTENT CANVAS ==================== -->
+<div class="flex-1 flex flex-col h-full overflow-hidden w-full">
+<!-- TopNavBar Component (Shared Component) -->
+<header class="flex justify-between items-center w-full px-space-lg h-16 shrink-0 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm sticky top-0 z-50"><div class="max-w-max-content-width w-full mx-auto flex justify-between items-center gap-4"><div class="flex items-center gap-8"><a href="index.html" aria-label="Ir para o Dashboard" title="Ir para o Dashboard" class="flex items-center gap-3 group cursor-pointer hover:opacity-90 transition-opacity"><div class="w-9 h-9 rounded-lg bg-primary text-on-primary flex items-center justify-center shadow-sm group-hover:ring-2 group-hover:ring-primary/40 transition-all"><span class="material-symbols-outlined text-[22px]">account_balance_wallet</span></div><div><h1 class="text-headline-sm font-headline-sm font-bold text-primary dark:text-inverse-primary leading-tight group-hover:underline">SobrouQuanto?</h1></div></a><nav class="hidden md:flex items-center gap-1"><a class="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary dark:text-surface-variant font-normal hover:bg-surface-container dark:hover:bg-surface-variant hover:text-on-surface transition-colors text-label-numeric-md" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="">Transações</span></a><a class="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary dark:text-surface-variant font-normal hover:bg-surface-container dark:hover:bg-surface-variant hover:text-on-surface transition-colors text-label-numeric-md" href="#"><span class="material-symbols-outlined text-[20px]">category</span><span class="">Categorias</span></a></nav></div><div class="flex items-center gap-3 sm:gap-4"><div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container border border-outline-variant/60"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="text-label-numeric-sm font-label-numeric-sm text-secondary">USD/BRL R$ 4,97</span><span class="material-symbols-outlined text-primary text-[14px]">trending_up</span></div><button aria-label="Notificações" class="relative p-2 rounded-lg text-secondary hover:bg-surface-container hover:text-on-surface transition-colors active:scale-95"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><a href="profile.html" aria-label="Ver perfil de Lucas Oliveira" class="flex items-center gap-3 pl-2 border-l border-outline-variant cursor-pointer group hover:opacity-90 transition-opacity"></a><div class="relative"><a href="profile.html" aria-label="Ver perfil de Lucas Oliveira" class="flex items-center gap-3 pl-2 border-l border-outline-variant cursor-pointer group hover:opacity-90 transition-opacity"></a><a href="https://app-companion-430619.appspot.com/u/1/projects/profile.html" class="flex items-center gap-2.5 p-1 -m-1 rounded-lg hover:bg-surface-container transition-colors duration-150 group cursor-pointer" title="Ver Perfil" spellcheck="false" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; margin: -0.25rem; padding: 0.25rem; font-family: ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: medium;"><div class="relative" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ;"><img class="w-9 h-9 rounded-full object-cover border border-outline-variant group-hover:border-primary transition-colors" data-alt="Close-up professional corporate portrait of Lucas Oliveira, a sharp young technology finance manager with a warm confident expression, softly illuminated under studio key light with clean modern corporate office backdrop in subtle emerald and slate tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCbDrpa8mr0ns65SY-KD178ixqBNty07EspKJSna0SMpNANlCRjFS7yZLlq4Hx_CQ8zDBQk101OrvW6undw-fggchN9uf6bbGi5GYdcpQFTpfEoF_esW-2e7lUV3iOXSCbVc4sJx6ZRmzb2o70d33wfHcmdw27kkdMXX6hx7fsIATPy9vf2Vq64hCAR-b7exVL26usIblc4A3FchZb-TqbXPF14uxEk0vBrRMpdOxcT7EwpEAZTy978Q" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; border-color: rgb(188, 202, 192); --tw-border-opacity: 1;"><span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary rounded-full ring-2 ring-surface-container-lowest" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(255 255 255 / 1); --tw-ring-offset-shadow: 0 0 0 0px #fff; --tw-ring-shadow: 0 0 0 calc(2px + 0px) rgb(255 255 255 / 1); --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-bg-opacity: 1; background-color: rgb(0, 105, 72); box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 2px, rgba(0, 0, 0, 0) 0px 0px 0px 0px; --tw-ring-opacity: 1;"></span></div><div class="hidden lg:flex flex-col text-left" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ;"><span class="text-body-sm font-body-sm font-semibold text-on-surface group-hover:text-primary transition-colors leading-tight" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(25, 28, 30);">Lucas Oliveira</span><span class="text-label-numeric-sm font-label-numeric-sm text-secondary" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(86, 94, 116);">Plano Pro</span></div></a></div></div></div></header>
+<!-- Page Body Container -->
+<main class="p-space-xl max-w-max-content-width w-full mx-auto space-y-space-xl flex-1 overflow-y-auto" style="flex: 1 1 0%; min-height: 0px; width: 100%; max-width: 1440px; overflow: hidden auto;">
+<!-- Page Title & Subtitle Banner -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-outline-variant/40">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">
+            Meu Perfil e Preferências
+          </h2>
+<p class="text-body-md font-body-md text-secondary mt-1">
+            Gerencie seus dados cadastrais, segurança e configurações da aplicação
+          </p>
+</div>
+<!-- Top Right Meta & Status Indicator -->
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption-caps font-caption-caps bg-secondary-container text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[14px]">shield_person</span>
+            Ambiente Criptografado
+          </span>
+<span class="text-label-numeric-sm font-label-numeric-sm text-secondary">
+            v2.4.0 (build 3000)
+          </span>
+</div>
+</div>
+<!-- 2-Column Responsive Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
+<!-- ==================== LEFT COLUMN: User Data & Avatar (7 Cols) ==================== -->
+<section class="lg:col-span-7 space-y-6">
+<!-- Avatar & Identity Summary Card (Level 1 Elevation) -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/70 p-6 shadow-sm">
+<div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+<!-- Big Avatar with active ring -->
+<div class="relative group">
+<div class="w-24 h-24 rounded-full overflow-hidden ring-4 ring-primary/20 p-0.5 bg-surface-container-lowest shadow-sm">
+<img class="w-full h-full rounded-full object-cover" data-alt="Close-up professional portrait of Lucas Oliveira, a cheerful male developer with trimmed beard and warm brown eyes, wearing a minimalist dark olive sweater in a sunlit modern technology office with architectural greenery and clean lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQCFb_wHqRUOHcPxNyLQRSrfghaguXgr_aH485Zt-MCZZGhfv0CUfSN5LksQr3WydcoyNB3E3aGtsVEsz8UXfojD9-N_qt5MQVW3wZTE0mTlWeY1MWcj_X4kmpfY2AKsr5xsSCTMHJry0zsr-XzTIr3sjP_jdjly5FIJuKSWZ20atrBfE1iHirOpE7uBKTWBcq4HaYSvf8TUAssM_IGn-KmeXDVX5c_5v2olOEOZRKRBGHORO0hMBRxg">
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-on-primary p-1.5 rounded-full border-2 border-surface-container-lowest shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+</div>
+</div>
+<!-- Info & Quick Actions -->
+<div class="flex-1 text-center sm:text-left space-y-2">
+<div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+<h3 class="text-headline-sm font-headline-sm font-bold text-on-surface">Lucas Oliveira da Silva</h3>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-caption-caps font-caption-caps bg-[#DCFCE7] text-[#15803D] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#15803D]"></span>
+                    Cliente Ativo
+                  </span>
+</div>
+<p class="text-body-sm font-body-sm text-secondary flex items-center justify-center sm:justify-start gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">calendar_today</span>
+                  Membro desde Janeiro de 2024
+                </p>
+<!-- Avatar Action Buttons -->
+<div class="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-3">
+<button class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container text-body-sm font-medium transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">photo_camera</span>
+<span class="">Alterar foto</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-secondary hover:text-error hover:bg-error-container/30 text-body-sm font-medium transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+<span class="">Remover</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Cadastro Form (Level 1 Elevation) -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/70 p-6 shadow-sm">
+<div class="flex items-center justify-between pb-4 mb-6 border-b border-outline-variant/40">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[22px]">badge</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Dados Cadastrais</h3>
+</div>
+<span class="text-label-numeric-sm font-label-numeric-sm text-secondary">Edição direta</span>
+</div>
+<form class="space-y-5" onsubmit="event.preventDefault();">
+<!-- Row 1: Nome Completo -->
+<div>
+<label class="block text-caption-caps font-caption-caps uppercase text-secondary mb-1.5" for="nome">
+                  Nome Completo
+                </label>
+<div class="relative">
+<input class="w-full h-11 px-3.5 bg-surface-container-lowest rounded-lg border border-outline-variant text-on-surface font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" id="nome" type="text" value="Lucas Oliveira da Silva">
+<span class="material-symbols-outlined absolute right-3 top-3 text-secondary text-[20px]">person</span>
+</div>
+</div>
+<!-- Row 2: E-mail com Badge de Verificado -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="text-caption-caps font-caption-caps uppercase text-secondary" for="email">
+                    E-mail Principal
+                  </label>
+<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#15803D] bg-[#DCFCE7] px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                    E-mail Verificado
+                  </span>
+</div>
+<div class="relative">
+<input class="w-full h-11 px-3.5 bg-surface-container-lowest rounded-lg border border-outline-variant text-on-surface font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" id="email" type="email" value="lucas.oliveira@email.com">
+<span class="material-symbols-outlined absolute right-3 top-3 text-secondary text-[20px]">mail</span>
+</div>
+</div>
+<!-- Row 3: Grid Profissão & Telefone -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Profissão -->
+<div>
+<label class="block text-caption-caps font-caption-caps uppercase text-secondary mb-1.5" for="profissao">
+                    Profissão / Ocupação
+                  </label>
+<div class="relative">
+<input class="w-full h-11 px-3.5 bg-surface-container-lowest rounded-lg border border-outline-variant text-on-surface font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" id="profissao" type="text" value="Desenvolvedor de Software">
+<span class="material-symbols-outlined absolute right-3 top-3 text-secondary text-[20px]">terminal</span>
+</div>
+</div>
+<!-- Telefone -->
+<div>
+<label class="block text-caption-caps font-caption-caps uppercase text-secondary mb-1.5" for="telefone">
+                    Telefone de Contato
+                  </label>
+<div class="relative">
+<input class="w-full h-11 px-3.5 bg-surface-container-lowest rounded-lg border border-outline-variant text-on-surface font-label-numeric-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" id="telefone" type="text" value="(11) 98765-4321">
+<span class="material-symbols-outlined absolute right-3 top-3 text-secondary text-[20px]">call</span>
+</div>
+</div>
+</div>
+<!-- Row 4: Bio / Descrição -->
+<div>
+<label class="block text-caption-caps font-caption-caps uppercase text-secondary mb-1.5" for="bio">
+                  Bio / Descrição Pessoal
+                </label>
+<div class="relative">
+<textarea class="w-full p-3.5 bg-surface-container-lowest rounded-lg border border-outline-variant text-on-surface font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-none leading-relaxed" id="bio" rows="3">Focado em construir reserva de emergência e controlar gastos supérfluos no SobrouQuanto?.</textarea>
+</div>
+<p class="text-body-sm font-body-sm text-secondary mt-1">Essa nota é exibida em relatórios de metas orçamentárias.</p>
+</div>
+<!-- Form Action Footprint -->
+<div class="pt-4 border-t border-outline-variant/40 flex items-center justify-between">
+<span class="text-label-numeric-sm font-label-numeric-sm text-secondary">
+                  Última alteração: Hoje às 14:22
+                </span>
+<!-- Botão Primário Design Tokens -->
+<button class="bg-primary hover:bg-primary-container text-on-primary font-semibold font-body-md text-body-md py-2.5 px-6 rounded-lg shadow-sm transition-all duration-150 active:scale-95 flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span class="">Salvar Alterações</span>
+</button>
+</div>
+</form>
+</div>
+</section>
+<!-- ==================== RIGHT COLUMN: Preferences & Security (5 Cols) ==================== -->
+<section class="lg:col-span-5 space-y-6">
+<!-- Card de Preferências do Sistema (US11) -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/70 p-6 shadow-sm">
+<div class="flex items-center justify-between pb-4 mb-4 border-b border-outline-variant/40">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[22px]">tune</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Preferências do Sistema</h3>
+</div>
+<span class="px-2 py-0.5 rounded text-caption-caps font-caption-caps bg-surface-container text-secondary font-medium">US11</span>
+</div>
+<div class="space-y-5 divide-y divide-outline-variant/30">
+<!-- Toggle 1: Receber alertas de vencimento (Ativo) -->
+<div class="pt-3 first:pt-0 flex items-start justify-between gap-4">
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="text-body-md font-body-md font-semibold text-on-surface">Receber alertas de vencimento</span>
+<span class="w-2 h-2 rounded-full bg-primary" title="Ativado"></span>
+</div>
+<p class="text-body-sm font-body-sm text-secondary">
+                    Notificar 3 dias antes do vencimento de contas fixas
+                  </p>
+</div>
+<!-- Custom Switch (Active) -->
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:bg-primary transition-colors duration-200"></div>
+<div class="dot absolute left-1 top-1 bg-surface-container-lowest w-4 h-4 rounded-full transition-transform duration-200 peer-checked:translate-x-5 shadow-xs"></div>
+</label>
+</div>
+<!-- Toggle 2: Modo Escuro (Dark Mode) (Inativo) -->
+<div class="pt-4 flex items-start justify-between gap-4">
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="text-body-md font-body-md font-semibold text-on-surface">Modo Escuro (Dark Mode)</span>
+<span class="text-caption-caps font-caption-caps text-secondary bg-surface-container px-1.5 py-0.2 rounded">Claro</span>
+</div>
+<p class="text-body-sm font-body-sm text-secondary">
+                    Alternar tema de alto contraste para ambientes com pouca luz
+                  </p>
+</div>
+<!-- Custom Switch (Inactive) -->
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+<input class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:bg-primary transition-colors duration-200"></div>
+<div class="dot absolute left-1 top-1 bg-surface-container-lowest w-4 h-4 rounded-full transition-transform duration-200 peer-checked:translate-x-5 shadow-xs"></div>
+</label>
+</div>
+<!-- Toggle 3: Cotações Automáticas no Dashboard (Ativo) -->
+<div class="pt-4 flex items-start justify-between gap-4">
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="text-body-md font-body-md font-semibold text-on-surface">Cotações Automáticas no Dashboard</span>
+</div>
+<p class="text-body-sm font-body-sm text-secondary">
+                    Atualizar cotações do Dólar, Euro e Libra a cada 5 minutos via AwesomeAPI
+                  </p>
+</div>
+<!-- Custom Switch (Active) -->
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:bg-primary transition-colors duration-200"></div>
+<div class="dot absolute left-1 top-1 bg-surface-container-lowest w-4 h-4 rounded-full transition-transform duration-200 peer-checked:translate-x-5 shadow-xs"></div>
+</label>
+</div>
+<!-- Toggle 4: Resumo semanal por e-mail (Ativo) -->
+<div class="pt-4 flex items-start justify-between gap-4">
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="text-body-md font-body-md font-semibold text-on-surface">Resumo semanal por e-mail</span>
+</div>
+<p class="text-body-sm font-body-sm text-secondary">
+                    Receber relatório toda segunda-feira de manhã
+                  </p>
+</div>
+<!-- Custom Switch (Active) -->
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:bg-primary transition-colors duration-200"></div>
+<div class="dot absolute left-1 top-1 bg-surface-container-lowest w-4 h-4 rounded-full transition-transform duration-200 peer-checked:translate-x-5 shadow-xs"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Card de Segurança e Sessão -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/70 p-6 shadow-sm space-y-5">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/40">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[22px]">security</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Segurança e Sessão</h3>
+</div>
+<span class="material-symbols-outlined text-[#15803D] text-[20px]">lock</span>
+</div>
+<!-- Status de Armazenamento -->
+<div class="p-3.5 bg-surface-container-low rounded-lg border border-outline-variant/50 space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-caption-caps font-caption-caps uppercase text-secondary">Status da Sessão Atual</span>
+<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Ativa
+                </span>
+</div>
+<p class="text-label-numeric-sm font-label-numeric-sm text-on-surface font-medium">
+                Armazenada em sessionStorage
+              </p>
+<p class="text-body-sm font-body-sm text-secondary pt-0.5">
+                Encerrada automaticamente ao fechar a janela do navegador.
+              </p>
+</div>
+<!-- Botões de Ação de Segurança -->
+<div class="space-y-2.5">
+<button class="w-full flex items-center justify-between px-4 py-2.5 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container text-body-md font-medium transition-colors active:scale-95" type="button">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-secondary">key</span>
+<span class="">Redefinir Senha</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-secondary">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-2.5 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container text-body-md font-medium transition-colors active:scale-95" type="button">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-secondary">devices</span>
+<span class="">Gerenciar Sessões Ativas</span>
+</div>
+<span class="px-2 py-0.5 rounded text-caption-caps font-caption-caps bg-surface-container text-secondary">1 Dispositivo</span>
+</button>
+</div>
+</div>
+<!-- Card de Integrações -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/70 p-6 shadow-sm space-y-4">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/40">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[22px]">hub</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Integrações do Sistema</h3>
+</div>
+<span class="text-label-numeric-sm font-label-numeric-sm text-secondary">Status API</span>
+</div>
+<div class="space-y-3">
+<!-- Integração 1: AwesomeAPI -->
+<div class="flex items-center justify-between p-3 rounded-lg border border-outline-variant/40 bg-surface">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-[#DCFCE7] text-[#15803D] flex items-center justify-center font-bold text-[13px]">
+<span class="material-symbols-outlined text-[18px]">currency_exchange</span>
+</div>
+<div>
+<h4 class="text-body-md font-body-md font-semibold text-on-surface">AwesomeAPI</h4>
+<p class="text-label-numeric-sm font-label-numeric-sm text-secondary">Feed de Moedas &amp; Câmbio</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-caption-caps font-caption-caps bg-[#DCFCE7] text-[#15803D] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#15803D]"></span>
+                  Conectada
+                </span>
+</div>
+<!-- Integração 2: JSON Server -->
+<div class="flex items-center justify-between p-3 rounded-lg border border-outline-variant/40 bg-surface">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold text-[13px]">
+<span class="material-symbols-outlined text-[18px]">database</span>
+</div>
+<div>
+<h4 class="text-body-md font-body-md font-semibold text-on-surface">JSON Server</h4>
+<p class="text-label-numeric-sm font-label-numeric-sm text-secondary">localhost:3000 (Local DB)</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-caption-caps font-caption-caps bg-[#DCFCE7] text-[#15803D] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#15803D]"></span>
+                  Conectado
+                </span>
+</div>
+</div>
+<!-- Database Sync Health Note -->
+<div class="text-label-numeric-sm font-label-numeric-sm text-secondary flex items-center justify-between pt-1">
+<span class="">Latência média: 18ms</span>
+<button class="text-primary hover:underline font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">refresh</span>
+                Testar Ping
+              </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+
+
+
+
+
+
+
+</body></html>

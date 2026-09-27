@@ -62,7 +62,7 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 > **Nota:** Marque com `[x]` apenas os itens que foram efetivamente implementados na aplicação e que você domina para explicação na defesa técnica.
 
 ### RA1 - Utilizar Frameworks CSS para estilização de elementos HTML e criação de layouts responsivos
-- [ ] **ID01:** Prototipa interfaces adaptáveis para no mínimo os tamanhos de tela mobile e desktop, usando ferramentas de IA (Stitch) e/ou design (Figma).
+- [x] **ID01:** Prototipa interfaces adaptáveis para no mínimo os tamanhos de tela mobile e desktop, usando ferramentas de IA (Stitch) e/ou design (Figma).
 - [ ] **ID02:** Implementa layout responsivo com Framework CSS (Bootstrap) usando Flexbox ou Grid do próprio framework.
 - [ ] **ID03:** Implementa layout responsivo com CSS puro, usando Flexbox ou Grid Layout.
 - [ ] **ID04:** Utiliza componentes prontos de um Framework CSS (ex.: card, button) e componentes JavaScript do framework (ex.: modal, navbar).
@@ -80,10 +80,10 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 - [ ] **ID14:** Implementa leitura e escrita no Web Storage (`localStorage`/`sessionStorage`) para persistir dados localmente no cliente.
 
 ### RA3 - Aplicar ferramentas para otimização do processo de desenvolvimento web
-- [ ] **ID15:** Configura ambiente com Node.js e NPM para gerenciamento de pacotes e dependências.
+- [x] **ID15:** Configura ambiente com Node.js e NPM para gerenciamento de pacotes e dependências.
 - [ ] **ID16:** Utiliza boas práticas de versionamento no Git / GitHub (branch `main`, uso de `.gitignore`).
-- [ ] **ID17:** Mantém um `README.md` padronizado, conforme template da disciplina, com checklist preenchido.
-- [ ] **ID18:** Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido (`/docs`, `/assets`, `/server`).
+- [x] **ID17:** Mantém um `README.md` padronizado, conforme template da disciplina, com checklist preenchido.
+- [x] **ID18:** Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido (`/docs`, `/assets`, `/server`).
 - [ ] **ID19:** Configura linters e formatadores (ESLint, Prettier) para manter qualidade e padronização do código.
 
 ### RA4 - Aplicar bibliotecas de funções e componentes em JavaScript para aprimorar a interatividade

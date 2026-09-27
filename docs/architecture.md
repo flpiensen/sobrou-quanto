@@ -29,11 +29,15 @@ graph TD
 ```
 ### 1.1. Tecnologias e Dependências
 
-* **Framework CSS:** [MaterializeWeb](https://materializeweb.com/) (`v2.3.3`)
-  * **Uso:** Implementação de componentes visuais baseados em Material Design 3 / Material You via Web Components nativos.
-  * **Inclusão:**
-    * CSS: `[https://cdn.jsdelivr.net/npm/materializecss/materialize@2.3.3/dist/cdn/materialize.min.css]`
-    * JS: `[https://cdn.jsdelivr.net/npm/materializecss@2.3.3/dist/cdn/materialize.min.js]`
+* **Framework CSS:** [Bootstrap](https://getbootstrap.com/) (`v5.3.8`)
+  * **Uso:** Sistema de grid responsivo (Flexbox) e componentes prontos (Navbar, Cards, Modais, Forms, Dropdowns) via classes utilitárias e o bundle JS próprio (inclui Popper para tooltips/dropdowns). Não depende de jQuery.
+  * **Inclusão (via NPM):**
+    * CSS: `node_modules/bootstrap/dist/css/bootstrap.min.css`
+    * JS: `node_modules/bootstrap/dist/js/bootstrap.bundle.min.js`
+
+* **Ícones:** [Bootstrap Icons](https://icons.getbootstrap.com/) (`v1.13.1`)
+  * **Uso:** Biblioteca oficial de ícones do Bootstrap. Usada no campo `icone` da entidade Categoria (ex: `bi-basket`, `bi-cash-coin`, `bi-house`) e nos demais ícones de interface.
+  * **Inclusão (via NPM):** `node_modules/bootstrap-icons/font/bootstrap-icons.css`
 
 * **API Pública de Cotações:** [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas) (`v1`)
   * **Uso:** Consumo de cotações de moedas em tempo real para exibição no Dashboard.

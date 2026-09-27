@@ -1,58 +1,35 @@
 <!doctype html>
-<html lang="en">
-  <html lang="pt-BR">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>SobrouQuanto?</title>
-      <link
-        rel="stylesheet"
-        href="node_modules/@materializecss/materialize/dist/css/materialize.min.css"
-      />
-      <link
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet"
-      />
-      
-    </head>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SobrouQuanto?</title>
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+  </head>
 
-    <body>
-      <a class="btn">Standard Button</a>
-      <a tabindex="0" class="btn filled">Create</a>
-      <a tabindex="0" class="btn filled icon-left">
-        <i class="material-icons">add</i>Create
+  <body>
+    <div class="container" style="margin-top: 2rem">
+      <a class="btn btn-outline-secondary" href="#">Standard Button</a>
+      <a tabindex="0" class="btn btn-success" href="#">Create</a>
+      <a tabindex="0" class="btn btn-success" href="#">
+        <i class="bi bi-plus-lg"></i> Create
       </a>
-      <a
-        tabindex="0"
-        class="btn filled icon-right rounded waves-effect waves-light"
-      >
-        <i class="material-icons">edit</i>Update
+      <a tabindex="0" class="btn btn-success rounded-pill" href="#">
+        <i class="bi bi-pencil"></i> Update
       </a>
-      <div class="container" style="margin-top: 2rem">
-        <a class="btn">Standard Button</a>
-        <a tabindex="0" class="btn filled">Create</a>
-        <a tabindex="0" class="btn filled icon-left">
-          <i class="material-icons">add</i>Create
-        </a>
-        <a
-          tabindex="0"
-          class="btn filled icon-right rounded waves-effect waves-light"
-        >
-          <i class="material-icons">edit</i>Update
-        </a>
-      </div>
+    </div>
 
-      <!-- Materialize JavaScript (CDN) -->
-      <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.3.3/dist/js/materialize.min.js"></script>
+    <!-- Bootstrap Bundle JS (inclui Popper, via NPM) -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-      <!-- Scripts da aplicação e inicialização dos componentes -->
-      <script src="js/main.js"></script>
-      <script>
-        // Inicializa automaticamente todos os componentes do Materialize (Waves, Modais, etc.)
-        document.addEventListener("DOMContentLoaded", function () {
-          M.AutoInit();
-        });
-      </script>
-    </body>
-  </html>
+    <!-- Scripts da aplicação -->
+    <script src="js/main.js"></script>
+  </body>
 </html>

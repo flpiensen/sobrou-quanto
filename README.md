@@ -26,8 +26,10 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 ## 🛠️ Tecnologias e Dependências
 
 ### **Framework CSS**
-* **[MaterializeWeb (Material Design 3.0)](https://materializeweb.com/)**
-  * **Justificativa:** Escolhido por implementar o padrão de design moderno da Google (Material You / M3), oferecendo componentes web nativos (*Web Components*) com ótima experiência de uso e acessibilidade. Ele foi selecionado por se alinhar com a proposta visual prototipada no Stitch e por fornecer componentes limpos, responsivos e prontos para uso sem exigir dependências legadas como jQuery.
+* **[Bootstrap 5.3](https://getbootstrap.com/)**
+  * **Justificativa:** Framework CSS mais adotado do mercado, com documentação extensa, grande comunidade e projeto ativo no GitHub (licença MIT). Seu sistema de grid em Flexbox resolve com facilidade a responsividade mobile/desktop do protótipo, e os componentes prontos (Navbar, Cards, Modais, Forms) cobrem os elementos identificados no protótipo do Stitch. A partir da v5 não depende mais de jQuery.
+* **[Bootstrap Icons](https://icons.getbootstrap.com/)**
+  * **Justificativa:** Biblioteca de ícones oficial do Bootstrap, com integração nativa — usada nos ícones de categoria (`bi-basket`, `bi-cash-coin`, etc.) e da interface como um todo.
 
 ### **API Pública**
 * **[AwesomeAPI (Cotações de Moedas)](https://docs.awesomeapi.com.br/api-de-moedas)**

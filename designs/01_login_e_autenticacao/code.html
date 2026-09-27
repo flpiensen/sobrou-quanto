@@ -1,0 +1,481 @@
+<!DOCTYPE html><html class="light" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SobrouQuanto? - Login e Autenticação Segura</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#dae2fd",
+            "tertiary-container": "#a36700",
+            "on-primary-fixed-variant": "#005137",
+            "surface-container-low": "#f2f4f6",
+            "tertiary-fixed": "#ffddb8",
+            "inverse-surface": "#2d3133",
+            "on-error": "#ffffff",
+            "secondary-container": "#dae2fd",
+            "secondary": "#565e74",
+            "primary-fixed": "#85f8c4",
+            "on-primary": "#ffffff",
+            "on-error-container": "#93000a",
+            "tertiary": "#825100",
+            "outline": "#6d7a72",
+            "on-primary-container": "#f5fff7",
+            "inverse-on-surface": "#eff1f3",
+            "on-tertiary-container": "#fffbff",
+            "error-container": "#ffdad6",
+            "surface-dim": "#d8dadc",
+            "background": "#f7f9fb",
+            "on-tertiary-fixed": "#2a1700",
+            "on-surface-variant": "#3d4a42",
+            "surface-bright": "#f7f9fb",
+            "secondary-fixed-dim": "#bec6e0",
+            "primary-container": "#00855d",
+            "on-surface": "#191c1e",
+            "surface-container": "#eceef0",
+            "surface": "#f7f9fb",
+            "on-secondary-container": "#5c647a",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed-variant": "#3f465c",
+            "inverse-primary": "#68dba9",
+            "tertiary-fixed-dim": "#ffb95f",
+            "primary": "#006948",
+            "surface-variant": "#e0e3e5",
+            "outline-variant": "#bccac0",
+            "on-tertiary-fixed-variant": "#653e00",
+            "on-background": "#191c1e",
+            "surface-tint": "#006c4a",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#e0e3e5",
+            "on-primary-fixed": "#002114",
+            "error": "#ba1a1a",
+            "primary-fixed-dim": "#68dba9",
+            "surface-container-high": "#e6e8ea",
+            "on-secondary-fixed": "#131b2e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "max-content-width": "1440px",
+            "space-xs": "0.5rem",
+            "space-xl": "2rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "sidebar-width": "260px",
+            "space-sm": "0.75rem",
+            "space-2xl": "3rem",
+            "space-xxs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-numeric-sm": ["JetBrains Mono"],
+            "caption-caps": ["Plus Jakarta Sans"],
+            "label-numeric-lg": ["JetBrains Mono"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-numeric-md": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+            "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+            "display-hero": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "headline-md": ["22px", {"lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "label-numeric-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+            "caption-caps": ["11px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "label-numeric-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "headline-sm": ["18px", {"lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-numeric-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col justify-between selection:bg-primary-fixed selection:text-on-primary-fixed" style="width: 1440px; max-width: 100%; height: 1024px; max-height: 1024px; overflow: hidden; display: flex; flex-direction: column; margin: 0px auto;">
+<!-- Main Container (Responsive Split-Screen Canvas) -->
+<main class="w-full flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-space-xl" style="flex: 1 1 0%; min-height: 0px; width: 100%; max-width: 1440px; overflow: hidden auto;">
+<div class="w-full max-w-max-content-width mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[720px] rounded-xl overflow-hidden border border-outline-variant bg-surface-container-lowest shadow-sm">
+<!-- LADO ESQUERDO: Brand & Feature Showcase Visual -->
+<section class="lg:col-span-6 bg-gradient-to-br from-surface-container-low via-surface-bright to-surface-container-high p-8 lg:p-space-2xl flex flex-col justify-between relative overflow-hidden border-b lg:border-b-0 lg:border-r border-outline-variant">
+<!-- Background subtle micro-pattern & radial glow -->
+<div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-primary-fixed opacity-30 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-secondary-fixed opacity-40 blur-3xl pointer-events-none"></div>
+<!-- Top Logo Anchor -->
+<div class="relative z-10">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-lg bg-primary flex items-center justify-center text-on-primary shadow-sm ring-4 ring-primary-fixed/40">
+<span class="material-symbols-outlined text-2xl" data-icon="savings" data-weight="fill" style="font-variation-settings: 'FILL' 1;">savings</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">SobrouQuanto?</h1>
+<p class="font-body-sm text-body-sm text-secondary font-medium">Gestão Financeira Pessoal</p>
+</div>
+</div>
+<!-- Hero Brand Value Statement -->
+<div class="mt-12 space-y-3">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container border border-outline-variant text-primary font-body-sm text-body-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              Controle definitivo de fluxo de caixa
+            </div>
+<h2 class="font-display-hero text-display-hero text-on-surface text-balance leading-tight">
+              Descubra com precisão <span class="text-primary font-extrabold">quanto sobrou</span> no final do mês.
+            </h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-lg">
+              Substitua planilhas confusas por visibilidade imediata, segurança de dados e conciliação bancária inteligente sem atritos.
+            </p>
+</div>
+</div>
+<!-- Floating Mockup Card (SaaS Data Pill & Live Balance) -->
+<div class="relative z-10 my-8">
+<div class="relative max-w-md bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-md">
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant/60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-caption-caps text-caption-caps text-secondary uppercase tracking-wider">Saldo Líquido Disponível</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-primary bg-primary-fixed/30 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span> +18.2% vs mês anterior
+              </span>
+</div>
+<div class="pt-3 flex items-baseline justify-between">
+<div>
+<span class="font-label-numeric-lg text-label-numeric-lg text-on-surface font-bold">R$ 4.850,00</span>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">Atualizado via AwesomeAPI &amp; Lançamentos</p>
+</div>
+<!-- Currencies Pills Preview -->
+<div class="flex flex-col items-end gap-1">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-low border border-outline-variant text-[11px]">
+<span class="font-bold text-on-surface">USD</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-secondary">R$ 5,64</span>
+<span class="material-symbols-outlined text-[12px] text-primary" data-icon="arrow_drop_up">arrow_drop_up</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-low border border-outline-variant text-[11px]">
+<span class="font-bold text-on-surface">EUR</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-secondary">R$ 6,18</span>
+<span class="material-symbols-outlined text-[12px] text-error" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Footer Badge inside Mock Card -->
+<div class="mt-4 pt-3 border-t border-outline-variant/40 flex items-center justify-between text-[11px] text-secondary">
+<span class="inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="lock" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lock</span>
+                Ambiente Criptografado
+              </span>
+<span class="inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                JSON Server Conectado
+              </span>
+</div>
+</div>
+</div>
+<!-- Key Features 3-Pill Summary -->
+<div class="relative z-10 pt-4 border-t border-outline-variant/60 grid grid-cols-3 gap-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-fixed/50 flex items-center justify-center text-on-primary-fixed-variant shrink-0">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium leading-tight">Cotações ao Vivo</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-base" data-icon="category">category</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium leading-tight">Categorias Fixas</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-base" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium leading-tight">Comprovantes Seguros</span>
+</div>
+</div>
+</section>
+<!-- LADO DIREITO: Card Central de Autenticação / Formulário -->
+<section class="lg:col-span-6 p-8 sm:p-12 lg:p-space-2xl flex flex-col justify-center bg-surface-container-lowest">
+<div class="w-full max-w-md mx-auto">
+<!-- Header do Formulário -->
+<div class="mb-8">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Acesse sua conta</h3>
+<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-secondary border border-outline-variant">v2.4 LTS</span>
+</div>
+<p class="font-body-md text-body-md text-secondary">
+              Digite suas credenciais para gerenciar suas finanças com clareza.
+            </p>
+</div>
+<!-- Alert Contextual de Feedback (Ocultável via JS) -->
+<div class="hidden mb-6 p-3.5 rounded-lg border border-outline-variant text-sm flex items-start gap-2.5" id="login-alert">
+<span class="material-symbols-outlined text-base mt-0.5" id="login-alert-icon"></span>
+<div class="font-body-sm text-body-sm" id="login-alert-text"></div>
+</div>
+<!-- Formulário Principal -->
+<form class="space-y-5" id="login-form" onsubmit="handleFormSubmit(event)">
+<!-- Campo E-mail -->
+<div>
+<label class="block font-body-sm text-body-sm font-semibold text-on-surface mb-1.5" for="email">
+                E-mail de Acesso
+              </label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-secondary">
+<span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
+</div>
+<input class="w-full h-11 pl-10 pr-4 text-on-surface placeholder:text-secondary/60 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-body-md text-body-md" id="email" name="email" placeholder="ex: lucas.oliveira@email.com" required="" type="email">
+</div>
+</div>
+<!-- Campo Senha -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="block font-body-sm text-body-sm font-semibold text-on-surface" for="password">
+                  Senha
+                </label>
+<a class="font-body-sm text-body-sm text-primary hover:text-primary-container font-semibold hover:underline" href="#recuperar-senha" onclick="handleForgotPassword(event)">
+                  Esqueci minha senha
+                </a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-secondary">
+<span class="material-symbols-outlined text-lg" data-icon="lock">lock</span>
+</div>
+<input class="w-full h-11 pl-10 pr-11 text-on-surface placeholder:text-secondary/60 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-body-md text-body-md" id="password" name="password" placeholder="••••••••" required="" type="password">
+<button aria-label="Alternar exibição de senha" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-secondary hover:text-on-surface focus:outline-none" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="visibility" id="password-toggle-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Opção Lembrar Sessão & Conformidade com SessionStorage -->
+<div class="flex items-center justify-between pt-1">
+<label class="flex items-center gap-2.5 cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/30" id="remember-me" name="remember_me" type="checkbox">
+<span class="font-body-sm text-body-sm text-secondary font-medium">Lembrar-me neste dispositivo</span>
+</label>
+<span class="font-caption-caps text-caption-caps text-secondary/80">Sessão Segura</span>
+</div>
+<!-- Botão Primário de Login -->
+<button class="w-full h-11 flex items-center justify-center gap-2 bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm font-semibold rounded-lg shadow-sm transition-all duration-150 active:scale-[0.99] focus:outline-none focus:ring-4 focus:ring-primary/30" id="submit-button" type="submit">
+<span class="">Entrar no SobrouQuanto</span>
+<span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Divisor 'ou' -->
+<div class="relative my-7">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant"></div>
+</div>
+<div class="relative flex justify-center text-xs">
+<span class="px-3 bg-surface-container-lowest text-secondary font-medium uppercase tracking-wider">
+                ou acesse com conta de demonstração
+              </span>
+</div>
+</div>
+<!-- Botão Secundário / Demo Quick Fill (Lucas Oliveira) -->
+<button class="w-full h-11 flex items-center justify-center gap-3 bg-surface-container-lowest hover:bg-surface-container-low text-on-surface border border-outline-variant rounded-lg font-body-md text-body-md font-semibold shadow-sm transition-all duration-150 hover:border-outline focus:outline-none focus:ring-2 focus:ring-primary/20" onclick="fillDemoCredentials()" type="button">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed text-xs font-bold">
+              LO
+            </div>
+<span class="">Acesso Rápido (Usuário Demo: Lucas Oliveira)</span>
+<span class="material-symbols-outlined text-secondary text-base" data-icon="bolt">bolt</span>
+</button>
+<!-- Rodapé de Cadastro e Suporte -->
+<div class="mt-8 pt-6 border-t border-outline-variant/60 text-center">
+<p class="font-body-sm text-body-sm text-secondary">
+              Ainda não tem conta no SobrouQuanto? 
+              <a class="text-primary hover:text-primary-container font-semibold hover:underline ml-1" href="#cadastro" onclick="showSignupNotice(event)">
+                Cadastre-se gratuitamente
+              </a>
+</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Rodapé Institucional e Selos de Conformidade -->
+<footer class="w-full max-w-max-content-width mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between text-xs text-secondary gap-3 border-t shrink-0">
+<div class="flex items-center gap-2">
+<span class="">© 2025 SobrouQuanto? Gestão Financeira. Todos os direitos reservados.</span>
+</div>
+<!-- Security Badges -->
+<div class="flex items-center gap-4">
+<span class="inline-flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="verified_user">verified_user</span>
+        Criptografia Ponta a Ponta
+      </span>
+<span class="inline-flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="dns">dns</span>
+        JSON Server API Ready
+      </span>
+<span class="inline-flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="shield">shield</span>
+        LGPD Compliance
+      </span>
+</div>
+</footer>
+<!-- Vanilla JavaScript: Interações de Autenticação e UX -->
+<script>
+    // Alternar visibilidade de senha
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('password');
+      const toggleIcon = document.getElementById('password-toggle-icon');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.textContent = 'visibility_off';
+      } else {
+        passwordInput.type = 'password';
+        toggleIcon.textContent = 'visibility';
+      }
+    }
+
+    // Preenchimento de demonstração imediata do Lucas Oliveira
+    function fillDemoCredentials() {
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      
+      emailInput.value = 'lucas.oliveira@email.com';
+      passwordInput.value = 'Sobrou2025*!';
+      
+      showAlert('Credenciais do Lucas Oliveira preenchidas com sucesso! Clique em "Entrar no SobrouQuanto".', 'success');
+    }
+
+    // Gerenciador de alerta contextual
+    function showAlert(message, type = 'info') {
+      const alertBox = document.getElementById('login-alert');
+      const alertText = document.getElementById('login-alert-text');
+      const alertIcon = document.getElementById('login-alert-icon');
+      
+      alertBox.className = 'mb-6 p-3.5 rounded-lg border text-sm flex items-start gap-2.5 transition-all duration-200';
+      
+      if (type === 'success') {
+        alertBox.classList.add('bg-primary-fixed/20', 'border-primary', 'text-primary');
+        alertIcon.textContent = 'check_circle';
+      } else if (type === 'error') {
+        alertBox.classList.add('bg-error-container/40', 'border-error', 'text-error');
+        alertIcon.textContent = 'error';
+      } else {
+        alertBox.classList.add('bg-surface-container', 'border-outline-variant', 'text-secondary');
+        alertIcon.textContent = 'info';
+      }
+
+      alertText.textContent = message;
+      alertBox.classList.remove('hidden');
+    }
+
+    // Submissão do Formulário de Acesso
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('remember-me').checked;
+      const btn = document.getElementById('submit-button');
+
+      if (!email || !password) {
+        showAlert('Por favor, informe e-mail e senha para continuar.', 'error');
+        return;
+      }
+
+      // Feedback visual de carregamento
+      btn.disabled = true;
+      btn.innerHTML = `
+        <span class="material-symbols-outlined text-lg animate-spin" data-icon="progress_activity">progress_activity</span>
+        <span>Autenticando sessão...</span>
+      `;
+
+      setTimeout(() => {
+        // Mock de autenticação e gravação na sessão
+        const sessionPayload = {
+          user: {
+            name: "Lucas Oliveira",
+            email: email,
+            role: "Assinante Pro",
+            lastLogin: new Date().toISOString()
+          },
+          authenticated: true,
+          rememberMe: remember
+        };
+
+        try {
+          // Persistência em sessionStorage (requisito do Épico 1)
+          sessionStorage.setItem('sobrouquanto_auth_user', JSON.stringify(sessionPayload));
+          
+          if (remember) {
+            localStorage.setItem('sobrouquanto_remember_email', email);
+          } else {
+            localStorage.removeItem('sobrouquanto_remember_email');
+          }
+        } catch (err) {
+          console.warn('Storage indisponível:', err);
+        }
+
+        showAlert('Acesso autorizado! Redirecionando para o Dashboard...', 'success');
+
+        setTimeout(() => {
+          // Em um ambiente de produção aqui seria direcionado para index.html ou dashboard
+          btn.innerHTML = `
+            <span class="material-symbols-outlined text-lg" data-icon="check">check</span>
+            <span>Acesso Concedido</span>
+          `;
+          btn.classList.replace('bg-primary', 'bg-primary-container');
+        }, 800);
+
+      }, 1000);
+    }
+
+    // Ação ao clicar em "Esqueci minha senha"
+    function handleForgotPassword(e) {
+      e.preventDefault();
+      showAlert('Instruções de redefinição seguras foram enviadas para o e-mail informado (Ambiente Simulado).', 'info');
+    }
+
+    // Ação ao clicar em "Cadastre-se"
+    function showSignupNotice(e) {
+      e.preventDefault();
+      showAlert('O formulário de onboarding de novos correntistas está disponível via convite ou na versão de testes.', 'info');
+    }
+
+    // Auto-preenchimento caso haja e-mail salvo anteriormente
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        const savedEmail = localStorage.getItem('sobrouquanto_remember_email');
+        if (savedEmail) {
+          const emailInput = document.getElementById('email');
+          if (emailInput) {
+            emailInput.value = savedEmail;
+          }
+        }
+      } catch (err) {
+        // Ignora caso restrito por sandbox
+      }
+    });
+  </script>
+
+
+
+
+</body></html>

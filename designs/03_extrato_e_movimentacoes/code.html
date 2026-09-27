@@ -1,0 +1,691 @@
+<!DOCTYPE html><html class="light" lang="pt-BR" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Transações - SobrouQuanto?</title>
+<!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "surface-variant": "#e0e3e5",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#e6e8ea",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#bec6e0",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#3d4a42",
+            "tertiary-fixed": "#ffddb8",
+            "surface-container-highest": "#e0e3e5",
+            "secondary-fixed": "#dae2fd",
+            "inverse-primary": "#68dba9",
+            "inverse-on-surface": "#eff1f3",
+            "secondary": "#565e74",
+            "on-tertiary-fixed-variant": "#653e00",
+            "surface-container-low": "#f2f4f6",
+            "primary-container": "#00855d",
+            "inverse-surface": "#2d3133",
+            "primary": "#006948",
+            "tertiary-fixed-dim": "#ffb95f",
+            "outline-variant": "#bccac0",
+            "on-tertiary": "#ffffff",
+            "primary-fixed": "#85f8c4",
+            "on-primary-fixed-variant": "#005137",
+            "on-surface": "#191c1e",
+            "surface-tint": "#006c4a",
+            "on-secondary-container": "#5c647a",
+            "primary-fixed-dim": "#68dba9",
+            "on-secondary-fixed-variant": "#3f465c",
+            "on-tertiary-container": "#fffbff",
+            "on-primary-container": "#f5fff7",
+            "outline": "#6d7a72",
+            "on-primary-fixed": "#002114",
+            "tertiary-container": "#a36700",
+            "surface-bright": "#f7f9fb",
+            "background": "#f7f9fb",
+            "error": "#ba1a1a",
+            "surface-dim": "#d8dadc",
+            "secondary-container": "#dae2fd",
+            "on-background": "#191c1e",
+            "on-secondary": "#ffffff",
+            "tertiary": "#825100",
+            "on-secondary-fixed": "#131b2e",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed": "#2a1700",
+            "surface-container": "#eceef0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "max-content-width": "1440px",
+            "space-xs": "0.5rem",
+            "sidebar-width": "260px",
+            "space-sm": "0.75rem",
+            "space-xxs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-numeric-sm": ["JetBrains Mono"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "caption-caps": ["Plus Jakarta Sans"],
+            "label-numeric-md": ["JetBrains Mono"],
+            "label-numeric-lg": ["JetBrains Mono"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-numeric-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "display-hero": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "caption-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "label-numeric-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "label-numeric-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.05em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md flex antialiased selection:bg-primary selection:text-white flex-col" data-mode="connect" style="width: 1440px; max-width: 100%; height: 1024px; max-height: 1024px; overflow: hidden; display: flex; flex-direction: column; margin: 0px auto; position: relative;">
+<!-- SIDEBAR (Component: SideNavBar from Shared Components JSON) -->
+
+<!-- MAIN VIEWPORT CANVAS -->
+<main class="flex-1 flex flex-col h-full w-full max-w-max-content-width custom-scrollbar overflow-y-auto overflow-x-hidden" style="flex: 1 1 0%; min-height: 0px; width: 100%; max-width: 1440px; overflow: hidden auto;">
+<!-- TOP APP BAR (Shared Components JSON implementation) -->
+<header class="flex justify-between items-center w-full px-space-lg h-16 shrink-0 bg-surface-container-lowest border-b border-outline-variant shadow-sm z-50" style="position: sticky; top: 0px; z-index: 50;"><div class="flex items-center gap-8"><a href="index.html" title="Ir para o Dashboard" aria-label="Ir para o Dashboard" class="flex items-center gap-3 cursor-pointer group hover:opacity-80 transition-opacity"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-2xl" data-icon="savings">savings</span></div><div class="flex flex-col"><span class="text-headline-sm font-headline-sm font-bold text-primary dark:text-inverse-primary leading-tight group-hover:text-primary-container transition-colors">SobrouQuanto?</span><span class="font-body-sm text-body-sm text-secondary">Gestão Financeira Pessoal</span></div></a><nav class="hidden md:flex items-center gap-1"><a class="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary-container dark:bg-secondary text-on-secondary-fixed dark:text-inverse-on-surface font-semibold text-sm" href="#"><span class="material-symbols-outlined text-lg" data-icon="receipt_long" data-weight="fill" style="font-variation-settings: 'FILL' 1;">receipt_long</span><span class="">Transações</span></a><a class="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary dark:text-surface-variant font-medium hover:bg-surface-container dark:hover:bg-surface-variant hover:text-on-surface transition-colors text-sm" href="#"><span class="material-symbols-outlined text-lg" data-icon="category">category</span><span class="">Categorias</span></a></nav></div><div class="flex items-center gap-4"><div class="hidden lg:flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full border border-outline-variant/50"><span class="font-caption-caps text-caption-caps text-secondary">USD/BRL</span><span class="font-label-numeric-sm text-label-numeric-sm font-semibold text-on-surface">R$ 5,68</span><span class="material-symbols-outlined text-xs text-primary" data-icon="trending_up">trending_up</span></div><button class="relative p-2 text-secondary hover:text-on-surface hover:bg-surface-container rounded-full transition-colors" title="Notificações"><span class="material-symbols-outlined text-xl" data-icon="notifications">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-px bg-outline-variant/60"></div><a href="profile.html" title="Acessar Perfil de Lucas Oliveira" class="flex items-center gap-2.5 p-1 rounded-lg hover:bg-surface-container transition-colors cursor-pointer group"></a><a href="https://app-companion-430619.appspot.com/u/1/projects/profile.html" class="flex items-center gap-2.5 p-1 -m-1 rounded-lg hover:bg-surface-container transition-colors duration-150 group cursor-pointer" title="Ver Perfil" spellcheck="false" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; margin: -0.25rem; font-family: ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;"><div class="relative" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ;"><img class="w-9 h-9 rounded-full object-cover border border-outline-variant group-hover:border-primary transition-colors" data-alt="Close-up professional corporate portrait of Lucas Oliveira, a sharp young technology finance manager with a warm confident expression, softly illuminated under studio key light with clean modern corporate office backdrop in subtle emerald and slate tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCbDrpa8mr0ns65SY-KD178ixqBNty07EspKJSna0SMpNANlCRjFS7yZLlq4Hx_CQ8zDBQk101OrvW6undw-fggchN9uf6bbGi5GYdcpQFTpfEoF_esW-2e7lUV3iOXSCbVc4sJx6ZRmzb2o70d33wfHcmdw27kkdMXX6hx7fsIATPy9vf2Vq64hCAR-b7exVL26usIblc4A3FchZb-TqbXPF14uxEk0vBrRMpdOxcT7EwpEAZTy978Q" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; border-color: rgb(188, 202, 192); height: 2.25rem; width: 2.25rem; --tw-border-opacity: 1;"><span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary rounded-full ring-2 ring-surface-container-lowest" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(255 255 255 / 1); --tw-ring-offset-shadow: 0 0 0 0px #fff; --tw-ring-shadow: 0 0 0 calc(2px + 0px) rgb(255 255 255 / 1); --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; bottom: 0px; height: 0.625rem; width: 0.625rem; --tw-bg-opacity: 1; background-color: rgb(0, 105, 72); box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 2px, rgba(0, 0, 0, 0) 0px 0px 0px 0px; --tw-ring-opacity: 1;"></span></div><div class="hidden lg:flex flex-col text-left" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ;"><span class="text-body-sm font-body-sm font-semibold text-on-surface group-hover:text-primary transition-colors leading-tight" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(25, 28, 30);">Lucas Oliveira</span><span class="text-label-numeric-sm font-label-numeric-sm text-secondary" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(86, 94, 116);">Plano Pro</span></div></a></div></header>
+<!-- CONTENT WRAPPER -->
+<div class="p-space-lg space-y-6">
+<!-- PAGE TITLE & ACTIONS HEADER -->
+<section class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Extrato e Movimentações</h1>
+<p class="font-body-md text-body-md text-secondary mt-1">Acompanhe seus lançamentos, anexe comprovantes e exporte dados</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-surface-container-lowest border border-outline-variant hover:bg-surface-container text-on-surface font-headline-sm text-body-md font-semibold px-4 py-2.5 rounded-lg flex items-center gap-2 transition-colors duration-150 shadow-sm active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg" data-icon="file_upload">file_upload</span>
+<span class="">Simular Importação OFX/CSV</span>
+</button>
+<button class="bg-primary hover:bg-primary-container text-white font-headline-sm text-body-md font-semibold px-5 py-2.5 rounded-lg flex items-center gap-2 shadow-sm transition-colors duration-150 active:scale-[0.98]" onclick="openModal()">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+<span class="">+ Nova Movimentação</span>
+</button>
+</div>
+</section>
+<!-- KPI METRIC HIGHLIGHT CARDS -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<div class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/70 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-secondary mb-2">
+<span class="font-caption-caps text-caption-caps uppercase tracking-wider">Receitas Filtradas</span>
+<span class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="arrow_downward">arrow_downward</span>
+</span>
+</div>
+<div class="font-label-numeric-lg text-label-numeric-lg font-bold text-on-surface">R$ 11.200,00</div>
+<div class="mt-3 flex items-center gap-1.5 text-emerald-700 font-label-numeric-sm text-label-numeric-sm">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+<span class="">+12.4% vs. mês anterior</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/70 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-secondary mb-2">
+<span class="font-caption-caps text-caption-caps uppercase tracking-wider">Despesas Filtradas</span>
+<span class="w-8 h-8 rounded-full bg-red-50 text-red-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="arrow_upward">arrow_upward</span>
+</span>
+</div>
+<div class="font-label-numeric-lg text-label-numeric-lg font-bold text-on-surface">R$ 6.350,00</div>
+<div class="mt-3 flex items-center gap-1.5 text-error font-label-numeric-sm text-label-numeric-sm">
+<span class="material-symbols-outlined text-sm" data-icon="trending_down">trending_down</span>
+<span class="">-4.1% economia no período</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-lg border border-primary/40 shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none"></div>
+<div class="flex items-center justify-between text-secondary mb-2">
+<span class="font-caption-caps text-caption-caps uppercase tracking-wider text-primary font-bold">Saldo do Período</span>
+<span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="account_balance_wallet">account_balance_wallet</span>
+</span>
+</div>
+<div class="font-label-numeric-lg text-label-numeric-lg font-bold text-primary">R$ 4.850,00</div>
+<div class="mt-3 flex items-center gap-1.5 text-secondary font-label-numeric-sm text-label-numeric-sm">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="check_circle">check_circle</span>
+<span class="">Orçamento superavitário</span>
+</div>
+</div>
+</section>
+<!-- ADVANCED FILTER BAR -->
+<section class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/80 shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+<div class="flex-1 flex flex-col sm:flex-row items-center gap-3">
+<!-- Text Search Field -->
+<div class="relative w-full sm:w-80">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-secondary text-lg" data-icon="search">search</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg bg-surface border border-outline-variant/70 text-on-surface placeholder:text-secondary/70 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Buscar por 'Aluguel', 'Supermercado'..." type="text">
+</div>
+<!-- Período Select -->
+<div class="relative w-full sm:w-48">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface border border-outline-variant/70 text-on-surface text-body-md appearance-none focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none cursor-pointer">
+<option selected="">Mês Atual (Outubro 2024)</option>
+<option>Últimos 30 dias</option>
+<option>Ano 2024</option>
+<option>Personalizado...</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-lg" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Tipo Select -->
+<div class="relative w-full sm:w-44">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface border border-outline-variant/70 text-on-surface text-body-md appearance-none focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none cursor-pointer">
+<option selected="">Todos os Tipos</option>
+<option>Somente Receitas</option>
+<option>Somente Despesas</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-lg" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Categoria Select -->
+<div class="relative w-full sm:w-44">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface border border-outline-variant/70 text-on-surface text-body-md appearance-none focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none cursor-pointer">
+<option selected="">Todas Categorias</option>
+<option>Alimentação</option>
+<option>Moradia</option>
+<option>Transporte</option>
+<option>Lazer &amp; Serviços</option>
+<option>Renda &amp; Salário</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-lg" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Clear Filter Action -->
+<button class="h-10 px-4 rounded-lg text-secondary hover:text-error hover:bg-error-container/20 flex items-center justify-center gap-1.5 transition-colors duration-150 self-end lg:self-auto font-body-md font-medium shrink-0">
+<span class="material-symbols-outlined text-base" data-icon="filter_alt_off">filter_alt_off</span>
+<span class="">Limpar Filtros</span>
+</button>
+</section>
+<!-- DATA TABLE: TRANSAÇÕES -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant/80 shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface border-b border-outline-variant/70 text-secondary text-caption-caps uppercase tracking-wider font-semibold">
+<th class="py-3.5 px-4 font-semibold text-left">Data</th>
+<th class="py-3.5 px-4 font-semibold text-left">Descrição / Favorecido</th>
+<th class="py-3.5 px-4 font-semibold text-left">Categoria</th>
+<th class="py-3.5 px-4 font-semibold text-center">Tipo</th>
+<th class="py-3.5 px-4 font-semibold text-center">Comprovante</th>
+<th class="py-3.5 px-4 font-semibold text-right">Valor</th>
+<th class="py-3.5 px-4 font-semibold text-center">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/40 font-body-md text-on-surface">
+<!-- Linha 1: Receita Salário -->
+<tr class="hover:bg-surface transition-colors group">
+<td class="py-3.5 px-4 font-label-numeric-sm text-label-numeric-sm text-secondary">05/10/2024</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">Pagamento Salário Mensal</div>
+<div class="text-body-sm text-secondary text-xs">Empresa de Tecnologia S.A. • TED</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100/60 text-emerald-800">
+<span class="material-symbols-outlined text-sm" data-icon="payments">payments</span>
+<span class="">Renda Ativa</span>
+</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Receita</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<button class="text-primary hover:text-primary-container p-1.5 rounded-md hover:bg-emerald-50 transition-colors" onclick="previewComprovante('Holerite_Outubro_2024.pdf')" title="Ver comprovante anexado">
+<span class="material-symbols-outlined text-lg" data-icon="attachment">attachment</span>
+</button>
+</td>
+<td class="py-3.5 px-4 text-right font-label-numeric-md text-label-numeric-md font-semibold text-emerald-700">
+                  + R$ 9.800,00
+                </td>
+<td class="py-3.5 px-4 text-center">
+<div class="flex items-center justify-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:bg-surface-container rounded text-secondary hover:text-on-surface" title="Editar"><span class="material-symbols-outlined text-base" data-icon="edit">edit</span></button>
+<button class="p-1.5 hover:bg-error-container/40 rounded text-secondary hover:text-error" onclick="triggerDeleteConfirmation(this)" title="Excluir"><span class="material-symbols-outlined text-base" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Linha 2: Despesa Aluguel -->
+<tr class="hover:bg-surface transition-colors group bg-surface/30">
+<td class="py-3.5 px-4 font-label-numeric-sm text-label-numeric-sm text-secondary">08/10/2024</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">Aluguel Apartamento Jardins</div>
+<div class="text-body-sm text-secondary text-xs">Imobiliária Vertice Ltda • Boleto</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100/70 text-amber-800">
+<span class="material-symbols-outlined text-sm" data-icon="home">home</span>
+<span class="">Moradia</span>
+</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800">Despesa</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<button class="text-primary hover:text-primary-container p-1.5 rounded-md hover:bg-emerald-50 transition-colors" onclick="previewComprovante('comprovante_aluguel_out.pdf')" title="Ver comprovante anexado">
+<span class="material-symbols-outlined text-lg" data-icon="receipt">receipt</span>
+</button>
+</td>
+<td class="py-3.5 px-4 text-right font-label-numeric-md text-label-numeric-md font-semibold text-error">
+                  - R$ 3.200,00
+                </td>
+<td class="py-3.5 px-4 text-center">
+<div class="flex items-center justify-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:bg-surface-container rounded text-secondary hover:text-on-surface" title="Editar"><span class="material-symbols-outlined text-base" data-icon="edit">edit</span></button>
+<button class="p-1.5 hover:bg-error-container/40 rounded text-secondary hover:text-error" onclick="triggerDeleteConfirmation(this)" title="Excluir"><span class="material-symbols-outlined text-base" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Linha 3: Receita Consultoria Freelance -->
+<tr class="hover:bg-surface transition-colors group">
+<td class="py-3.5 px-4 font-label-numeric-sm text-label-numeric-sm text-secondary">12/10/2024</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">Consultoria UI/UX Design System</div>
+<div class="text-body-sm text-secondary text-xs">Fintech Apex Pay • Pix</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100/60 text-emerald-800">
+<span class="material-symbols-outlined text-sm" data-icon="work">work</span>
+<span class="">Freelance</span>
+</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Receita</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<button class="text-primary hover:text-primary-container p-1.5 rounded-md hover:bg-emerald-50 transition-colors" onclick="previewComprovante('nf_consultoria_102.pdf')" title="Ver comprovante anexado">
+<span class="material-symbols-outlined text-lg" data-icon="receipt_long">receipt_long</span>
+</button>
+</td>
+<td class="py-3.5 px-4 text-right font-label-numeric-md text-label-numeric-md font-semibold text-emerald-700">
+                  + R$ 1.400,00
+                </td>
+<td class="py-3.5 px-4 text-center">
+<div class="flex items-center justify-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:bg-surface-container rounded text-secondary hover:text-on-surface" title="Editar"><span class="material-symbols-outlined text-base" data-icon="edit">edit</span></button>
+<button class="p-1.5 hover:bg-error-container/40 rounded text-secondary hover:text-error" onclick="triggerDeleteConfirmation(this)" title="Excluir"><span class="material-symbols-outlined text-base" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Linha 4: Despesa Supermercado -->
+<tr class="hover:bg-surface transition-colors group bg-surface/30">
+<td class="py-3.5 px-4 font-label-numeric-sm text-label-numeric-sm text-secondary">15/10/2024</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">Supermercado Pão de Açúcar</div>
+<div class="text-body-sm text-secondary text-xs">Compras quinzenais • Cartão Crédito</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100/70 text-blue-800">
+<span class="material-symbols-outlined text-sm" data-icon="shopping_basket">shopping_basket</span>
+<span class="">Alimentação</span>
+</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800">Despesa</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<button class="text-primary hover:text-primary-container p-1.5 rounded-md hover:bg-emerald-50 transition-colors" onclick="previewComprovante('comprovante_pix_outubro.pdf')" title="Ver comprovante anexado">
+<span class="material-symbols-outlined text-lg" data-icon="attachment">attachment</span>
+</button>
+</td>
+<td class="py-3.5 px-4 text-right font-label-numeric-md text-label-numeric-md font-semibold text-error">
+                  - R$ 1.150,00
+                </td>
+<td class="py-3.5 px-4 text-center">
+<div class="flex items-center justify-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:bg-surface-container rounded text-secondary hover:text-on-surface" title="Editar"><span class="material-symbols-outlined text-base" data-icon="edit">edit</span></button>
+<button class="p-1.5 hover:bg-error-container/40 rounded text-secondary hover:text-error" onclick="triggerDeleteConfirmation(this)" title="Excluir"><span class="material-symbols-outlined text-base" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Linha 5: Despesa Seguro Veicular -->
+<tr class="hover:bg-surface transition-colors group">
+<td class="py-3.5 px-4 font-label-numeric-sm text-label-numeric-sm text-secondary">19/10/2024</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">Porto Seguro Auto (Parcela 04/10)</div>
+<div class="text-body-sm text-secondary text-xs">Seguro Honda Civic • Débito Automático</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-purple-100/70 text-purple-800">
+<span class="material-symbols-outlined text-sm" data-icon="directions_car">directions_car</span>
+<span class="">Transporte</span>
+</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800">Despesa</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="text-secondary/50 font-body-sm text-xs" title="Sem comprovante anexado">-</span>
+</td>
+<td class="py-3.5 px-4 text-right font-label-numeric-md text-label-numeric-md font-semibold text-error">
+                  - R$ 850,00
+                </td>
+<td class="py-3.5 px-4 text-center">
+<div class="flex items-center justify-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:bg-surface-container rounded text-secondary hover:text-on-surface" title="Editar"><span class="material-symbols-outlined text-base" data-icon="edit">edit</span></button>
+<button class="p-1.5 hover:bg-error-container/40 rounded text-secondary hover:text-error" onclick="triggerDeleteConfirmation(this)" title="Excluir"><span class="material-symbols-outlined text-base" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Linha 6: Despesa Jantar & Lazer -->
+<tr class="hover:bg-surface transition-colors group bg-surface/30">
+<td class="py-3.5 px-4 font-label-numeric-sm text-label-numeric-sm text-secondary">22/10/2024</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-on-surface">Restaurante Fasano &amp; Teatro</div>
+<div class="text-body-sm text-secondary text-xs">Jantar e Ingressos Culturais • Cartão Débito</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-rose-100/70 text-rose-800">
+<span class="material-symbols-outlined text-sm" data-icon="theater_comedy">theater_comedy</span>
+<span class="">Lazer</span>
+</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800">Despesa</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<button class="text-primary hover:text-primary-container p-1.5 rounded-md hover:bg-emerald-50 transition-colors" onclick="previewComprovante('comprovante_restaurante.jpg')" title="Ver comprovante anexado">
+<span class="material-symbols-outlined text-lg" data-icon="receipt">receipt</span>
+</button>
+</td>
+<td class="py-3.5 px-4 text-right font-label-numeric-md text-label-numeric-md font-semibold text-error">
+                  - R$ 1.150,00
+                </td>
+<td class="py-3.5 px-4 text-center">
+<div class="flex items-center justify-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:bg-surface-container rounded text-secondary hover:text-on-surface" title="Editar"><span class="material-symbols-outlined text-base" data-icon="edit">edit</span></button>
+<button class="p-1.5 hover:bg-error-container/40 rounded text-secondary hover:text-error" onclick="triggerDeleteConfirmation(this)" title="Excluir"><span class="material-symbols-outlined text-base" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- SUMMARY FOOTER BAR -->
+<div class="bg-surface p-4 border-t border-outline-variant flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-6 font-body-md">
+<div class="flex items-center gap-2">
+<span class="text-secondary text-caption-caps uppercase tracking-wider font-semibold">Total Receitas:</span>
+<span class="font-label-numeric-md text-label-numeric-md font-bold text-emerald-700">R$ 11.200,00</span>
+</div>
+<div class="h-4 w-px bg-outline-variant/80 hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<span class="text-secondary text-caption-caps uppercase tracking-wider font-semibold">Total Despesas:</span>
+<span class="font-label-numeric-md text-label-numeric-md font-bold text-error">R$ 6.350,00</span>
+</div>
+<div class="h-4 w-px bg-outline-variant/80 hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<span class="text-secondary text-caption-caps uppercase tracking-wider font-semibold">Saldo do Período:</span>
+<span class="font-label-numeric-md text-label-numeric-md font-bold text-primary">R$ 4.850,00</span>
+</div>
+</div>
+<!-- Pagination Controls -->
+<div class="flex items-center gap-2 text-secondary font-label-numeric-sm text-label-numeric-sm">
+<span class="">Página 1 de 4 (24 registros)</span>
+<div class="flex items-center gap-1 ml-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container disabled:opacity-40" disabled="">
+<span class="material-symbols-outlined text-base" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white font-semibold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container">
+<span class="material-symbols-outlined text-base" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- MODAL DE NOVA MOVIMENTAÇÃO (Interativo e Exibido/Estruturado) -->
+<div class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm items-center justify-center p-4 overflow-y-auto hidden" id="modalNovaMovimentacao">
+<div class="bg-surface-container-lowest w-full max-w-xl rounded-xl shadow-2xl border border-outline-variant flex flex-col my-8 animate-in fade-in zoom-in-95 duration-200 max-h-[90vh]">
+<!-- Modal Header -->
+<div class="px-6 py-4 border-b border-outline-variant flex items-center justify-between shrink-0">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl" data-icon="add_card">add_card</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Nova Movimentação Financeira</h2>
+</div>
+<button class="text-secondary hover:text-on-surface p-1 rounded-lg hover:bg-surface-container transition-colors" onclick="closeModal()">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+</button>
+</div>
+<!-- Modal Body Form -->
+<form class="p-6 space-y-4 overflow-y-auto flex-1" id="formMovimentacao" onsubmit="event.preventDefault(); alert('Movimentação gravada com sucesso!'); closeModal();">
+<!-- Toggle Tabs Tipo: Receita ou Despesa -->
+<div class="flex flex-col gap-1.5">
+<label class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold">Tipo da Movimentação</label>
+<div class="grid grid-cols-2 gap-2 p-1 bg-surface-container-low rounded-lg border border-outline-variant/60">
+<button class="py-2 rounded-md font-semibold text-body-md flex items-center justify-center gap-2 transition-all bg-white text-error shadow-sm" id="btnTipoDespesa" onclick="setTipo('despesa')" type="button">
+<span class="material-symbols-outlined text-base" data-icon="trending_down">trending_down</span>
+<span class="">Despesa</span>
+</button>
+<button class="py-2 rounded-md font-semibold text-body-md flex items-center justify-center gap-2 transition-all text-secondary hover:text-emerald-700" id="btnTipoReceita" onclick="setTipo('receita')" type="button">
+<span class="material-symbols-outlined text-base" data-icon="trending_up">trending_up</span>
+<span class="">Receita</span>
+</button>
+</div>
+</div>
+<!-- Valor com Máscara e Descrição -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold" for="inputValor">Valor da Transação *</label>
+<div class="relative">
+<span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-secondary font-label-numeric-md font-bold">R$</span>
+<input class="w-full h-11 pl-12 pr-4 font-label-numeric-lg text-label-numeric-lg font-bold text-on-surface rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" id="inputValor" required="" type="text" value="0,00">
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold" for="inputData">Data da Movimentação *</label>
+<input class="w-full h-11 px-3 font-label-numeric-md text-label-numeric-md rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none" id="inputData" required="" type="date" value="2024-10-24">
+</div>
+</div>
+<!-- Descrição / Estabelecimento -->
+<div class="flex flex-col gap-1.5">
+<label class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold" for="inputDescricao">Descrição / Favorecido *</label>
+<input class="w-full h-11 px-3.5 text-body-md rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none" id="inputDescricao" placeholder="Ex: Supermercado Pão de Açúcar, Salário, Uber..." required="" type="text">
+</div>
+<!-- Categoria e Conta -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold" for="selectCategoria">Categoria *</label>
+<select class="w-full h-11 px-3 text-body-md rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none" id="selectCategoria" required="">
+<option value="">Selecione uma categoria</option>
+<option selected="" value="alimentacao">Alimentação &amp; Mercado</option>
+<option value="moradia">Moradia (Aluguel, Luz, Água)</option>
+<option value="transporte">Transporte &amp; Combustível</option>
+<option value="lazer">Lazer, Cultura &amp; Viagens</option>
+<option value="saude">Saúde &amp; Farmácia</option>
+<option value="renda">Salário &amp; Renda Extra</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold" for="selectConta">Conta / Forma de Pagamento</label>
+<select class="w-full h-11 px-3 text-body-md rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none" id="selectConta">
+<option value="itau">Nubank Conta Corrente</option>
+<option selected="" value="cartao_black">Cartão XP Visa Infinite</option>
+<option value="itau_pf">Itaú Personnalité</option>
+<option value="dinheiro">Dinheiro Físico / Espécie</option>
+</select>
+</div>
+</div>
+<!-- Área de Anexo de Comprovante: Drag & Drop Zone -->
+<div class="flex flex-col gap-1.5 pt-1">
+<label class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold flex items-center justify-between">
+<span class="">Comprovante Fiscal ou Recibo</span>
+<span class="text-xs font-normal text-secondary">Opcional</span>
+</label>
+<div class="border-2 border-dashed border-outline-variant hover:border-primary rounded-lg p-4 bg-surface-container-low/60 transition-colors flex flex-col items-center justify-center text-center cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-secondary group-hover:text-primary mb-2 transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<p class="font-body-md text-on-surface font-medium text-xs">Arraste e solte o comprovante (JPG, PNG ou PDF até 5MB)</p>
+<span class="text-xs text-secondary mt-0.5">ou <span class="text-primary underline font-semibold">clique para selecionar do computador</span></span>
+</div>
+<!-- Arquivo Anexado Simulado -->
+<div class="mt-2 flex items-center justify-between p-2.5 rounded-lg bg-emerald-50/70 border border-emerald-200" id="anexoSimulado">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-emerald-700" data-icon="picture_as_pdf">picture_as_pdf</span>
+<div class="flex flex-col">
+<span class="font-body-md font-semibold text-xs text-on-surface">comprovante_pix_outubro.pdf</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-secondary text-[11px]">1.2 MB • Upload concluído</span>
+</div>
+</div>
+<button class="text-secondary hover:text-error p-1 rounded hover:bg-error-container/30 transition-colors" onclick="document.getElementById('anexoSimulado').remove()" title="Remover anexo" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Modal Footer Actions -->
+<div class="pt-4 border-t border-outline-variant flex items-center justify-end gap-3 shrink-0">
+<button class="px-5 py-2.5 rounded-lg border border-outline-variant text-secondary hover:bg-surface-container font-headline-sm text-body-md font-semibold transition-colors" onclick="closeModal()" type="button">
+            Cancelar
+          </button>
+<button class="px-6 py-2.5 rounded-lg bg-primary hover:bg-primary-container text-white font-headline-sm text-body-md font-semibold shadow-sm transition-all duration-150 active:scale-[0.98] flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-lg" data-icon="check">check</span>
+<span class="">Salvar Movimentação (POST)</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- FLOATING CONFIRMATION TOOLTIP SIMULADO (Para Exclusão de Transação) -->
+<div class="fixed hidden z-50 bg-inverse-surface text-inverse-on-surface p-3 rounded-lg shadow-xl text-xs flex flex-col gap-2 max-w-xs border border-slate-700 animate-in fade-in" id="floatingConfirm">
+<div class="flex items-center gap-1.5 font-semibold">
+<span class="material-symbols-outlined text-amber-400 text-base" data-icon="warning">warning</span>
+<span class="">Confirmar exclusão desta transação?</span>
+</div>
+<p class="text-slate-300">Esta ação atualizará o saldo consolidado imediatamente.</p>
+<div class="flex items-center justify-end gap-2 mt-1">
+<button class="px-2.5 py-1 text-xs rounded bg-slate-700 hover:bg-slate-600 text-white font-medium" onclick="dismissDeleteConfirmation()">Cancelar</button>
+<button class="px-2.5 py-1 text-xs rounded bg-error hover:bg-red-700 text-white font-medium" onclick="executeDelete()">Sim, excluir</button>
+</div>
+</div>
+<!-- SCRIPT DE MICRO-INTERAÇÕES -->
+<script>
+    // Controle do Modal
+    function openModal() {
+      document.getElementById('modalNovaMovimentacao').classList.remove('hidden');
+      document.getElementById('modalNovaMovimentacao').classList.add('flex');
+    }
+
+    function closeModal() {
+      document.getElementById('modalNovaMovimentacao').classList.add('hidden');
+      document.getElementById('modalNovaMovimentacao').classList.remove('flex');
+    }
+
+    // Toggle de Receita/Despesa no Modal
+    let tipoAtual = 'despesa';
+    function setTipo(tipo) {
+      tipoAtual = tipo;
+      const btnDespesa = document.getElementById('btnTipoDespesa');
+      const btnReceita = document.getElementById('btnTipoReceita');
+      const inputValor = document.getElementById('inputValor');
+
+      if (tipo === 'despesa') {
+        btnDespesa.className = "py-2 rounded-md font-semibold text-body-md flex items-center justify-center gap-2 transition-all bg-white text-error shadow-sm";
+        btnReceita.className = "py-2 rounded-md font-semibold text-body-md flex items-center justify-center gap-2 transition-all text-secondary hover:text-emerald-700";
+        inputValor.classList.remove('text-emerald-700');
+        inputValor.classList.add('text-on-surface');
+      } else {
+        btnReceita.className = "py-2 rounded-md font-semibold text-body-md flex items-center justify-center gap-2 transition-all bg-white text-emerald-700 shadow-sm";
+        btnDespesa.className = "py-2 rounded-md font-semibold text-body-md flex items-center justify-center gap-2 transition-all text-secondary hover:text-error";
+        inputValor.classList.add('text-emerald-700');
+      }
+    }
+
+    // Preview do Comprovante
+    function previewComprovante(nomeArquivo) {
+      alert(`Visualizador de Comprovante: Abrindo '${nomeArquivo}' em nova janela segura criptografada.`);
+    }
+
+    // Floating Delete Confirmation Tooltip
+    let currentDeleteRow = null;
+    function triggerDeleteConfirmation(button) {
+      const confirmBox = document.getElementById('floatingConfirm');
+      const rect = button.getBoundingClientRect();
+      
+      currentDeleteRow = button.closest('tr');
+      confirmBox.style.top = `${rect.top - 80}px`;
+      confirmBox.style.left = `${rect.left - 180}px`;
+      confirmBox.classList.remove('hidden');
+    }
+
+    function dismissDeleteConfirmation() {
+      document.getElementById('floatingConfirm').classList.add('hidden');
+      currentDeleteRow = null;
+    }
+
+    function executeDelete() {
+      if (currentDeleteRow) {
+        currentDeleteRow.style.opacity = '0.3';
+        currentDeleteRow.style.pointerEvents = 'none';
+        setTimeout(() => {
+          currentDeleteRow.remove();
+          dismissDeleteConfirmation();
+        }, 300);
+      }
+    }
+  </script>
+
+
+
+
+
+
+
+
+</body></html>

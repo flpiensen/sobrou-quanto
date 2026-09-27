@@ -1,0 +1,842 @@
+<!DOCTYPE html><html lang="pt-BR" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SobrouQuanto? - Gestão de Categorias</title>
+<!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "surface-variant": "#e0e3e5",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#e6e8ea",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#bec6e0",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#3d4a42",
+            "tertiary-fixed": "#ffddb8",
+            "surface-container-highest": "#e0e3e5",
+            "secondary-fixed": "#dae2fd",
+            "inverse-primary": "#68dba9",
+            "inverse-on-surface": "#eff1f3",
+            "secondary": "#565e74",
+            "on-tertiary-fixed-variant": "#653e00",
+            "surface-container-low": "#f2f4f6",
+            "primary-container": "#00855d",
+            "inverse-surface": "#2d3133",
+            "primary": "#006948",
+            "tertiary-fixed-dim": "#ffb95f",
+            "outline-variant": "#bccac0",
+            "on-tertiary": "#ffffff",
+            "primary-fixed": "#85f8c4",
+            "on-primary-fixed-variant": "#005137",
+            "on-surface": "#191c1e",
+            "surface-tint": "#006c4a",
+            "on-secondary-container": "#5c647a",
+            "primary-fixed-dim": "#68dba9",
+            "on-secondary-fixed-variant": "#3f465c",
+            "on-tertiary-container": "#fffbff",
+            "on-primary-container": "#f5fff7",
+            "outline": "#6d7a72",
+            "on-primary-fixed": "#002114",
+            "tertiary-container": "#a36700",
+            "surface-bright": "#f7f9fb",
+            "background": "#f7f9fb",
+            "error": "#ba1a1a",
+            "surface-dim": "#d8dadc",
+            "secondary-container": "#dae2fd",
+            "on-background": "#191c1e",
+            "on-secondary": "#ffffff",
+            "tertiary": "#825100",
+            "on-secondary-fixed": "#131b2e",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed": "#2a1700",
+            "surface-container": "#eceef0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "max-content-width": "1440px",
+            "space-xs": "0.5rem",
+            "sidebar-width": "260px",
+            "space-sm": "0.75rem",
+            "space-xxs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-numeric-sm": ["JetBrains Mono"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "caption-caps": ["Plus Jakarta Sans"],
+            "label-numeric-md": ["JetBrains Mono"],
+            "label-numeric-lg": ["JetBrains Mono"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-numeric-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "display-hero": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "caption-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "label-numeric-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "label-numeric-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #bccac0;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-hidden flex flex-col" data-mode="connect" style="width: 1440px; max-width: 100%; height: 1024px; max-height: 1024px; overflow: hidden; display: flex; flex-direction: column; margin: 0px auto;">
+<!-- SIDEBAR (Fixed 260px) - Semantic Shell Anchor -->
+
+<!-- MAIN WRAPPER (Offset by Sidebar Width 260px) -->
+<div class="flex-1 flex flex-col min-w-0 bg-surface h-full overflow-hidden" style="width: 100%; height: 100%; overflow: hidden;">
+<!-- TOPBAR (Docked full-width top h-16) -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-space-lg h-16 shrink-0 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm" style="flex-shrink: 0; position: sticky; top: 0px; z-index: 50;"><div class="flex items-center gap-8"><a href="index.html" aria-label="Ir para o Dashboard" title="Ir para o Dashboard" class="flex items-center gap-3 cursor-pointer group hover:opacity-90 transition-opacity"><div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-sm group-hover:bg-primary-container transition-colors"><span class="material-symbols-outlined text-2xl" data-icon="savings">savings</span></div><div><h1 class="text-headline-sm font-headline-sm font-bold text-primary dark:text-inverse-primary leading-tight">SobrouQuanto?</h1><p class="text-body-sm font-body-sm text-secondary hidden sm:block">Gestão Financeira</p></div></a><nav aria-label="Navegação Principal" class="flex items-center gap-1"><a class="flex items-center gap-2 px-3.5 py-2 rounded-lg text-secondary font-medium hover:bg-surface-container hover:text-on-surface transition-colors duration-150" href="#"><span class="material-symbols-outlined text-base" data-icon="receipt_long">receipt_long</span><span class="text-body-md font-body-md">Transações</span></a><a class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-secondary-container text-on-secondary-fixed font-semibold transition-colors duration-150" href="#"><span class="material-symbols-outlined text-base" data-icon="category" style="font-variation-settings: &quot;FILL&quot; 1;">category</span><span class="text-body-md font-body-md">Categorias</span></a></nav></div><div class="flex items-center gap-4"><div class="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-secondary text-body-sm"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-medium text-secondary">Sincronizado</span></div><button class="w-9 h-9 flex items-center justify-center rounded-lg text-secondary hover:bg-surface-container hover:text-on-surface transition-colors duration-150 relative active:scale-95"><span class="material-symbols-outlined" data-icon="notifications">notifications</span><span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-[1px] bg-outline-variant"></div><a href="profile.html" aria-label="Ver perfil de Lucas Oliveira" class="flex items-center gap-3 pl-1 rounded-lg hover:bg-surface-container p-1 transition-colors duration-150 cursor-pointer group"></a><div class="relative"><a href="profile.html" aria-label="Ver perfil de Lucas Oliveira" class="flex items-center gap-3 pl-1 rounded-lg hover:bg-surface-container p-1 transition-colors duration-150 cursor-pointer group"></a><a href="https://app-companion-430619.appspot.com/u/1/projects/profile.html" class="flex items-center gap-2.5 p-1 -m-1 rounded-lg hover:bg-surface-container transition-colors duration-150 group cursor-pointer" title="Ver Perfil" spellcheck="false" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; margin: -0.25rem; font-family: ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;"><div class="relative" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ;"><img class="w-9 h-9 rounded-full object-cover border border-outline-variant group-hover:border-primary transition-colors" data-alt="Close-up professional corporate portrait of Lucas Oliveira, a sharp young technology finance manager with a warm confident expression, softly illuminated under studio key light with clean modern corporate office backdrop in subtle emerald and slate tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCbDrpa8mr0ns65SY-KD178ixqBNty07EspKJSna0SMpNANlCRjFS7yZLlq4Hx_CQ8zDBQk101OrvW6undw-fggchN9uf6bbGi5GYdcpQFTpfEoF_esW-2e7lUV3iOXSCbVc4sJx6ZRmzb2o70d33wfHcmdw27kkdMXX6hx7fsIATPy9vf2Vq64hCAR-b7exVL26usIblc4A3FchZb-TqbXPF14uxEk0vBrRMpdOxcT7EwpEAZTy978Q" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; border-color: rgb(188, 202, 192); --tw-border-opacity: 1;"><span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-primary rounded-full ring-2 ring-surface-container-lowest" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(255 255 255 / 1); --tw-ring-offset-shadow: 0 0 0 0px #fff; --tw-ring-shadow: 0 0 0 calc(2px + 0px) rgb(255 255 255 / 1); --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-bg-opacity: 1; background-color: rgb(0, 105, 72); box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 2px, rgba(0, 0, 0, 0) 0px 0px 0px 0px; --tw-ring-opacity: 1;"></span></div><div class="hidden lg:flex flex-col text-left" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; display: flex;"><span class="text-body-sm font-body-sm font-semibold text-on-surface group-hover:text-primary transition-colors leading-tight" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(25, 28, 30);">Lucas Oliveira</span><span class="text-label-numeric-sm font-label-numeric-sm text-secondary" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(86, 94, 116);">Plano Pro</span></div></a></div></div></header>
+<!-- CONTENT CANVAS (Max 1440px) -->
+<main class="flex-1 overflow-y-auto w-full p-space-lg max-w-max-content-width mx-auto space-y-6 custom-scrollbar" style="flex: 1 1 0%; min-height: 0px; width: 100%; max-width: 1440px; overflow: hidden auto;">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-surface-container-lowest border border-outline-variant/60 rounded-lg p-6 shadow-sm">
+<div class="space-y-1">
+<div class="flex items-center gap-2.5">
+<div class="p-2 rounded-lg bg-primary-fixed text-on-primary-fixed">
+<span class="material-symbols-outlined text-xl" data-icon="label">label</span>
+</div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Gerenciador de Categorias</h2>
+</div>
+<p class="text-body-md font-body-md text-secondary">
+            Crie e personalize suas categorias de receitas e despesas para categorizar suas movimentações no JSON Server.
+          </p>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-body-sm font-body-sm"><span class="material-symbols-outlined text-sm" data-icon="cloud_done">cloud_done</span><span class="">Categorias Sincronizadas</span></div>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded-lg font-headline-sm text-body-md font-semibold shadow-sm transition-all duration-150 active:scale-95 cursor-pointer" onclick="openCategoryModal()">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+<span class="">+ Nova Categoria</span>
+</button>
+</div>
+</div>
+<!-- SEÇÃO SUPERIOR: Card de Cadastro Rápido & Painel de Sincronização (2 Colunas) -->
+<div class="grid grid-cols-1 gap-6" id="category-status-panel">
+  <!-- Persistence Feedback Card -->
+  
+  <!-- Mini KPI Card: Alocação Geral -->
+  <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm space-y-4 flex flex-col justify-between">
+    <div class="space-y-3">
+      <div class="flex items-center justify-between pb-3 border-b border-outline-variant/50">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary" data-icon="pie_chart">pie_chart</span>
+          <h4 class="text-headline-sm font-headline-sm text-on-surface text-base">Volume Categorizado</h4>
+        </div>
+        <span class="text-caption-caps font-caption-caps px-2 py-0.5 rounded-full bg-[#DCFCE7] text-[#15803D] font-semibold flex items-center gap-1">
+          <span class="material-symbols-outlined text-xs" data-icon="arrow_upward">arrow_upward</span> 100%
+        </span>
+      </div>
+      <div class="pt-1">
+        <span class="text-caption-caps font-caption-caps text-secondary uppercase tracking-wider block mb-1">Total Mapeado</span>
+        <span class="text-label-numeric-lg font-label-numeric-lg text-on-surface font-bold text-2xl">R$ 17.570,00</span>
+      </div>
+      <div class="w-full bg-surface-container rounded-full h-2.5 overflow-hidden flex">
+        <div class="bg-error h-2.5" style="width: 36%;" title="Despesas: 36%"></div>
+        <div class="bg-primary h-2.5" style="width: 64%;" title="Receitas: 64%"></div>
+      </div>
+      <div class="flex items-center justify-between text-caption-caps font-caption-caps text-secondary pt-1">
+        <span class="flex items-center gap-1.5 font-medium"><span class="w-2.5 h-2.5 rounded-full bg-error inline-block"></span> Despesas: R$ 6.370 (36%)</span>
+        <span class="flex items-center gap-1.5 font-medium"><span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span> Receitas: R$ 11.200 (64%)</span>
+      </div>
+    </div>
+    <div class="pt-2 border-t border-outline-variant/40 flex items-center justify-between text-body-sm font-body-sm text-secondary">
+      <span class="">Status de saúde orçamentária</span>
+      <span class="text-primary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span> Equilibrado</span>
+    </div>
+  </div>
+</div>
+<!-- SEÇÃO INFERIOR: Grid de Categorias Existentes & Estatísticas -->
+<div class="space-y-5 pt-2">
+<!-- Filter Tabs Toolbar -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-outline-variant/60 pb-3">
+<div class="flex items-center gap-2">
+<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary text-body-md font-body-md font-semibold transition-colors shadow-xs">
+              Todas (12)
+            </button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container text-secondary hover:text-on-surface hover:bg-surface-variant text-body-md font-body-md font-medium transition-colors">
+              Despesas (8)
+            </button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container text-secondary hover:text-on-surface hover:bg-surface-variant text-body-md font-body-md font-medium transition-colors">
+              Receitas (4)
+            </button>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-secondary">
+<span class="material-symbols-outlined text-base" data-icon="search">search</span>
+</span>
+<input class="h-9 pl-8 pr-3 text-body-sm font-body-sm rounded-lg bg-surface-container-lowest border border-outline-variant text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Filtrar categorias..." type="text">
+</div>
+<span class="text-caption-caps font-caption-caps text-secondary">8 Exibidas</span>
+</div>
+</div>
+<!-- GRID DE CARDS (3 a 4 colunas desktop) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+<!-- Card 1: Alimentação -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-150 flex flex-col justify-between group">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-11 h-11 rounded-lg bg-[#FFEDD5] text-[#C2410C] flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="restaurant">restaurant</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-numeric-sm font-label-numeric-sm font-semibold bg-error-container/50 text-error">
+                  Despesa
+                </span>
+</div>
+<div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Alimentação</h4>
+<p class="text-body-sm font-body-sm text-secondary">14 transações associadas</p>
+</div>
+<div class="pt-1">
+<span class="text-caption-caps font-caption-caps text-secondary">Gasto Acumulado</span>
+<p class="text-label-numeric-lg font-label-numeric-lg text-on-surface font-semibold">R$ 1.840,00</p>
+</div>
+<!-- Budget Progress Bar (75%) -->
+<div class="space-y-1">
+<div class="flex justify-between text-caption-caps font-caption-caps text-secondary">
+<span class="">Limite: R$ 2.450,00</span>
+<span class="text-[#EA580C] font-semibold">75% atingido</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-[#F97316] h-1.5 rounded-full" style="width: 75%;"></div>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="flex items-center justify-end gap-2 pt-4 mt-3 border-t border-outline-variant/40">
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-secondary hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span class="">Editar</span>
+</button>
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-error hover:bg-error-container/30 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span class="">Excluir</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Moradia -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-150 flex flex-col justify-between group">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-11 h-11 rounded-lg bg-[#DBEAFE] text-[#1D4ED8] flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="home">home</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-numeric-sm font-label-numeric-sm font-semibold bg-error-container/50 text-error">
+                  Despesa
+                </span>
+</div>
+<div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Moradia</h4>
+<p class="text-body-sm font-body-sm text-secondary">6 transações associadas</p>
+</div>
+<div class="pt-1">
+<span class="text-caption-caps font-caption-caps text-secondary">Gasto Acumulado</span>
+<p class="text-label-numeric-lg font-label-numeric-lg text-on-surface font-semibold">R$ 2.450,00</p>
+</div>
+<!-- Budget Progress Bar (95%) -->
+<div class="space-y-1">
+<div class="flex justify-between text-caption-caps font-caption-caps text-secondary">
+<span class="">Limite: R$ 2.580,00</span>
+<span class="text-error font-semibold">95% alerta</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-error h-1.5 rounded-full" style="width: 95%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-4 mt-3 border-t border-outline-variant/40">
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-secondary hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span class="">Editar</span>
+</button>
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-error hover:bg-error-container/30 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span class="">Excluir</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Salário & Proventos -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-150 flex flex-col justify-between group">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-11 h-11 rounded-lg bg-[#DCFCE7] text-[#15803D] flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="work">work</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-numeric-sm font-label-numeric-sm font-semibold bg-primary-fixed text-primary font-bold">
+                  Receita
+                </span>
+</div>
+<div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Salário &amp; Proventos</h4>
+<p class="text-body-sm font-body-sm text-secondary">2 transações associadas</p>
+</div>
+<div class="pt-1">
+<span class="text-caption-caps font-caption-caps text-secondary">Recebido no Mês</span>
+<p class="text-label-numeric-lg font-label-numeric-lg text-primary font-bold">R$ 9.800,00</p>
+</div>
+<!-- Meta de Receita -->
+<div class="space-y-1">
+<div class="flex justify-between text-caption-caps font-caption-caps text-secondary">
+<span class="">Meta mensal: R$ 9.800</span>
+<span class="text-primary font-semibold">100% recebido</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-1.5 rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-4 mt-3 border-t border-outline-variant/40">
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-secondary hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span class="">Editar</span>
+</button>
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-error hover:bg-error-container/30 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span class="">Excluir</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Investimentos & Dividendos -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-150 flex flex-col justify-between group">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-11 h-11 rounded-lg bg-[#E0F2FE] text-[#0369A1] flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="trending_up">trending_up</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-numeric-sm font-label-numeric-sm font-semibold bg-primary-fixed text-primary font-bold">
+                  Receita
+                </span>
+</div>
+<div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Investimentos</h4>
+<p class="text-body-sm font-body-sm text-secondary">5 proventos registrados</p>
+</div>
+<div class="pt-1">
+<span class="text-caption-caps font-caption-caps text-secondary">Rendimento Recebido</span>
+<p class="text-label-numeric-lg font-label-numeric-lg text-primary font-bold">R$ 1.400,00</p>
+</div>
+<!-- Rendimento vs Mês Passado -->
+<div class="space-y-1">
+<div class="flex justify-between text-caption-caps font-caption-caps text-secondary">
+<span class="">Projeção: R$ 1.200,00</span>
+<span class="text-primary font-semibold">+16.6% batido</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary-container h-1.5 rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-4 mt-3 border-t border-outline-variant/40">
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-secondary hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span class="">Editar</span>
+</button>
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-error hover:bg-error-container/30 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span class="">Excluir</span>
+</button>
+</div>
+</div>
+<!-- Card 5: Transporte -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-150 flex flex-col justify-between group">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-11 h-11 rounded-lg bg-[#F3E8FF] text-[#7E22CE] flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="directions_car">directions_car</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-numeric-sm font-label-numeric-sm font-semibold bg-error-container/50 text-error">
+                  Despesa
+                </span>
+</div>
+<div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Transporte</h4>
+<p class="text-body-sm font-body-sm text-secondary">9 corridas e abastecimentos</p>
+</div>
+<div class="pt-1">
+<span class="text-caption-caps font-caption-caps text-secondary">Gasto Acumulado</span>
+<p class="text-label-numeric-lg font-label-numeric-lg text-on-surface font-semibold">R$ 680,00</p>
+</div>
+<!-- Budget Progress (68%) -->
+<div class="space-y-1">
+<div class="flex justify-between text-caption-caps font-caption-caps text-secondary">
+<span class="">Limite: R$ 1.000,00</span>
+<span class="text-secondary font-semibold">68% estável</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-[#8B5CF6] h-1.5 rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-4 mt-3 border-t border-outline-variant/40">
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-secondary hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span class="">Editar</span>
+</button>
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-error hover:bg-error-container/30 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span class="">Excluir</span>
+</button>
+</div>
+</div>
+<!-- Card 6: Lazer & Cultura -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-150 flex flex-col justify-between group">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-11 h-11 rounded-lg bg-[#FEF3C7] text-[#B45309] flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="movie">movie</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-numeric-sm font-label-numeric-sm font-semibold bg-error-container/50 text-error">
+                  Despesa
+                </span>
+</div>
+<div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Lazer &amp; Cultura</h4>
+<p class="text-body-sm font-body-sm text-secondary">4 transações (Streaming, Cinema)</p>
+</div>
+<div class="pt-1">
+<span class="text-caption-caps font-caption-caps text-secondary">Gasto Acumulado</span>
+<p class="text-label-numeric-lg font-label-numeric-lg text-on-surface font-semibold">R$ 520,00</p>
+</div>
+<!-- Budget Progress (65%) -->
+<div class="space-y-1">
+<div class="flex justify-between text-caption-caps font-caption-caps text-secondary">
+<span class="">Limite: R$ 800,00</span>
+<span class="text-secondary font-semibold">65% controlado</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-[#F59E0B] h-1.5 rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-4 mt-3 border-t border-outline-variant/40">
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-secondary hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span class="">Editar</span>
+</button>
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-error hover:bg-error-container/30 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span class="">Excluir</span>
+</button>
+</div>
+</div>
+<!-- Card 7: Saúde & Farmácia -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-150 flex flex-col justify-between group">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-11 h-11 rounded-lg bg-[#FCE7F3] text-[#BE185D] flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="favorite">favorite</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-numeric-sm font-label-numeric-sm font-semibold bg-error-container/50 text-error">
+                  Despesa
+                </span>
+</div>
+<div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Saúde &amp; Farmácia</h4>
+<p class="text-body-sm font-body-sm text-secondary">3 compras recorrentes</p>
+</div>
+<div class="pt-1">
+<span class="text-caption-caps font-caption-caps text-secondary">Gasto Acumulado</span>
+<p class="text-label-numeric-lg font-label-numeric-lg text-on-surface font-semibold">R$ 380,00</p>
+</div>
+<!-- Budget Progress (47%) -->
+<div class="space-y-1">
+<div class="flex justify-between text-caption-caps font-caption-caps text-secondary">
+<span class="">Limite: R$ 800,00</span>
+<span class="text-[#10B981] font-semibold">47.5% seguro</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-[#EC4899] h-1.5 rounded-full" style="width: 47.5%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-4 mt-3 border-t border-outline-variant/40">
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-secondary hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span class="">Editar</span>
+</button>
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-error hover:bg-error-container/30 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span class="">Excluir</span>
+</button>
+</div>
+</div>
+<!-- Card 8: Educação -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-150 flex flex-col justify-between group">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-11 h-11 rounded-lg bg-[#CFFAFE] text-[#0E7490] flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" data-icon="school">school</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-numeric-sm font-label-numeric-sm font-semibold bg-error-container/50 text-error">
+                  Despesa
+                </span>
+</div>
+<div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold">Educação</h4>
+<p class="text-body-sm font-body-sm text-secondary">1 curso online assinado</p>
+</div>
+<div class="pt-1">
+<span class="text-caption-caps font-caption-caps text-secondary">Gasto Acumulado</span>
+<p class="text-label-numeric-lg font-label-numeric-lg text-on-surface font-semibold">R$ 480,00</p>
+</div>
+<!-- Budget Progress (80%) -->
+<div class="space-y-1">
+<div class="flex justify-between text-caption-caps font-caption-caps text-secondary">
+<span class="">Limite: R$ 600,00</span>
+<span class="text-secondary font-semibold">80% em meta</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-[#06B6D4] h-1.5 rounded-full" style="width: 80%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 pt-4 mt-3 border-t border-outline-variant/40">
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-secondary hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span class="">Editar</span>
+</button>
+<button class="px-2.5 py-1 text-body-sm font-body-sm rounded text-error hover:bg-error-container/30 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span class="">Excluir</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Micro-Interactivity Script for Color / Icon Selectors and Persistence Toast -->
+<script>
+    // Color Palette Selection logic
+    const colorButtons = document.querySelectorAll('#color-palette button');
+    colorButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        colorButtons.forEach(b => {
+          b.classList.remove('ring-2', 'ring-primary', 'ring-offset-2');
+          b.innerHTML = '';
+        });
+        btn.classList.add('ring-2', 'ring-primary', 'ring-offset-2');
+        btn.innerHTML = '<span class="material-symbols-outlined text-sm" data-icon="check">check</span>';
+      });
+    });
+
+    // Icon Grid Selection logic
+    const iconButtons = document.querySelectorAll('#icon-selector-grid button');
+    const selectedIconLabel = document.getElementById('selected-icon-name');
+
+    iconButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        iconButtons.forEach(b => {
+          b.classList.remove('border-2', 'border-primary', 'text-primary', 'shadow-xs');
+          b.classList.add('border-outline-variant/60', 'text-secondary');
+        });
+        btn.classList.remove('border-outline-variant/60', 'text-secondary');
+        btn.classList.add('border-2', 'border-primary', 'text-primary', 'shadow-xs');
+        const iconName = btn.getAttribute('data-icon-choice');
+        if (selectedIconLabel) {
+          selectedIconLabel.textContent = `Selecionado: ${iconName}`;
+        }
+      });
+    });
+
+    // JSON Server Toast Simulation
+    function simulateSaveCategory() {
+      const input = document.getElementById('cat-name');
+      const val = input.value.trim();
+      if (!val) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 transition-all transform translate-y-0 opacity-100';
+      toast.innerHTML = `
+        <span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+        <div class="text-body-sm font-body-sm">
+          <p class="font-semibold">POST /categorias concluído!</p>
+          <p class="text-xs text-primary-fixed">"${val}" salvo em db.json</p>
+        </div>
+      `;
+      document.body.appendChild(toast);
+      input.value = '';
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
+
+
+
+
+<!-- MODAL: CADASTRAR NOVA CATEGORIA -->
+<div id="category-modal" class="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 transition-all duration-300 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-category-title">
+  <div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-xl w-full max-w-2xl overflow-hidden transform transition-all duration-200 animate-fadeIn">
+    <!-- Header do Modal -->
+    <div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant/60 bg-surface-container-low">
+      <div class="flex items-center gap-3">
+        <div class="p-2 rounded-lg bg-primary/10 text-primary">
+          <span class="material-symbols-outlined text-xl" data-icon="playlist_add">playlist_add</span>
+        </div>
+        <div>
+          <h3 id="modal-category-title" class="text-headline-sm font-headline-sm font-semibold text-on-surface">Cadastrar Nova Categoria</h3>
+          <p class="text-body-sm font-body-sm text-secondary">Defina identificador visual, tipo e vínculo</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-caption-caps font-caption-caps px-2 py-0.5 rounded bg-surface-container text-secondary hidden sm:inline-block"><br></span>
+        <button type="button" onclick="closeCategoryModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors cursor-pointer" aria-label="Fechar modal">
+          <span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Formulário do Modal -->
+    <form class="p-6 space-y-5" id="modal-new-category-form" onsubmit="event.preventDefault(); handleModalSaveCategory();">
+      <!-- Nome da Categoria -->
+      <div class="space-y-1.5">
+        <label class="block text-body-sm font-body-sm font-semibold text-on-surface" for="modal-cat-name">
+          Nome da Categoria
+        </label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary">
+            <span class="material-symbols-outlined text-lg" data-icon="edit_note">edit_note</span>
+          </span>
+          <input class="w-full h-11 pl-10 pr-4 rounded-lg bg-surface-container-lowest border border-outline-variant text-on-surface placeholder:text-secondary/60 focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md font-body-md transition-all outline-none" id="modal-cat-name" placeholder="Ex: Assinaturas, Mercado, Combustível, Bônus..." required="" type="text">
+        </div>
+      </div>
+
+      <!-- Seletor de Tipo (Despesa / Receita) -->
+      <div class="space-y-1.5">
+        <label class="block text-body-sm font-body-sm font-semibold text-on-surface">Tipo de Fluxo Financeiro</label>
+        <div class="grid grid-cols-2 gap-3">
+          <label class="cursor-pointer">
+            <input checked="" class="peer sr-only" name="modal-flow-type" type="radio" value="despesa">
+            <div class="p-3 border-2 border-outline-variant rounded-lg flex items-center justify-center gap-2 peer-checked:border-error peer-checked:bg-error-container/30 transition-all text-secondary peer-checked:text-on-error-container font-headline-sm text-body-md font-medium">
+              <span class="material-symbols-outlined" data-icon="arrow_outward">arrow_outward</span>
+              <span class="">Despesa (Saída)</span>
+            </div>
+          </label>
+          <label class="cursor-pointer">
+            <input class="peer sr-only" name="modal-flow-type" type="radio" value="receita">
+            <div class="p-3 border-2 border-outline-variant rounded-lg flex items-center justify-center gap-2 peer-checked:border-primary peer-checked:bg-primary-fixed/40 transition-all text-secondary peer-checked:text-primary font-headline-sm text-body-md font-medium">
+              <span class="material-symbols-outlined" data-icon="call_received">call_received</span>
+              <span class="">Receita (Entrada)</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Seletor de Cor da Tag -->
+      <div class="space-y-2">
+        <label class="block text-body-sm font-body-sm font-semibold text-on-surface">
+          Paleta de Cor da Identificação
+        </label>
+        <div class="flex items-center gap-3 flex-wrap" id="modal-color-palette">
+          <button class="w-8 h-8 rounded-full bg-[#EF4444] ring-2 ring-offset-2 ring-primary transition-transform hover:scale-110 flex items-center justify-center text-white cursor-pointer" data-color="#EF4444" type="button">
+            <span class="material-symbols-outlined text-sm" data-icon="check">check</span>
+          </button>
+          <button class="w-8 h-8 rounded-full bg-[#F97316] ring-offset-1 hover:ring-2 hover:ring-[#F97316] transition-transform hover:scale-110 flex items-center justify-center text-white cursor-pointer" data-color="#F97316" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-[#F59E0B] ring-offset-1 hover:ring-2 hover:ring-[#F59E0B] transition-transform hover:scale-110 flex items-center justify-center text-white cursor-pointer" data-color="#F59E0B" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-[#10B981] ring-offset-1 hover:ring-2 hover:ring-[#10B981] transition-transform hover:scale-110 flex items-center justify-center text-white cursor-pointer" data-color="#10B981" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-[#06B6D4] ring-offset-1 hover:ring-2 hover:ring-[#06B6D4] transition-transform hover:scale-110 flex items-center justify-center text-white cursor-pointer" data-color="#06B6D4" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-[#3B82F6] ring-offset-1 hover:ring-2 hover:ring-[#3B82F6] transition-transform hover:scale-110 flex items-center justify-center text-white cursor-pointer" data-color="#3B82F6" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-[#8B5CF6] ring-offset-1 hover:ring-2 hover:ring-[#8B5CF6] transition-transform hover:scale-110 flex items-center justify-center text-white cursor-pointer" data-color="#8B5CF6" type="button"></button>
+          <button class="w-8 h-8 rounded-full bg-[#EC4899] ring-offset-1 hover:ring-2 hover:ring-[#EC4899] transition-transform hover:scale-110 flex items-center justify-center text-white cursor-pointer" data-color="#EC4899" type="button"></button>
+        </div>
+      </div>
+
+      <!-- Seletor Visual de Ícone -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <label class="block text-body-sm font-body-sm font-semibold text-on-surface">Ícone Representativo</label>
+          <span class="text-label-numeric-sm font-label-numeric-sm text-secondary" id="modal-selected-icon-name">Selecionado: restaurant</span>
+        </div>
+        <div class="grid grid-cols-4 sm:grid-cols-8 gap-2 p-3 bg-surface rounded-lg border border-outline-variant/60" id="modal-icon-selector-grid">
+          <button class="flex flex-col items-center justify-center h-12 rounded-lg bg-surface-container-lowest border-2 border-primary text-primary transition-all active:scale-95 shadow-xs cursor-pointer" data-icon-choice="restaurant" type="button">
+            <span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+          </button>
+          <button class="flex flex-col items-center justify-center h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/60 text-secondary hover:text-on-surface hover:border-primary/50 transition-all active:scale-95 cursor-pointer" data-icon-choice="shopping_cart" type="button">
+            <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+          </button>
+          <button class="flex flex-col items-center justify-center h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/60 text-secondary hover:text-on-surface hover:border-primary/50 transition-all active:scale-95 cursor-pointer" data-icon-choice="home" type="button">
+            <span class="material-symbols-outlined" data-icon="home">home</span>
+          </button>
+          <button class="flex flex-col items-center justify-center h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/60 text-secondary hover:text-on-surface hover:border-primary/50 transition-all active:scale-95 cursor-pointer" data-icon-choice="directions_car" type="button">
+            <span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+          </button>
+          <button class="flex flex-col items-center justify-center h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/60 text-secondary hover:text-on-surface hover:border-primary/50 transition-all active:scale-95 cursor-pointer" data-icon-choice="favorite" type="button">
+            <span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+          </button>
+          <button class="flex flex-col items-center justify-center h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/60 text-secondary hover:text-on-surface hover:border-primary/50 transition-all active:scale-95 cursor-pointer" data-icon-choice="movie" type="button">
+            <span class="material-symbols-outlined" data-icon="movie">movie</span>
+          </button>
+          <button class="flex flex-col items-center justify-center h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/60 text-secondary hover:text-on-surface hover:border-primary/50 transition-all active:scale-95 cursor-pointer" data-icon-choice="work" type="button">
+            <span class="material-symbols-outlined" data-icon="work">work</span>
+          </button>
+          <button class="flex flex-col items-center justify-center h-12 rounded-lg bg-surface-container-lowest border border-outline-variant/60 text-secondary hover:text-on-surface hover:border-primary/50 transition-all active:scale-95 cursor-pointer" data-icon-choice="trending_up" type="button">
+            <span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer / Ações do Modal -->
+      <div class="pt-4 border-t border-outline-variant/60 flex items-center justify-end gap-3">
+        <button type="button" onclick="closeCategoryModal()" class="px-4 py-2 rounded-lg border border-outline-variant text-secondary hover:bg-surface-container hover:text-on-surface font-medium text-body-md transition-colors cursor-pointer">
+          Cancelar
+        </button>
+        <button type="submit" class="flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary font-headline-sm font-semibold px-6 py-2 rounded-lg shadow-sm transition-all duration-150 active:scale-95 cursor-pointer">
+          <span class="material-symbols-outlined text-lg" data-icon="save">save</span>
+          <span class="">Salvar Categoria</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script id="category-modal-script" class="">
+  function openCategoryModal() {
+    const modal = document.getElementById('category-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        const input = document.getElementById('modal-cat-name');
+        if (input) input.focus();
+      }, 50);
+    }
+  }
+
+  function closeCategoryModal() {
+    const modal = document.getElementById('category-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+    }
+  }
+
+  // Fechar ao clicar fora do container do modal
+  const modalOverlay = document.getElementById('category-modal');
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', function(e) {
+      if (e.target === modalOverlay) {
+        closeCategoryModal();
+      }
+    });
+  }
+
+  // Fechar com tecla ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeCategoryModal();
+    }
+  });
+
+  // Seleção de Cores no Modal
+  const modalColorButtons = document.querySelectorAll('#modal-color-palette button');
+  modalColorButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      modalColorButtons.forEach(b => {
+        b.classList.remove('ring-2', 'ring-primary', 'ring-offset-2');
+        b.innerHTML = '';
+      });
+      btn.classList.add('ring-2', 'ring-primary', 'ring-offset-2');
+      btn.innerHTML = '<span class="material-symbols-outlined text-sm" data-icon="check">check</span>';
+    });
+  });
+
+  // Seleção de Ícones no Modal
+  const modalIconButtons = document.querySelectorAll('#modal-icon-selector-grid button');
+  const modalSelectedIconLabel = document.getElementById('modal-selected-icon-name');
+  modalIconButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      modalIconButtons.forEach(b => {
+        b.classList.remove('border-2', 'border-primary', 'text-primary', 'shadow-xs');
+        b.classList.add('border-outline-variant/60', 'text-secondary');
+      });
+      btn.classList.remove('border-outline-variant/60', 'text-secondary');
+      btn.classList.add('border-2', 'border-primary', 'text-primary', 'shadow-xs');
+      const iconName = btn.getAttribute('data-icon-choice');
+      if (modalSelectedIconLabel) {
+        modalSelectedIconLabel.textContent = `Selecionado: ${iconName}`;
+      }
+    });
+  });
+
+  // Salvar a partir do Modal
+  function handleModalSaveCategory() {
+    const input = document.getElementById('modal-cat-name');
+    const val = input.value.trim();
+    if (!val) return;
+
+    closeCategoryModal();
+
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 transition-all transform translate-y-0 opacity-100';
+    toast.innerHTML = `
+      <span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+      <div class="text-body-sm font-body-sm">
+        <p class="font-semibold">POST /categorias concluído!</p>
+        <p class="text-xs text-primary-fixed">"${val}" adicionado ao db.json</p>
+      </div>
+    `;
+    document.body.appendChild(toast);
+    input.value = '';
+
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'translate-y-2');
+      setTimeout(() => toast.remove(), 300);
+    }, 3500);
+  }
+</script>
+
+
+
+</body></html>

@@ -19,6 +19,7 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 
 - [Design System](./docs/sdd.md) - Identidade visual, tipografia e paleta de cores (Design Tokens).
 - [Protótipo no Stitch](https://stitch.withgoogle.com/projects/12731310984783563195) - Telas e componentes interativos gerados para a aplicação.
+- [Protótipo exportado (backup navegável)](./designs/) - Telas (HTML + screenshots) exportadas do Stitch, versionadas no repositório para o caso do link do Stitch exigir login.
 
 ---
 

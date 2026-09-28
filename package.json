@@ -2,6 +2,17 @@
   "name": "sobrou-quanto",
   "version": "1.0.0",
   "description": "Este projeto tem como objetivo implementar uma aplicação web responsiva para o controle e acompanhamento de finanças pessoais. O sistema permite o cadastro de receitas e despesas, exibição do saldo acumulado em tempo real e busca automática do endereço de estabelecimentos via CEP. O frontend consome uma API local (JSON Server) para persistência das movimentações e APIs públicas para cotação de moedas e autopreenchimento de endereço.",
+  "keywords": [],
+  "homepage": "https://github.com/flpiensen/sobrou-quanto#readme",
+  "bugs": {
+    "url": "https://github.com/flpiensen/sobrou-quanto/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flpiensen/sobrou-quanto.git"
+  },
+  "author": "Felipe Santos Iensen",
+  "type": "commonjs",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -9,16 +20,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/flpiensen/sobrou-quanto.git"
-  },
-  "keywords": [],
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/flpiensen/sobrou-quanto/issues"
-  },
-  "homepage": "https://github.com/flpiensen/sobrou-quanto#readme",
   "dependencies": {
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1"

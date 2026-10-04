@@ -1,0 +1,11 @@
+// =============================================================
+// style.scss — Ponto de entrada dos estilos do SobrouQuanto?
+// Compila para: css/style.css  (é ESSE que o HTML carrega)
+//
+// Os arquivos com _ no começo são "parciais": não viram CSS
+// sozinhos, só quando são chamados aqui. No final o navegador
+// recebe UM único arquivo.
+// =============================================================
+@use "base";
+@use "dashboard";
+@use "transacoes";

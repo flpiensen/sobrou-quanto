@@ -1,0 +1,45 @@
+// =============================================================
+// _mixins.scss — "Modelos" de estilo reutilizáveis
+// Pense como um lançamento recorrente: o formato é sempre o
+// mesmo, você só preenche o que muda (os parâmetros).
+// =============================================================
+@use "variaveis" as *;
+
+// Mobile first: aplica o bloco a partir de uma largura de tela.
+// Uso: @include a-partir-de($bp-md) { ... }
+@mixin a-partir-de($largura) {
+  @media (min-width: $largura) {
+    @content; // @content = o bloco que você escrever dentro do @include
+  }
+}
+
+// Card "nível 1" do sdd.md: fundo, borda, cantos e sombra suave.
+// Fundo e texto usam as variáveis quentes (--sq-*), para o card
+// também mudar quando o Modo Escuro for ativado.
+@mixin card-base($arredondamento: $raio-lg) {
+  background-color: var(--sq-superficie);
+  color: var(--sq-texto);
+  border: 1px solid $cor-borda;
+  border-radius: $arredondamento;
+  box-shadow: $sombra-1;
+}
+
+// Card de KPI do Dashboard (Saldo, Receitas, Despesas).
+// Mesmo formato para os três; só a cor de destaque muda.
+@mixin card-resumo($cor) {
+  @include card-base;
+  padding: $esp-lg;
+  border-left: 4px solid $cor;
+
+  .valor {
+    color: $cor;
+  }
+}
+
+// Valores monetários: fonte mono com algarismos tabulares,
+// para os centavos ficarem alinhados em colunas.
+@mixin texto-numerico($tamanho: $fs-corpo-md) {
+  font-family: $fonte-numerica;
+  font-size: $tamanho;
+  font-variant-numeric: tabular-nums;
+}

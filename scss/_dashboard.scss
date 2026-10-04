@@ -1,0 +1,43 @@
+// =============================================================
+// _dashboard.scss — Estilos do index.html (Épico 2)
+// =============================================================
+@use "sass:color";
+@use "variaveis" as *;
+@use "mixins" as *;
+
+// ---------- Cards de KPI ----------
+// Parte comum dos três cards (tipografia).
+.card-resumo {
+  // Aninhamento: o estilo segue o formato do HTML
+  .rotulo {
+    font-size: $fs-caps;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--sq-texto-suave); // quente: muda no modo escuro
+  }
+
+  .valor {
+    @include texto-numerico(1.5rem);
+    display: block;
+    margin-top: $esp-xs;
+    font-weight: 600;
+  }
+}
+
+// Mixin: o mesmo "modelo" de card, cada um com sua cor.
+.card-saldo    { @include card-resumo($cor-primaria); }
+.card-receitas { @include card-resumo($cor-receita); }
+.card-despesas { @include card-resumo($cor-despesa); }
+
+// ---------- Badge de cotação (AwesomeAPI) ----------
+// Função: o fundo é CALCULADO a partir da cor âmbar
+// (90% mais claro), em vez de inventar outro código de cor.
+.badge-cotacao {
+  @include texto-numerico($fs-legenda);
+  display: inline-block;
+  padding: $esp-xxs $esp-sm;
+  border-radius: $raio-pill;
+  color: $cor-cotacao;
+  background-color: color.scale($cor-cotacao, $lightness: 90%);
+}

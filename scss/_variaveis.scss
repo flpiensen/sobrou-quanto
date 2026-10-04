@@ -1,0 +1,73 @@
+// =============================================================
+// _variaveis.scss — Design Tokens do SobrouQuanto?
+// Fonte: docs/sdd.md (tokens gerados pelo Stitch).
+//
+// São variáveis "frias": o Sass troca cada uma pelo valor fixo
+// na hora de compilar. No CSS final elas não existem mais.
+// Mudou uma cor aqui? Muda no app inteiro.
+// =============================================================
+
+// ---------- Cores de marca ----------
+$cor-primaria:           #006948; // primary — verde (CTAs, saldo positivo)
+$cor-primaria-destaque:  #00855d; // primary-container — hover/destaque
+$cor-secundaria:         #565e74; // secondary — elementos estruturais
+$cor-terciaria:          #825100; // tertiary — âmbar (cotações, avisos)
+$cor-erro:               #ba1a1a; // error — vermelho (despesas, alertas)
+
+// ---------- Apelidos semânticos (o "significado" da cor) ----------
+$cor-receita: $cor-primaria;
+$cor-despesa: $cor-erro;
+$cor-cotacao: $cor-terciaria;
+
+// ---------- Superfícies e texto ----------
+$cor-fundo:          #f7f9fb; // background
+$cor-superficie:     #ffffff; // surface-container-lowest (cards, modais)
+$cor-superficie-alt: #f2f4f6; // surface-container-low (hover de linhas)
+$cor-borda:          #bccac0; // outline-variant
+$cor-texto:          #191c1e; // on-surface
+$cor-texto-suave:    #3d4a42; // on-surface-variant (legendas, rótulos)
+
+// ---------- Tipografia ----------
+$fonte-base:     'Plus Jakarta Sans', system-ui, sans-serif;
+$fonte-numerica: 'JetBrains Mono', ui-monospace, monospace; // valores em R$
+
+// Escala tipográfica em rem (1rem = 16px)
+$fs-display:  2.25rem;   // 36px — display-hero
+$fs-h1:       1.75rem;   // 28px — headline-lg
+$fs-h2:       1.375rem;  // 22px — headline-md
+$fs-h3:       1.125rem;  // 18px — headline-sm
+$fs-corpo:    1rem;      // 16px — body-lg
+$fs-corpo-md: 0.875rem;  // 14px — body-md
+$fs-legenda:  0.75rem;   // 12px — body-sm
+$fs-caps:     0.6875rem; // 11px — caption-caps
+
+// ---------- Espaçamentos (régua de 8px) ----------
+$esp-xxs: 0.25rem; //  4px
+$esp-xs:  0.5rem;  //  8px
+$esp-sm:  0.75rem; // 12px
+$esp-md:  1rem;    // 16px
+$esp-lg:  1.5rem;  // 24px
+$esp-xl:  2rem;    // 32px
+$esp-2xl: 3rem;    // 48px
+
+// ---------- Bordas arredondadas ----------
+$raio-sm:   0.25rem;
+$raio:      0.5rem;
+$raio-md:   0.75rem;
+$raio-lg:   1rem;
+$raio-xl:   1.5rem;
+$raio-pill: 9999px;
+
+// ---------- Sombras (níveis de elevação do sdd.md) ----------
+$sombra-1: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);  // cards
+$sombra-2: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04); // dropdowns
+$sombra-3: 0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04); // modais
+
+// ---------- Movimento ----------
+$transicao: 150ms ease-in-out;
+
+// ---------- Breakpoints (os mesmos do Bootstrap) ----------
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 992px;
+$bp-xl: 1200px;

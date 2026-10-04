@@ -1,0 +1,36 @@
+// =============================================================
+// bootstrap.scss — Bootstrap personalizado com os tokens do app
+// Compila para: css/bootstrap.css
+//
+// Truque: as variáveis do Bootstrap usam !default, ou seja,
+// "use este valor SÓ SE ninguém definiu antes". Definindo aqui,
+// ANTES de importar o Bootstrap, btn-primary, bg-primary,
+// text-primary etc. já saem no verde do SobrouQuanto?.
+// =============================================================
+@use "variaveis" as v;
+
+// Cores do tema
+$primary:   v.$cor-primaria;
+$secondary: v.$cor-secundaria;
+$success:   v.$cor-receita;
+$danger:    v.$cor-despesa;
+$warning:   v.$cor-terciaria;
+
+// Página
+$body-bg:    v.$cor-fundo;
+$body-color: v.$cor-texto;
+
+// Fontes
+$font-family-sans-serif: v.$fonte-base;
+$font-family-monospace:  v.$fonte-numerica;
+
+// Cantos arredondados
+$border-radius-sm:   v.$raio-sm;
+$border-radius:      v.$raio;
+$border-radius-lg:   v.$raio-lg;
+$border-radius-pill: v.$raio-pill;
+
+// Aqui usamos @import (e não @use) porque é a forma que a
+// documentação do Bootstrap 5.3 ainda exige. O aviso de
+// "deprecated" é silenciado no script do package.json.
+@import "bootstrap/scss/bootstrap";

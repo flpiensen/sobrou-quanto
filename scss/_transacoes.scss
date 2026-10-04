@@ -1,0 +1,35 @@
+// =============================================================
+// _transacoes.scss — Estilos do transacoes.html (Épico 4)
+// =============================================================
+@use "variaveis" as *;
+@use "mixins" as *;
+
+// Uma linha do extrato:
+// <div class="transacao despesa">
+//   <span class="descricao">Mercado Central</span>
+//   <span class="valor">- R$ 450,00</span>
+// </div>
+.transacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $esp-sm $esp-md;
+  border-bottom: 1px solid $cor-borda;
+  transition: background-color $transicao;
+
+  .descricao {
+    font-weight: 600;
+  }
+
+  .valor {
+    @include texto-numerico;
+  }
+
+  // & = "este mesmo elemento" (.transacao)
+  &:hover {
+    background-color: $cor-superficie-alt;
+  }
+
+  &.receita .valor { color: $cor-receita; } // .transacao.receita .valor
+  &.despesa .valor { color: $cor-despesa; } // .transacao.despesa .valor
+}

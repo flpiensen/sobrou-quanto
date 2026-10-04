@@ -30,6 +30,8 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
   * **Justificativa:** Framework CSS mais adotado do mercado, com documentação extensa, grande comunidade e projeto ativo no GitHub (licença MIT). Seu sistema de grid em Flexbox resolve com facilidade a responsividade mobile/desktop do protótipo, e os componentes prontos (Navbar, Cards, Modais, Forms) cobrem os elementos identificados no protótipo do Stitch. A partir da v5 não depende mais de jQuery.
 * **[Bootstrap Icons](https://icons.getbootstrap.com/)**
   * **Justificativa:** Biblioteca de ícones oficial do Bootstrap, com integração nativa — usada nos ícones de categoria (`bi-basket`, `bi-cash-coin`, etc.) e da interface como um todo.
+* **[Sass (SCSS)](https://sass-lang.com/)** — dependência de desenvolvimento
+  * **Justificativa:** Pré-processador CSS usado para centralizar os Design Tokens do `docs/sdd.md` em variáveis, reaproveitar estilos com mixins e personalizar o Bootstrap (cores, fontes e bordas) antes da compilação. Os fontes ficam em `scss/` e são compilados para `css/` com `npm run sass`.
 
 ### **API Pública**
 * **[AwesomeAPI (Cotações de Moedas)](https://docs.awesomeapi.com.br/api-de-moedas)**

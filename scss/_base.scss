@@ -1,0 +1,37 @@
+// =============================================================
+// _base.scss — Estilos globais e variáveis "quentes"
+// =============================================================
+@use "variaveis" as *;
+@use "mixins" as *;
+
+// Variáveis QUENTES (CSS custom properties):
+// continuam existindo no navegador, então o JavaScript pode
+// trocá-las com o app aberto. Usadas no Modo Escuro (US11).
+//
+// O #{ } é a "interpolação": pega o valor da variável Sass e
+// escreve ele dentro da variável CSS na hora de compilar.
+:root {
+  --sq-fundo:      #{$cor-fundo};
+  --sq-superficie: #{$cor-superficie};
+  --sq-texto:      #{$cor-texto};
+  --sq-texto-suave: #{$cor-texto-suave};
+}
+
+// Ativado pelo JS com: document.documentElement.dataset.tema = 'escuro'
+[data-tema="escuro"] {
+  --sq-fundo:      #191c1e; // on-surface do sdd.md
+  --sq-superficie: #2d3133; // inverse-surface
+  --sq-texto:      #eff1f3; // inverse-on-surface
+  --sq-texto-suave: #bccac0; // outline-variant
+}
+
+body {
+  background-color: var(--sq-fundo);
+  color: var(--sq-texto);
+  transition: background-color $transicao, color $transicao;
+}
+
+// Qualquer elemento com valor em R$
+.valor-monetario {
+  @include texto-numerico;
+}

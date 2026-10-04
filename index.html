@@ -4,30 +4,89 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SobrouQuanto?</title>
+
+    <!-- Fontes do Design System (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
     />
+
+    <!-- Bootstrap Icons (CDN) -->
     <link
       rel="stylesheet"
-      href="node_modules/bootstrap-icons/font/bootstrap-icons.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
+
+    <!-- CSS gerado pelo Sass (não edite: edite os arquivos em scss/) -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
-    <div class="container" style="margin-top: 2rem">
-      <a class="btn btn-outline-secondary" href="#">Standard Button</a>
-      <a tabindex="0" class="btn btn-success" href="#">Create</a>
-      <a tabindex="0" class="btn btn-success" href="#">
-        <i class="bi bi-plus-lg"></i> Create
-      </a>
-      <a tabindex="0" class="btn btn-success rounded-pill" href="#">
-        <i class="bi bi-pencil"></i> Update
-      </a>
-    </div>
+    <!--
+      DEMONSTRAÇÃO TEMPORÁRIA DO SASS
+      Serve só para ver as variáveis, mixins e funções funcionando.
+      Será substituída pelo Dashboard real na Entrega 2.
+    -->
+    <main class="container py-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0">SobrouQuanto?</h1>
+        <span class="badge-cotacao">USD/BRL R$ 5,68</span>
+      </div>
 
-    <!-- Bootstrap Bundle JS (inclui Popper, via NPM) -->
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Cards de KPI: mixin card-resumo() com cores diferentes -->
+      <div class="row g-3 mb-4">
+        <div class="col-12 col-md-4">
+          <div class="card-resumo card-saldo">
+            <span class="rotulo">Saldo</span>
+            <span class="valor">R$ 4.850,00</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card-resumo card-receitas">
+            <span class="rotulo">Receitas</span>
+            <span class="valor">R$ 11.200,00</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card-resumo card-despesas">
+            <span class="rotulo">Despesas</span>
+            <span class="valor">R$ 6.350,00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Linhas do extrato: aninhamento com &.receita / &.despesa -->
+      <div class="mb-4">
+        <div class="transacao receita">
+          <span class="descricao">Salário Mensal</span>
+          <span class="valor">+ R$ 18.500,00</span>
+        </div>
+        <div class="transacao despesa">
+          <span class="descricao">Mercado Central</span>
+          <span class="valor">- R$ 450,00</span>
+        </div>
+      </div>
+
+      <!-- Botões do Bootstrap: o "primary" agora é o verde do app -->
+      <button class="btn btn-primary">
+        <i class="bi bi-plus-lg"></i> Nova movimentação
+      </button>
+      <button class="btn btn-outline-danger">Excluir</button>
+
+      <!-- Variáveis quentes: o JS troca --sq-* com o app aberto -->
+      <button
+        class="btn btn-outline-secondary"
+        onclick="document.documentElement.dataset.tema = document.documentElement.dataset.tema === 'escuro' ? '' : 'escuro'"
+      >
+        <i class="bi bi-moon"></i> Alternar modo escuro
+      </button>
+    </main>
+
+    <!-- Bootstrap Bundle JS (CDN, inclui Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Scripts da aplicação -->
     <script src="js/main.js"></script>

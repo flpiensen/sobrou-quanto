@@ -1,0 +1,119 @@
+:root {
+  --sq-fundo: #f7f9fb;
+  --sq-superficie: #ffffff;
+  --sq-texto: #191c1e;
+  --sq-texto-suave: #3d4a42;
+}
+
+[data-tema=escuro] {
+  --sq-fundo: #191c1e;
+  --sq-superficie: #2d3133;
+  --sq-texto: #eff1f3;
+  --sq-texto-suave: #bccac0;
+}
+
+body {
+  background-color: var(--sq-fundo);
+  color: var(--sq-texto);
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+.valor-monetario {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.card-resumo .rotulo {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sq-texto-suave);
+}
+.card-resumo .valor {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.card-saldo {
+  background-color: var(--sq-superficie);
+  color: var(--sq-texto);
+  border: 1px solid #bccac0;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+  padding: 1.5rem;
+  border-left: 4px solid #006948;
+}
+.card-saldo .valor {
+  color: #006948;
+}
+
+.card-receitas {
+  background-color: var(--sq-superficie);
+  color: var(--sq-texto);
+  border: 1px solid #bccac0;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+  padding: 1.5rem;
+  border-left: 4px solid #006948;
+}
+.card-receitas .valor {
+  color: #006948;
+}
+
+.card-despesas {
+  background-color: var(--sq-superficie);
+  color: var(--sq-texto);
+  border: 1px solid #bccac0;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+  padding: 1.5rem;
+  border-left: 4px solid #ba1a1a;
+}
+.card-despesas .valor {
+  color: #ba1a1a;
+}
+
+.badge-cotacao {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  color: #825100;
+  background-color: rgb(100%, 94.383107089%, 85.0980392157%);
+}
+
+.transacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #bccac0;
+  transition: background-color 150ms ease-in-out;
+}
+.transacao .descricao {
+  font-weight: 600;
+}
+.transacao .valor {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+.transacao:hover {
+  background-color: #f2f4f6;
+}
+.transacao.receita .valor {
+  color: #006948;
+}
+.transacao.despesa .valor {
+  color: #ba1a1a;
+}
+
+/*# sourceMappingURL=style.css.map */

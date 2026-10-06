@@ -1267,7 +1267,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1;
+  height: 3rem;
   border-radius: 0.5rem;
   border: 1px solid #d7dfd9;
   background-color: var(--sq-superficie);

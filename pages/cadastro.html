@@ -539,7 +539,7 @@
 
     <!-- ===================== MODAL: NOVA CATEGORIA (US06) ===================== -->
     <div class="modal fade" id="modalNovaCategoria" tabindex="-1" aria-labelledby="modalNovaCategoriaLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
         <form class="modal-content" action="#" method="post">
           <div class="modal-header">
             <div class="d-flex align-items-center gap-3">
@@ -552,13 +552,27 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
           </div>
 
-          <div class="modal-body d-flex flex-column gap-4">
-            <div>
+          <div class="modal-body d-flex flex-column gap-3">
+            <!-- Nome e limite lado a lado (empilham no celular) -->
+            <div class="row g-3">
+            <div class="col-md-7">
               <label for="nomeCategoria" class="form-label">Nome da Categoria</label>
               <div class="input-group input-icone">
                 <span class="input-group-text"><i class="bi bi-pencil-square"></i></span>
                 <input type="text" class="form-control" id="nomeCategoria" placeholder="Ex: Alimentação, Salário, Academia..." maxlength="40" required />
               </div>
+            </div>
+            <!-- Limite (despesa) ou meta (receita): alimenta a barra de progresso dos cards -->
+            <div class="col-md-5">
+              <label for="limiteCategoria" class="form-label">Limite / Meta Mensal</label>
+              <div class="input-group">
+                <span class="input-group-text mono fw-semibold">R$</span>
+                <input type="text" inputmode="decimal" class="form-control mono" id="limiteCategoria" placeholder="0,00" required aria-describedby="limiteAjuda" />
+              </div>
+            </div>
+            <div id="limiteAjuda" class="form-text mt-1">
+              Despesa: teto de gastos no mês. Receita: valor que você espera receber no mês.
+            </div>
             </div>
 
             <div>
@@ -568,18 +582,6 @@
                 <label class="btn opcao-despesa" for="catDespesa"><i class="bi bi-arrow-up-right"></i> Despesa (Saída)</label>
                 <input type="radio" class="btn-check" name="tipoCategoria" id="catReceita" value="RECEITA" />
                 <label class="btn opcao-receita" for="catReceita"><i class="bi bi-arrow-down-left"></i> Receita (Entrada)</label>
-              </div>
-            </div>
-
-            <!-- Limite (despesa) ou meta (receita): alimenta a barra de progresso dos cards -->
-            <div>
-              <label for="limiteCategoria" class="form-label">Limite / Meta Mensal</label>
-              <div class="input-group">
-                <span class="input-group-text mono fw-semibold">R$</span>
-                <input type="text" inputmode="decimal" class="form-control mono" id="limiteCategoria" placeholder="0,00" required aria-describedby="limiteAjuda" />
-              </div>
-              <div id="limiteAjuda" class="form-text">
-                Despesa: teto de gastos no mês (ex.: R$ 2.450,00). Receita: valor que você espera receber no mês.
               </div>
             </div>
 

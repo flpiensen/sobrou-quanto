@@ -71,3 +71,36 @@ $bp-sm: 576px;
 $bp-md: 768px;
 $bp-lg: 992px;
 $bp-xl: 1200px;
+
+// =============================================================
+// Tokens complementares extraídos do protótipo (Stitch)
+// =============================================================
+
+// ---------- Containers de cor (fundos suaves) ----------
+$cor-primaria-fixa:       #85f8c4; // primary-fixed — fundo de chips/ícones verdes
+$cor-primaria-fixa-dim:   #68dba9; // primary-fixed-dim
+$cor-erro-container:      #ffdad6; // error-container — fundo de ícones/alertas vermelhos
+$cor-secundaria-container:#dae2fd; // secondary-container — item ativo do menu
+$cor-on-secundaria-cont:  #3f465c; // on-secondary-fixed-variant — texto do item ativo
+$cor-terciaria-fixa:      #ffddb8; // tertiary-fixed — fundo âmbar
+
+// ---------- Superfícies intermediárias ----------
+$cor-superficie-cont:     #eceef0; // surface-container
+$cor-superficie-variante: #e0e3e5; // surface-variant
+$cor-contorno:            #6d7a72; // outline (bordas fortes, ícones neutros)
+$cor-borda-suave:         #d7dfd9; // outline-variant a 60% (bordas de cards)
+
+// ---------- Paleta das categorias (protótipo) ----------
+$categorias: (
+  "laranja": #ea580c,
+  "vermelho": #dc2626,
+  "verde":   #059669,
+  "azul":    #2563eb,
+  "roxo":    #7c3aed,
+  "ambar":   #d97706,
+  "rosa":    #db2777,
+  "ciano":   #0891b2
+);
+
+// ---------- Layout ----------
+$altura-navbar: 4rem; // 64px

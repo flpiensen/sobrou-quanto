@@ -1,11 +1,171 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | SobrouQuanto?</title>
+
+    <!-- Fontes do Design System (instaladas via NPM: @fontsource) -->
+    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/400.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/500.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/600.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/700.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/400.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/500.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/600.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/700.css" />
+
+    <!-- Bootstrap Icons (NPM) -->
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
+
+    <!-- Bootstrap 5.3 compilado pelo Sass a partir de node_modules/bootstrap/scss
+         (com as cores, fontes e bordas do Design System) -->
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <!-- Estilos próprios da aplicação (gerado a partir de scss/style.scss) -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <!-- d-flex + flex-column + min-vh-100: base do "sticky footer" -->
+  <body class="d-flex flex-column min-vh-100">
+    <!-- ===================== LOGIN (Épico 1) ===================== -->
+    <main class="login-wrapper flex-grow-1">
+      <div class="container-xl px-3 px-lg-4">
+        <div class="card login-card">
+          <div class="row g-0">
+            <!-- Metade esquerda: apresentação do produto -->
+            <div class="col-lg-6 login-hero d-flex flex-column gap-4">
+              <div class="d-flex align-items-center gap-3">
+                <span class="logo-tile"><i class="bi bi-piggy-bank-fill"></i></span>
+                <span class="logo-texto">
+                  <span class="nome">SobrouQuanto?</span>
+                  <span class="slogan">Gestão Financeira Pessoal</span>
+                </span>
+              </div>
+
+              <div>
+                <span class="chip-status chip-neutro chip-sans mb-3"><span class="ponto"></span> Controle definitivo de fluxo de caixa</span>
+                <h1 class="titulo-hero mb-3">
+                  Descubra com precisão <span class="destaque">quanto sobrou</span> no final do mês.
+                </h1>
+                <p class="lead mb-0">
+                  Substitua planilhas confusas por visibilidade imediata, segurança de dados e conciliação bancária inteligente sem atritos.
+                </p>
+              </div>
+
+              <!-- Mini card de saldo -->
+              <div class="card mini-saldo" style="max-width: 28rem">
+                <div class="card-body p-4">
+                  <div class="d-flex justify-content-between align-items-center gap-2 pb-3 border-bottom">
+                    <span class="eyebrow d-flex align-items-center gap-2"><i class="bi bi-wallet2 fs-5 text-body"></i> Saldo líquido disponível</span>
+                    <span class="tendencia alta"><i class="bi bi-graph-up-arrow"></i> +18.2% vs mês anterior</span>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center gap-3 py-3 border-bottom">
+                    <div>
+                      <span class="valor-lg d-block">R$ 4.850,00</span>
+                      <small class="text-body-secondary">Atualizado via AwesomeAPI &amp; Lançamentos</small>
+                    </div>
+                    <div class="d-flex flex-column gap-2">
+                      <span class="cotacao-mini"><span class="moeda">USD</span> R$ 5,64 <i class="bi bi-caret-up-fill text-primary"></i></span>
+                      <span class="cotacao-mini"><span class="moeda">EUR</span> R$ 6,18 <i class="bi bi-caret-down-fill text-danger"></i></span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between pt-3 small text-body-secondary">
+                    <span><i class="bi bi-lock-fill text-primary me-1"></i> Ambiente Criptografado</span>
+                    <span><i class="bi bi-circle-fill text-primary me-1" style="font-size: 0.5rem"></i> JSON Server Conectado</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recursos em destaque -->
+              <div class="recursos mt-auto">
+              <div class="row g-3">
+                <div class="col-sm-4 d-flex align-items-center gap-2">
+                  <span class="icone-tile tile-sm tile-receita rounded-circle"><i class="bi bi-graph-up"></i></span> Cotações ao Vivo
+                </div>
+                <div class="col-sm-4 d-flex align-items-center gap-2">
+                  <span class="icone-tile tile-sm rounded-circle" style="background-color: #dae2fd; color: #3f465c"><i class="bi bi-tags"></i></span> Categorias Fixas
+                </div>
+                <div class="col-sm-4 d-flex align-items-center gap-2">
+                  <span class="icone-tile tile-sm tile-neutro rounded-circle"><i class="bi bi-cloud-arrow-up"></i></span> Comprovantes Seguros
+                </div>
+              </div>
+              </div>
+            </div>
+
+            <!-- Metade direita: formulário de acesso -->
+            <div class="col-lg-6 login-form d-flex flex-column justify-content-center">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+                <h2 class="titulo-form mb-0">Acesse sua conta</h2>
+                <span class="chip-status chip-neutro">v2.4 LTS</span>
+              </div>
+              <p class="subtitulo mb-4">Digite suas credenciais para gerenciar suas finanças com clareza.</p>
+
+              <!-- Validação nativa do HTML: required + type="email" -->
+              <form action="../index.html" method="get" class="d-flex flex-column gap-3">
+                <div>
+                  <label for="email" class="form-label">E-mail de Acesso</label>
+                  <div class="input-group input-icone">
+                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="ex: lucas.oliveira@email.com" required autocomplete="email" />
+                  </div>
+                </div>
+
+                <div>
+                  <div class="d-flex justify-content-between">
+                    <label for="senha" class="form-label">Senha</label>
+                    <a href="#" class="small fw-semibold">Esqueci minha senha</a>
+                  </div>
+                  <div class="input-group input-icone">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="••••••••" required minlength="6" autocomplete="current-password" />
+                    <span class="input-group-text"><i class="bi bi-eye"></i></span>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="form-check mb-0">
+                    <input class="form-check-input" type="checkbox" id="lembrar" checked />
+                    <label class="form-check-label small" for="lembrar">Lembrar-me neste dispositivo</label>
+                  </div>
+                  <span class="small text-body-secondary">Sessão Segura</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">
+                  Entrar no SobrouQuanto <i class="bi bi-arrow-right"></i>
+                </button>
+              </form>
+
+              <div class="divisor-texto my-4">Ou acesse com conta de demonstração</div>
+
+              <a href="../index.html" class="btn btn-outline-neutro w-100 py-2">
+                <span class="iniciais">LO</span> Acesso Rápido (Usuário Demo: Lucas Oliveira)
+                <i class="bi bi-lightning-charge text-body-secondary"></i>
+              </a>
+
+              <p class="text-center small text-body-secondary border-top pt-4 mt-4 mb-0">
+                Ainda não tem conta no SobrouQuanto?
+                <a href="#" class="fw-semibold">Cadastre-se gratuitamente</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===================== RODAPÉ ===================== -->
+    <!-- mt-auto: o rodapé é empurrado para o fim da tela -->
+    <footer class="sq-footer mt-auto">
+      <div class="container-fluid limite-conteudo px-3 px-lg-4 d-flex flex-column flex-md-row justify-content-between gap-2">
+        <span>&copy; 2025 SobrouQuanto? Gestão Financeira. Todos os direitos reservados.</span>
+        <div class="d-flex flex-wrap gap-3">
+          <span><i class="bi bi-shield-check"></i> Criptografia Ponta a Ponta</span>
+          <span><i class="bi bi-hdd-stack"></i> JSON Server API Ready</span>
+          <span><i class="bi bi-shield-lock"></i> LGPD Compliance</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS (NPM) — necessário para Offcanvas, Dropdown e Modal -->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

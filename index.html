@@ -3,92 +3,421 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SobrouQuanto?</title>
+    <title>Dashboard | SobrouQuanto?</title>
 
-    <!-- Fontes do Design System (Google Fonts) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
-    />
+    <!-- Fontes do Design System (instaladas via NPM: @fontsource) -->
+    <link rel="stylesheet" href="node_modules/@fontsource/plus-jakarta-sans/400.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/plus-jakarta-sans/500.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/plus-jakarta-sans/600.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/plus-jakarta-sans/700.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/jetbrains-mono/400.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/jetbrains-mono/500.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/jetbrains-mono/600.css" />
+    <link rel="stylesheet" href="node_modules/@fontsource/jetbrains-mono/700.css" />
 
-    <!-- Bootstrap Icons (CDN) -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
+    <!-- Bootstrap Icons (NPM) -->
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
 
-    <!-- CSS gerado pelo Sass (não edite: edite os arquivos em scss/) -->
+    <!-- Bootstrap 5.3 compilado pelo Sass a partir de node_modules/bootstrap/scss
+         (com as cores, fontes e bordas do Design System) -->
     <link rel="stylesheet" href="css/bootstrap.css" />
+    <!-- Estilos próprios da aplicação (gerado a partir de scss/style.scss) -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body>
-    <!--
-      DEMONSTRAÇÃO TEMPORÁRIA DO SASS
-      Serve só para ver as variáveis, mixins e funções funcionando.
-      Será substituída pelo Dashboard real na Entrega 2.
-    -->
-    <main class="container py-5">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0">SobrouQuanto?</h1>
-        <span class="badge-cotacao">USD/BRL R$ 5,68</span>
-      </div>
+  <!-- d-flex + flex-column + min-vh-100: base do "sticky footer" -->
+  <body class="d-flex flex-column min-vh-100">
+    <!-- ===================== NAVBAR ===================== -->
+    <!-- navbar-expand-lg: em telas grandes o menu fica na barra;
+         abaixo de 992px ele vira um Offcanvas (menu lateral) -->
+    <nav class="navbar navbar-expand-lg sq-navbar sticky-top">
+      <div class="container-fluid limite-conteudo px-3 px-lg-4">
+        <a class="navbar-brand" href="index.html">
+          <span class="logo-tile"><i class="bi bi-piggy-bank-fill"></i></span>
+          <span class="logo-texto">
+            <span class="nome">SobrouQuanto?</span>
+            <span class="slogan">Gestão Financeira</span>
+          </span>
+        </a>
 
-      <!-- Cards de KPI: mixin card-resumo() com cores diferentes -->
-      <div class="row g-3 mb-4">
-        <div class="col-12 col-md-4">
-          <div class="card-resumo card-saldo">
-            <span class="rotulo">Saldo</span>
-            <span class="valor">R$ 4.850,00</span>
+        <!-- Visível só no celular/tablet: notificações + botão do menu -->
+        <div class="d-flex align-items-center gap-1 d-lg-none">
+          <button type="button" class="btn-notificacao" aria-label="Notificações">
+            <i class="bi bi-bell"></i><span class="ponto"></span>
+          </button>
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#menuPrincipal"
+            aria-controls="menuPrincipal"
+            aria-label="Abrir menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- Offcanvas: menu lateral no celular, barra normal no desktop -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="menuPrincipal" aria-labelledby="menuPrincipalLabel">
+          <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title" id="menuPrincipalLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+          </div>
+          <div class="offcanvas-body align-items-lg-center">
+            <span class="divisor d-none d-lg-block me-3"></span>
+            <ul class="navbar-nav gap-1">
+              <li class="nav-item">
+                <a class="nav-link" href="pages/transacoes.html"><i class="bi bi-receipt"></i> Transações</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/cadastro.html"><i class="bi bi-tags"></i> Categorias</a>
+              </li>
+              <li class="nav-item d-lg-none">
+                <a class="nav-link" href="pages/perfil.html"><i class="bi bi-person"></i> Meu perfil</a>
+              </li>
+            </ul>
+
+            <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3 ms-lg-auto mt-4 mt-lg-0">
+              <span class="chip-status"><span class="ponto"></span> Cotações atualizadas</span>
+              <button type="button" class="btn-notificacao d-none d-lg-inline-block" aria-label="Notificações">
+                <i class="bi bi-bell"></i><span class="ponto"></span>
+              </button>
+              <span class="divisor d-none d-lg-block"></span>
+
+              <!-- Dropdown do usuário (componente JS do Bootstrap) -->
+              <div class="dropdown">
+                <a href="#" class="d-flex align-items-center gap-2 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="avatar">
+                    <img src="img/avatar.jpg" alt="Foto de Lucas Oliveira" />
+                    <span class="online"></span>
+                  </span>
+                  <span class="usuario-info">
+                    <span class="nome">Lucas Oliveira</span>
+                    <span class="plano">Plano Pro</span>
+                  </span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                  <li><a class="dropdown-item" href="pages/perfil.html"><i class="bi bi-person me-2"></i>Meu perfil</a></li>
+                  <li><a class="dropdown-item" href="pages/perfil.html"><i class="bi bi-sliders me-2"></i>Preferências</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item text-danger" href="pages/login.html"><i class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-12 col-md-4">
-          <div class="card-resumo card-receitas">
-            <span class="rotulo">Receitas</span>
-            <span class="valor">R$ 11.200,00</span>
+      </div>
+    </nav>
+    <!-- ===================== DASHBOARD (Épico 2) ===================== -->
+    <main class="sq-main flex-grow-1">
+      <div class="container-fluid limite-conteudo px-3 px-lg-4">
+        <header class="mb-4">
+          <span class="eyebrow">Resumo consolidado</span>
+          <h1 class="titulo-secao fs-4">Visão geral do mês</h1>
+        </header>
+
+        <!-- US03: Saldo, Receitas e Despesas (grid de 3 colunas no desktop) -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-6 col-xl-4">
+            <div class="card kpi-card kpi-saldo h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <span class="eyebrow pt-2">Sobrou quanto? (Saldo disponível)</span>
+                  <span class="icone-tile tile-receita"><i class="bi bi-wallet2"></i></span>
+                </div>
+                <div>
+                  <span class="valor-xl d-block">R$ 4.850,00</span>
+                  <span class="tendencia alta mt-2"><i class="bi bi-graph-up-arrow"></i> +18.2% vs mês anterior</span>
+                </div>
+                <div class="kpi-rodape mt-auto">
+                  <span><i class="bi bi-circle-fill text-primary me-1" style="font-size: 0.5rem"></i> Saúde Financeira: <strong class="text-primary">Excelente</strong></span>
+                  <span class="mono">Meta: R$ 4.500</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-4">
+            <div class="card kpi-card h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <span class="eyebrow pt-2">Total de receitas</span>
+                  <span class="icone-tile tile-receita"><i class="bi bi-arrow-up"></i></span>
+                </div>
+                <div>
+                  <span class="valor-lg d-block">R$ 11.200,00</span>
+                  <small class="text-body-secondary">Recebimentos contabilizados</small>
+                </div>
+                <div class="kpi-rodape mt-auto">
+                  <span><i class="bi bi-check-circle text-primary me-1"></i> 3 entradas registradas</span>
+                  <span class="mono text-primary">100% liquidadas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 col-xl-4">
+            <div class="card kpi-card h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <span class="eyebrow pt-2">Total de despesas</span>
+                  <span class="icone-tile tile-despesa"><i class="bi bi-arrow-down"></i></span>
+                </div>
+                <div>
+                  <span class="valor-lg d-block">R$ 6.350,00</span>
+                  <small class="text-body-secondary">56.7% do teto mensal orçado</small>
+                </div>
+                <div class="kpi-rodape mt-auto">
+                  <span><i class="bi bi-receipt-cutoff text-danger me-1"></i> 28 saídas no mês</span>
+                  <span class="mono">Média: R$ 226,78/dia</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-12 col-md-4">
-          <div class="card-resumo card-despesas">
-            <span class="rotulo">Despesas</span>
-            <span class="valor">R$ 6.350,00</span>
+
+        <div class="row g-4 mb-4">
+          <!-- US04: Fluxo de caixa (gráfico de rosca) -->
+          <div class="col-lg-7">
+            <div class="card h-100">
+              <div class="card-body d-flex flex-column gap-4">
+                <div class="d-flex justify-content-between align-items-start gap-2">
+                  <div>
+                    <span class="eyebrow">Distribuição de capital</span>
+                    <h2 class="titulo-secao">Fluxo de Caixa Mensal (Receitas vs Despesas)</h2>
+                  </div>
+                  <span class="chip-status chip-neutro">Outubro / 2024</span>
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row align-items-center gap-4 gap-md-5">
+                  <div class="rosca" style="--receitas: 64%" role="img" aria-label="Receitas 64%, despesas 36%">
+                    <div class="centro">
+                      <span class="rotulo">Líquido</span>
+                      <span class="percentual">43,3%</span>
+                      <span class="estado">Superávit</span>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-column gap-3 flex-grow-1 w-100">
+                    <div class="legenda-item">
+                      <span class="marcador bg-primary"></span>
+                      <div><span class="titulo">Receitas Totais</span><span class="sub">64% do fluxo</span></div>
+                      <span class="valor text-primary">R$ 11.200</span>
+                    </div>
+                    <div class="legenda-item">
+                      <span class="marcador" style="background-color: #ef4444"></span>
+                      <div><span class="titulo">Despesas Pagas</span><span class="sub">36% do fluxo</span></div>
+                      <span class="valor text-danger">R$ 6.350</span>
+                    </div>
+                    <div class="d-flex justify-content-between px-1 small">
+                      <span class="text-body-secondary">Economia Líquida:</span>
+                      <span class="mono fw-bold">+ R$ 4.850,00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alerta-insight mt-auto">
+                  <span class="icone-tile"><i class="bi bi-stars"></i></span>
+                  <p class="mb-0">
+                    <strong class="text-primary">Excelente ritmo!</strong> Você economizou 43% da sua renda este mês! Isso coloca sua reserva financeira 2 meses à frente da meta estipulada.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- US05: Cotações em tempo real (AwesomeAPI) -->
+          <div class="col-lg-5">
+            <div class="card h-100">
+              <div class="card-body d-flex flex-column gap-3">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <span class="eyebrow">Câmbio comercial</span>
+                    <h2 class="titulo-secao">Cotações em Tempo Real</h2>
+                  </div>
+                  <button type="button" class="btn btn-link text-body-secondary p-1 fs-5" aria-label="Atualizar cotações">
+                    <i class="bi bi-arrow-repeat"></i>
+                  </button>
+                </div>
+
+                <div class="cotacao-item">
+                  <span class="moeda-icone"><i class="bi bi-currency-dollar"></i></span>
+                  <div class="flex-grow-1">
+                    <span class="nome">Dólar Comercial</span><span class="par">USD/BRL</span>
+                    <span class="atualizado">Atualizado há 2 min</span>
+                  </div>
+                  <div class="text-end">
+                    <span class="preco d-block">R$ 5,684</span>
+                    <span class="tendencia alta"><i class="bi bi-arrow-up"></i> +0,42%</span>
+                  </div>
+                </div>
+
+                <div class="cotacao-item">
+                  <span class="moeda-icone"><i class="bi bi-currency-euro"></i></span>
+                  <div class="flex-grow-1">
+                    <span class="nome">Euro Comercial</span><span class="par">EUR/BRL</span>
+                    <span class="atualizado">Atualizado há 2 min</span>
+                  </div>
+                  <div class="text-end">
+                    <span class="preco d-block">R$ 6,152</span>
+                    <span class="tendencia baixa"><i class="bi bi-arrow-down"></i> -0,18%</span>
+                  </div>
+                </div>
+
+                <div class="cotacao-item">
+                  <span class="moeda-icone"><i class="bi bi-currency-pound"></i></span>
+                  <div class="flex-grow-1">
+                    <span class="nome">Libra Esterlina</span><span class="par">GBP/BRL</span>
+                    <span class="atualizado">Atualizado há 5 min</span>
+                  </div>
+                  <div class="text-end">
+                    <span class="preco d-block">R$ 7,381</span>
+                    <span class="tendencia alta"><i class="bi bi-arrow-up"></i> +0,25%</span>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center small mt-auto pt-2">
+                  <span class="text-body-secondary"><i class="bi bi-diagram-3 text-primary me-1"></i> Dados integrados via AwesomeAPI Pública</span>
+                  <a href="#" class="mono">Endpoint Status</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extrato recente -->
+        <div class="card overflow-hidden">
+          <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+            <div>
+              <span class="eyebrow">Extrato recente</span>
+              <h2 class="titulo-secao">Últimas Movimentações</h2>
+            </div>
+            <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3">
+              <div class="input-group input-icone" style="min-width: 16rem">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="search" class="form-control" placeholder="Filtrar lançamentos..." aria-label="Filtrar lançamentos" />
+              </div>
+              <a href="pages/transacoes.html" class="link-seta">Ver extrato completo <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover tabela-sq">
+              <thead>
+                <tr>
+                  <th scope="col">Descrição / Favorecido</th>
+                  <th scope="col">Data</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Conta / Método</th>
+                  <th scope="col" class="text-center">Status</th>
+                  <th scope="col" class="text-end">Valor líquido</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="icone-tile tile-sm tile-receita"><i class="bi bi-briefcase"></i></span>
+                      <div><span class="descricao">Salário Tech Corp</span><span class="detalhe">Crédito em conta corrente CLT</span></div>
+                    </div>
+                  </td>
+                  <td class="data">Hoje, 09:15</td>
+                  <td><span class="badge-categoria cat-verde"><i class="bi bi-cash-stack"></i> Salário / Renda</span></td>
+                  <td class="text-body-secondary"><i class="bi bi-bank me-1"></i> Conta Corrente</td>
+                  <td class="text-center"><span class="badge-status"><i class="bi bi-check-lg"></i> Concluído</span></td>
+                  <td class="valor text-end valor-positivo">+ R$ 10.450,00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="icone-tile tile-sm tile-neutro"><i class="bi bi-house"></i></span>
+                      <div><span class="descricao">Aluguel do Mês</span><span class="detalhe">Transferência QuintoAndar</span></div>
+                    </div>
+                  </td>
+                  <td class="data">Ontem, 11:30</td>
+                  <td><span class="badge-categoria cat-azul"><i class="bi bi-building"></i> Moradia</span></td>
+                  <td class="text-body-secondary"><i class="bi bi-arrow-repeat me-1"></i> Débito Automático</td>
+                  <td class="text-center"><span class="badge-status"><i class="bi bi-check-lg"></i> Concluído</span></td>
+                  <td class="valor text-end valor-negativo">- R$ 3.200,00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="icone-tile tile-sm tile-neutro"><i class="bi bi-cart3"></i></span>
+                      <div><span class="descricao">Supermercado Carrefour</span><span class="detalhe">Compras essenciais do mês</span></div>
+                    </div>
+                  </td>
+                  <td class="data">24/10, 18:45</td>
+                  <td><span class="badge-categoria cat-laranja"><i class="bi bi-basket"></i> Alimentação</span></td>
+                  <td class="text-body-secondary"><i class="bi bi-credit-card me-1"></i> Cartão Nubank</td>
+                  <td class="text-center"><span class="badge-status"><i class="bi bi-check-lg"></i> Concluído</span></td>
+                  <td class="valor text-end valor-negativo">- R$ 785,40</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="icone-tile tile-sm tile-receita"><i class="bi bi-graph-up-arrow"></i></span>
+                      <div><span class="descricao">Rendimento CDB Liquidez</span><span class="detalhe">Juros mensais 102% CDI</span></div>
+                    </div>
+                  </td>
+                  <td class="data">22/10, 08:00</td>
+                  <td><span class="badge-categoria cat-verde"><i class="bi bi-piggy-bank"></i> Investimentos</span></td>
+                  <td class="text-body-secondary"><i class="bi bi-qr-code me-1"></i> PIX</td>
+                  <td class="text-center"><span class="badge-status"><i class="bi bi-check-lg"></i> Concluído</span></td>
+                  <td class="valor text-end valor-positivo">+ R$ 750,00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="icone-tile tile-sm tile-neutro"><i class="bi bi-film"></i></span>
+                      <div><span class="descricao">Netflix &amp; Spotify Duo</span><span class="detalhe">Assinaturas mensais de streaming</span></div>
+                    </div>
+                  </td>
+                  <td class="data">20/10, 14:10</td>
+                  <td><span class="badge-categoria cat-roxo"><i class="bi bi-tv"></i> Lazer / Assinaturas</span></td>
+                  <td class="text-body-secondary"><i class="bi bi-credit-card me-1"></i> Cartão Nubank</td>
+                  <td class="text-center"><span class="badge-status"><i class="bi bi-check-lg"></i> Concluído</span></td>
+                  <td class="valor text-end valor-negativo">- R$ 94,80</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="icone-tile tile-sm tile-neutro"><i class="bi bi-capsule"></i></span>
+                      <div><span class="descricao">Farmácia Raia</span><span class="detalhe">Medicamentos de rotina e vitaminas</span></div>
+                    </div>
+                  </td>
+                  <td class="data">18/10, 16:22</td>
+                  <td><span class="badge-categoria cat-ambar"><i class="bi bi-heart-pulse"></i> Saúde</span></td>
+                  <td class="text-body-secondary"><i class="bi bi-qr-code me-1"></i> PIX</td>
+                  <td class="text-center"><span class="badge-status"><i class="bi bi-check-lg"></i> Concluído</span></td>
+                  <td class="valor text-end valor-negativo">- R$ 138,20</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-rodape-tabela">
+            <span>Mostrando as 6 movimentações mais recentes de 31 no período</span>
+            <span class="mono">Página <strong>1</strong> de 8</span>
           </div>
         </div>
       </div>
-
-      <!-- Linhas do extrato: aninhamento com &.receita / &.despesa -->
-      <div class="mb-4">
-        <div class="transacao receita">
-          <span class="descricao">Salário Mensal</span>
-          <span class="valor">+ R$ 18.500,00</span>
-        </div>
-        <div class="transacao despesa">
-          <span class="descricao">Mercado Central</span>
-          <span class="valor">- R$ 450,00</span>
-        </div>
-      </div>
-
-      <!-- Botões do Bootstrap: o "primary" agora é o verde do app -->
-      <button class="btn btn-primary">
-        <i class="bi bi-plus-lg"></i> Nova movimentação
-      </button>
-      <button class="btn btn-outline-danger">Excluir</button>
-
-      <!-- Variáveis quentes: o JS troca --sq-* com o app aberto -->
-      <button
-        class="btn btn-outline-secondary"
-        onclick="document.documentElement.dataset.tema = document.documentElement.dataset.tema === 'escuro' ? '' : 'escuro'"
-      >
-        <i class="bi bi-moon"></i> Alternar modo escuro
-      </button>
     </main>
 
-    <!-- Bootstrap Bundle JS (CDN, inclui Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ===================== RODAPÉ ===================== -->
+    <!-- mt-auto: o rodapé é empurrado para o fim da tela -->
+    <footer class="sq-footer mt-auto">
+      <div class="container-fluid limite-conteudo px-3 px-lg-4 d-flex flex-column flex-md-row justify-content-between gap-2">
+        <span>&copy; 2025 SobrouQuanto? Gestão Financeira. Todos os direitos reservados.</span>
+        <div class="d-flex flex-wrap gap-3">
+          <span><i class="bi bi-shield-check"></i> Criptografia Ponta a Ponta</span>
+          <span><i class="bi bi-hdd-stack"></i> JSON Server API Ready</span>
+          <span><i class="bi bi-shield-lock"></i> LGPD Compliance</span>
+        </div>
+      </div>
+    </footer>
 
-    <!-- Scripts da aplicação -->
-    <script src="js/main.js"></script>
+    <!-- Bootstrap JS (NPM) — necessário para Offcanvas, Dropdown e Modal -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

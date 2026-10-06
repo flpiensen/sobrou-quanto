@@ -1,0 +1,107 @@
+// =============================================================
+// _login.scss — Tela de login (Épico 1)
+// =============================================================
+@use "variaveis" as *;
+@use "mixins" as *;
+
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  padding: $esp-2xl 0;
+}
+
+// Card dividido em duas metades (apresentação | formulário)
+.login-card {
+  overflow: hidden;
+  border-radius: $raio-md;
+}
+
+// Metade esquerda com fundo em degradê suave
+.login-hero {
+  background: linear-gradient(135deg, rgba($cor-primaria-fixa, 0.35) 0%, $cor-superficie-alt 55%, rgba($cor-secundaria-container, 0.6) 100%);
+  border-right: 1px solid $cor-borda-suave;
+  padding: $esp-lg; // celular: mais espaço útil
+
+  @include a-partir-de($bp-md) { padding: $esp-2xl; }
+  @include a-partir-de($bp-lg) { padding: $esp-2xl 3rem; }
+
+  .titulo-hero {
+    font-size: clamp(2rem, 1.4rem + 2.2vw, 2.75rem); // tipografia fluida
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+
+    .destaque { color: $cor-primaria; }
+  }
+
+  .lead { font-size: $fs-corpo; color: $cor-texto-suave; }
+
+  .recursos {
+    border-top: 1px solid $cor-borda-suave;
+    padding-top: $esp-lg;
+    font-size: $fs-corpo-md;
+    color: $cor-texto-suave;
+  }
+}
+
+// Mini card de saldo da apresentação
+.mini-saldo {
+  .valor-lg { white-space: nowrap; }
+
+  .cotacao-mini {
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    gap: $esp-xs;
+    padding: $esp-xxs $esp-xs;
+    border: 1px solid $cor-borda-suave;
+    border-radius: $raio-sm;
+    @include texto-numerico($fs-legenda);
+
+    .moeda { font-family: $fonte-base; font-weight: 700; color: $cor-texto; }
+  }
+}
+
+// Metade direita: formulário
+.login-form {
+  padding: $esp-lg;
+
+  @include a-partir-de($bp-md) { padding: $esp-2xl; }
+  @include a-partir-de($bp-lg) { padding: 4rem 5rem; }
+
+  .titulo-form { font-size: $fs-h1; font-weight: 700; letter-spacing: -0.015em; }
+}
+
+// Divisor "OU ACESSE COM CONTA DE DEMONSTRAÇÃO"
+.divisor-texto {
+  display: flex;
+  align-items: center;
+  gap: $esp-md;
+  font-size: $fs-caps;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $cor-texto-suave;
+  white-space: nowrap;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: $cor-borda-suave;
+  }
+}
+
+// Iniciais do usuário demo (círculo "LO")
+.iniciais {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: $cor-secundaria-container;
+  color: $cor-on-secundaria-cont;
+  font-size: $fs-legenda;
+  font-weight: 700;
+}

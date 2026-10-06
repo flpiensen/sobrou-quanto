@@ -33,11 +33,15 @@ graph TD
   * **Uso:** Sistema de grid responsivo (Flexbox) e componentes prontos (Navbar, Cards, Modais, Forms, Dropdowns) via classes utilitárias e o bundle JS próprio (inclui Popper para tooltips/dropdowns). Não depende de jQuery.
   * **Inclusão:**
     * CSS: `css/bootstrap.css`, compilado pelo Sass a partir de `node_modules/bootstrap/scss` com as cores e fontes do Design System (ver Sass abaixo).
-    * JS: `https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js` (CDN)
+    * JS: `node_modules/bootstrap/dist/js/bootstrap.bundle.min.js` (NPM)
 
 * **Ícones:** [Bootstrap Icons](https://icons.getbootstrap.com/) (`v1.13.1`)
   * **Uso:** Biblioteca oficial de ícones do Bootstrap. Usada no campo `icone` da entidade Categoria (ex: `bi-basket`, `bi-cash-coin`, `bi-house`) e nos demais ícones de interface.
-  * **Inclusão (CDN):** `https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css`
+  * **Inclusão (via NPM):** `node_modules/bootstrap-icons/font/bootstrap-icons.min.css`
+
+* **Fontes:** [Plus Jakarta Sans](https://fontsource.org/fonts/plus-jakarta-sans) e [JetBrains Mono](https://fontsource.org/fonts/jetbrains-mono) via `@fontsource` (NPM)
+  * **Uso:** Plus Jakarta Sans na interface e JetBrains Mono nos valores monetários e cotações (algarismos tabulares), conforme o Design System.
+  * **Inclusão (via NPM):** `node_modules/@fontsource/plus-jakarta-sans/{400..700}.css` e `node_modules/@fontsource/jetbrains-mono/{400..700}.css`
 
 * **Pré-processador CSS:** [Sass](https://sass-lang.com/) (`v1.105`, dependência de desenvolvimento)
   * **Uso:** Os Design Tokens (cores, tipografia, espaçamentos, raios e sombras) ficam em `scss/_variaveis.scss`. O arquivo `scss/bootstrap.scss` sobrescreve as variáveis do Bootstrap (`$primary`, `$danger`, `$font-family-sans-serif` etc.) antes de compilá-lo, e `scss/style.scss` reúne os estilos próprios da aplicação, organizados em parciais por tela.

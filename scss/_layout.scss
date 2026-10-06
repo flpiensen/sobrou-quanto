@@ -1,0 +1,162 @@
+// =============================================================
+// _layout.scss — Estrutura comum a todas as telas
+// (navbar, área principal e rodapé fixo no fim da página)
+// =============================================================
+@use "variaveis" as *;
+@use "mixins" as *;
+
+// ---------- Sticky footer ----------
+// O <body> recebe as classes "d-flex flex-column min-vh-100" e o
+// <main> recebe "flex-grow-1": o main ocupa o espaço que sobra e
+// empurra o rodapé para o fim da tela, mesmo com pouco conteúdo.
+
+// ---------- Navbar ----------
+.sq-navbar {
+  min-height: $altura-navbar;
+  background-color: var(--sq-superficie);
+  border-bottom: 1px solid $cor-borda-suave;
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: $esp-sm;
+    margin-right: $esp-xl;
+  }
+
+  // Divisória vertical entre grupos (como no protótipo)
+  .divisor {
+    width: 1px;
+    height: 2rem;
+    background-color: $cor-borda-suave;
+  }
+
+  // Links do menu em formato de "pílula"
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: $esp-xs;
+    padding: $esp-xs $esp-md !important;
+    border-radius: $raio;
+    color: $cor-texto-suave;
+    font-size: $fs-corpo-md;
+    font-weight: 500;
+    transition: background-color $transicao, color $transicao;
+
+    i { font-size: 1.125rem; }
+
+    &:hover { background-color: $cor-superficie-alt; color: $cor-texto; }
+
+    &.active {
+      background-color: $cor-secundaria-container;
+      color: $cor-on-secundaria-cont;
+      font-weight: 600;
+    }
+  }
+}
+
+// Logo: quadrado verde com o porquinho
+.logo-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $raio;
+  background-color: $cor-primaria;
+  color: #fff;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.logo-texto {
+  line-height: 1.15;
+
+  .nome {
+    display: block;
+    font-size: $fs-h3;
+    font-weight: 700;
+    color: $cor-primaria;
+  }
+
+  .slogan {
+    display: block;
+    font-size: $fs-legenda;
+    color: $cor-texto-suave;
+  }
+}
+
+// Botão de notificações com ponto vermelho
+.btn-notificacao {
+  position: relative;
+  font-size: 1.25rem;
+  color: $cor-texto-suave;
+  padding: $esp-xs;
+  border: 0;
+  background: none;
+
+  .ponto {
+    position: absolute;
+    top: 0.35rem;
+    right: 0.35rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: $cor-erro;
+    border: 2px solid var(--sq-superficie);
+  }
+}
+
+// Avatar redondo com indicador "online"
+.avatar {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+
+  img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;          // recorta a foto sem distorcer
+    object-position: 50% 20%;
+  }
+
+  .online {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: $cor-primaria;
+    border: 2px solid var(--sq-superficie);
+  }
+
+  &.avatar-lg img { width: 6.25rem; height: 6.25rem; }
+}
+
+.usuario-info {
+  line-height: 1.2;
+
+  .nome { display: block; font-size: $fs-corpo-md; font-weight: 600; color: $cor-texto; }
+  .plano { display: block; font-family: $fonte-numerica; font-size: $fs-legenda; color: $cor-texto-suave; }
+}
+
+// ---------- Área principal ----------
+.sq-main {
+  padding-top: $esp-lg;
+  padding-bottom: $esp-2xl;
+}
+
+// ---------- Rodapé ----------
+.sq-footer {
+  border-top: 1px solid $cor-borda-suave;
+  background-color: var(--sq-fundo);
+  font-size: $fs-legenda;
+  color: $cor-texto-suave;
+  padding: $esp-md 0;
+
+  i { color: $cor-primaria; }
+}
+
+// Largura máxima do conteúdo (max-content-width do sdd.md)
+.limite-conteudo { max-width: 90rem; } // 1440px

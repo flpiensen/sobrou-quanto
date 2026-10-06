@@ -525,20 +525,24 @@
                 <label for="comprovante" class="form-label-caps">Comprovante Fiscal ou Recibo</label>
                 <span class="form-label-caps">Opcional</span>
               </div>
-              <label class="dropzone" for="comprovante">
+              <label class="dropzone" for="comprovante" id="dropzoneComprovante">
                 <span class="icone-upload"><i class="bi bi-cloud-arrow-up"></i></span>
                 <span>Arraste e solte o comprovante (JPG, PNG ou PDF até 5MB)</span>
                 <span>ou <span class="text-primary fw-semibold text-decoration-underline">clique para selecionar do computador</span></span>
               </label>
               <input type="file" class="d-none" id="comprovante" accept=".jpg,.jpeg,.png,.pdf" />
 
-              <div class="arquivo-anexo mt-2">
-                <i class="bi bi-file-earmark-pdf fs-4 text-primary"></i>
-                <div class="flex-grow-1">
-                  <span class="nome d-block">comprovante_pix_outubro.pdf</span>
-                  <span class="info">1.2 MB • Upload concluído</span>
+              <!-- Mensagem de erro (tipo ou tamanho inválido) — preenchida pelo JS -->
+              <div class="text-danger small mt-2 d-none" id="erroComprovante" role="alert"></div>
+
+              <!-- Cartão do arquivo: escondido (d-none) até o usuário escolher um arquivo -->
+              <div class="arquivo-anexo mt-2 d-none" id="arquivoAnexo">
+                <i class="bi bi-file-earmark fs-4 text-primary" id="iconeArquivo"></i>
+                <div class="flex-grow-1 text-truncate">
+                  <span class="nome d-block text-truncate" id="nomeArquivo"></span>
+                  <span class="info" id="infoArquivo"></span>
                 </div>
-                <button type="button" class="btn-close btn-sm" aria-label="Remover arquivo"></button>
+                <button type="button" class="btn-close btn-sm" id="removerArquivo" aria-label="Remover arquivo"></button>
               </div>
             </div>
           </div>
@@ -585,5 +589,8 @@
 
     <!-- Bootstrap JS (NPM) — necessário para Offcanvas, Dropdown e Modal -->
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script da página -->
+    <script src="../js/comprovante.js"></script>
   </body>
 </html>

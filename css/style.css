@@ -669,7 +669,7 @@ body {
   cursor: pointer;
   transition: border-color 150ms ease-in-out, background-color 150ms ease-in-out;
 }
-.dropzone:hover {
+.dropzone:hover, .dropzone.arrastando {
   border-color: #006948;
   background-color: rgba(133, 248, 196, 0.15);
 }

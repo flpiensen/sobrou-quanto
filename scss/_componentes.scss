@@ -312,7 +312,9 @@
   cursor: pointer;
   transition: border-color $transicao, background-color $transicao;
 
-  &:hover { border-color: $cor-primaria; background-color: rgba($cor-primaria-fixa, 0.15); }
+  // .arrastando: classe colocada pelo JS enquanto um arquivo é arrastado por cima
+  &:hover,
+  &.arrastando { border-color: $cor-primaria; background-color: rgba($cor-primaria-fixa, 0.15); }
 
   .icone-upload {
     display: inline-flex;

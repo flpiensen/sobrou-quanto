@@ -160,3 +160,78 @@
 
 // Largura máxima do conteúdo (max-content-width do sdd.md)
 .limite-conteudo { max-width: 90rem; } // 1440px
+
+// ---------- Dropdown de notificações (sininho) ----------
+.dropdown-notificacoes {
+  width: 23rem;
+  max-width: calc(100vw - 2rem); // nunca passa da largura da tela no celular
+  padding: 0;
+  overflow: hidden;
+  border-color: $cor-borda-suave;
+  border-radius: $raio-md;
+  box-shadow: $sombra-2;
+
+  .cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $esp-sm $esp-md;
+    border-bottom: 1px solid $cor-borda-suave;
+    font-size: $fs-corpo-md;
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: $esp-sm;
+    padding: $esp-sm $esp-md;
+    border-bottom: 1px solid $cor-borda-suave;
+    color: $cor-texto;
+    text-decoration: none;
+    transition: background-color $transicao;
+
+    &:hover { background-color: $cor-superficie-alt; }
+
+    // Não lida: fundo verde bem suave + bolinha à direita
+    &.nao-lida { background-color: rgba($cor-primaria-fixa, 0.12); }
+    &.nao-lida:hover { background-color: rgba($cor-primaria-fixa, 0.22); }
+
+    .titulo { display: block; font-size: $fs-corpo-md; font-weight: 600; line-height: 1.3; }
+    .texto  { display: block; font-size: $fs-legenda; color: $cor-texto-suave; margin-top: 0.125rem; }
+    .tempo  { display: block; @include texto-numerico($fs-legenda); color: $cor-contorno; margin-top: $esp-xxs; }
+    .mono   { font-size: inherit; white-space: nowrap; } // não separa "R$" do valor
+
+    .marcador {
+      width: 0.5rem;
+      height: 0.5rem;
+      margin-top: 0.4rem;
+      border-radius: 50%;
+      background-color: $cor-primaria;
+      flex-shrink: 0;
+    }
+  }
+
+  .rodape {
+    display: block;
+    padding: $esp-sm;
+    text-align: center;
+    font-size: $fs-corpo-md;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover { background-color: $cor-superficie-alt; }
+  }
+}
+
+// No celular/tablet (abaixo de 992px) o painel de notificações ocupa a
+// largura da tela, logo abaixo da navbar, em vez de "pendurar" no sininho.
+@media (max-width: #{$bp-lg - 0.02px}) {
+  .dropdown-notificacoes[data-bs-popper] {
+    position: fixed;
+    top: calc(#{$altura-navbar} + 0.25rem);
+    left: $esp-md;
+    right: $esp-md;
+    width: auto;
+    max-width: none;
+  }
+}

@@ -100,13 +100,15 @@
               </div>
               <p class="subtitulo mb-4">Digite suas credenciais para gerenciar suas finanças com clareza.</p>
 
-              <!-- Validação nativa do HTML: required + type="email" -->
+              <!-- Validação nativa do HTML: required + type="email".
+                   Os campos não têm "name" de propósito: assim e-mail e senha
+                   NÃO aparecem na URL ao enviar (o login real virá na Entrega 3). -->
               <form action="../index.html" method="get" class="d-flex flex-column gap-3">
                 <div>
                   <label for="email" class="form-label">E-mail de Acesso</label>
                   <div class="input-group input-icone">
                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="ex: lucas.oliveira@email.com" required autocomplete="email" />
+                    <input type="email" class="form-control" id="email" placeholder="ex: lucas.oliveira@email.com" required autocomplete="email" />
                   </div>
                 </div>
 
@@ -117,7 +119,7 @@
                   </div>
                   <div class="input-group input-icone">
                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                    <input type="password" class="form-control" id="senha" name="senha" placeholder="••••••••" required minlength="6" autocomplete="current-password" />
+                    <input type="password" class="form-control" id="senha" placeholder="••••••••" required minlength="6" autocomplete="current-password" />
                     <span class="input-group-text"><i class="bi bi-eye"></i></span>
                   </div>
                 </div>

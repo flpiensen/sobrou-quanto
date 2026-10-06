@@ -42,9 +42,74 @@
 
         <!-- Visível só no celular/tablet: notificações + botão do menu -->
         <div class="d-flex align-items-center gap-1 d-lg-none">
-          <button type="button" class="btn-notificacao" aria-label="Notificações">
-            <i class="bi bi-bell"></i><span class="ponto"></span>
-          </button>
+          <div class="dropdown">
+            <!-- Sininho: abre o dropdown de notificações (componente JS do Bootstrap).
+                 data-bs-display="static": no celular a posição vem do CSS
+                 (largura da tela), e não do cálculo automático do Popper -->
+            <button type="button" class="btn-notificacao" data-bs-toggle="dropdown" data-bs-display="static" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notificações (3 novas)">
+              <i class="bi bi-bell"></i><span class="ponto"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end dropdown-notificacoes">
+              <div class="cabecalho">
+                <div>
+                  <strong>Notificações</strong>
+                  <span class="badge rounded-pill text-bg-danger ms-1">3 novas</span>
+                </div>
+                <button type="button" class="btn btn-link btn-sm p-0">Marcar como lidas</button>
+              </div>
+
+              <a class="item nao-lida" href="transacoes.html">
+                <span class="icone-tile tile-sm tile-despesa"><i class="bi bi-calendar-event"></i></span>
+                <span class="flex-grow-1">
+                  <span class="titulo">Aluguel vence em 3 dias</span>
+                  <span class="texto">Aluguel Apartamento Jardins • Moradia • <span class="mono">R$ 3.200,00</span></span>
+                  <span class="tempo">há 10 min</span>
+                </span>
+                <span class="marcador" aria-label="Não lida"></span>
+              </a>
+
+              <a class="item nao-lida" href="cadastro.html">
+                <span class="icone-tile tile-sm tile-ambar"><i class="bi bi-exclamation-triangle"></i></span>
+                <span class="flex-grow-1">
+                  <span class="titulo">Moradia atingiu 95% do limite</span>
+                  <span class="texto"><span class="mono">R$ 2.450,00</span> de <span class="mono">R$ 2.580,00</span> gastos neste mês</span>
+                  <span class="tempo">há 1 h</span>
+                </span>
+                <span class="marcador" aria-label="Não lida"></span>
+              </a>
+
+              <a class="item nao-lida" href="../index.html">
+                <span class="icone-tile tile-sm tile-azul"><i class="bi bi-currency-exchange"></i></span>
+                <span class="flex-grow-1">
+                  <span class="titulo">Dólar subiu +0,42% hoje</span>
+                  <span class="texto">USD/BRL cotado a <span class="mono">R$ 5,684</span> via AwesomeAPI</span>
+                  <span class="tempo">há 2 h</span>
+                </span>
+                <span class="marcador" aria-label="Não lida"></span>
+              </a>
+
+              <a class="item" href="transacoes.html">
+                <span class="icone-tile tile-sm tile-neutro"><i class="bi bi-paperclip"></i></span>
+                <span class="flex-grow-1">
+                  <span class="titulo">Lançamento sem comprovante</span>
+                  <span class="texto">Porto Seguro Auto (Parcela 04/10) • anexe o recibo no extrato</span>
+                  <span class="tempo">ontem</span>
+                </span>
+              </a>
+
+              <a class="item" href="transacoes.html">
+                <span class="icone-tile tile-sm tile-receita"><i class="bi bi-check-circle"></i></span>
+                <span class="flex-grow-1">
+                  <span class="titulo">Receita registrada</span>
+                  <span class="texto">Pagamento Salário Mensal • Renda Ativa • <span class="mono">+ R$ 9.800,00</span></span>
+                  <span class="tempo">05/10/2024</span>
+                </span>
+              </a>
+
+              <a class="rodape" href="perfil.html"><i class="bi bi-sliders me-1"></i> Configurar alertas</a>
+            </div>
+          </div>
+
           <button
             class="navbar-toggler border-0"
             type="button"
@@ -79,9 +144,71 @@
 
             <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3 ms-lg-auto mt-4 mt-lg-0">
               <span class="chip-status chip-neutro">USD/BRL <strong class="text-body">R$ 5,68</strong> <i class="bi bi-graph-up-arrow text-primary"></i></span>
-              <button type="button" class="btn-notificacao d-none d-lg-inline-block" aria-label="Notificações">
-                <i class="bi bi-bell"></i><span class="ponto"></span>
-              </button>
+              <div class="dropdown d-none d-lg-block">
+                <!-- Sininho: abre o dropdown de notificações (componente JS do Bootstrap) -->
+                <button type="button" class="btn-notificacao" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notificações (3 novas)">
+                  <i class="bi bi-bell"></i><span class="ponto"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end dropdown-notificacoes">
+                  <div class="cabecalho">
+                    <div>
+                      <strong>Notificações</strong>
+                      <span class="badge rounded-pill text-bg-danger ms-1">3 novas</span>
+                    </div>
+                    <button type="button" class="btn btn-link btn-sm p-0">Marcar como lidas</button>
+                  </div>
+
+                  <a class="item nao-lida" href="transacoes.html">
+                    <span class="icone-tile tile-sm tile-despesa"><i class="bi bi-calendar-event"></i></span>
+                    <span class="flex-grow-1">
+                      <span class="titulo">Aluguel vence em 3 dias</span>
+                      <span class="texto">Aluguel Apartamento Jardins • Moradia • <span class="mono">R$ 3.200,00</span></span>
+                      <span class="tempo">há 10 min</span>
+                    </span>
+                    <span class="marcador" aria-label="Não lida"></span>
+                  </a>
+
+                  <a class="item nao-lida" href="cadastro.html">
+                    <span class="icone-tile tile-sm tile-ambar"><i class="bi bi-exclamation-triangle"></i></span>
+                    <span class="flex-grow-1">
+                      <span class="titulo">Moradia atingiu 95% do limite</span>
+                      <span class="texto"><span class="mono">R$ 2.450,00</span> de <span class="mono">R$ 2.580,00</span> gastos neste mês</span>
+                      <span class="tempo">há 1 h</span>
+                    </span>
+                    <span class="marcador" aria-label="Não lida"></span>
+                  </a>
+
+                  <a class="item nao-lida" href="../index.html">
+                    <span class="icone-tile tile-sm tile-azul"><i class="bi bi-currency-exchange"></i></span>
+                    <span class="flex-grow-1">
+                      <span class="titulo">Dólar subiu +0,42% hoje</span>
+                      <span class="texto">USD/BRL cotado a <span class="mono">R$ 5,684</span> via AwesomeAPI</span>
+                      <span class="tempo">há 2 h</span>
+                    </span>
+                    <span class="marcador" aria-label="Não lida"></span>
+                  </a>
+
+                  <a class="item" href="transacoes.html">
+                    <span class="icone-tile tile-sm tile-neutro"><i class="bi bi-paperclip"></i></span>
+                    <span class="flex-grow-1">
+                      <span class="titulo">Lançamento sem comprovante</span>
+                      <span class="texto">Porto Seguro Auto (Parcela 04/10) • anexe o recibo no extrato</span>
+                      <span class="tempo">ontem</span>
+                    </span>
+                  </a>
+
+                  <a class="item" href="transacoes.html">
+                    <span class="icone-tile tile-sm tile-receita"><i class="bi bi-check-circle"></i></span>
+                    <span class="flex-grow-1">
+                      <span class="titulo">Receita registrada</span>
+                      <span class="texto">Pagamento Salário Mensal • Renda Ativa • <span class="mono">+ R$ 9.800,00</span></span>
+                      <span class="tempo">05/10/2024</span>
+                    </span>
+                  </a>
+
+                  <a class="rodape" href="perfil.html"><i class="bi bi-sliders me-1"></i> Configurar alertas</a>
+                </div>
+              </div>
               <span class="divisor d-none d-lg-block"></span>
 
               <!-- Dropdown do usuário (componente JS do Bootstrap) -->

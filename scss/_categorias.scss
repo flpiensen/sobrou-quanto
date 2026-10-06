@@ -121,7 +121,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 1;
+    height: 3rem; // altura fixa: não cresce com a largura do modal
     border-radius: $raio;
     border: 1px solid $cor-borda-suave;
     background-color: var(--sq-superficie);

@@ -14,7 +14,7 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: $cor-texto-suave;
+  color: var(--sq-texto-suave);
 }
 
 .titulo-pagina {
@@ -31,7 +31,7 @@
   margin-bottom: 0;
 }
 
-.subtitulo { color: $cor-texto-suave; margin-bottom: 0; }
+.subtitulo { color: var(--sq-texto-suave); margin-bottom: 0; }
 
 // Valores em R$ (JetBrains Mono, algarismos alinhados)
 .mono { @include texto-numerico; }
@@ -55,9 +55,9 @@
     align-items: center;
     gap: $esp-xs;
     padding-top: $esp-md;
-    border-top: 1px solid $cor-borda-suave;
+    border-top: 1px solid var(--sq-borda-suave);
     font-size: $fs-legenda;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
   }
 }
 
@@ -76,7 +76,7 @@
 
   &.tile-receita { background-color: rgba($cor-primaria-fixa, 0.4); color: $cor-primaria; }
   &.tile-despesa { background-color: rgba($cor-erro-container, 0.7); color: $cor-erro; }
-  &.tile-neutro  { background-color: $cor-superficie-cont; color: $cor-texto-suave; }
+  &.tile-neutro  { background-color: var(--sq-superficie-cont); color: var(--sq-texto-suave); }
 
   // Uma variação para cada cor da paleta de categorias
   @each $nome, $cor in $categorias {
@@ -105,9 +105,9 @@
   .ponto { width: 0.5rem; height: 0.5rem; border-radius: 50%; background-color: currentColor; }
 
   &.chip-neutro {
-    background-color: $cor-superficie-cont;
-    border-color: $cor-borda-suave;
-    color: $cor-texto-suave;
+    background-color: var(--sq-superficie-cont);
+    border-color: var(--sq-borda-suave);
+    color: var(--sq-texto-suave);
     .ponto { background-color: $cor-primaria; }
   }
 
@@ -195,8 +195,8 @@
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: $cor-texto-suave;
-    background-color: $cor-superficie-alt;
+    color: var(--sq-texto-suave);
+    background-color: var(--sq-superficie-alt);
     white-space: nowrap;
   }
 
@@ -205,22 +205,22 @@
   .descricao {
     display: block;
     font-weight: 500;
-    color: $cor-texto;
+    color: var(--sq-texto);
   }
 
   .detalhe {
     display: block;
     font-size: $fs-legenda;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
   }
 
-  .data { @include texto-numerico($fs-legenda); color: $cor-texto-suave; white-space: nowrap; }
+  .data { @include texto-numerico($fs-legenda); color: var(--sq-texto-suave); white-space: nowrap; }
   .valor { @include texto-numerico; font-weight: 600; white-space: nowrap; }
 
   // Botões de ação (editar/excluir) só com ícone
   .btn-acao {
     padding: $esp-xxs $esp-xs;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
     font-size: 1.125rem;
     border: 0;
     background: none;
@@ -238,10 +238,10 @@
   align-items: center;
   gap: $esp-sm;
   padding: $esp-sm $esp-lg;
-  background-color: $cor-superficie-alt;
-  border-top: 1px solid $cor-borda-suave;
+  background-color: var(--sq-superficie-alt);
+  border-top: 1px solid var(--sq-borda-suave);
   font-size: $fs-legenda;
-  color: $cor-texto-suave;
+  color: var(--sq-texto-suave);
 }
 
 // ---------- Formulários ----------
@@ -251,7 +251,7 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: $cor-texto-suave;
+  color: var(--sq-texto-suave);
   margin-bottom: 0.375rem;
 }
 
@@ -276,13 +276,13 @@
   padding: $esp-xxs;
   gap: $esp-xxs;
   border-radius: $raio;
-  background-color: $cor-superficie-cont;
-  border: 1px solid $cor-borda-suave;
+  background-color: var(--sq-superficie-cont);
+  border: 1px solid var(--sq-borda-suave);
 
   .btn {
     flex: 1;
     border: 0;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
     font-weight: 500;
   }
 
@@ -303,12 +303,12 @@
   align-items: center;
   gap: $esp-xs;
   padding: $esp-lg;
-  border: 2px dashed $cor-borda;
+  border: 2px dashed var(--sq-borda);
   border-radius: $raio;
-  background-color: $cor-superficie-alt;
+  background-color: var(--sq-superficie-alt);
   text-align: center;
   font-size: $fs-legenda;
-  color: $cor-texto-suave;
+  color: var(--sq-texto-suave);
   cursor: pointer;
   transition: border-color $transicao, background-color $transicao;
 
@@ -324,9 +324,9 @@
     height: 2.5rem;
     border-radius: 50%;
     background-color: var(--sq-superficie);
-    border: 1px solid $cor-borda-suave;
+    border: 1px solid var(--sq-borda-suave);
     font-size: 1.25rem;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
   }
 }
 
@@ -341,7 +341,7 @@
   background-color: rgba($cor-primaria-fixa, 0.2);
 
   .nome { font-size: $fs-legenda; font-weight: 600; }
-  .info { @include texto-numerico($fs-legenda); color: $cor-texto-suave; }
+  .info { @include texto-numerico($fs-legenda); color: var(--sq-texto-suave); }
 }
 
 // ---------- Modais ----------
@@ -354,7 +354,7 @@
 }
 
 .modal-footer {
-  border-top: 1px solid $cor-borda-suave;
+  border-top: 1px solid var(--sq-borda-suave);
 }
 
 // ---------- Botões ----------
@@ -362,10 +362,10 @@
 
 .btn-outline-neutro {
   background-color: var(--sq-superficie);
-  border: 1px solid $cor-borda;
-  color: $cor-texto;
+  border: 1px solid var(--sq-borda);
+  color: var(--sq-texto);
 
-  &:hover { background-color: $cor-superficie-alt; border-color: $cor-contorno; color: $cor-texto; }
+  &:hover { background-color: var(--sq-superficie-alt); border-color: $cor-contorno; color: var(--sq-texto); }
 }
 
 .link-seta {
@@ -394,7 +394,7 @@
 .pagination {
   --bs-pagination-font-size: #{$fs-legenda};
   --bs-pagination-padding-x: 0.75rem;
-  --bs-pagination-color: #{$cor-texto};
+  --bs-pagination-color: #{var(--sq-texto)};
   margin-bottom: 0;
   gap: $esp-xxs;
 

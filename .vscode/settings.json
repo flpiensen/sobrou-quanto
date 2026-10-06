@@ -1,0 +1,5 @@
+{
+  // O JSON Server grava no server/db.json a cada POST/PATCH/DELETE.
+  // Sem isso, o Live Server recarregaria a página a cada gravação.
+  "liveServer.settings.ignoreFiles": ["server/**", "node_modules/**", "scss/**"]
+}

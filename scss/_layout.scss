@@ -14,7 +14,7 @@
 .sq-navbar {
   min-height: $altura-navbar;
   background-color: var(--sq-superficie);
-  border-bottom: 1px solid $cor-borda-suave;
+  border-bottom: 1px solid var(--sq-borda-suave);
 
   .navbar-brand {
     display: flex;
@@ -27,7 +27,7 @@
   .divisor {
     width: 1px;
     height: 2rem;
-    background-color: $cor-borda-suave;
+    background-color: var(--sq-borda-suave);
   }
 
   // Links do menu em formato de "pílula"
@@ -37,14 +37,14 @@
     gap: $esp-xs;
     padding: $esp-xs $esp-md !important;
     border-radius: $raio;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
     font-size: $fs-corpo-md;
     font-weight: 500;
     transition: background-color $transicao, color $transicao;
 
     i { font-size: 1.125rem; }
 
-    &:hover { background-color: $cor-superficie-alt; color: $cor-texto; }
+    &:hover { background-color: var(--sq-superficie-alt); color: var(--sq-texto); }
 
     &.active {
       background-color: $cor-secundaria-container;
@@ -81,7 +81,7 @@
   .slogan {
     display: block;
     font-size: $fs-legenda;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
   }
 }
 
@@ -89,7 +89,7 @@
 .btn-notificacao {
   position: relative;
   font-size: 1.25rem;
-  color: $cor-texto-suave;
+  color: var(--sq-texto-suave);
   padding: $esp-xs;
   border: 0;
   background: none;
@@ -137,8 +137,8 @@
 .usuario-info {
   line-height: 1.2;
 
-  .nome { display: block; font-size: $fs-corpo-md; font-weight: 600; color: $cor-texto; }
-  .plano { display: block; font-family: $fonte-numerica; font-size: $fs-legenda; color: $cor-texto-suave; }
+  .nome { display: block; font-size: $fs-corpo-md; font-weight: 600; color: var(--sq-texto); }
+  .plano { display: block; font-family: $fonte-numerica; font-size: $fs-legenda; color: var(--sq-texto-suave); }
 }
 
 // ---------- Área principal ----------
@@ -149,10 +149,10 @@
 
 // ---------- Rodapé ----------
 .sq-footer {
-  border-top: 1px solid $cor-borda-suave;
+  border-top: 1px solid var(--sq-borda-suave);
   background-color: var(--sq-fundo);
   font-size: $fs-legenda;
-  color: $cor-texto-suave;
+  color: var(--sq-texto-suave);
   padding: $esp-md 0;
 
   i { color: $cor-primaria; }
@@ -167,7 +167,7 @@
   max-width: calc(100vw - 2rem); // nunca passa da largura da tela no celular
   padding: 0;
   overflow: hidden;
-  border-color: $cor-borda-suave;
+  border-color: var(--sq-borda-suave);
   border-radius: $raio-md;
   box-shadow: $sombra-2;
 
@@ -176,7 +176,7 @@
     justify-content: space-between;
     align-items: center;
     padding: $esp-sm $esp-md;
-    border-bottom: 1px solid $cor-borda-suave;
+    border-bottom: 1px solid var(--sq-borda-suave);
     font-size: $fs-corpo-md;
   }
 
@@ -185,19 +185,19 @@
     align-items: flex-start;
     gap: $esp-sm;
     padding: $esp-sm $esp-md;
-    border-bottom: 1px solid $cor-borda-suave;
-    color: $cor-texto;
+    border-bottom: 1px solid var(--sq-borda-suave);
+    color: var(--sq-texto);
     text-decoration: none;
     transition: background-color $transicao;
 
-    &:hover { background-color: $cor-superficie-alt; }
+    &:hover { background-color: var(--sq-superficie-alt); }
 
     // Não lida: fundo verde bem suave + bolinha à direita
     &.nao-lida { background-color: rgba($cor-primaria-fixa, 0.12); }
     &.nao-lida:hover { background-color: rgba($cor-primaria-fixa, 0.22); }
 
     .titulo { display: block; font-size: $fs-corpo-md; font-weight: 600; line-height: 1.3; }
-    .texto  { display: block; font-size: $fs-legenda; color: $cor-texto-suave; margin-top: 0.125rem; }
+    .texto  { display: block; font-size: $fs-legenda; color: var(--sq-texto-suave); margin-top: 0.125rem; }
     .tempo  { display: block; @include texto-numerico($fs-legenda); color: $cor-contorno; margin-top: $esp-xxs; }
     .mono   { font-size: inherit; white-space: nowrap; } // não separa "R$" do valor
 
@@ -219,7 +219,7 @@
     font-weight: 600;
     text-decoration: none;
 
-    &:hover { background-color: $cor-superficie-alt; }
+    &:hover { background-color: var(--sq-superficie-alt); }
   }
 }
 

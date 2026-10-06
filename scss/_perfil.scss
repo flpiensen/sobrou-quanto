@@ -31,12 +31,12 @@
   align-items: center;
   gap: $esp-md;
   padding: $esp-md 0;
-  border-bottom: 1px solid $cor-borda-suave;
+  border-bottom: 1px solid var(--sq-borda-suave);
 
   &:last-child { border-bottom: 0; padding-bottom: 0; }
 
   .titulo { font-size: $fs-corpo-md; font-weight: 600; }
-  .descricao { display: block; font-size: $fs-legenda; color: $cor-texto-suave; }
+  .descricao { display: block; font-size: $fs-legenda; color: var(--sq-texto-suave); }
 
   .form-switch .form-check-input { width: 2.75rem; height: 1.5rem; cursor: pointer; }
 }
@@ -45,10 +45,10 @@
 .status-sessao {
   padding: $esp-md;
   border-radius: $raio;
-  background-color: $cor-superficie-alt;
-  border: 1px solid $cor-borda-suave;
+  background-color: var(--sq-superficie-alt);
+  border: 1px solid var(--sq-borda-suave);
   font-size: $fs-legenda;
-  color: $cor-texto-suave;
+  color: var(--sq-texto-suave);
 }
 
 // Botões de lista (Redefinir senha, Gerenciar sessões)
@@ -58,14 +58,14 @@
   gap: $esp-sm;
   width: 100%;
   padding: $esp-sm $esp-md;
-  border: 1px solid $cor-borda;
+  border: 1px solid var(--sq-borda);
   border-radius: $raio;
   background-color: var(--sq-superficie);
-  color: $cor-texto;
+  color: var(--sq-texto);
   font-weight: 500;
   text-align: left;
 
-  &:hover { background-color: $cor-superficie-alt; }
+  &:hover { background-color: var(--sq-superficie-alt); }
 }
 
 // Integrações (AwesomeAPI, JSON Server)
@@ -75,9 +75,9 @@
   gap: $esp-sm;
   padding: $esp-sm $esp-md;
   border-radius: $raio;
-  background-color: $cor-superficie-alt;
-  border: 1px solid $cor-borda-suave;
+  background-color: var(--sq-superficie-alt);
+  border: 1px solid var(--sq-borda-suave);
 
   .nome { display: block; font-weight: 600; }
-  .detalhe { display: block; @include texto-numerico($fs-legenda); color: $cor-texto-suave; }
+  .detalhe { display: block; @include texto-numerico($fs-legenda); color: var(--sq-texto-suave); }
 }

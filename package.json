@@ -20,6 +20,7 @@
   "scripts": {
     "sass": "sass --watch --load-path=node_modules --quiet-deps --silence-deprecation=import scss:css",
     "sass:build": "sass --load-path=node_modules --quiet-deps --silence-deprecation=import --style=compressed --no-source-map scss:css",
+    "api": "json-server --watch server/db.json --port 3000 --static .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "bootstrap-icons": "^1.13.1"
   },
   "devDependencies": {
+    "json-server": "^0.17.4",
     "sass": "^1.105.1"
   }
 }

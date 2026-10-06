@@ -8,21 +8,39 @@
 // continuam existindo no navegador, então o JavaScript pode
 // trocá-las com o app aberto. Usadas no Modo Escuro (US11).
 //
+// Os estilos do projeto usam var(--sq-...) para fundos, textos e
+// bordas; assim, trocar o tema é só trocar os valores abaixo.
+//
 // O #{ } é a "interpolação": pega o valor da variável Sass e
 // escreve ele dentro da variável CSS na hora de compilar.
 :root {
-  --sq-fundo:      #{$cor-fundo};
-  --sq-superficie: #{$cor-superficie};
-  --sq-texto:      #{$cor-texto};
-  --sq-texto-suave: #{$cor-texto-suave};
+  --sq-fundo:           #{$cor-fundo};
+  --sq-superficie:      #{$cor-superficie};
+  --sq-superficie-alt:  #{$cor-superficie-alt};
+  --sq-superficie-cont: #{$cor-superficie-cont};
+  --sq-texto:           #{$cor-texto};
+  --sq-texto-suave:     #{$cor-texto-suave};
+  --sq-borda:           #{$cor-borda};
+  --sq-borda-suave:     #{$cor-borda-suave};
 }
 
-// Ativado pelo JS com: document.documentElement.dataset.tema = 'escuro'
+// Ativado pelo JS (main.js → aplicarTema) com:
+// document.documentElement.dataset.tema = 'escuro'
 [data-tema="escuro"] {
-  --sq-fundo:      #191c1e; // on-surface do sdd.md
-  --sq-superficie: #2d3133; // inverse-surface
-  --sq-texto:      #eff1f3; // inverse-on-surface
-  --sq-texto-suave: #bccac0; // outline-variant
+  --sq-fundo:           #191c1e; // on-surface do sdd.md
+  --sq-superficie:      #22272a;
+  --sq-superficie-alt:  #2a3033;
+  --sq-superficie-cont: #2f3538;
+  --sq-texto:           #eff1f3; // inverse-on-surface
+  --sq-texto-suave:     #bccac0; // outline-variant
+  --sq-borda:           #4a5550;
+  --sq-borda-suave:     #363d40;
+
+  // Cores do Bootstrap 5.3 no modo escuro (data-bs-theme="dark")
+  --bs-body-bg: var(--sq-fundo);
+  --bs-body-color: var(--sq-texto);
+  --bs-secondary-color: var(--sq-texto-suave);
+  --bs-border-color: var(--sq-borda-suave);
 }
 
 body {

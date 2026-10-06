@@ -18,8 +18,8 @@
 
 // Metade esquerda com fundo em degradê suave
 .login-hero {
-  background: linear-gradient(135deg, rgba($cor-primaria-fixa, 0.35) 0%, $cor-superficie-alt 55%, rgba($cor-secundaria-container, 0.6) 100%);
-  border-right: 1px solid $cor-borda-suave;
+  background: linear-gradient(135deg, rgba($cor-primaria-fixa, 0.35) 0%, var(--sq-superficie-alt) 55%, rgba($cor-secundaria-container, 0.6) 100%);
+  border-right: 1px solid var(--sq-borda-suave);
   padding: $esp-lg; // celular: mais espaço útil
 
   @include a-partir-de($bp-md) { padding: $esp-2xl; }
@@ -34,13 +34,13 @@
     .destaque { color: $cor-primaria; }
   }
 
-  .lead { font-size: $fs-corpo; color: $cor-texto-suave; }
+  .lead { font-size: $fs-corpo; color: var(--sq-texto-suave); }
 
   .recursos {
-    border-top: 1px solid $cor-borda-suave;
+    border-top: 1px solid var(--sq-borda-suave);
     padding-top: $esp-lg;
     font-size: $fs-corpo-md;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
   }
 }
 
@@ -54,11 +54,11 @@
     align-items: center;
     gap: $esp-xs;
     padding: $esp-xxs $esp-xs;
-    border: 1px solid $cor-borda-suave;
+    border: 1px solid var(--sq-borda-suave);
     border-radius: $raio-sm;
     @include texto-numerico($fs-legenda);
 
-    .moeda { font-family: $fonte-base; font-weight: 700; color: $cor-texto; }
+    .moeda { font-family: $fonte-base; font-weight: 700; color: var(--sq-texto); }
   }
 }
 
@@ -80,7 +80,7 @@
   font-size: $fs-caps;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: $cor-texto-suave;
+  color: var(--sq-texto-suave);
   white-space: nowrap;
 
   &::before,
@@ -88,7 +88,7 @@
     content: "";
     flex: 1;
     height: 1px;
-    background-color: $cor-borda-suave;
+    background-color: var(--sq-borda-suave);
   }
 }
 

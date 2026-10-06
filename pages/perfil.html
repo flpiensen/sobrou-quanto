@@ -23,6 +23,14 @@
     <link rel="stylesheet" href="../css/bootstrap.css" />
     <!-- Estilos próprios da aplicação (gerado a partir de scss/style.scss) -->
     <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- Aplica o Modo Escuro antes de desenhar a página (evita "piscar" claro) -->
+    <script>
+      if (localStorage.getItem("sq:tema") === "escuro") {
+        document.documentElement.dataset.tema = "escuro";
+        document.documentElement.dataset.bsTheme = "dark";
+      }
+    </script>
   </head>
 
   <!-- d-flex + flex-column + min-vh-100: base do "sticky footer" -->
@@ -46,65 +54,23 @@
             <!-- Sininho: abre o dropdown de notificações (componente JS do Bootstrap).
                  data-bs-display="static": no celular a posição vem do CSS
                  (largura da tela), e não do cálculo automático do Popper -->
-            <button type="button" class="btn-notificacao" data-bs-toggle="dropdown" data-bs-display="static" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notificações (3 novas)">
+            <button type="button" class="btn-notificacao" data-bs-toggle="dropdown" data-bs-display="static" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notificações">
               <i class="bi bi-bell"></i><span class="ponto"></span>
             </button>
             <div class="dropdown-menu dropdown-menu-end dropdown-notificacoes">
               <div class="cabecalho">
                 <div>
                   <strong>Notificações</strong>
-                  <span class="badge rounded-pill text-bg-danger ms-1">3 novas</span>
+                  <span class="badge rounded-pill text-bg-danger ms-1 d-none" data-notificacoes-contador></span>
                 </div>
-                <button type="button" class="btn btn-link btn-sm p-0">Marcar como lidas</button>
+                <button type="button" class="btn btn-link btn-sm p-0" data-marcar-lidas>Marcar como lidas</button>
               </div>
 
-              <a class="item nao-lida" href="transacoes.html">
-                <span class="icone-tile tile-sm tile-despesa"><i class="bi bi-calendar-event"></i></span>
-                <span class="flex-grow-1">
-                  <span class="titulo">Aluguel vence em 3 dias</span>
-                  <span class="texto">Aluguel Apartamento Jardins • Moradia • <span class="mono">R$ 3.200,00</span></span>
-                  <span class="tempo">há 10 min</span>
-                </span>
-                <span class="marcador" aria-label="Não lida"></span>
-              </a>
+              <!-- Itens gerados pelo js/notificacoes.js a partir dos dados cadastrados -->
+              <div class="lista-notificacoes" data-notificacoes>
+                <div class="notificacoes-vazio"><span class="spinner-border spinner-border-sm"></span> Carregando...</div>
+              </div>
 
-              <a class="item nao-lida" href="cadastro.html">
-                <span class="icone-tile tile-sm tile-ambar"><i class="bi bi-exclamation-triangle"></i></span>
-                <span class="flex-grow-1">
-                  <span class="titulo">Moradia atingiu 95% do limite</span>
-                  <span class="texto"><span class="mono">R$ 2.450,00</span> de <span class="mono">R$ 2.580,00</span> gastos neste mês</span>
-                  <span class="tempo">há 1 h</span>
-                </span>
-                <span class="marcador" aria-label="Não lida"></span>
-              </a>
-
-              <a class="item nao-lida" href="../index.html">
-                <span class="icone-tile tile-sm tile-azul"><i class="bi bi-currency-exchange"></i></span>
-                <span class="flex-grow-1">
-                  <span class="titulo">Dólar subiu +0,42% hoje</span>
-                  <span class="texto">USD/BRL cotado a <span class="mono">R$ 5,684</span> via AwesomeAPI</span>
-                  <span class="tempo">há 2 h</span>
-                </span>
-                <span class="marcador" aria-label="Não lida"></span>
-              </a>
-
-              <a class="item" href="transacoes.html">
-                <span class="icone-tile tile-sm tile-neutro"><i class="bi bi-paperclip"></i></span>
-                <span class="flex-grow-1">
-                  <span class="titulo">Lançamento sem comprovante</span>
-                  <span class="texto">Porto Seguro Auto (Parcela 04/10) • anexe o recibo no extrato</span>
-                  <span class="tempo">ontem</span>
-                </span>
-              </a>
-
-              <a class="item" href="transacoes.html">
-                <span class="icone-tile tile-sm tile-receita"><i class="bi bi-check-circle"></i></span>
-                <span class="flex-grow-1">
-                  <span class="titulo">Receita registrada</span>
-                  <span class="texto">Pagamento Salário Mensal • Renda Ativa • <span class="mono">+ R$ 9.800,00</span></span>
-                  <span class="tempo">05/10/2024</span>
-                </span>
-              </a>
 
               <a class="rodape" href="perfil.html"><i class="bi bi-sliders me-1"></i> Configurar alertas</a>
             </div>
@@ -143,68 +109,26 @@
             </ul>
 
             <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3 ms-lg-auto mt-4 mt-lg-0">
-              <span class="chip-status chip-neutro"><span class="ponto"></span> USD/BRL <strong class="text-body">R$ 4,97</strong> <i class="bi bi-graph-up-arrow text-primary"></i></span>
+              <span class="chip-status chip-neutro" data-chip="usd"><span class="spinner-border spinner-border-sm"></span> USD/BRL</span>
               <div class="dropdown d-none d-lg-block">
                 <!-- Sininho: abre o dropdown de notificações (componente JS do Bootstrap) -->
-                <button type="button" class="btn-notificacao" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notificações (3 novas)">
+                <button type="button" class="btn-notificacao" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notificações">
                   <i class="bi bi-bell"></i><span class="ponto"></span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end dropdown-notificacoes">
                   <div class="cabecalho">
                     <div>
                       <strong>Notificações</strong>
-                      <span class="badge rounded-pill text-bg-danger ms-1">3 novas</span>
+                      <span class="badge rounded-pill text-bg-danger ms-1 d-none" data-notificacoes-contador></span>
                     </div>
-                    <button type="button" class="btn btn-link btn-sm p-0">Marcar como lidas</button>
+                    <button type="button" class="btn btn-link btn-sm p-0" data-marcar-lidas>Marcar como lidas</button>
                   </div>
 
-                  <a class="item nao-lida" href="transacoes.html">
-                    <span class="icone-tile tile-sm tile-despesa"><i class="bi bi-calendar-event"></i></span>
-                    <span class="flex-grow-1">
-                      <span class="titulo">Aluguel vence em 3 dias</span>
-                      <span class="texto">Aluguel Apartamento Jardins • Moradia • <span class="mono">R$ 3.200,00</span></span>
-                      <span class="tempo">há 10 min</span>
-                    </span>
-                    <span class="marcador" aria-label="Não lida"></span>
-                  </a>
+                  <!-- Itens gerados pelo js/notificacoes.js a partir dos dados cadastrados -->
+                  <div class="lista-notificacoes" data-notificacoes>
+                    <div class="notificacoes-vazio"><span class="spinner-border spinner-border-sm"></span> Carregando...</div>
+                  </div>
 
-                  <a class="item nao-lida" href="cadastro.html">
-                    <span class="icone-tile tile-sm tile-ambar"><i class="bi bi-exclamation-triangle"></i></span>
-                    <span class="flex-grow-1">
-                      <span class="titulo">Moradia atingiu 95% do limite</span>
-                      <span class="texto"><span class="mono">R$ 2.450,00</span> de <span class="mono">R$ 2.580,00</span> gastos neste mês</span>
-                      <span class="tempo">há 1 h</span>
-                    </span>
-                    <span class="marcador" aria-label="Não lida"></span>
-                  </a>
-
-                  <a class="item nao-lida" href="../index.html">
-                    <span class="icone-tile tile-sm tile-azul"><i class="bi bi-currency-exchange"></i></span>
-                    <span class="flex-grow-1">
-                      <span class="titulo">Dólar subiu +0,42% hoje</span>
-                      <span class="texto">USD/BRL cotado a <span class="mono">R$ 5,684</span> via AwesomeAPI</span>
-                      <span class="tempo">há 2 h</span>
-                    </span>
-                    <span class="marcador" aria-label="Não lida"></span>
-                  </a>
-
-                  <a class="item" href="transacoes.html">
-                    <span class="icone-tile tile-sm tile-neutro"><i class="bi bi-paperclip"></i></span>
-                    <span class="flex-grow-1">
-                      <span class="titulo">Lançamento sem comprovante</span>
-                      <span class="texto">Porto Seguro Auto (Parcela 04/10) • anexe o recibo no extrato</span>
-                      <span class="tempo">ontem</span>
-                    </span>
-                  </a>
-
-                  <a class="item" href="transacoes.html">
-                    <span class="icone-tile tile-sm tile-receita"><i class="bi bi-check-circle"></i></span>
-                    <span class="flex-grow-1">
-                      <span class="titulo">Receita registrada</span>
-                      <span class="texto">Pagamento Salário Mensal • Renda Ativa • <span class="mono">+ R$ 9.800,00</span></span>
-                      <span class="tempo">05/10/2024</span>
-                    </span>
-                  </a>
 
                   <a class="rodape" href="perfil.html"><i class="bi bi-sliders me-1"></i> Configurar alertas</a>
                 </div>
@@ -214,20 +138,17 @@
               <!-- Dropdown do usuário (componente JS do Bootstrap) -->
               <div class="dropdown">
                 <a href="#" class="d-flex align-items-center gap-2 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
-                  <span class="avatar">
-                    <img src="../img/avatar.jpg" alt="Foto de Lucas Oliveira" />
-                    <span class="online"></span>
-                  </span>
+                  <span class="avatar" data-usuario-avatar></span>
                   <span class="usuario-info">
-                    <span class="nome">Lucas Oliveira</span>
-                    <span class="plano">Plano Pro</span>
+                    <span class="nome" data-usuario-nome></span>
+                    <span class="plano" data-usuario-email></span>
                   </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end shadow">
                   <li><a class="dropdown-item" href="perfil.html"><i class="bi bi-person me-2"></i>Meu perfil</a></li>
                   <li><a class="dropdown-item" href="perfil.html"><i class="bi bi-sliders me-2"></i>Preferências</a></li>
                   <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
+                  <li><a class="dropdown-item text-danger" href="login.html" data-sair><i class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
                 </ul>
               </div>
             </div>
@@ -244,8 +165,7 @@
             <p class="subtitulo">Gerencie seus dados cadastrais, segurança e configurações da aplicação</p>
           </div>
           <div class="d-flex align-items-center gap-3">
-            <span class="chip-status chip-azul"><i class="bi bi-shield-lock"></i> Ambiente Criptografado</span>
-            <span class="mono small text-body-secondary">v2.4.0 (build 3000)</span>
+            <span class="chip-status chip-azul" id="chipSessao"><i class="bi bi-hdd"></i> Sessão</span>
           </div>
         </header>
 
@@ -254,20 +174,17 @@
           <div class="col-lg-7 d-flex flex-column gap-4">
             <div class="card">
               <div class="card-body d-flex flex-column flex-sm-row align-items-center align-items-sm-start gap-4 text-center text-sm-start">
-                <span class="avatar avatar-lg">
-                  <img src="../img/avatar.jpg" alt="Foto de perfil de Lucas Oliveira da Silva" />
-                  <span class="selo"><i class="bi bi-patch-check-fill"></i></span>
-                </span>
+                <span class="avatar avatar-lg" id="avatarPerfil"></span>
                 <div>
                   <div class="d-flex flex-wrap justify-content-center justify-content-sm-start align-items-center gap-2 mb-1">
-                    <h2 class="fs-5 fw-bold mb-0">Lucas Oliveira da Silva</h2>
+                    <h2 class="fs-5 fw-bold mb-0" id="perfilNome"></h2>
                     <span class="badge-status"><span class="ponto bg-primary rounded-circle d-inline-block" style="width: .375rem; height: .375rem"></span> Cliente Ativo</span>
                   </div>
-                  <p class="small text-body-secondary mb-3"><i class="bi bi-calendar3 me-1"></i> Membro desde Janeiro de 2024</p>
+                  <p class="small text-body-secondary mb-3"><i class="bi bi-calendar3 me-1"></i> <span id="membroDesde"></span></p>
                   <div class="d-flex justify-content-center justify-content-sm-start gap-2">
                     <label class="btn btn-sm btn-outline-neutro mb-0" for="novaFoto"><i class="bi bi-camera"></i> Alterar foto</label>
                     <input type="file" id="novaFoto" class="d-none" accept="image/*" />
-                    <button type="button" class="btn btn-sm btn-link text-body-secondary text-decoration-none"><i class="bi bi-trash3"></i> Remover</button>
+                    <button type="button" class="btn btn-sm btn-link text-body-secondary text-decoration-none" id="removerFoto"><i class="bi bi-trash3"></i> Remover</button>
                   </div>
                 </div>
               </div>
@@ -280,11 +197,11 @@
                   <span class="mono small text-body-secondary">Edição direta</span>
                 </div>
 
-                <form class="row g-3" action="#" method="post">
+                <form class="row g-3" id="formPerfil" novalidate>
                   <div class="col-12">
                     <label for="nome" class="form-label-caps">Nome completo</label>
                     <div class="input-group input-icone">
-                      <input type="text" class="form-control" id="nome" value="Lucas Oliveira da Silva" required />
+                      <input type="text" class="form-control" id="nome" maxlength="60" autocomplete="name" />
                       <span class="input-group-text"><i class="bi bi-person"></i></span>
                     </div>
                   </div>
@@ -292,10 +209,9 @@
                   <div class="col-12">
                     <div class="d-flex justify-content-between align-items-center">
                       <label for="emailPerfil" class="form-label-caps">E-mail principal</label>
-                      <span class="badge-status mb-1"><i class="bi bi-patch-check"></i> E-mail Verificado</span>
                     </div>
                     <div class="input-group input-icone">
-                      <input type="email" class="form-control" id="emailPerfil" value="lucas.oliveira@email.com" required />
+                      <input type="email" class="form-control" id="emailPerfil" autocomplete="email" />
                       <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                     </div>
                   </div>
@@ -303,7 +219,7 @@
                   <div class="col-md-6">
                     <label for="profissao" class="form-label-caps">Profissão / Ocupação</label>
                     <div class="input-group input-icone">
-                      <input type="text" class="form-control" id="profissao" value="Desenvolvedor de Software" />
+                      <input type="text" class="form-control" id="profissao" maxlength="60" placeholder="Ex.: Estudante, Analista..." />
                       <span class="input-group-text"><i class="bi bi-terminal"></i></span>
                     </div>
                   </div>
@@ -311,20 +227,20 @@
                   <div class="col-md-6">
                     <label for="telefone" class="form-label-caps">Telefone de contato</label>
                     <div class="input-group input-icone">
-                      <input type="tel" class="form-control mono" id="telefone" value="(11) 98765-4321" />
+                      <input type="tel" class="form-control mono" id="telefone" placeholder="(00) 00000-0000" autocomplete="tel" />
                       <span class="input-group-text"><i class="bi bi-telephone"></i></span>
                     </div>
                   </div>
 
                   <div class="col-12">
                     <label for="bio" class="form-label-caps">Bio / Descrição pessoal</label>
-                    <textarea class="form-control" id="bio" rows="3" maxlength="240">Focado em construir reserva de emergência e controlar gastos supérfluos no SobrouQuanto?.</textarea>
-                    <div class="form-text">Essa nota é exibida em relatórios de metas orçamentárias.</div>
+                    <textarea class="form-control" id="bio" rows="3" maxlength="240" placeholder="Seus objetivos financeiros, por exemplo."></textarea>
+                    <div class="form-text"><span id="contadorBio">0</span>/240 caracteres.</div>
                   </div>
 
                   <div class="col-12 d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 pt-3 border-top">
-                    <span class="mono small text-body-secondary">Última alteração: Hoje às 14:22</span>
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-floppy"></i> Salvar Alterações</button>
+                    <span class="mono small text-body-secondary" id="ultimaAlteracao"></span>
+                    <button type="submit" class="btn btn-primary" id="salvarPerfil"><i class="bi bi-floppy"></i> Salvar Alterações</button>
                   </div>
                 </form>
               </div>
@@ -340,35 +256,35 @@
                   <span class="badge text-bg-light border mono fw-normal">US11</span>
                 </div>
 
-                <!-- Switches do Bootstrap (.form-switch) -->
+                <!-- Switches do Bootstrap (.form-switch): cada mudança é salva na hora (PATCH) -->
                 <div class="preferencia">
                   <label for="alertas">
-                    <span class="titulo">Receber alertas de vencimento <i class="bi bi-circle-fill text-primary ms-1" style="font-size: .45rem; vertical-align: middle"></i></span>
-                    <span class="descricao">Notificar 3 dias antes do vencimento de contas fixas</span>
+                    <span class="titulo">Receber alertas de vencimento</span>
+                    <span class="descricao">Avisar no sininho 3 dias antes de despesas agendadas e quando uma categoria passar de 80% do limite</span>
                   </label>
-                  <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="alertas" checked /></div>
+                  <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="alertas" data-preferencia="alertas" /></div>
                 </div>
                 <div class="preferencia">
                   <label for="modoEscuro">
                     <span class="titulo">Modo Escuro (Dark Mode)</span>
-                    <span class="badge text-bg-light border fw-normal ms-1">Claro</span>
+                    <span class="badge text-bg-light border fw-normal ms-1" id="rotuloTema">Claro</span>
                     <span class="descricao">Alternar tema de alto contraste para ambientes com pouca luz</span>
                   </label>
-                  <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="modoEscuro" /></div>
+                  <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="modoEscuro" data-preferencia="modoEscuro" /></div>
                 </div>
                 <div class="preferencia">
                   <label for="cotacoesAuto">
                     <span class="titulo">Cotações Automáticas no Dashboard</span>
                     <span class="descricao">Atualizar cotações do Dólar, Euro e Libra a cada 5 minutos via AwesomeAPI</span>
                   </label>
-                  <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="cotacoesAuto" checked /></div>
+                  <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="cotacoesAuto" data-preferencia="cotacoesAuto" /></div>
                 </div>
                 <div class="preferencia">
-                  <label for="resumoSemanal">
-                    <span class="titulo">Resumo semanal por e-mail</span>
-                    <span class="descricao">Receber relatório toda segunda-feira de manhã</span>
+                  <label for="lembreteComprovante">
+                    <span class="titulo">Lembrete de comprovantes</span>
+                    <span class="descricao">Avisar quando houver despesas do mês sem comprovante anexado</span>
                   </label>
-                  <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="resumoSemanal" checked /></div>
+                  <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="lembreteComprovante" data-preferencia="lembreteComprovante" /></div>
                 </div>
               </div>
             </div>
@@ -384,11 +300,11 @@
                     <span class="eyebrow">Status da sessão atual</span>
                     <span class="fw-semibold text-primary"><i class="bi bi-circle-fill me-1" style="font-size: .45rem; vertical-align: middle"></i>Ativa</span>
                   </div>
-                  <span class="mono d-block text-body">Armazenada em sessionStorage</span>
-                  <span>Encerrada automaticamente ao fechar a janela do navegador.</span>
+                  <span class="mono d-block text-body" id="sessaoArmazenamento"></span>
+                  <span id="sessaoDescricao"></span>
                 </div>
-                <button type="button" class="item-acao"><i class="bi bi-key"></i> Redefinir Senha <i class="bi bi-chevron-right ms-auto"></i></button>
-                <button type="button" class="item-acao"><i class="bi bi-laptop"></i> Gerenciar Sessões Ativas <span class="badge text-bg-light border fw-normal ms-auto">1 Dispositivo</span></button>
+                <button type="button" class="item-acao" data-bs-toggle="modal" data-bs-target="#modalSenha"><i class="bi bi-key"></i> Redefinir Senha <i class="bi bi-chevron-right ms-auto"></i></button>
+                <a href="login.html" class="item-acao text-danger text-decoration-none" data-sair><i class="bi bi-box-arrow-right"></i> Sair da conta <i class="bi bi-chevron-right ms-auto"></i></a>
               </div>
             </div>
 
@@ -401,16 +317,16 @@
                 <div class="integracao">
                   <span class="icone-tile tile-sm tile-receita"><i class="bi bi-currency-exchange"></i></span>
                   <div class="flex-grow-1"><span class="nome">AwesomeAPI</span><span class="detalhe">Feed de Moedas &amp; Câmbio</span></div>
-                  <span class="badge-status"><i class="bi bi-circle-fill" style="font-size: .4rem"></i> Conectada</span>
+                  <span class="badge-status" id="statusAwesome"><span class="spinner-border spinner-border-sm"></span></span>
                 </div>
                 <div class="integracao">
                   <span class="icone-tile tile-sm tile-azul"><i class="bi bi-database"></i></span>
-                  <div class="flex-grow-1"><span class="nome">JSON Server</span><span class="detalhe">localhost:3000 (Local DB)</span></div>
-                  <span class="badge-status"><i class="bi bi-circle-fill" style="font-size: .4rem"></i> Conectado</span>
+                  <div class="flex-grow-1"><span class="nome">JSON Server</span><span class="detalhe">localhost:3000 (server/db.json)</span></div>
+                  <span class="badge-status" id="statusJson"><span class="spinner-border spinner-border-sm"></span></span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center small pt-1">
-                  <span class="mono text-body-secondary">Latência média: 18ms</span>
-                  <button type="button" class="btn btn-link btn-sm mono fw-semibold p-0"><i class="bi bi-arrow-clockwise"></i> Testar Ping</button>
+                  <span class="mono text-body-secondary" id="latencias"></span>
+                  <button type="button" class="btn btn-link btn-sm mono fw-semibold p-0" id="testarPing"><i class="bi bi-arrow-clockwise"></i> Testar Ping</button>
                 </div>
               </div>
             </div>
@@ -419,20 +335,55 @@
       </div>
     </main>
 
+    <!-- ===================== MODAL: REDEFINIR SENHA ===================== -->
+    <div class="modal fade" id="modalSenha" tabindex="-1" aria-labelledby="modalSenhaLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content" id="formSenha" novalidate>
+          <div class="modal-header">
+            <h2 class="modal-title" id="modalSenhaLabel">
+              <span class="icone-tile tile-sm tile-receita"><i class="bi bi-key"></i></span>
+              Redefinir Senha
+            </h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body d-flex flex-column gap-3">
+            <div>
+              <label for="senhaAtual" class="form-label-caps">Senha atual</label>
+              <input type="password" class="form-control" id="senhaAtual" autocomplete="current-password" />
+            </div>
+            <div>
+              <label for="novaSenha" class="form-label-caps">Nova senha</label>
+              <input type="password" class="form-control" id="novaSenha" autocomplete="new-password" />
+              <div class="form-text">Mínimo de 6 caracteres, com letras e números.</div>
+            </div>
+            <div>
+              <label for="confirmarSenha" class="form-label-caps">Confirmar nova senha</label>
+              <input type="password" class="form-control" id="confirmarSenha" autocomplete="new-password" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-neutro" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="salvarSenha"><i class="bi bi-check-lg"></i> Alterar senha</button>
+          </div>
+        </form>
+      </div>
+    </div>
     <!-- ===================== RODAPÉ ===================== -->
     <!-- mt-auto: o rodapé é empurrado para o fim da tela -->
     <footer class="sq-footer mt-auto">
       <div class="container-fluid limite-conteudo px-3 px-lg-4 d-flex flex-column flex-md-row justify-content-between gap-2">
-        <span>&copy; 2025 SobrouQuanto? Gestão Financeira. Todos os direitos reservados.</span>
+        <span>&copy; <span data-ano>2026</span> SobrouQuanto? · Projeto acadêmico TSI32B · UTFPR</span>
         <div class="d-flex flex-wrap gap-3">
-          <span><i class="bi bi-shield-check"></i> Criptografia Ponta a Ponta</span>
-          <span><i class="bi bi-hdd-stack"></i> JSON Server API Ready</span>
-          <span><i class="bi bi-shield-lock"></i> LGPD Compliance</span>
+          <span><i class="bi bi-hdd-stack"></i> Dados no JSON Server</span>
+          <span><i class="bi bi-currency-exchange"></i> Cotações via AwesomeAPI</span>
         </div>
       </div>
     </footer>
 
-    <!-- Bootstrap JS (NPM) — necessário para Offcanvas, Dropdown e Modal -->
+    <!-- Bootstrap JS (NPM) — necessário para Offcanvas, Dropdown, Modal e Toast -->
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script da página (ES Module: importa api.js, main.js, render.js...) -->
+    <script type="module" src="../js/paginas/perfil.js"></script>
   </body>
 </html>

@@ -1,43 +1,96 @@
 // =============================================================
-// _dashboard.scss — Estilos do index.html (Épico 2)
+// _dashboard.scss — Painel geral e cotações (Épico 2)
 // =============================================================
-@use "sass:color";
 @use "variaveis" as *;
 @use "mixins" as *;
 
-// ---------- Cards de KPI ----------
-// Parte comum dos três cards (tipografia).
-.card-resumo {
-  // Aninhamento: o estilo segue o formato do HTML
-  .rotulo {
-    font-size: $fs-caps;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--sq-texto-suave); // quente: muda no modo escuro
+// Card de saldo com brilho verde no canto (como no protótipo)
+.kpi-saldo {
+  background:
+    radial-gradient(circle at 100% 0%, rgba($cor-primaria-fixa, 0.35) 0%, transparent 45%),
+    var(--sq-superficie);
+}
+
+// ---------- Gráfico de rosca (US04) ----------
+// Feito só com CSS: o conic-gradient pinta as fatias e o
+// pseudo-elemento ::before "fura" o centro do círculo.
+.rosca {
+  --receitas: 64%;
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: conic-gradient(
+    $cor-primaria 0 var(--receitas),
+    #ef4444 var(--receitas) 100%
+  );
+  flex-shrink: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 1.125rem;
+    border-radius: 50%;
+    background-color: var(--sq-superficie);
   }
 
-  .valor {
-    @include texto-numerico(1.5rem);
-    display: block;
-    margin-top: $esp-xs;
-    font-weight: 600;
+  .centro {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.25;
+
+    .rotulo { font-size: $fs-caps; text-transform: uppercase; letter-spacing: 0.05em; color: $cor-texto-suave; }
+    .percentual { @include texto-numerico($fs-corpo); font-weight: 700; }
+    .estado { font-size: $fs-legenda; font-weight: 600; color: $cor-primaria; }
   }
 }
 
-// Mixin: o mesmo "modelo" de card, cada um com sua cor.
-.card-saldo    { @include card-resumo($cor-primaria); }
-.card-receitas { @include card-resumo($cor-receita); }
-.card-despesas { @include card-resumo($cor-despesa); }
+// Linhas da legenda do gráfico (Receitas totais / Despesas pagas)
+.legenda-item {
+  display: flex;
+  align-items: center;
+  gap: $esp-sm;
+  padding: $esp-sm $esp-md;
+  border-radius: $raio;
+  background-color: $cor-superficie-alt;
+  border: 1px solid $cor-borda-suave;
 
-// ---------- Badge de cotação (AwesomeAPI) ----------
-// Função: o fundo é CALCULADO a partir da cor âmbar
-// (90% mais claro), em vez de inventar outro código de cor.
-.badge-cotacao {
-  @include texto-numerico($fs-legenda);
-  display: inline-block;
-  padding: $esp-xxs $esp-sm;
-  border-radius: $raio-pill;
-  color: $cor-cotacao;
-  background-color: color.scale($cor-cotacao, $lightness: 90%);
+  .marcador { width: 0.75rem; height: 0.75rem; border-radius: 50%; flex-shrink: 0; }
+  .titulo { display: block; font-size: $fs-corpo-md; font-weight: 500; }
+  .sub { display: block; font-size: $fs-legenda; color: $cor-texto-suave; }
+  .valor { @include texto-numerico($fs-corpo-md); font-weight: 700; margin-left: auto; }
+}
+
+// ---------- Cotações (US05) ----------
+.cotacao-item {
+  display: flex;
+  align-items: center;
+  gap: $esp-md;
+  padding: $esp-md;
+  border-radius: $raio;
+  background-color: $cor-superficie-alt;
+  border: 1px solid $cor-borda-suave;
+
+  .moeda-icone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--sq-superficie);
+    border: 1px solid $cor-borda-suave;
+    font-size: 1.125rem;
+    color: $cor-texto-suave;
+  }
+
+  .nome { font-size: $fs-corpo-md; font-weight: 600; }
+  .par { font-size: $fs-caps; font-weight: 600; color: $cor-texto-suave; margin-left: $esp-xxs; }
+  .atualizado { display: block; font-size: $fs-legenda; color: $cor-texto-suave; }
+  .preco { @include texto-numerico($fs-corpo-md); font-weight: 700; }
 }

@@ -1,0 +1,400 @@
+// =============================================================
+// _componentes.scss — Peças visuais reutilizadas entre as telas
+// =============================================================
+@use "sass:color";
+@use "sass:map";
+@use "variaveis" as *;
+@use "mixins" as *;
+
+// ---------- Tipografia utilitária do Design System ----------
+// "Sobretítulo" em caixa alta (caption-caps)
+.eyebrow {
+  display: block;
+  font-size: $fs-caps;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $cor-texto-suave;
+}
+
+.titulo-pagina {
+  font-size: $fs-h1;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: $esp-xxs;
+}
+
+.titulo-secao {
+  font-size: $fs-h3;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin-bottom: 0;
+}
+
+.subtitulo { color: $cor-texto-suave; margin-bottom: 0; }
+
+// Valores em R$ (JetBrains Mono, algarismos alinhados)
+.mono { @include texto-numerico; }
+.valor-lg { @include texto-numerico(1.5rem); font-weight: 600; letter-spacing: -0.02em; }
+.valor-xl { font-size: $fs-display; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.valor-positivo { color: $cor-receita !important; }
+.valor-negativo { color: $cor-despesa !important; }
+
+// ---------- Cards ----------
+// O .card do Bootstrap já vem com borda e cantos do protótipo;
+// aqui só adicionamos a sombra suave (nível 1 do sdd.md).
+.card { box-shadow: $sombra-1; }
+
+// Card de indicador (KPI)
+.kpi-card {
+  .card-body { display: flex; flex-direction: column; gap: $esp-md; }
+
+  .kpi-rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $esp-xs;
+    padding-top: $esp-md;
+    border-top: 1px solid $cor-borda-suave;
+    font-size: $fs-legenda;
+    color: $cor-texto-suave;
+  }
+}
+
+// Quadrado com ícone (canto dos cards)
+.icone-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: $raio;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+
+  &.tile-sm { width: 2.25rem; height: 2.25rem; font-size: 1.0625rem; }
+
+  &.tile-receita { background-color: rgba($cor-primaria-fixa, 0.4); color: $cor-primaria; }
+  &.tile-despesa { background-color: rgba($cor-erro-container, 0.7); color: $cor-erro; }
+  &.tile-neutro  { background-color: $cor-superficie-cont; color: $cor-texto-suave; }
+
+  // Uma variação para cada cor da paleta de categorias
+  @each $nome, $cor in $categorias {
+    &.tile-#{$nome} {
+      background-color: color.scale($cor, $lightness: 88%);
+      color: $cor;
+    }
+  }
+}
+
+// ---------- Chips e badges ----------
+// Chip de status (ex.: "Cotações atualizadas")
+.chip-status {
+  display: inline-flex;
+  align-items: center;
+  gap: $esp-xs;
+  padding: $esp-xxs $esp-sm;
+  border-radius: $raio-pill;
+  font-family: $fonte-numerica;
+  font-size: $fs-legenda;
+  white-space: nowrap;
+  background-color: rgba($cor-primaria-fixa, 0.4);
+  border: 1px solid rgba($cor-primaria, 0.25);
+  color: $cor-primaria;
+
+  .ponto { width: 0.5rem; height: 0.5rem; border-radius: 50%; background-color: currentColor; }
+
+  &.chip-neutro {
+    background-color: $cor-superficie-cont;
+    border-color: $cor-borda-suave;
+    color: $cor-texto-suave;
+    .ponto { background-color: $cor-primaria; }
+  }
+
+  // Texto em fonte normal (não monoespaçada) e que pode quebrar linha
+  &.chip-sans {
+    font-family: $fonte-base;
+    font-weight: 500;
+    white-space: normal;
+  }
+
+  &.chip-azul {
+    background-color: $cor-secundaria-container;
+    border-color: transparent;
+    color: $cor-on-secundaria-cont;
+    font-family: $fonte-base;
+    font-weight: 600;
+  }
+}
+
+// Variação percentual (+18,2% vs mês anterior)
+.tendencia {
+  display: inline-flex;
+  align-items: center;
+  gap: $esp-xxs;
+  padding: 0.125rem $esp-xs;
+  border-radius: $raio-pill;
+  font-family: $fonte-numerica;
+  font-size: $fs-legenda;
+  font-weight: 600;
+
+  &.alta  { background-color: rgba($cor-primaria-fixa, 0.4); color: $cor-primaria; }
+  &.baixa { background-color: rgba($cor-erro-container, 0.7); color: $cor-erro; }
+}
+
+// Badge de categoria nas tabelas (ícone + nome)
+.badge-categoria {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: $esp-xxs 0.625rem;
+  border-radius: $raio-pill;
+  font-size: $fs-legenda;
+  font-weight: 600;
+  white-space: nowrap;
+
+  @each $nome, $cor in $categorias {
+    &.cat-#{$nome} {
+      background-color: color.scale($cor, $lightness: 90%);
+      color: color.scale($cor, $lightness: -15%);
+    }
+  }
+}
+
+// Badge "Receita" / "Despesa" / "Concluído"
+.badge-tipo {
+  display: inline-block;
+  padding: 0.125rem $esp-xs;
+  border-radius: $raio-sm;
+  font-size: $fs-legenda;
+  font-weight: 600;
+
+  &.receita { background-color: rgba($cor-primaria-fixa, 0.5); color: $cor-primaria; }
+  &.despesa { background-color: $cor-erro-container; color: $cor-erro; }
+}
+
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: $esp-xxs;
+  padding: $esp-xxs $esp-sm;
+  border-radius: $raio-pill;
+  font-family: $fonte-numerica;
+  font-size: $fs-legenda;
+  font-weight: 600;
+  background-color: rgba($cor-primaria-fixa, 0.4);
+  color: $cor-primaria;
+}
+
+// ---------- Tabelas ----------
+.tabela-sq {
+  margin-bottom: 0;
+
+  thead th {
+    font-size: $fs-caps;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $cor-texto-suave;
+    background-color: $cor-superficie-alt;
+    white-space: nowrap;
+  }
+
+  tbody td { vertical-align: middle; }
+
+  .descricao {
+    display: block;
+    font-weight: 500;
+    color: $cor-texto;
+  }
+
+  .detalhe {
+    display: block;
+    font-size: $fs-legenda;
+    color: $cor-texto-suave;
+  }
+
+  .data { @include texto-numerico($fs-legenda); color: $cor-texto-suave; white-space: nowrap; }
+  .valor { @include texto-numerico; font-weight: 600; white-space: nowrap; }
+
+  // Botões de ação (editar/excluir) só com ícone
+  .btn-acao {
+    padding: $esp-xxs $esp-xs;
+    color: $cor-texto-suave;
+    font-size: 1.125rem;
+    border: 0;
+    background: none;
+
+    &:hover { color: $cor-primaria; }
+    &.excluir:hover { color: $cor-erro; }
+  }
+}
+
+// Rodapé dos cards com tabela (contagem + paginação)
+.card-rodape-tabela {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: $esp-sm;
+  padding: $esp-sm $esp-lg;
+  background-color: $cor-superficie-alt;
+  border-top: 1px solid $cor-borda-suave;
+  font-size: $fs-legenda;
+  color: $cor-texto-suave;
+}
+
+// ---------- Formulários ----------
+// Rótulo em caixa alta usado nos formulários do protótipo
+.form-label-caps {
+  font-size: $fs-caps;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $cor-texto-suave;
+  margin-bottom: 0.375rem;
+}
+
+// Input com ícone dentro (usa o .input-group do Bootstrap)
+.input-icone {
+  .input-group-text {
+    background-color: var(--sq-superficie);
+    color: $cor-contorno;
+  }
+
+  .input-group-text:first-child { border-right: 0; padding-right: 0; }
+  .input-group-text:last-child  { border-left: 0; }
+  .form-control:not(:first-child) { border-left: 0; }
+  .form-control:not(:last-child)  { border-right: 0; }
+
+  &:focus-within .input-group-text { border-color: $cor-primaria; }
+}
+
+// Seletor segmentado (Despesa | Receita) com .btn-check do Bootstrap
+.segmentado {
+  display: flex;
+  padding: $esp-xxs;
+  gap: $esp-xxs;
+  border-radius: $raio;
+  background-color: $cor-superficie-cont;
+  border: 1px solid $cor-borda-suave;
+
+  .btn {
+    flex: 1;
+    border: 0;
+    color: $cor-texto-suave;
+    font-weight: 500;
+  }
+
+  .btn-check:checked + .btn {
+    background-color: var(--sq-superficie);
+    box-shadow: $sombra-1;
+    font-weight: 600;
+  }
+
+  .btn-check:checked + .btn.opcao-despesa { color: $cor-erro; }
+  .btn-check:checked + .btn.opcao-receita { color: $cor-primaria; }
+}
+
+// Área de upload do comprovante
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $esp-xs;
+  padding: $esp-lg;
+  border: 2px dashed $cor-borda;
+  border-radius: $raio;
+  background-color: $cor-superficie-alt;
+  text-align: center;
+  font-size: $fs-legenda;
+  color: $cor-texto-suave;
+  cursor: pointer;
+  transition: border-color $transicao, background-color $transicao;
+
+  &:hover { border-color: $cor-primaria; background-color: rgba($cor-primaria-fixa, 0.15); }
+
+  .icone-upload {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--sq-superficie);
+    border: 1px solid $cor-borda-suave;
+    font-size: 1.25rem;
+    color: $cor-texto-suave;
+  }
+}
+
+// Arquivo anexado (abaixo da dropzone)
+.arquivo-anexo {
+  display: flex;
+  align-items: center;
+  gap: $esp-sm;
+  padding: $esp-sm $esp-md;
+  border-radius: $raio;
+  border: 1px solid rgba($cor-primaria, 0.3);
+  background-color: rgba($cor-primaria-fixa, 0.2);
+
+  .nome { font-size: $fs-legenda; font-weight: 600; }
+  .info { @include texto-numerico($fs-legenda); color: $cor-texto-suave; }
+}
+
+// ---------- Modais ----------
+.modal-header .modal-title {
+  display: flex;
+  align-items: center;
+  gap: $esp-sm;
+  font-size: $fs-h3;
+  font-weight: 600;
+}
+
+.modal-footer {
+  border-top: 1px solid $cor-borda-suave;
+}
+
+// ---------- Botões ----------
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: $esp-xs; }
+
+.btn-outline-neutro {
+  background-color: var(--sq-superficie);
+  border: 1px solid $cor-borda;
+  color: $cor-texto;
+
+  &:hover { background-color: $cor-superficie-alt; border-color: $cor-contorno; color: $cor-texto; }
+}
+
+.link-seta {
+  display: inline-flex;
+  align-items: center;
+  gap: $esp-xs;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+// ---------- Alerta de destaque (insight) ----------
+.alerta-insight {
+  display: flex;
+  align-items: center;
+  gap: $esp-md;
+  padding: $esp-md $esp-lg;
+  border-radius: $raio;
+  background-color: rgba($cor-primaria-fixa, 0.2);
+  border: 1px solid rgba($cor-primaria, 0.3);
+  font-size: $fs-corpo-md;
+
+  .icone-tile { background-color: $cor-primaria; color: #fff; }
+}
+
+// ---------- Paginação ----------
+.pagination {
+  --bs-pagination-font-size: #{$fs-legenda};
+  --bs-pagination-padding-x: 0.75rem;
+  --bs-pagination-color: #{$cor-texto};
+  margin-bottom: 0;
+  gap: $esp-xxs;
+
+  .page-link { border-radius: $raio-sm !important; font-family: $fonte-numerica; }
+}

@@ -1,11 +1,462 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transações | SobrouQuanto?</title>
+
+    <!-- Fontes do Design System (instaladas via NPM: @fontsource) -->
+    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/400.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/500.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/600.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/700.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/400.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/500.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/600.css" />
+    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/700.css" />
+
+    <!-- Bootstrap Icons (NPM) -->
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
+
+    <!-- Bootstrap 5.3 compilado pelo Sass a partir de node_modules/bootstrap/scss
+         (com as cores, fontes e bordas do Design System) -->
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <!-- Estilos próprios da aplicação (gerado a partir de scss/style.scss) -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <!-- d-flex + flex-column + min-vh-100: base do "sticky footer" -->
+  <body class="d-flex flex-column min-vh-100">
+    <!-- ===================== NAVBAR ===================== -->
+    <!-- navbar-expand-lg: em telas grandes o menu fica na barra;
+         abaixo de 992px ele vira um Offcanvas (menu lateral) -->
+    <nav class="navbar navbar-expand-lg sq-navbar sticky-top">
+      <div class="container-fluid limite-conteudo px-3 px-lg-4">
+        <a class="navbar-brand" href="../index.html">
+          <span class="logo-tile"><i class="bi bi-piggy-bank-fill"></i></span>
+          <span class="logo-texto">
+            <span class="nome">SobrouQuanto?</span>
+            <span class="slogan">Gestão Financeira</span>
+          </span>
+        </a>
+
+        <!-- Visível só no celular/tablet: notificações + botão do menu -->
+        <div class="d-flex align-items-center gap-1 d-lg-none">
+          <button type="button" class="btn-notificacao" aria-label="Notificações">
+            <i class="bi bi-bell"></i><span class="ponto"></span>
+          </button>
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#menuPrincipal"
+            aria-controls="menuPrincipal"
+            aria-label="Abrir menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- Offcanvas: menu lateral no celular, barra normal no desktop -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="menuPrincipal" aria-labelledby="menuPrincipalLabel">
+          <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title" id="menuPrincipalLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+          </div>
+          <div class="offcanvas-body align-items-lg-center">
+            <span class="divisor d-none d-lg-block me-3"></span>
+            <ul class="navbar-nav gap-1">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="transacoes.html"><i class="bi bi-receipt"></i> Transações</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="cadastro.html"><i class="bi bi-tags"></i> Categorias</a>
+              </li>
+              <li class="nav-item d-lg-none">
+                <a class="nav-link" href="perfil.html"><i class="bi bi-person"></i> Meu perfil</a>
+              </li>
+            </ul>
+
+            <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3 ms-lg-auto mt-4 mt-lg-0">
+              <span class="chip-status chip-neutro">USD/BRL <strong class="text-body">R$ 5,68</strong> <i class="bi bi-graph-up-arrow text-primary"></i></span>
+              <button type="button" class="btn-notificacao d-none d-lg-inline-block" aria-label="Notificações">
+                <i class="bi bi-bell"></i><span class="ponto"></span>
+              </button>
+              <span class="divisor d-none d-lg-block"></span>
+
+              <!-- Dropdown do usuário (componente JS do Bootstrap) -->
+              <div class="dropdown">
+                <a href="#" class="d-flex align-items-center gap-2 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="avatar">
+                    <img src="../img/avatar.jpg" alt="Foto de Lucas Oliveira" />
+                    <span class="online"></span>
+                  </span>
+                  <span class="usuario-info">
+                    <span class="nome">Lucas Oliveira</span>
+                    <span class="plano">Plano Pro</span>
+                  </span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                  <li><a class="dropdown-item" href="perfil.html"><i class="bi bi-person me-2"></i>Meu perfil</a></li>
+                  <li><a class="dropdown-item" href="perfil.html"><i class="bi bi-sliders me-2"></i>Preferências</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- ===================== TRANSAÇÕES (Épico 4) ===================== -->
+    <main class="sq-main flex-grow-1">
+      <div class="container-fluid limite-conteudo px-3 px-lg-4">
+        <header class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+          <div>
+            <h1 class="titulo-pagina">Extrato e Movimentações</h1>
+            <p class="subtitulo">Acompanhe seus lançamentos, anexe comprovantes e exporte dados</p>
+          </div>
+          <div class="d-flex gap-2 flex-shrink-0">
+            <button type="button" class="btn btn-outline-neutro">
+              <i class="bi bi-upload"></i> Simular Importação OFX/CSV
+            </button>
+            <!-- US07: o formulário abre em um Modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNovaMovimentacao">
+              <i class="bi bi-plus-lg"></i> Nova Movimentação
+            </button>
+          </div>
+        </header>
+
+        <!-- Resumo do período filtrado -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="eyebrow">Receitas filtradas</span>
+                  <span class="icone-tile tile-sm tile-receita rounded-circle"><i class="bi bi-arrow-down"></i></span>
+                </div>
+                <span class="valor-lg d-block mb-2">R$ 11.200,00</span>
+                <span class="mono small text-primary"><i class="bi bi-graph-up-arrow me-1"></i> +12.4% vs. mês anterior</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="eyebrow">Despesas filtradas</span>
+                  <span class="icone-tile tile-sm tile-despesa rounded-circle"><i class="bi bi-arrow-up"></i></span>
+                </div>
+                <span class="valor-lg d-block mb-2">R$ 6.350,00</span>
+                <span class="mono small text-danger"><i class="bi bi-graph-down-arrow me-1"></i> -4.1% economia no período</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card kpi-periodo h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="eyebrow text-primary">Saldo do período</span>
+                  <span class="icone-tile tile-sm tile-receita"><i class="bi bi-wallet2"></i></span>
+                </div>
+                <span class="valor-lg d-block mb-2 text-primary">R$ 4.850,00</span>
+                <span class="mono small text-body-secondary"><i class="bi bi-check-circle text-primary me-1"></i> Orçamento superavitário</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- US08: filtros por texto, data, tipo e categoria -->
+        <div class="card mb-4">
+          <div class="card-body py-3">
+            <form class="row g-2 align-items-center" role="search">
+              <div class="col-lg-3 col-md-6">
+                <div class="input-group input-icone">
+                  <span class="input-group-text"><i class="bi bi-search"></i></span>
+                  <input type="search" class="form-control" placeholder="Buscar por 'Aluguel', 'Supermercado'..." aria-label="Buscar lançamentos" />
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <select class="form-select" aria-label="Período">
+                  <option selected>Mês Atual (Outubro 2024)</option>
+                  <option>Setembro 2024</option>
+                  <option>Últimos 90 dias</option>
+                </select>
+              </div>
+              <div class="col-lg-2 col-md-6">
+                <select class="form-select" aria-label="Tipo">
+                  <option selected>Todos os Tipos</option>
+                  <option>Receitas</option>
+                  <option>Despesas</option>
+                </select>
+              </div>
+              <div class="col-lg-2 col-md-6">
+                <select class="form-select" aria-label="Categoria">
+                  <option selected>Todas Categorias</option>
+                  <option>Alimentação</option>
+                  <option>Moradia</option>
+                  <option>Transporte</option>
+                  <option>Lazer</option>
+                  <option>Renda Ativa</option>
+                </select>
+              </div>
+              <div class="col-lg-2 text-lg-end">
+                <button type="reset" class="btn btn-link text-body-secondary text-decoration-none">
+                  <i class="bi bi-funnel"></i> Limpar Filtros
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Extrato -->
+        <div class="card overflow-hidden">
+          <div class="table-responsive">
+            <table class="table table-hover tabela-sq">
+              <thead>
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Descrição / Favorecido</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col" class="text-center">Tipo</th>
+                  <th scope="col" class="text-center">Comprovante</th>
+                  <th scope="col" class="text-end">Valor</th>
+                  <th scope="col" class="text-center">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="data">05/10/2024</td>
+                  <td><span class="descricao">Pagamento Salário Mensal</span><span class="detalhe">Empresa de Tecnologia S.A. • TED</span></td>
+                  <td><span class="badge-categoria cat-verde"><i class="bi bi-cash-stack"></i> Renda Ativa</span></td>
+                  <td class="text-center"><span class="badge-tipo receita">Receita</span></td>
+                  <td class="text-center"><i class="bi bi-paperclip comprovante" title="Comprovante anexado"></i></td>
+                  <td class="valor text-end valor-positivo">+ R$ 9.800,00</td>
+                  <td class="text-center text-nowrap">
+                    <button type="button" class="btn-acao" aria-label="Editar"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn-acao excluir" aria-label="Excluir" data-bs-toggle="modal" data-bs-target="#modalExcluir"><i class="bi bi-trash3"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="data">08/10/2024</td>
+                  <td><span class="descricao">Aluguel Apartamento Jardins</span><span class="detalhe">Imobiliária Vertice Ltda • Boleto</span></td>
+                  <td><span class="badge-categoria cat-ambar"><i class="bi bi-house"></i> Moradia</span></td>
+                  <td class="text-center"><span class="badge-tipo despesa">Despesa</span></td>
+                  <td class="text-center"><i class="bi bi-file-earmark-text comprovante" title="Comprovante anexado"></i></td>
+                  <td class="valor text-end valor-negativo">- R$ 3.200,00</td>
+                  <td class="text-center text-nowrap">
+                    <button type="button" class="btn-acao" aria-label="Editar"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn-acao excluir" aria-label="Excluir" data-bs-toggle="modal" data-bs-target="#modalExcluir"><i class="bi bi-trash3"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="data">12/10/2024</td>
+                  <td><span class="descricao">Consultoria UI/UX Design System</span><span class="detalhe">Fintech Apex Pay • Pix</span></td>
+                  <td><span class="badge-categoria cat-verde"><i class="bi bi-briefcase"></i> Freelance</span></td>
+                  <td class="text-center"><span class="badge-tipo receita">Receita</span></td>
+                  <td class="text-center"><i class="bi bi-receipt comprovante" title="Comprovante anexado"></i></td>
+                  <td class="valor text-end valor-positivo">+ R$ 1.400,00</td>
+                  <td class="text-center text-nowrap">
+                    <button type="button" class="btn-acao" aria-label="Editar"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn-acao excluir" aria-label="Excluir" data-bs-toggle="modal" data-bs-target="#modalExcluir"><i class="bi bi-trash3"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="data">15/10/2024</td>
+                  <td><span class="descricao">Supermercado Pão de Açúcar</span><span class="detalhe">Compras quinzenais • Cartão Crédito</span></td>
+                  <td><span class="badge-categoria cat-azul"><i class="bi bi-basket"></i> Alimentação</span></td>
+                  <td class="text-center"><span class="badge-tipo despesa">Despesa</span></td>
+                  <td class="text-center"><i class="bi bi-paperclip comprovante" title="Comprovante anexado"></i></td>
+                  <td class="valor text-end valor-negativo">- R$ 1.150,00</td>
+                  <td class="text-center text-nowrap">
+                    <button type="button" class="btn-acao" aria-label="Editar"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn-acao excluir" aria-label="Excluir" data-bs-toggle="modal" data-bs-target="#modalExcluir"><i class="bi bi-trash3"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="data">19/10/2024</td>
+                  <td><span class="descricao">Porto Seguro Auto (Parcela 04/10)</span><span class="detalhe">Seguro Honda Civic • Débito Automático</span></td>
+                  <td><span class="badge-categoria cat-roxo"><i class="bi bi-car-front"></i> Transporte</span></td>
+                  <td class="text-center"><span class="badge-tipo despesa">Despesa</span></td>
+                  <td class="text-center text-body-secondary">–</td>
+                  <td class="valor text-end valor-negativo">- R$ 850,00</td>
+                  <td class="text-center text-nowrap">
+                    <button type="button" class="btn-acao" aria-label="Editar"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn-acao excluir" aria-label="Excluir" data-bs-toggle="modal" data-bs-target="#modalExcluir"><i class="bi bi-trash3"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="data">22/10/2024</td>
+                  <td><span class="descricao">Restaurante Fasano &amp; Teatro</span><span class="detalhe">Jantar e Ingressos Culturais • Cartão Débito</span></td>
+                  <td><span class="badge-categoria cat-vermelho"><i class="bi bi-ticket-perforated"></i> Lazer</span></td>
+                  <td class="text-center"><span class="badge-tipo despesa">Despesa</span></td>
+                  <td class="text-center"><i class="bi bi-file-earmark-text comprovante" title="Comprovante anexado"></i></td>
+                  <td class="valor text-end valor-negativo">- R$ 1.150,00</td>
+                  <td class="text-center text-nowrap">
+                    <button type="button" class="btn-acao" aria-label="Editar"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn-acao excluir" aria-label="Excluir" data-bs-toggle="modal" data-bs-target="#modalExcluir"><i class="bi bi-trash3"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-rodape-tabela">
+            <div class="totais">
+              <span>Total receitas:<span class="valor valor-positivo">R$ 11.200,00</span></span>
+              <span>Total despesas:<span class="valor valor-negativo">R$ 6.350,00</span></span>
+              <span>Saldo do período:<span class="valor valor-positivo">R$ 4.850,00</span></span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <span class="mono d-none d-sm-inline">Página 1 de 4 (24 registros)</span>
+              <nav aria-label="Paginação do extrato">
+                <ul class="pagination pagination-sm">
+                  <li class="page-item disabled"><a class="page-link" href="#" aria-label="Anterior"><i class="bi bi-chevron-left"></i></a></li>
+                  <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#" aria-label="Próxima"><i class="bi bi-chevron-right"></i></a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===================== MODAL: NOVA MOVIMENTAÇÃO (US07) ===================== -->
+    <div class="modal fade" id="modalNovaMovimentacao" tabindex="-1" aria-labelledby="modalNovaMovimentacaoLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <form class="modal-content" action="#" method="post">
+          <div class="modal-header">
+            <h2 class="modal-title" id="modalNovaMovimentacaoLabel">
+              <span class="icone-tile tile-sm tile-receita"><i class="bi bi-credit-card-2-front"></i></span>
+              Nova Movimentação Financeira
+            </h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+
+          <div class="modal-body d-flex flex-column gap-3">
+            <!-- Tipo: seletor segmentado com radios (.btn-check) -->
+            <div>
+              <span class="form-label-caps d-block">Tipo da Movimentação</span>
+              <div class="segmentado" role="group" aria-label="Tipo da movimentação">
+                <input type="radio" class="btn-check" name="tipo" id="tipoDespesa" value="DESPESA" checked />
+                <label class="btn opcao-despesa" for="tipoDespesa"><i class="bi bi-graph-down-arrow"></i> Despesa</label>
+                <input type="radio" class="btn-check" name="tipo" id="tipoReceita" value="RECEITA" />
+                <label class="btn opcao-receita" for="tipoReceita"><i class="bi bi-graph-up-arrow"></i> Receita</label>
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="valor" class="form-label-caps">Valor da Transação *</label>
+                <div class="input-group">
+                  <span class="input-group-text mono fw-semibold">R$</span>
+                  <input type="text" inputmode="decimal" class="form-control mono fs-5 fw-semibold" id="valor" placeholder="0,00" required />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="data" class="form-label-caps">Data da Movimentação *</label>
+                <input type="date" class="form-control mono" id="data" value="2024-10-24" required />
+              </div>
+            </div>
+
+            <div>
+              <label for="descricao" class="form-label-caps">Descrição / Favorecido *</label>
+              <input type="text" class="form-control" id="descricao" placeholder="Ex: Supermercado Pão de Açúcar, Salário, Uber..." maxlength="80" required />
+            </div>
+
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="categoria" class="form-label-caps">Categoria *</label>
+                <select class="form-select" id="categoria" required>
+                  <option value="" disabled>Selecione uma categoria</option>
+                  <option selected>Alimentação &amp; Mercado</option>
+                  <option>Moradia (Aluguel, Luz, Água)</option>
+                  <option>Transporte &amp; Combustível</option>
+                  <option>Lazer, Cultura &amp; Viagens</option>
+                  <option>Saúde &amp; Farmácia</option>
+                  <option>Salário &amp; Renda Extra</option>
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <label for="conta" class="form-label-caps">Conta / Forma de Pagamento</label>
+                <select class="form-select" id="conta">
+                  <option>Nubank Conta Corrente</option>
+                  <option selected>Cartão XP Visa Infinite</option>
+                  <option>Itaú Personnalité</option>
+                  <option>Dinheiro Físico / Espécie</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Comprovante (opcional): imagem ou PDF -->
+            <div>
+              <div class="d-flex justify-content-between">
+                <label for="comprovante" class="form-label-caps">Comprovante Fiscal ou Recibo</label>
+                <span class="form-label-caps">Opcional</span>
+              </div>
+              <label class="dropzone" for="comprovante">
+                <span class="icone-upload"><i class="bi bi-cloud-arrow-up"></i></span>
+                <span>Arraste e solte o comprovante (JPG, PNG ou PDF até 5MB)</span>
+                <span>ou <span class="text-primary fw-semibold text-decoration-underline">clique para selecionar do computador</span></span>
+              </label>
+              <input type="file" class="d-none" id="comprovante" accept=".jpg,.jpeg,.png,.pdf" />
+
+              <div class="arquivo-anexo mt-2">
+                <i class="bi bi-file-earmark-pdf fs-4 text-primary"></i>
+                <div class="flex-grow-1">
+                  <span class="nome d-block">comprovante_pix_outubro.pdf</span>
+                  <span class="info">1.2 MB • Upload concluído</span>
+                </div>
+                <button type="button" class="btn-close btn-sm" aria-label="Remover arquivo"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-neutro" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Salvar Movimentação (POST)</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===================== MODAL: CONFIRMAR EXCLUSÃO (US09) ===================== -->
+    <div class="modal fade" id="modalExcluir" tabindex="-1" aria-labelledby="modalExcluirLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body text-center p-4">
+            <span class="icone-tile tile-despesa rounded-circle mb-3"><i class="bi bi-trash3"></i></span>
+            <h2 class="fs-5 fw-bold mb-2" id="modalExcluirLabel">Excluir esta movimentação?</h2>
+            <p class="text-body-secondary mb-0">
+              O lançamento será removido do extrato e o saldo será recalculado. Essa ação não pode ser desfeita.
+            </p>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-outline-neutro" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-trash3"></i> Sim, excluir (DELETE)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== RODAPÉ ===================== -->
+    <!-- mt-auto: o rodapé é empurrado para o fim da tela -->
+    <footer class="sq-footer mt-auto">
+      <div class="container-fluid limite-conteudo px-3 px-lg-4 d-flex flex-column flex-md-row justify-content-between gap-2">
+        <span>&copy; 2025 SobrouQuanto? Gestão Financeira. Todos os direitos reservados.</span>
+        <div class="d-flex flex-wrap gap-3">
+          <span><i class="bi bi-shield-check"></i> Criptografia Ponta a Ponta</span>
+          <span><i class="bi bi-hdd-stack"></i> JSON Server API Ready</span>
+          <span><i class="bi bi-shield-lock"></i> LGPD Compliance</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS (NPM) — necessário para Offcanvas, Dropdown e Modal -->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

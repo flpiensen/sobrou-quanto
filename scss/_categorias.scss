@@ -1,0 +1,138 @@
+// =============================================================
+// _categorias.scss — Gestão de categorias (Épico 3)
+// =============================================================
+@use "sass:color";
+@use "variaveis" as *;
+@use "mixins" as *;
+
+// Barra empilhada Despesas x Receitas
+.barra-volume {
+  height: 0.5rem;
+  border-radius: $raio-pill;
+
+  .progress { height: 100%; }
+  .progress:first-child .progress-bar { background-color: $cor-despesa; }
+  .progress:last-child .progress-bar  { background-color: $cor-receita; }
+}
+
+.legenda-volume {
+  font-size: $fs-legenda;
+  color: $cor-texto-suave;
+
+  .ponto { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; margin-right: $esp-xxs; }
+}
+
+// Filtros em "pílula" (Todas / Despesas / Receitas) com .btn-check
+.filtros-pilula {
+  .btn {
+    border-radius: $raio-pill;
+    background-color: $cor-superficie-cont;
+    border: 0;
+    color: $cor-texto-suave;
+    font-weight: 500;
+  }
+
+  .btn-check:checked + .btn {
+    background-color: $cor-primaria;
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+// Card de categoria
+.categoria-card {
+  .card-body { display: flex; flex-direction: column; gap: $esp-md; }
+
+  .nome { font-size: $fs-h3; font-weight: 600; margin-bottom: 0; }
+  .sub { font-size: $fs-legenda; color: $cor-texto-suave; }
+  .rotulo { font-size: $fs-legenda; font-weight: 600; color: $cor-texto-suave; }
+
+  .limite {
+    display: flex;
+    justify-content: space-between;
+    font-size: $fs-legenda;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: $cor-texto-suave;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: $esp-md;
+    background-color: transparent;
+    padding-top: $esp-sm;
+    padding-bottom: $esp-sm;
+  }
+
+  .btn-link { font-size: $fs-legenda; text-decoration: none; padding: $esp-xxs; }
+}
+
+// Barras de progresso coloridas por categoria
+@each $nome, $cor in $categorias {
+  .progress-bar.barra-#{$nome} { background-color: $cor; }
+  .texto-#{$nome} { color: $cor; }
+}
+
+// ---------- Modal: paleta de cores ----------
+.paleta-cores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $esp-sm;
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.875rem;
+
+    i { opacity: 0; }
+  }
+
+  // Cor selecionada: anel e ícone de "check"
+  .btn-check:checked + label {
+    box-shadow: 0 0 0 2px var(--sq-superficie), 0 0 0 4px $cor-primaria;
+    i { opacity: 1; }
+  }
+
+  @each $nome, $cor in $categorias {
+    .cor-#{$nome} { background-color: $cor; }
+  }
+}
+
+// ---------- Modal: grade de ícones ----------
+.grade-icones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $esp-xs;
+  padding: $esp-sm;
+  border: 1px solid $cor-borda-suave;
+  border-radius: $raio;
+  background-color: $cor-superficie-alt;
+
+  @include a-partir-de($bp-sm) { grid-template-columns: repeat(8, 1fr); }
+
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    border-radius: $raio;
+    border: 1px solid $cor-borda-suave;
+    background-color: var(--sq-superficie);
+    font-size: 1.125rem;
+    color: $cor-texto-suave;
+    cursor: pointer;
+  }
+
+  .btn-check:checked + label {
+    border-color: $cor-primaria;
+    color: $cor-primaria;
+    background-color: rgba($cor-primaria-fixa, 0.3);
+  }
+}

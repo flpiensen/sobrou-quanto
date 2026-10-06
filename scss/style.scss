@@ -7,5 +7,10 @@
 // recebe UM único arquivo.
 // =============================================================
 @use "base";
+@use "layout";
+@use "componentes";
+@use "login";
 @use "dashboard";
 @use "transacoes";
+@use "categorias";
+@use "perfil";

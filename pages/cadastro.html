@@ -571,6 +571,18 @@
               </div>
             </div>
 
+            <!-- Limite (despesa) ou meta (receita): alimenta a barra de progresso dos cards -->
+            <div>
+              <label for="limiteCategoria" class="form-label">Limite / Meta Mensal</label>
+              <div class="input-group">
+                <span class="input-group-text mono fw-semibold">R$</span>
+                <input type="text" inputmode="decimal" class="form-control mono" id="limiteCategoria" placeholder="0,00" required aria-describedby="limiteAjuda" />
+              </div>
+              <div id="limiteAjuda" class="form-text">
+                Despesa: teto de gastos no mês (ex.: R$ 2.450,00). Receita: valor que você espera receber no mês.
+              </div>
+            </div>
+
             <div>
               <span class="form-label d-block">Paleta de Cor da Identificação</span>
               <div class="paleta-cores">
@@ -594,10 +606,7 @@
             </div>
 
             <div>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="form-label">Ícone Representativo</span>
-                <span class="mono small text-body-secondary">Selecionado: bi-fork-knife</span>
-              </div>
+              <span class="form-label d-block">Ícone Representativo</span>
               <div class="grade-icones">
                   <input type="radio" class="btn-check" name="icone" id="icone-fork-knife" value="bi-fork-knife" checked />
                   <label for="icone-fork-knife" title="Restaurante"><i class="bi bi-fork-knife"></i></label>

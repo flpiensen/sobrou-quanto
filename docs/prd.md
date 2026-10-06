@@ -26,7 +26,7 @@ Abaixo estão as funcionalidades principais do MVP (Minimum Viable Product), org
 
 ## 🏷️ Épico 3: Gestão de Categorias ( cadastro.html )
 - *US06 - Cadastrar Categoria:* Como um Cliente, quero cadastrar e listar categorias (ex: Alimentação, Moradia, Salário) para organizar minhas movimentações.
-- *Critérios de Aceitação:* O nome da categoria, o tipo (Receita/Despesa) e a escolha de um ícone representativo são obrigatórios; o envio é feito via POST para o JSON Server e a lista é atualizada dinamicamente no DOM com botões de edição e exclusão.
+- *Critérios de Aceitação:* O nome da categoria, o tipo (Receita/Despesa), o limite mensal (teto de gastos para despesas ou meta de recebimento para receitas) e a escolha de uma cor e de um ícone representativo são obrigatórios; cada categoria exibe o quanto do limite já foi atingido em uma barra de progresso; o envio é feito via POST para o JSON Server e a lista é atualizada dinamicamente no DOM com botões de edição e exclusão.
 
 ## 💰 Épico 4: Movimentações Financeiras ( transacoes.html )
 - *US07 - Realizar Lançamento:* Como um Cliente, quero preencher um formulário informando valor, tipo (Receita/Despesa), categoria, data e opcionalmente anexar um comprovante para registrar uma nova movimentação.

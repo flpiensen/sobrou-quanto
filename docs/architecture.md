@@ -73,6 +73,8 @@ erDiagram
         string nome "Ex: Alimentação, Salário"
         string tipo "RECEITA ou DESPESA"
         string icone "Classe Bootstrap Icon (ex: bi-basket)"
+        string cor "Cor de identificação (ex: laranja)"
+        float limite "Teto mensal (DESPESA) ou meta mensal (RECEITA)"
     }
 
     TRANSACAO {
@@ -111,6 +113,10 @@ Permite a personalização da organização financeira.
 `tipo`: Define se a categoria é de entrada (RECEITA) ou saída (DESPESA).
 
 `icone`: Classe de ícone visual para renderização na UI (ex: bi-house).
+
+`cor`: Cor de identificação escolhida na paleta do cadastro (laranja, vermelho, verde, azul, roxo, ambar, rosa ou ciano).
+
+`limite`: Valor mensal de referência. Para DESPESA é o teto de gastos; para RECEITA é a meta de recebimento. É usado para calcular a barra de progresso de cada categoria (gasto acumulado ÷ limite).
 
 #### Transações
 Registra todas as movimentações financeiras.
@@ -163,13 +169,17 @@ Modelo de estrutura inicial sugerida para subir a API local:
       "id": "1",
       "nome": "Alimentação",
       "tipo": "DESPESA",
-      "icone": "bi-basket"
+      "icone": "bi-basket",
+      "cor": "laranja",
+      "limite": 2450.00
     },
     {
       "id": "2",
       "nome": "Salário",
       "tipo": "RECEITA",
-      "icone": "bi-cash-coin"
+      "icone": "bi-cash-coin",
+      "cor": "verde",
+      "limite": 9800.00
     }
   ],
   "transacoes": [

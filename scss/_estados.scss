@@ -1,0 +1,188 @@
+// =============================================================
+// _estados.scss — Estados criados pelo JavaScript
+// (lista vazia, carregando, avisos, avatar com iniciais, modo escuro)
+// =============================================================
+@use "variaveis" as *;
+
+// ---------- Avatar sem foto: iniciais do nome ----------
+.avatar-iniciais {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: rgba($cor-primaria-fixa, 0.6);
+  color: $cor-primaria;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+
+  .avatar-lg & {
+    width: 6.25rem;
+    height: 6.25rem;
+    font-size: 2rem;
+  }
+}
+
+// ---------- Sininho: o ponto vermelho só aparece com notificações novas ----------
+.btn-notificacao .ponto { display: none; }
+.btn-notificacao.tem-novas .ponto { display: block; }
+
+.lista-notificacoes {
+  max-height: 22rem;
+  overflow-y: auto;
+}
+
+.notificacoes-vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $esp-xxs;
+  padding: $esp-lg $esp-md;
+  text-align: center;
+  color: var(--sq-texto-suave);
+  font-size: $fs-corpo-md;
+
+  > i { font-size: 1.5rem; }
+  small { font-size: $fs-legenda; }
+}
+
+// ---------- Estado vazio das listas e tabelas ----------
+.estado-vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $esp-sm;
+  padding: $esp-xl $esp-md;
+  text-align: center;
+
+  .icone-tile { width: 3.5rem; height: 3.5rem; font-size: 1.5rem; }
+  strong { font-size: 1.0625rem; }
+  p { max-width: 28rem; margin: 0; color: var(--sq-texto-suave); font-size: $fs-corpo-md; }
+}
+
+// Dentro da grade de categorias o estado vazio ganha um cartão
+#vazioCategorias .estado-vazio {
+  background-color: var(--sq-superficie);
+  border: 1px dashed var(--sq-borda);
+  border-radius: $raio-lg;
+}
+
+// ---------- Selos ----------
+.badge-agendada {
+  display: block;
+  width: fit-content;
+  margin-top: 0.25rem;
+  padding: 0 0.4rem;
+  border-radius: $raio-pill;
+  background-color: rgba(#d97706, 0.15);
+  color: #b45309;
+  font-family: $fonte-base;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.badge-status.agendada {
+  background-color: rgba(#d97706, 0.12);
+  color: #b45309;
+}
+
+.badge-categoria.cat-neutro {
+  background-color: var(--sq-superficie-cont);
+  color: var(--sq-texto-suave);
+}
+
+.chip-status.chip-offline .ponto { background-color: $cor-erro; }
+
+// ---------- Gráfico de rosca sem dados ----------
+.rosca.vazia {
+  background: $cor-superficie-variante;
+}
+
+.alerta-insight.alerta-negativo {
+  background-color: rgba($cor-erro-container, 0.5);
+  border-color: rgba($cor-erro, 0.3);
+
+  .icone-tile { background-color: $cor-erro-container; color: $cor-erro; }
+}
+
+// ---------- Botão de atualizar girando ----------
+@keyframes girar { to { transform: rotate(360deg); } }
+.girando { display: inline-block; animation: girar 0.8s linear infinite; }
+
+// ---------- Login: botão de mostrar senha ----------
+.btn-ver-senha {
+  cursor: pointer;
+  &:hover { color: $cor-primaria; }
+}
+
+// ---------- Importação CSV: exemplo do formato ----------
+.exemplo-csv {
+  padding: $esp-sm $esp-md;
+  border-radius: $raio;
+  background-color: var(--sq-superficie-cont);
+  font-size: $fs-legenda;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+// ---------- Avisos (Toast do Bootstrap) ----------
+.toast {
+  border: 0;
+  border-left: 4px solid $cor-primaria;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12);
+
+  &.aviso-sucesso i.bi { color: $cor-primaria; }
+  &.aviso-erro { border-left-color: $cor-erro; i.bi { color: $cor-erro; } }
+  &.aviso-info { border-left-color: #2563eb; i.bi { color: #2563eb; } }
+}
+
+// ---------- Modo escuro (US11) ----------
+// Fundos, textos e bordas já mudam pelas variáveis --sq-* (_base.scss).
+// Aqui ficam só os ajustes de cores "de marca" que ficariam escuras demais.
+[data-tema="escuro"] {
+  .card,
+  .modal-content,
+  .dropdown-menu,
+  .toast {
+    --bs-card-bg: var(--sq-superficie);
+    --bs-modal-bg: var(--sq-superficie);
+    --bs-dropdown-bg: var(--sq-superficie);
+    --bs-toast-bg: var(--sq-superficie);
+    --bs-card-border-color: var(--sq-borda-suave);
+    border-color: var(--sq-borda-suave);
+    background-color: var(--sq-superficie);
+    color: var(--sq-texto);
+  }
+
+  .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--sq-texto);
+    --bs-table-hover-bg: var(--sq-superficie-alt);
+    --bs-table-hover-color: var(--sq-texto);
+  }
+
+  .form-control,
+  .form-select,
+  .input-group-text {
+    background-color: var(--sq-superficie-alt);
+    border-color: var(--sq-borda);
+    color: var(--sq-texto);
+  }
+
+  // Verde e vermelho mais claros para ter contraste no fundo escuro
+  .text-primary,
+  .valor-positivo,
+  .logo-texto .nome,
+  .rosca .estado,
+  a:not(.btn):not(.dropdown-item):not(.nav-link):not(.item):not(.item-acao) {
+    color: #4cd6a0 !important;
+  }
+  .text-danger,
+  .valor-negativo { color: #ff8a80 !important; }
+
+  .login-hero { background: linear-gradient(135deg, #12332a 0%, var(--sq-superficie) 60%, #1f2a3a 100%); }
+  .rosca.vazia { background: var(--sq-borda); }
+  .alerta-insight { background-color: rgba($cor-primaria, 0.2); }
+}

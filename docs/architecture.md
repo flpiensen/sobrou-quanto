@@ -53,156 +53,154 @@ graph TD
 
 ## 2. Modelo de Dados (Diagrama ER)
 
-O Diagrama Entidade-Relacionamento (DER) abaixo representa a estrutura de dados persistida no db.json. A entidade CATEGORIA foi adicionada para classificar as transações, facilitando a filtragem e a geração dos gráficos no Dashboard.
+O Diagrama Entidade-Relacionamento (DER) abaixo representa a estrutura de dados persistida no `server/db.json`. Cada cliente enxerga apenas as próprias categorias e movimentações (filtro por `clienteId`). Nenhum valor exibido na interface é fixo no HTML: saldo, totais, percentuais, gráfico e notificações são calculados pelo JavaScript a partir destes registros.
 
 ```mermaid
 erDiagram
-    CLIENTE ||--o{ TRANSACAO : "realiza (e paga taxa)"
-    CATEGORIA ||--o{ TRANSACAO : "classifica"
+    CLIENTE ||--o{ CATEGORIA : "cadastra"
+    CLIENTE ||--o{ TRANSACAO : "registra"
+    CATEGORIA |o--o{ TRANSACAO : "classifica"
+    TRANSACAO ||--o| COMPROVANTE : "anexa"
 
     CLIENTE {
-        int id PK "Gerado automaticamente"
-        string nome "Nome do cliente"
-        string cpf "Usado para validação/login"
-        string senha "Credencial do usuário"
-        int saldo "Atualizado a cada operação"
+        int id PK "Gerado pelo JSON Server"
+        string nome "Nome completo"
+        string email "Login (único)"
+        string senhaHash "SHA-256 da senha"
+        string profissao "Opcional"
+        string telefone "Opcional, (11) 98765-4321"
+        string bio "Opcional, até 240 caracteres"
+        string foto "Opcional: imagem 256x256 em Base64"
+        object preferencias "Switches da US11"
+        string criadoEm "Data/hora ISO"
+        string atualizadoEm "Data/hora ISO"
     }
 
     CATEGORIA {
-        int id PK "Gerado automaticamente"
+        int id PK "Gerado pelo JSON Server"
+        int clienteId FK "Dono da categoria"
         string nome "Ex: Alimentação, Salário"
         string tipo "RECEITA ou DESPESA"
-        string icone "Classe Bootstrap Icon (ex: bi-basket)"
+        string icone "Classe Bootstrap Icon (ex: bi-house)"
         string cor "Cor de identificação (ex: laranja)"
         float limite "Teto mensal (DESPESA) ou meta mensal (RECEITA)"
     }
 
     TRANSACAO {
-        int id PK "Gerado automaticamente"
-        int clienteId FK "Chave estrangeira vinculada ao Cliente"
-        int categoriaId FK "Chave estrangeira vinculada à Categoria"
-        string tipo "SAQUE, DEPOSITO ou TAXA"
-        int valor "Sempre valor positivo"
-        string data "Formato ISO (YYYY-MM-DD)"
-        string descricao "Ex: 'Compra no mercado'"
-        string comprovanteUrl "Opcional: Caminho/Base64 do arquivo"
+        int id PK "Gerado pelo JSON Server"
+        int clienteId FK "Dono da movimentação"
+        int categoriaId FK "Pode ser null (categoria excluída)"
+        string tipo "RECEITA ou DESPESA"
+        float valor "Sempre positivo"
+        string data "YYYY-MM-DD (futura = agendada)"
+        string descricao "Ex: Mercado do bairro"
+        string conta "Conta corrente, Pix, Cartão..."
+        object comprovante "id, nome, tipo e tamanho (ou null)"
+        string criadoEm "Data/hora ISO"
+    }
+
+    COMPROVANTE {
+        int id PK "Gerado pelo JSON Server"
+        int transacaoId FK "Movimentação dona do arquivo"
+        int clienteId FK "Dono do arquivo"
+        string nome "Nome original do arquivo"
+        string tipo "image/jpeg, image/png ou application/pdf"
+        int tamanho "Bytes (máximo 2 MB)"
+        string conteudo "Arquivo em Base64 (data URL)"
     }
 ```
 
 ## 3. Dicionário de Dados
 #### Clientes
-Armazena as informações dos usuários, credenciais de acesso e saldo atualizado.
+Criados pela tela de cadastro (login.html → "Cadastre-se").
 
-`id`: Identificador único do usuário (String/Hash gerado pelo JSON Server).
+`id`: Identificador numérico gerado pelo JSON Server.
 
-`nome`: Nome completo do cliente.
+`nome`: Nome completo (validado por regex: nome e sobrenome).
 
-`cpf`: Chave de acesso e identificação.
+`email`: E-mail de acesso, gravado em minúsculas e único no sistema.
 
-`senha`: Senha de autenticação do usuário.
+`senhaHash`: Hash SHA-256 da senha (Web Crypto API). A senha em texto puro nunca é gravada.
 
-`saldo`: Valor numérico acumulado, calculado com base nas transações.
+`profissao`, `telefone`, `bio`: Dados do perfil (US10), editáveis em perfil.html.
+
+`foto`: Foto de perfil reduzida para 256x256 em um `<canvas>` e salva em Base64. Sem foto, a interface mostra as iniciais do nome.
+
+`preferencias`: `{ alertas, modoEscuro, cotacoesAuto, lembreteComprovante }` (US11).
+
+`criadoEm` / `atualizadoEm`: Datas usadas em "Membro desde" e "Última alteração".
+
+> O saldo **não** é gravado: ele é sempre calculado (Receitas − Despesas) a partir das transações, para nunca ficar desatualizado.
 
 #### Categorias
-Permite a personalização da organização financeira.
+`clienteId`: Cliente dono da categoria.
 
-`id`: Identificador único da categoria.
+`nome`: Título da categoria (não pode repetir para o mesmo tipo).
 
-`nome`: Título da categoria (ex: "Moradia").
+`tipo`: Entrada (RECEITA) ou saída (DESPESA).
 
-`tipo`: Define se a categoria é de entrada (RECEITA) ou saída (DESPESA).
+`icone`: Classe do Bootstrap Icons (ex: bi-house).
 
-`icone`: Classe de ícone visual para renderização na UI (ex: bi-house).
+`cor`: Cor da paleta (laranja, vermelho, verde, azul, roxo, ambar, rosa ou ciano).
 
-`cor`: Cor de identificação escolhida na paleta do cadastro (laranja, vermelho, verde, azul, roxo, ambar, rosa ou ciano).
-
-`limite`: Valor mensal de referência. Para DESPESA é o teto de gastos; para RECEITA é a meta de recebimento. É usado para calcular a barra de progresso de cada categoria (gasto acumulado ÷ limite).
+`limite`: Para DESPESA é o teto de gastos do mês; para RECEITA é a meta de recebimento. A barra de progresso mostra (movimentado no mês ÷ limite).
 
 #### Transações
-Registra todas as movimentações financeiras.
+`clienteId` / `categoriaId`: Chaves estrangeiras. Ao excluir uma categoria, as transações dela recebem `categoriaId: null` antes do DELETE, porque o JSON Server apaga em cascata os registros que apontam para o id excluído.
 
-`id`: Identificador único da transação.
+`tipo`: RECEITA ou DESPESA (sempre igual ao tipo da categoria).
 
-`clienteId`: Chave estrangeira que vincula a transação ao cliente (GET /transacoes?clienteId=:id).
+`valor`: Valor absoluto; o sinal é definido pelo tipo.
 
-`categoriaId`: Chave estrangeira que classifica a transação.
+`data`: Data no formato ISO. Despesas com data futura aparecem como "Agendada" e geram o alerta de vencimento.
 
-`tipo`: Tipo da operação (SAQUE, DEPOSITO ou TAXA).
+`conta`: Forma de pagamento escolhida no modal.
 
-`valor`: Montante numérico absoluto da transação.
+`comprovante`: Resumo do arquivo anexado (`id`, `nome`, `tipo`, `tamanho`) ou `null`. O arquivo em si fica na coleção `comprovantes`, para a listagem de transações continuar leve.
 
-`data`: Data do lançamento no formato ISO (YYYY-MM-DD).
+#### Comprovantes
+`transacaoId`: Transação dona do arquivo. Ao excluir a transação, o JSON Server apaga o comprovante junto (cascata).
 
-`descricao`: Texto descritivo.
-
-`comprovanteUrl`: URL ou string base64 do arquivo anexado no modal.
+`conteudo`: Arquivo em Base64 (data URL), lido com `FileReader`.
 
 ## 4. Rotas e Endpoints da API (JSON Server)
-A aplicação consome a API REST simulada através dos seguintes endpoints básicos:
+A API roda com `npm run api` em `http://localhost:3000`:
 
-`GET /clientes | POST /clientes` : Gestão de usuários.
+| Método | Rota | Uso |
+|---|---|---|
+| GET | `/clientes?email=:email` | Login e verificação de e-mail já cadastrado |
+| POST | `/clientes` | Cadastro de conta |
+| GET / PATCH | `/clientes/:id` | Carregar e editar perfil, foto, senha e preferências |
+| GET | `/categorias?clienteId=:id` | Categorias do cliente |
+| POST / PATCH / DELETE | `/categorias` · `/categorias/:id` | Cadastro, edição e exclusão de categorias |
+| GET | `/transacoes?clienteId=:id` | Extrato, dashboard e notificações |
+| POST / PATCH / DELETE | `/transacoes` · `/transacoes/:id` | Nova movimentação, edição, importação CSV e exclusão |
+| GET / POST / DELETE | `/comprovantes/:id` · `/comprovantes` | Abrir, anexar e trocar comprovantes |
 
-`PATCH /clientes/:id` : Atualização de saldos e perfil.
-
-`GET /categorias | POST /categorias` : Listagem e criação de categorias cadastradas na tela "Cadastros".
-
-`GET /transacoes?clienteId=:id` : Histórico financeiro para popular a tabela e gerar o gráfico no Dashboard.
-
-`POST /transacoes` : Registro gerado através do Modal de "Nova Transação".
+API pública: `GET https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL` (cotações, com cache de 1 minuto no sessionStorage e tempo limite de 8 segundos).
 
 ## 5. Estrutura Inicial do Banco de Dados (db.json)
-Modelo de estrutura inicial sugerida para subir a API local:
+O banco começa **vazio**. Tudo o que aparece na aplicação é cadastrado pelas telas:
 
 ```JSON
 {
-  "clientes": [
-    {
-      "id": "1",
-      "nome": "Usuário SobrouQuanto",
-      "cpf": "12345678900",
-      "senha": "senha_super_segura",
-      "saldo": 14350.00
-    }
-  ],
-  "categorias": [
-    {
-      "id": "1",
-      "nome": "Alimentação",
-      "tipo": "DESPESA",
-      "icone": "bi-basket",
-      "cor": "laranja",
-      "limite": 2450.00
-    },
-    {
-      "id": "2",
-      "nome": "Salário",
-      "tipo": "RECEITA",
-      "icone": "bi-cash-coin",
-      "cor": "verde",
-      "limite": 9800.00
-    }
-  ],
-  "transacoes": [
-    {
-      "id": "1",
-      "clienteId": "1",
-      "categoriaId": "2",
-      "tipo": "DEPOSITO",
-      "valor": 18500.00,
-      "data": "2026-08-24",
-      "descricao": "Salário Mensal",
-      "comprovanteUrl": ""
-    },
-    {
-      "id": "2",
-      "clienteId": "1",
-      "categoriaId": "1",
-      "tipo": "SAQUE",
-      "valor": 450.00,
-      "data": "2026-08-26",
-      "descricao": "Mercado Central",
-      "comprovanteUrl": "data:image/png;base64,iVBORw0KG..."
-    }
-  ]
+  "clientes": [],
+  "categorias": [],
+  "transacoes": [],
+  "comprovantes": []
 }
 ```
+
+## 6. Organização do JavaScript
+Os scripts são **ES Modules** (`<script type="module">`), por isso a aplicação precisa ser aberta por um servidor (JSON Server ou Live Server), e não com duplo clique no arquivo.
+
+| Arquivo | Responsabilidade |
+|---|---|
+| `js/api.js` | `fetch` com `async/await` para o JSON Server e a AwesomeAPI, com tratamento de erros |
+| `js/main.js` | Sessão (sessionStorage/localStorage), proteção das páginas, navbar, modo escuro, hash da senha |
+| `js/validacao.js` | Expressões regulares, máscaras de valor e telefone, mensagens de erro nos campos |
+| `js/calculos.js` | Regras de negócio: saldo, totais do mês, uso do limite das categorias |
+| `js/render.js` | Formatação (moeda, datas) e trechos de HTML reaproveitados |
+| `js/notificacoes.js` | Notificações do sininho geradas a partir dos dados |
+| `js/comprovante.js` | Upload do comprovante (tipo, tamanho, arrastar e soltar) |
+| `js/paginas/*.js` | Código específico de cada tela |

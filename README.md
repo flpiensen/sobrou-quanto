@@ -53,11 +53,27 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 
 ### Passo a Passo
 
-1. **Clonar o repositório:**
+1. **Clonar o repositório e instalar as dependências** (Bootstrap, ícones, fontes, Sass e JSON Server):
    ```bash
-   git clone [https://github.com/flpiensen/sobrou-quanto.git](https://github.com/flpiensen/sobrou-quanto.git)
+   git clone https://github.com/flpiensen/sobrou-quanto.git
    cd sobrou-quanto
+   npm install
+   ```
 
+2. **Subir a API fake (JSON Server)** — deixe este terminal aberto:
+   ```bash
+   npm run api
+   ```
+   Os dados ficam no arquivo `server/db.json`, que começa vazio.
+
+3. **Abrir a aplicação** em `http://localhost:3000/pages/login.html` (o próprio JSON Server também entrega as páginas).
+   Se preferir o Live Server, abra `pages/login.html` por ele: o arquivo `.vscode/settings.json` já impede que ele recarregue a página a cada gravação no `db.json`.
+
+4. **Criar a conta** em "Cadastre-se gratuitamente", depois cadastrar as **categorias** e registrar as **movimentações**. O dashboard, os limites e as notificações são calculados a partir desses cadastros.
+
+5. **(Opcional) Editar os estilos:** `npm run sass` recompila o `scss/` para `css/` a cada alteração.
+
+> Os scripts são ES Modules: abrir o HTML com duplo clique (`file://`) não funciona; use sempre um servidor (passo 3).
 
 ## 📊 Checklist de Indicadores de Desempenho (IDs)
 

@@ -17,7 +17,7 @@
 
 .legenda-volume {
   font-size: $fs-legenda;
-  color: $cor-texto-suave;
+  color: var(--sq-texto-suave);
 
   .ponto { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; margin-right: $esp-xxs; }
 }
@@ -26,9 +26,9 @@
 .filtros-pilula {
   .btn {
     border-radius: $raio-pill;
-    background-color: $cor-superficie-cont;
+    background-color: var(--sq-superficie-cont);
     border: 0;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
     font-weight: 500;
   }
 
@@ -44,8 +44,8 @@
   .card-body { display: flex; flex-direction: column; gap: $esp-md; }
 
   .nome { font-size: $fs-h3; font-weight: 600; margin-bottom: 0; }
-  .sub { font-size: $fs-legenda; color: $cor-texto-suave; }
-  .rotulo { font-size: $fs-legenda; font-weight: 600; color: $cor-texto-suave; }
+  .sub { font-size: $fs-legenda; color: var(--sq-texto-suave); }
+  .rotulo { font-size: $fs-legenda; font-weight: 600; color: var(--sq-texto-suave); }
 
   .limite {
     display: flex;
@@ -53,7 +53,7 @@
     font-size: $fs-legenda;
     font-weight: 600;
     letter-spacing: 0.02em;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
   }
 
   .card-footer {
@@ -111,9 +111,9 @@
   grid-template-columns: repeat(4, 1fr);
   gap: $esp-xs;
   padding: $esp-sm;
-  border: 1px solid $cor-borda-suave;
+  border: 1px solid var(--sq-borda-suave);
   border-radius: $raio;
-  background-color: $cor-superficie-alt;
+  background-color: var(--sq-superficie-alt);
 
   @include a-partir-de($bp-sm) { grid-template-columns: repeat(8, 1fr); }
 
@@ -123,10 +123,10 @@
     justify-content: center;
     height: 3rem; // altura fixa: não cresce com a largura do modal
     border-radius: $raio;
-    border: 1px solid $cor-borda-suave;
+    border: 1px solid var(--sq-borda-suave);
     background-color: var(--sq-superficie);
     font-size: 1.125rem;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
     cursor: pointer;
   }
 

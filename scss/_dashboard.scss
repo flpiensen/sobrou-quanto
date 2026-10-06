@@ -44,7 +44,7 @@
     text-align: center;
     line-height: 1.25;
 
-    .rotulo { font-size: $fs-caps; text-transform: uppercase; letter-spacing: 0.05em; color: $cor-texto-suave; }
+    .rotulo { font-size: $fs-caps; text-transform: uppercase; letter-spacing: 0.05em; color: var(--sq-texto-suave); }
     .percentual { @include texto-numerico($fs-corpo); font-weight: 700; }
     .estado { font-size: $fs-legenda; font-weight: 600; color: $cor-primaria; }
   }
@@ -57,12 +57,12 @@
   gap: $esp-sm;
   padding: $esp-sm $esp-md;
   border-radius: $raio;
-  background-color: $cor-superficie-alt;
-  border: 1px solid $cor-borda-suave;
+  background-color: var(--sq-superficie-alt);
+  border: 1px solid var(--sq-borda-suave);
 
   .marcador { width: 0.75rem; height: 0.75rem; border-radius: 50%; flex-shrink: 0; }
   .titulo { display: block; font-size: $fs-corpo-md; font-weight: 500; }
-  .sub { display: block; font-size: $fs-legenda; color: $cor-texto-suave; }
+  .sub { display: block; font-size: $fs-legenda; color: var(--sq-texto-suave); }
   .valor { @include texto-numerico($fs-corpo-md); font-weight: 700; margin-left: auto; }
 }
 
@@ -73,8 +73,8 @@
   gap: $esp-md;
   padding: $esp-md;
   border-radius: $raio;
-  background-color: $cor-superficie-alt;
-  border: 1px solid $cor-borda-suave;
+  background-color: var(--sq-superficie-alt);
+  border: 1px solid var(--sq-borda-suave);
 
   .moeda-icone {
     display: inline-flex;
@@ -84,13 +84,13 @@
     height: 2.5rem;
     border-radius: 50%;
     background-color: var(--sq-superficie);
-    border: 1px solid $cor-borda-suave;
+    border: 1px solid var(--sq-borda-suave);
     font-size: 1.125rem;
-    color: $cor-texto-suave;
+    color: var(--sq-texto-suave);
   }
 
   .nome { font-size: $fs-corpo-md; font-weight: 600; }
-  .par { font-size: $fs-caps; font-weight: 600; color: $cor-texto-suave; margin-left: $esp-xxs; }
-  .atualizado { display: block; font-size: $fs-legenda; color: $cor-texto-suave; }
+  .par { font-size: $fs-caps; font-weight: 600; color: var(--sq-texto-suave); margin-left: $esp-xxs; }
+  .atualizado { display: block; font-size: $fs-legenda; color: var(--sq-texto-suave); }
   .preco { @include texto-numerico($fs-corpo-md); font-weight: 700; }
 }

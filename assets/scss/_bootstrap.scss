@@ -1,13 +1,13 @@
 // =============================================================
-// bootstrap.scss — Bootstrap personalizado com os tokens do app
-// Compila para: css/bootstrap.css
+// _bootstrap.scss — Bootstrap personalizado com os tokens do app
+// Carregado pelo main.scss (vira parte do assets/css/style.css)
 //
 // As variáveis do Bootstrap usam !default ("use este valor SÓ SE
 // ninguém definiu antes"). Definindo aqui, ANTES de importar o
 // Bootstrap, todos os componentes já saem com o visual do
 // SobrouQuanto? (cores, fontes, bordas, espaçamentos).
 // =============================================================
-@use "variaveis" as v;
+@use "variables" as v;
 
 // ---------- Cores do tema ----------
 $primary:   v.$cor-primaria;

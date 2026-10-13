@@ -31,7 +31,7 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 * **[Bootstrap Icons](https://icons.getbootstrap.com/)**
   * **Justificativa:** Biblioteca de ícones oficial do Bootstrap, com integração nativa — usada nos ícones de categoria (`bi-basket`, `bi-cash-coin`, etc.) e da interface como um todo.
 * **[Sass (SCSS)](https://sass-lang.com/)** — dependência de desenvolvimento
-  * **Justificativa:** Pré-processador CSS usado para centralizar os Design Tokens do `docs/sdd.md` em variáveis, reaproveitar estilos com mixins e personalizar o Bootstrap (cores, fontes e bordas) antes da compilação. Os fontes ficam em `scss/` e são compilados para `css/` com `npm run sass`.
+  * **Justificativa:** Pré-processador CSS usado para centralizar os Design Tokens do `docs/sdd.md` em variáveis, reaproveitar estilos com mixins e personalizar o Bootstrap (cores, fontes e bordas) antes da compilação. Os fontes ficam em `assets/scss/` (parciais carregadas com `@use` pelo `main.scss`) e são compilados para um único `assets/css/style.css` com `npm run sass`.
 
 ### **API Pública**
 * **[AwesomeAPI (Cotações de Moedas)](https://docs.awesomeapi.com.br/api-de-moedas)**
@@ -71,7 +71,7 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 
 4. **Criar a conta** em "Cadastre-se gratuitamente", depois cadastrar as **categorias** e registrar as **movimentações**. O dashboard, os limites e as notificações são calculados a partir desses cadastros.
 
-5. **(Opcional) Editar os estilos:** `npm run sass` recompila o `scss/` para `css/` a cada alteração.
+5. **(Opcional) Editar os estilos:** `npm run sass` recompila o `assets/scss/main.scss` para `assets/css/style.css` a cada alteração.
 
 > Os scripts são ES Modules: abrir o HTML com duplo clique (`file://`) não funciona; use sempre um servidor (passo 3).
 

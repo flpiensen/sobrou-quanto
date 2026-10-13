@@ -32,7 +32,7 @@ graph TD
 * **Framework CSS:** [Bootstrap](https://getbootstrap.com/) (`v5.3.8`)
   * **Uso:** Sistema de grid responsivo (Flexbox) e componentes prontos (Navbar, Cards, Modais, Forms, Dropdowns) via classes utilitárias e o bundle JS próprio (inclui Popper para tooltips/dropdowns). Não depende de jQuery.
   * **Inclusão:**
-    * CSS: `css/bootstrap.css`, compilado pelo Sass a partir de `node_modules/bootstrap/scss` com as cores e fontes do Design System (ver Sass abaixo).
+    * CSS: compilado pelo Sass a partir de `node_modules/bootstrap/scss` com as cores e fontes do Design System, dentro do `assets/css/style.css` (ver Sass abaixo).
     * JS: `node_modules/bootstrap/dist/js/bootstrap.bundle.min.js` (NPM)
 
 * **Ícones:** [Bootstrap Icons](https://icons.getbootstrap.com/) (`v1.13.1`)
@@ -44,8 +44,8 @@ graph TD
   * **Inclusão (via NPM):** `node_modules/@fontsource/plus-jakarta-sans/{400..700}.css` e `node_modules/@fontsource/jetbrains-mono/{400..700}.css`
 
 * **Pré-processador CSS:** [Sass](https://sass-lang.com/) (`v1.105`, dependência de desenvolvimento)
-  * **Uso:** Os Design Tokens (cores, tipografia, espaçamentos, raios e sombras) ficam em `scss/_variaveis.scss`. O arquivo `scss/bootstrap.scss` sobrescreve as variáveis do Bootstrap (`$primary`, `$danger`, `$font-family-sans-serif` etc.) antes de compilá-lo, e `scss/style.scss` reúne os estilos próprios da aplicação, organizados em parciais por tela.
-  * **Compilação:** `npm run sass` (modo watch) ou `npm run sass:build` (minificado), gerando `css/bootstrap.css` e `css/style.css`, que são os arquivos carregados pelo HTML.
+  * **Uso:** Os Design Tokens (cores, tipografia, espaçamentos, raios e sombras) ficam em `assets/scss/_variables.scss` e os mixins em `assets/scss/_mixins.scss`. A parcial `_bootstrap.scss` sobrescreve as variáveis do Bootstrap (`$primary`, `$danger`, `$font-family-sans-serif` etc.) antes de compilá-lo, e o `assets/scss/main.scss` carrega tudo com `@use`: o Bootstrap personalizado, a base, o layout, os componentes e uma parcial por tela.
+  * **Compilação:** `npm run sass` (modo watch) ou `npm run sass:build` (minificado), gerando um único arquivo, `assets/css/style.css`, que é o CSS carregado pelo HTML.
 
 * **API Pública de Cotações:** [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas) (`v1`)
   * **Uso:** Consumo de cotações de moedas em tempo real para exibição no Dashboard.

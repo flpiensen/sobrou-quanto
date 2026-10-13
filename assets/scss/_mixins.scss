@@ -3,7 +3,7 @@
 // Pense como um lançamento recorrente: o formato é sempre o
 // mesmo, você só preenche o que muda (os parâmetros).
 // =============================================================
-@use "variaveis" as *;
+@use "variables" as *;
 
 // Mobile first: aplica o bloco a partir de uma largura de tela.
 // Uso: @include a-partir-de($bp-md) { ... }

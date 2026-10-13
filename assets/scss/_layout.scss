@@ -2,7 +2,7 @@
 // _layout.scss — Estrutura comum a todas as telas
 // (navbar, área principal e rodapé fixo no fim da página)
 // =============================================================
-@use "variaveis" as *;
+@use "variables" as *;
 @use "mixins" as *;
 
 // ---------- Sticky footer ----------

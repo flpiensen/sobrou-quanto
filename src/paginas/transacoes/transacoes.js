@@ -3,10 +3,10 @@
 // US07 (POST/PATCH), US08 (GET + filtros + importação CSV), US09 (DELETE)
 // =============================================================
 
-import { api } from "../api.js";
-import { calcularTotais, hojeIso, mesAnterior, mesAtual, ordenarPorData, situacao } from "../calculos.js";
-import { abrirComprovante, configurarComprovante, lerArquivo } from "../comprovante.js";
-import { atualizarLayout, iniciarPagina } from "../main.js";
+import { api } from "../../js/api.js";
+import { calcularTotais, hojeIso, mesAnterior, mesAtual, ordenarPorData, situacao } from "../../js/calculos.js";
+import { abrirComprovante, configurarComprovante, lerArquivo } from "../../js/comprovante.js";
+import { atualizarLayout, iniciarPagina } from "../../js/main.js";
 import {
   badgeCategoria,
   botaoCarregando,
@@ -18,8 +18,8 @@ import {
   formatarMoeda,
   formatarNumero,
   mostrarAviso,
-} from "../render.js";
-import { aplicarMascaraValor, converterValor, limparAoDigitar, limparValidacao, REGEX, validarCampos } from "../validacao.js";
+} from "../../js/render.js";
+import { aplicarMascaraValor, converterValor, limparAoDigitar, limparValidacao, REGEX, validarCampos } from "../../js/validacao.js";
 
 const POR_PAGINA = 10;
 
@@ -189,7 +189,7 @@ function renderizarExtrato() {
       titulo: "Nenhuma movimentação cadastrada",
       texto: dados.categorias.length
         ? "Registre sua primeira receita ou despesa para começar a acompanhar o seu saldo."
-        : 'Comece cadastrando suas <a href="cadastro.html">categorias</a> e depois registre suas receitas e despesas.',
+        : 'Comece cadastrando suas <a href="../categorias/index.html">categorias</a> e depois registre suas receitas e despesas.',
       acao: '<button type="button" class="btn btn-primary" data-nova-movimentacao><i class="bi bi-plus-lg"></i> Nova Movimentação</button>',
     });
   } else if (!filtradas.length) {

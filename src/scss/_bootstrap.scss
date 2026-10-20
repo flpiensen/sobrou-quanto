@@ -1,6 +1,6 @@
 // =============================================================
 // _bootstrap.scss — Bootstrap personalizado com os tokens do app
-// Carregado pelo main.scss (vira parte do assets/css/style.css)
+// Carregado pelo main.scss (o CSS global de todas as páginas)
 //
 // As variáveis do Bootstrap usam !default ("use este valor SÓ SE
 // ninguém definiu antes"). Definindo aqui, ANTES de importar o
@@ -87,5 +87,5 @@ $offcanvas-horizontal-width:     280px;
 
 // Aqui usamos @import (e não @use) porque é a forma que a
 // documentação do Bootstrap 5.3 ainda exige. O aviso de
-// "deprecated" é silenciado no script do package.json.
+// "deprecated" é silenciado no vite.config.js.
 @import "bootstrap/scss/bootstrap";

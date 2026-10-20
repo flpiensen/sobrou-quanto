@@ -3,9 +3,9 @@
 // GET, POST, PATCH e DELETE em /categorias
 // =============================================================
 
-import { api } from "../api.js";
-import { calcularTotais, mesAtual, resumirCategorias, transacoesDoMes } from "../calculos.js";
-import { atualizarLayout, iniciarPagina } from "../main.js";
+import { api } from "../../js/api.js";
+import { calcularTotais, mesAtual, resumirCategorias, transacoesDoMes } from "../../js/calculos.js";
+import { atualizarLayout, iniciarPagina } from "../../js/main.js";
 import {
   botaoCarregando,
   escaparHtml,
@@ -15,8 +15,8 @@ import {
   formatarNumero,
   formatarPercentual,
   mostrarAviso,
-} from "../render.js";
-import { aplicarMascaraValor, converterValor, limparAoDigitar, limparValidacao, validarCampos } from "../validacao.js";
+} from "../../js/render.js";
+import { aplicarMascaraValor, converterValor, limparAoDigitar, limparValidacao, validarCampos } from "../../js/validacao.js";
 
 // Estado da página
 let dados = { cliente: null, categorias: [], transacoes: [] };

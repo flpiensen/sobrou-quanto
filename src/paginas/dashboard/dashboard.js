@@ -3,9 +3,10 @@
 // Todos os números são calculados a partir das movimentações do JSON Server.
 // =============================================================
 
-import { buscarCotacoes } from "../api.js";
-import { calcularTotais, diasAte, hojeIso, mesAnterior, mesAtual, ordenarPorData, situacao, transacoesDoMes } from "../calculos.js";
-import { iniciarPagina } from "../main.js";
+import { buscarCotacoes } from "../../js/api.js";
+import { calcularTotais, diasAte, hojeIso, mesAnterior, mesAtual, ordenarPorData, situacao, transacoesDoMes } from "../../js/calculos.js";
+import { iniciarPagina } from "../../js/main.js";
+import { ROTAS } from "../../js/rotas.js";
 import {
   badgeCategoria,
   escaparHtml,
@@ -15,7 +16,7 @@ import {
   formatarMes,
   formatarMoeda,
   formatarPercentual,
-} from "../render.js";
+} from "../../js/render.js";
 
 const QTD_RECENTES = 6;
 const campoMes = document.querySelector("#mesReferencia");
@@ -136,8 +137,8 @@ function renderizarGrafico(anoMes, { totais, taxa, semDados }) {
 
   if (semDados) {
     texto.innerHTML = dados.categorias.length
-      ? `<strong class="text-primary">Tudo pronto!</strong> Registre receitas e despesas de ${formatarMes(anoMes).toLowerCase()} em <a href="pages/transacoes.html#nova">Transações</a> para ver o seu resumo aqui.`
-      : '<strong class="text-primary">Comece por aqui:</strong> cadastre suas <a href="pages/cadastro.html">categorias</a> e depois registre suas movimentações.';
+      ? `<strong class="text-primary">Tudo pronto!</strong> Registre receitas e despesas de ${formatarMes(anoMes).toLowerCase()} em <a href="${ROTAS.transacoes}#nova">Transações</a> para ver o seu resumo aqui.`
+      : `<strong class="text-primary">Comece por aqui:</strong> cadastre suas <a href="${ROTAS.categorias}">categorias</a> e depois registre suas movimentações.`;
   } else if (totais.saldo < 0) {
     texto.innerHTML = `<strong class="text-danger">Atenção!</strong> As despesas passaram as receitas em ${formatarMoeda(Math.abs(totais.saldo))} neste mês. Revise as categorias com maior gasto.`;
   } else if (taxa === null) {
@@ -198,8 +199,8 @@ function renderizarRecentes() {
       titulo: "Nenhuma movimentação ainda",
       texto: "As movimentações que você cadastrar aparecem aqui.",
       acao: dados.categorias.length
-        ? '<a class="btn btn-primary" href="pages/transacoes.html#nova"><i class="bi bi-plus-lg"></i> Nova Movimentação</a>'
-        : '<a class="btn btn-primary" href="pages/cadastro.html"><i class="bi bi-tags"></i> Cadastrar categorias</a>',
+        ? `<a class="btn btn-primary" href="${ROTAS.transacoes}#nova"><i class="bi bi-plus-lg"></i> Nova Movimentação</a>`
+        : `<a class="btn btn-primary" href="${ROTAS.categorias}"><i class="bi bi-tags"></i> Cadastrar categorias</a>`,
     });
   } else if (!lista.length) {
     vazio.innerHTML = estadoVazio({ icone: "bi-search", titulo: "Nada encontrado", texto: "Nenhuma movimentação com esse texto." });

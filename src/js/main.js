@@ -6,13 +6,28 @@
 //  • notificações, modo escuro e status das APIs
 // =============================================================
 
+// Dependências globais instaladas pelo NPM (o Vite resolve a partir do node_modules)
+import "@fontsource/plus-jakarta-sans/400.css";
+import "@fontsource/plus-jakarta-sans/500.css";
+import "@fontsource/plus-jakarta-sans/600.css";
+import "@fontsource/plus-jakarta-sans/700.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "@fontsource/jetbrains-mono/600.css";
+import "@fontsource/jetbrains-mono/700.css";
+import "bootstrap-icons/font/bootstrap-icons.min.css";
+import * as bootstrap from "bootstrap";
+
 import { buscarCotacoes, carregarDadosDoCliente, verificarJsonServer } from "./api.js";
 import { gerarNotificacoes, renderizarNotificacoes } from "./notificacoes.js";
 import { conteudoAvatar, escaparHtml, formatarMoeda, formatarPercentual, mostrarAviso } from "./render.js";
+import { ROTAS } from "./rotas.js";
 
-export const RAIZ = location.pathname.includes("/pages/") ? "../" : "";
-export const PAGINA_LOGIN = `${RAIZ}pages/login.html`;
-export const PAGINA_INICIAL = `${RAIZ}index.html`;
+// Os scripts das páginas usam "bootstrap.Modal", "bootstrap.Toast"...
+window.bootstrap = bootstrap;
+
+export const PAGINA_LOGIN = ROTAS.login;
+export const PAGINA_INICIAL = ROTAS.inicio;
 
 // Ano atual no rodapé
 document.querySelectorAll("[data-ano]").forEach((el) => (el.textContent = new Date().getFullYear()));

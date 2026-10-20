@@ -1,8 +1,10 @@
 // =============================================================
-// _login.scss — Tela de login (Épico 1)
+// login.scss — Estilos exclusivos da página: Login e cadastro de conta (Épico 1)
+// O CSS global (Bootstrap + tema + componentes comuns) vem do main.
 // =============================================================
-@use "variables" as *;
-@use "mixins" as *;
+@use "../../scss/main";
+@use "../../scss/variables" as *;
+@use "../../scss/mixins" as *;
 
 .login-wrapper {
   display: flex;

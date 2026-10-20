@@ -5,22 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | SobrouQuanto?</title>
 
-    <!-- Fontes do Design System (instaladas via NPM: @fontsource) -->
-    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/400.css" />
-    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/500.css" />
-    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/600.css" />
-    <link rel="stylesheet" href="../node_modules/@fontsource/plus-jakarta-sans/700.css" />
-    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/400.css" />
-    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/500.css" />
-    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/600.css" />
-    <link rel="stylesheet" href="../node_modules/@fontsource/jetbrains-mono/700.css" />
+    <!-- CSS da página: começa com @use do CSS global (src/scss/main.scss)
+         e acrescenta só os estilos desta tela. O Vite compila o Sass. -->
+    <link rel="stylesheet" href="./login.scss" />
 
-    <!-- Bootstrap Icons (NPM) -->
-    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
-
-    <!-- Estilos: Bootstrap 5.3 personalizado + estilos do app, num único arquivo
-         gerado pelo Sass a partir de assets/scss/main.scss -->
-    <link rel="stylesheet" href="../assets/css/style.css" />
 
     <!-- Aplica o Modo Escuro antes de desenhar a página (evita "piscar" claro) -->
     <script>
@@ -202,10 +190,9 @@
       </div>
     </footer>
 
-    <!-- Bootstrap JS (NPM) — necessário para Offcanvas, Dropdown, Modal e Toast -->
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script da página (ES Module: importa api.js, main.js, render.js...) -->
-    <script type="module" src="../js/paginas/login.js"></script>
+    <!-- Script da página (ES Module). O main.js, importado por ele, carrega
+         as fontes, os ícones e o JavaScript do Bootstrap pelo NPM. -->
+    <script type="module" src="./login.js"></script>
   </body>
 </html>

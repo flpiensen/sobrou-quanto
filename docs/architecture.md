@@ -32,20 +32,20 @@ graph TD
 * **Framework CSS:** [Bootstrap](https://getbootstrap.com/) (`v5.3.8`)
   * **Uso:** Sistema de grid responsivo (Flexbox) e componentes prontos (Navbar, Cards, Modais, Forms, Dropdowns) via classes utilitárias e o bundle JS próprio (inclui Popper para tooltips/dropdowns). Não depende de jQuery.
   * **Inclusão:**
-    * CSS: compilado pelo Sass a partir de `node_modules/bootstrap/scss` com as cores e fontes do Design System, dentro do `assets/css/style.css` (ver Sass abaixo).
-    * JS: `node_modules/bootstrap/dist/js/bootstrap.bundle.min.js` (NPM)
+    * CSS: compilado pelo Sass a partir de `node_modules/bootstrap/scss` com as cores e fontes do Design System, dentro do CSS global `src/scss/main.scss` (ver Sass abaixo).
+    * JS: `import * as bootstrap from "bootstrap"` no `src/js/main.js` (NPM + Vite; inclui o Popper via `@popperjs/core`)
 
 * **Ícones:** [Bootstrap Icons](https://icons.getbootstrap.com/) (`v1.13.1`)
   * **Uso:** Biblioteca oficial de ícones do Bootstrap. Usada no campo `icone` da entidade Categoria (ex: `bi-basket`, `bi-cash-coin`, `bi-house`) e nos demais ícones de interface.
-  * **Inclusão (via NPM):** `node_modules/bootstrap-icons/font/bootstrap-icons.min.css`
+  * **Inclusão (via NPM):** `import "bootstrap-icons/font/bootstrap-icons.min.css"` no `src/js/main.js`
 
 * **Fontes:** [Plus Jakarta Sans](https://fontsource.org/fonts/plus-jakarta-sans) e [JetBrains Mono](https://fontsource.org/fonts/jetbrains-mono) via `@fontsource` (NPM)
   * **Uso:** Plus Jakarta Sans na interface e JetBrains Mono nos valores monetários e cotações (algarismos tabulares), conforme o Design System.
-  * **Inclusão (via NPM):** `node_modules/@fontsource/plus-jakarta-sans/{400..700}.css` e `node_modules/@fontsource/jetbrains-mono/{400..700}.css`
+  * **Inclusão (via NPM):** `import "@fontsource/plus-jakarta-sans/{400..700}.css"` e `import "@fontsource/jetbrains-mono/{400..700}.css"` no `src/js/main.js`
 
 * **Pré-processador CSS:** [Sass](https://sass-lang.com/) (`v1.105`, dependência de desenvolvimento)
-  * **Uso:** Os Design Tokens (cores, tipografia, espaçamentos, raios e sombras) ficam em `assets/scss/_variables.scss` e os mixins em `assets/scss/_mixins.scss`. A parcial `_bootstrap.scss` sobrescreve as variáveis do Bootstrap (`$primary`, `$danger`, `$font-family-sans-serif` etc.) antes de compilá-lo, e o `assets/scss/main.scss` carrega tudo com `@use`: o Bootstrap personalizado, a base, o layout, os componentes e uma parcial por tela.
-  * **Compilação:** `npm run sass` (modo watch) ou `npm run sass:build` (minificado), gerando um único arquivo, `assets/css/style.css`, que é o CSS carregado pelo HTML.
+  * **Uso:** Os Design Tokens (cores, tipografia, espaçamentos, raios e sombras) ficam em `src/scss/_variables.scss` e os mixins em `src/scss/_mixins.scss`. A parcial `_bootstrap.scss` sobrescreve as variáveis do Bootstrap (`$primary`, `$danger`, `$font-family-sans-serif` etc.) antes de compilá-lo, e o `src/scss/main.scss` (CSS global) carrega com `@use` o Bootstrap personalizado, a base, o layout, os componentes e os estados. Cada página tem o seu próprio `.scss` em `src/paginas/<pagina>/`, que começa com `@use '../../scss/main';` e acrescenta só os estilos da tela.
+  * **Compilação:** feita pelo **Vite** (`npm run dev` em desenvolvimento e `npm run build` para produção). Cada HTML aponta direto para o `.scss` da sua página e o Vite gera o CSS final.
 
 * **API Pública de Cotações:** [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas) (`v1`)
   * **Uso:** Consumo de cotações de moedas em tempo real para exibição no Dashboard.
@@ -192,15 +192,16 @@ O banco começa **vazio**. Tudo o que aparece na aplicação é cadastrado pelas
 ```
 
 ## 6. Organização do JavaScript
-Os scripts são **ES Modules** (`<script type="module">`), por isso a aplicação precisa ser aberta por um servidor (JSON Server ou Live Server), e não com duplo clique no arquivo.
+Os scripts são **ES Modules** (`<script type="module">`), por isso a aplicação precisa ser aberta pelo servidor do Vite (`npm run dev`), e não com duplo clique no arquivo.
 
 | Arquivo | Responsabilidade |
 |---|---|
-| `js/api.js` | `fetch` com `async/await` para o JSON Server e a AwesomeAPI, com tratamento de erros |
-| `js/main.js` | Sessão (sessionStorage/localStorage), proteção das páginas, navbar, modo escuro, hash da senha |
-| `js/validacao.js` | Expressões regulares, máscaras de valor e telefone, mensagens de erro nos campos |
-| `js/calculos.js` | Regras de negócio: saldo, totais do mês, uso do limite das categorias |
-| `js/render.js` | Formatação (moeda, datas) e trechos de HTML reaproveitados |
-| `js/notificacoes.js` | Notificações do sininho geradas a partir dos dados |
-| `js/comprovante.js` | Upload do comprovante (tipo, tamanho, arrastar e soltar) |
-| `js/paginas/*.js` | Código específico de cada tela |
+| `src/js/api.js` | `fetch` com `async/await` para o JSON Server e a AwesomeAPI, com tratamento de erros |
+| `src/js/main.js` | Sessão (sessionStorage/localStorage), proteção das páginas, navbar, modo escuro, hash da senha |
+| `src/js/validacao.js` | Expressões regulares, máscaras de valor e telefone, mensagens de erro nos campos |
+| `src/js/calculos.js` | Regras de negócio: saldo, totais do mês, uso do limite das categorias |
+| `src/js/render.js` | Formatação (moeda, datas) e trechos de HTML reaproveitados |
+| `src/js/notificacoes.js` | Notificações do sininho geradas a partir dos dados |
+| `src/js/comprovante.js` | Upload do comprovante (tipo, tamanho, arrastar e soltar) |
+| `src/js/rotas.js` | Endereço de cada página (caminhos relativos, funcionam no dev e no GitHub Pages) |
+| `src/paginas/<pagina>/<pagina>.js` | Código específico de cada tela, ao lado do seu `index.html` e `.scss` |

@@ -11,14 +11,7 @@
 import { calcularTotais, diasAte, mesAtual, resumirCategorias, situacao, transacoesDoMes } from "./calculos.js";
 import { escaparHtml, formatarData, formatarMoeda, formatarPercentual } from "./render.js";
 
-// Caminho até a raiz do site (as páginas internas ficam em /pages)
-const RAIZ = location.pathname.includes("/pages/") ? "../" : "";
-const LINK = {
-  inicio: `${RAIZ}index.html`,
-  transacoes: `${RAIZ}pages/transacoes.html`,
-  categorias: `${RAIZ}pages/cadastro.html`,
-  perfil: `${RAIZ}pages/perfil.html`,
-};
+import { ROTAS as LINK } from "./rotas.js";
 
 export function gerarNotificacoes({ cliente, categorias, transacoes }) {
   const preferencias = { alertas: true, lembreteComprovante: true, ...cliente.preferencias };

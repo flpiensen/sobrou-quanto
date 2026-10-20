@@ -1,8 +1,10 @@
 // =============================================================
-// _transacoes.scss — Extrato e movimentações (Épico 4)
+// transacoes.scss — Estilos exclusivos da página: Extrato e movimentações (Épico 4)
+// O CSS global (Bootstrap + tema + componentes comuns) vem do main.
 // =============================================================
-@use "variables" as *;
-@use "mixins" as *;
+@use "../../scss/main";
+@use "../../scss/variables" as *;
+@use "../../scss/mixins" as *;
 
 // Card "Saldo do período" com círculo decorativo no canto
 .kpi-periodo {

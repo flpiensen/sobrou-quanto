@@ -1,5 +1,24 @@
 {
-  "clientes": [],
+  "clientes": [
+    {
+      "nome": "Felipe Iensen",
+      "email": "felipe@teste.com",
+      "senhaHash": "9b0df4c80047f67b7f8f0d1e15677ddcaaf7871b7c4cdaea96fa4a34ee6ac276",
+      "profissao": "",
+      "telefone": "",
+      "bio": "",
+      "foto": null,
+      "preferencias": {
+        "alertas": true,
+        "modoEscuro": false,
+        "cotacoesAuto": true,
+        "lembreteComprovante": true
+      },
+      "criadoEm": "2026-10-16T00:34:49.312Z",
+      "atualizadoEm": "2026-10-16T00:34:49.312Z",
+      "id": 1
+    }
+  ],
   "categorias": [],
   "transacoes": [],
   "comprovantes": []

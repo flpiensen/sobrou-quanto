@@ -1,8 +1,10 @@
 // =============================================================
-// _dashboard.scss — Painel geral e cotações (Épico 2)
+// dashboard.scss — Estilos exclusivos da página: Painel geral e cotações (Épico 2)
+// O CSS global (Bootstrap + tema + componentes comuns) vem do main.
 // =============================================================
-@use "variables" as *;
-@use "mixins" as *;
+@use "../../scss/main";
+@use "../../scss/variables" as *;
+@use "../../scss/mixins" as *;
 
 // Card de saldo com brilho verde no canto (como no protótipo)
 .kpi-saldo {

@@ -1,9 +1,11 @@
 // =============================================================
-// _categorias.scss — Gestão de categorias (Épico 3)
+// categorias.scss — Estilos exclusivos da página: Gestão de categorias (Épico 3)
+// O CSS global (Bootstrap + tema + componentes comuns) vem do main.
 // =============================================================
+@use "../../scss/main";
 @use "sass:color";
-@use "variables" as *;
-@use "mixins" as *;
+@use "../../scss/variables" as *;
+@use "../../scss/mixins" as *;
 
 // Barra empilhada Despesas x Receitas
 .barra-volume {

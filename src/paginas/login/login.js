@@ -2,10 +2,10 @@
 // paginas/login.js — Login (US01) e cadastro de conta
 // =============================================================
 
-import { api, buscarCotacoes, verificarJsonServer } from "../api.js";
-import { gerarHash, obterSessao, PAGINA_INICIAL, salvarSessao } from "../main.js";
-import { botaoCarregando, formatarMoeda, formatarPercentual } from "../render.js";
-import { limparAoDigitar, limparValidacao, REGEX, validarCampos } from "../validacao.js";
+import { api, buscarCotacoes, verificarJsonServer } from "../../js/api.js";
+import { gerarHash, obterSessao, PAGINA_INICIAL, salvarSessao } from "../../js/main.js";
+import { botaoCarregando, formatarMoeda, formatarPercentual } from "../../js/render.js";
+import { limparAoDigitar, limparValidacao, REGEX, validarCampos } from "../../js/validacao.js";
 
 // Quem já está logado vai direto para o Dashboard
 if (obterSessao()) location.replace(PAGINA_INICIAL);

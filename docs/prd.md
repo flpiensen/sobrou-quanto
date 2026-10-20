@@ -12,7 +12,7 @@ O *SobrouQuanto?* é uma aplicação web didática voltada ao gerenciamento de f
 ## 3. Histórias de Usuário e Escopo
 Abaixo estão as funcionalidades principais do MVP (Minimum Viable Product), organizadas sob a perspectiva do usuário final.
 
-## 🔐 Épico 1: Autenticação e Sessão ( login.html )
+## 🔐 Épico 1: Autenticação e Sessão ( src/paginas/login/index.html )
 - *US01 - Acesso do Cliente:* Como um Visitante, quero inserir meu e-mail e senha no formulário de login para acessar o painel do SobrouQuanto?.
 - *Critérios de Aceitação:* O e-mail e a senha são campos obrigatórios; o e-mail deve ter formato válido; deve haver uma opção de "Lembrar-me"; ao entrar, os dados da sessão devem ser gravados no sessionStorage e o cliente direcionado ao Dashboard ( index.html ).
 - *US02 - Saudação da Sessão:* Como um Cliente logado, quero visualizar meu nome no topo da página e minha foto de perfil para confirmar que estou na minha conta.
@@ -24,11 +24,11 @@ Abaixo estão as funcionalidades principais do MVP (Minimum Viable Product), org
 - *US05 - Cotação de Moedas Hoje:* Como um Cliente, quero consultar a cotação em tempo real do Dólar, do Euro e da Libra no Dashboard para acompanhar o mercado cambial.
 - *Critérios de Aceitação:* A cotação deve ser obtida via requisição assíncrona à AwesomeAPI e exibida nos cards correspondentes indicando se houve alta ou baixa.
 
-## 🏷️ Épico 3: Gestão de Categorias ( cadastro.html )
+## 🏷️ Épico 3: Gestão de Categorias ( src/paginas/categorias/index.html )
 - *US06 - Cadastrar Categoria:* Como um Cliente, quero cadastrar e listar categorias (ex: Alimentação, Moradia, Salário) para organizar minhas movimentações.
 - *Critérios de Aceitação:* O nome da categoria, o tipo (Receita/Despesa), o limite mensal (teto de gastos para despesas ou meta de recebimento para receitas) e a escolha de uma cor e de um ícone representativo são obrigatórios; cada categoria exibe o quanto do limite já foi atingido em uma barra de progresso; o envio é feito via POST para o JSON Server e a lista é atualizada dinamicamente no DOM com botões de edição e exclusão.
 
-## 💰 Épico 4: Movimentações Financeiras ( transacoes.html )
+## 💰 Épico 4: Movimentações Financeiras ( src/paginas/transacoes/index.html )
 - *US07 - Realizar Lançamento:* Como um Cliente, quero preencher um formulário informando valor, tipo (Receita/Despesa), categoria, data e opcionalmente anexar um comprovante para registrar uma nova movimentação.
 - *Critérios de Aceitação:* O formulário deve abrir em um Modal; os campos básicos são obrigatórios; o valor deve passar por formatação monetária automática (R$); deve haver um campo para anexar imagem (JPG/PNG) ou PDF do comprovante; os dados são salvos via POST no JSON Server.
 - *US08 - Extrato de Transações:* Como um Cliente, quero visualizar uma lista/tabela com o histórico de todas as minhas movimentações e filtrá-las por texto, data ou tipo.
@@ -36,7 +36,7 @@ Abaixo estão as funcionalidades principais do MVP (Minimum Viable Product), org
 - *US09 - Excluir Transação:* Como um Cliente, quero remover um lançamento cadastrado incorretamente.
 - *Critérios de Aceitação:* Um Modal de Confirmação de segurança deve ser exibido antes de disparar a requisição DELETE para o JSON Server.
 
-## 👤 Épico 5: Perfil do Usuário ( perfil.html )
+## 👤 Épico 5: Perfil do Usuário ( src/paginas/perfil/index.html )
 - *US10 - Visualizar e Editar Perfil:* Como um Cliente, quero acessar uma tela de perfil para visualizar e atualizar meus dados pessoais.
 - *Critérios de Aceitação:* A tela deve conter a foto de perfil (avatar editável), Nome Completo, Profissão/Ocupação e uma área de Bio/Descrição.
 - *US11 - Preferências da Conta:* Como um Cliente, quero gerenciar configurações básicas da minha experiência de uso.

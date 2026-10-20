@@ -1,8 +1,10 @@
 // =============================================================
-// _perfil.scss — Perfil do usuário (Épico 5)
+// perfil.scss — Estilos exclusivos da página: Perfil e preferências (Épico 5)
+// O CSS global (Bootstrap + tema + componentes comuns) vem do main.
 // =============================================================
-@use "variables" as *;
-@use "mixins" as *;
+@use "../../scss/main";
+@use "../../scss/variables" as *;
+@use "../../scss/mixins" as *;
 
 // Selo de verificado sobre a foto grande
 .avatar-lg .selo {

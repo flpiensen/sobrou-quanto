@@ -1,0 +1,29 @@
+// =============================================================
+// main.scss — CSS GLOBAL do SobrouQuanto?
+//
+// Tudo o que vale para TODAS as páginas fica aqui: os Design
+// Tokens, o Bootstrap 5.3 personalizado, a estrutura comum
+// (navbar, cards, botões) e os estados criados pelo JavaScript.
+//
+// Cada página tem o seu próprio .scss dentro de
+// src/paginas/<pagina>/, que começa com:
+//     @use '../../scss/main';
+// Assim a página recebe este CSS global e acrescenta só o que é
+// exclusivo dela. Os arquivos com _ no começo são "parciais": só
+// viram CSS quando carregados com @use.
+// =============================================================
+
+// 1) Design Tokens e mixins (não geram CSS; só definem valores e atalhos)
+@use "variables";
+@use "mixins";
+
+// 2) Bootstrap 5.3 compilado com as cores e fontes do projeto
+@use "bootstrap";
+
+// 3) Estilos globais e estrutura comum a todas as páginas
+@use "base";
+@use "layout";
+@use "componentes";
+
+// 4) Estados criados pelo JavaScript (lista vazia, avisos, modo escuro)
+@use "estados";

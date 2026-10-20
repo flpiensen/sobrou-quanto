@@ -30,8 +30,10 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
   * **Justificativa:** Framework CSS mais adotado do mercado, com documentação extensa, grande comunidade e projeto ativo no GitHub (licença MIT). Seu sistema de grid em Flexbox resolve com facilidade a responsividade mobile/desktop do protótipo, e os componentes prontos (Navbar, Cards, Modais, Forms) cobrem os elementos identificados no protótipo do Stitch. A partir da v5 não depende mais de jQuery.
 * **[Bootstrap Icons](https://icons.getbootstrap.com/)**
   * **Justificativa:** Biblioteca de ícones oficial do Bootstrap, com integração nativa — usada nos ícones de categoria (`bi-basket`, `bi-cash-coin`, etc.) e da interface como um todo.
+* **[Vite](https://vite.dev/)** — dependência de desenvolvimento
+  * **Justificativa:** Servidor de desenvolvimento e build do site com várias páginas (MPA), no mesmo padrão do repositório modelo da disciplina ([lab-framework-css](https://github.com/utfpr-gp/lab-framework-css)). Compila o Sass de cada página, resolve as dependências do `node_modules` e gera a pasta `dist/` publicada no GitHub Pages.
 * **[Sass (SCSS)](https://sass-lang.com/)** — dependência de desenvolvimento
-  * **Justificativa:** Pré-processador CSS usado para centralizar os Design Tokens do `docs/sdd.md` em variáveis, reaproveitar estilos com mixins e personalizar o Bootstrap (cores, fontes e bordas) antes da compilação. Os fontes ficam em `assets/scss/` (parciais carregadas com `@use` pelo `main.scss`) e são compilados para um único `assets/css/style.css` com `npm run sass`.
+  * **Justificativa:** Pré-processador CSS usado para centralizar os Design Tokens do `docs/sdd.md` em variáveis, reaproveitar estilos com mixins e personalizar o Bootstrap (cores, fontes e bordas) antes da compilação. O CSS global fica em `src/scss/main.scss` (tokens, mixins, Bootstrap personalizado e componentes comuns) e cada página tem o seu próprio `.scss` na pasta dela, que começa com `@use '../../scss/main';`. O Sass é compilado pelo Vite.
 
 ### **API Pública**
 * **[AwesomeAPI (Cotações de Moedas)](https://docs.awesomeapi.com.br/api-de-moedas)**
@@ -49,11 +51,10 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 
 ### Pré-requisitos
 - [Node.js](https://nodejs.org/) instalado na máquina.
-- Extensão [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) no VS Code.
 
 ### Passo a Passo
 
-1. **Clonar o repositório e instalar as dependências** (Bootstrap, ícones, fontes, Sass e JSON Server):
+1. **Clonar o repositório e instalar as dependências** (Bootstrap, ícones, fontes, Vite, Sass e JSON Server):
    ```bash
    git clone https://github.com/flpiensen/sobrou-quanto.git
    cd sobrou-quanto
@@ -66,14 +67,45 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
    ```
    Os dados ficam no arquivo `server/db.json`, que começa vazio.
 
-3. **Abrir a aplicação** em `http://localhost:3000/pages/login.html` (o próprio JSON Server também entrega as páginas).
-   Se preferir o Live Server, abra `pages/login.html` por ele: o arquivo `.vscode/settings.json` já impede que ele recarregue a página a cada gravação no `db.json`.
+3. **Subir o site (Vite)** — em outro terminal:
+   ```bash
+   npm run dev
+   ```
+   O navegador abre em `http://localhost:5173`. Sem sessão, a aplicação leva para o login (`src/paginas/login/index.html`).
 
 4. **Criar a conta** em "Cadastre-se gratuitamente", depois cadastrar as **categorias** e registrar as **movimentações**. O dashboard, os limites e as notificações são calculados a partir desses cadastros.
 
-5. **(Opcional) Editar os estilos:** `npm run sass` recompila o `assets/scss/main.scss` para `assets/css/style.css` a cada alteração.
+5. **Gerar a versão de produção:** `npm run build` cria a pasta `dist/` (e `npm run preview` abre essa versão). No GitHub, o workflow `.github/workflows/deploy.yml` faz o build e publica no GitHub Pages a cada push na `main`.
 
-> Os scripts são ES Modules: abrir o HTML com duplo clique (`file://`) não funciona; use sempre um servidor (passo 3).
+> Os scripts são ES Modules e os estilos são `.scss`: abrir o HTML com duplo clique (`file://`) não funciona; use sempre o `npm run dev` (passo 3).
+
+### Estrutura de pastas
+
+Segue o padrão do repositório modelo da disciplina ([lab-framework-css](https://github.com/utfpr-gp/lab-framework-css)): cada página fica na sua própria pasta, com o seu HTML, o seu CSS e o seu JS, e o que é comum a todas fica no CSS e no JS globais.
+
+```
+index.html                    Dashboard (página inicial)
+vite.config.js                MPA: cada página é registrada aqui
+server/db.json                banco da API fake (JSON Server)
+docs/                         prd.md, architecture.md, sdd.md
+src/
+  scss/
+    main.scss                 CSS GLOBAL: Bootstrap personalizado + tema
+    _variables.scss           Design Tokens
+    _mixins.scss              mixins reutilizáveis
+    _bootstrap.scss           variáveis do Bootstrap + import
+    _base.scss, _layout.scss, _componentes.scss, _estados.scss
+  js/
+    main.js                   sessão, navbar, notificações (comum a todas)
+    rotas.js                  endereço de cada página
+    api.js, calculos.js, render.js, validacao.js, notificacoes.js, comprovante.js
+  paginas/
+    dashboard/                dashboard.scss + dashboard.js (HTML = index.html da raiz)
+    login/                    index.html + login.scss + login.js
+    transacoes/               index.html + transacoes.scss + transacoes.js
+    categorias/               index.html + categorias.scss + categorias.js
+    perfil/                   index.html + perfil.scss + perfil.js
+```
 
 ## 📊 Checklist de Indicadores de Desempenho (IDs)
 
@@ -101,7 +133,7 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 - [x] **ID15:** Configura ambiente com Node.js e NPM para gerenciamento de pacotes e dependências.
 - [ ] **ID16:** Utiliza boas práticas de versionamento no Git / GitHub (branch `main`, uso de `.gitignore`).
 - [x] **ID17:** Mantém um `README.md` padronizado, conforme template da disciplina, com checklist preenchido.
-- [x] **ID18:** Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido (`/docs`, `/assets`, `/server`).
+- [x] **ID18:** Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido (`/docs`, `/src/scss` global, `/src/js` compartilhado e `/src/paginas/<pagina>` com HTML, SCSS e JS de cada tela, no padrão do `lab-framework-css`).
 - [ ] **ID19:** Configura linters e formatadores (ESLint, Prettier) para manter qualidade e padronização do código.
 
 ### RA4 - Aplicar bibliotecas de funções e componentes em JavaScript para aprimorar a interatividade

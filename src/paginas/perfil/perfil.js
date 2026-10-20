@@ -3,10 +3,10 @@
 // PATCH /clientes/:id
 // =============================================================
 
-import { api, buscarCotacoes, verificarJsonServer } from "../api.js";
-import { aplicarTema, atualizarLayout, gerarHash, iniciarPagina, salvarSessao, sessaoLembrada } from "../main.js";
-import { botaoCarregando, conteudoAvatar, formatarDataHora, mostrarAviso } from "../render.js";
-import { aplicarMascaraTelefone, limparAoDigitar, limparValidacao, REGEX, validarCampos } from "../validacao.js";
+import { api, buscarCotacoes, verificarJsonServer } from "../../js/api.js";
+import { aplicarTema, atualizarLayout, gerarHash, iniciarPagina, salvarSessao, sessaoLembrada } from "../../js/main.js";
+import { botaoCarregando, conteudoAvatar, formatarDataHora, mostrarAviso } from "../../js/render.js";
+import { aplicarMascaraTelefone, limparAoDigitar, limparValidacao, REGEX, validarCampos } from "../../js/validacao.js";
 
 let dados = { cliente: null, categorias: [], transacoes: [] };
 

@@ -27,14 +27,25 @@ jobs:
           node-version: 20
           cache: npm
 
+      # Instala as dependências e compila o Sass (app/**/*.scss -> .css)
       - run: npm ci
-      - run: npm run build
+      - run: npm run sass:build
+
+      # Monta o site: a pasta app/, o index.html da raiz e só as
+      # bibliotecas usadas no navegador (Bootstrap, ícones e fontes)
+      - run: |
+          mkdir -p _site/node_modules/@fontsource
+          cp index.html _site/
+          cp -r app _site/
+          cp -r node_modules/bootstrap node_modules/bootstrap-icons _site/node_modules/
+          cp -r node_modules/@fontsource/plus-jakarta-sans node_modules/@fontsource/jetbrains-mono _site/node_modules/@fontsource/
+          touch _site/.nojekyll
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: _site
 
   deploy:
     needs: build

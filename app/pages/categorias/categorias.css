@@ -1,0 +1,225 @@
+.barra-volume {
+  height: 0.5rem;
+  border-radius: 9999px;
+}
+.barra-volume .progress {
+  height: 100%;
+}
+.barra-volume .progress:first-child .progress-bar {
+  background-color: #ba1a1a;
+}
+.barra-volume .progress:last-child .progress-bar {
+  background-color: #006948;
+}
+
+.legenda-volume {
+  font-size: 0.75rem;
+  color: var(--sq-texto-suave);
+}
+.legenda-volume .ponto {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+}
+
+.filtros-pilula .btn {
+  border-radius: 9999px;
+  background-color: var(--sq-superficie-cont);
+  border: 0;
+  color: var(--sq-texto-suave);
+  font-weight: 500;
+}
+.filtros-pilula .btn-check:checked + .btn {
+  background-color: #006948;
+  color: #fff;
+  font-weight: 600;
+}
+
+.categoria-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.categoria-card .nome {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.categoria-card .sub {
+  font-size: 0.75rem;
+  color: var(--sq-texto-suave);
+}
+.categoria-card .rotulo {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sq-texto-suave);
+}
+.categoria-card .limite {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--sq-texto-suave);
+}
+.categoria-card .card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  background-color: transparent;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.categoria-card .btn-link {
+  font-size: 0.75rem;
+  text-decoration: none;
+  padding: 0.25rem;
+}
+
+.progress-bar.barra-laranja {
+  background-color: #ea580c;
+}
+
+.texto-laranja {
+  color: #ea580c;
+}
+
+.progress-bar.barra-vermelho {
+  background-color: #dc2626;
+}
+
+.texto-vermelho {
+  color: #dc2626;
+}
+
+.progress-bar.barra-verde {
+  background-color: #059669;
+}
+
+.texto-verde {
+  color: #059669;
+}
+
+.progress-bar.barra-azul {
+  background-color: #2563eb;
+}
+
+.texto-azul {
+  color: #2563eb;
+}
+
+.progress-bar.barra-roxo {
+  background-color: #7c3aed;
+}
+
+.texto-roxo {
+  color: #7c3aed;
+}
+
+.progress-bar.barra-ambar {
+  background-color: #d97706;
+}
+
+.texto-ambar {
+  color: #d97706;
+}
+
+.progress-bar.barra-rosa {
+  background-color: #db2777;
+}
+
+.texto-rosa {
+  color: #db2777;
+}
+
+.progress-bar.barra-ciano {
+  background-color: #0891b2;
+}
+
+.texto-ciano {
+  color: #0891b2;
+}
+
+.paleta-cores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.paleta-cores label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  font-size: 0.875rem;
+}
+.paleta-cores label i {
+  opacity: 0;
+}
+.paleta-cores .btn-check:checked + label {
+  box-shadow: 0 0 0 2px var(--sq-superficie), 0 0 0 4px #006948;
+}
+.paleta-cores .btn-check:checked + label i {
+  opacity: 1;
+}
+.paleta-cores .cor-laranja {
+  background-color: #ea580c;
+}
+.paleta-cores .cor-vermelho {
+  background-color: #dc2626;
+}
+.paleta-cores .cor-verde {
+  background-color: #059669;
+}
+.paleta-cores .cor-azul {
+  background-color: #2563eb;
+}
+.paleta-cores .cor-roxo {
+  background-color: #7c3aed;
+}
+.paleta-cores .cor-ambar {
+  background-color: #d97706;
+}
+.paleta-cores .cor-rosa {
+  background-color: #db2777;
+}
+.paleta-cores .cor-ciano {
+  background-color: #0891b2;
+}
+
+.grade-icones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--sq-borda-suave);
+  border-radius: 0.5rem;
+  background-color: var(--sq-superficie-alt);
+}
+@media (min-width: 576px) {
+  .grade-icones {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+.grade-icones label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--sq-borda-suave);
+  background-color: var(--sq-superficie);
+  font-size: 1.125rem;
+  color: var(--sq-texto-suave);
+  cursor: pointer;
+}
+.grade-icones .btn-check:checked + label {
+  border-color: #006948;
+  color: #006948;
+  background-color: rgba(133, 248, 196, 0.3);
+}

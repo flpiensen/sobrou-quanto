@@ -1,0 +1,45 @@
+// =============================================================
+// transacoes.scss — Estilos exclusivos da página: Extrato e movimentações (Épico 4)
+// Compila para transacoes.css. O CSS global (app/style.css) é linkado antes no HTML.
+// =============================================================
+@use "../../scss/variables" as *;
+@use "../../scss/mixins" as *;
+
+// Card "Saldo do período" com círculo decorativo no canto
+.kpi-periodo {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba($cor-primaria, 0.35);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -3.5rem;
+    right: -3.5rem;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    background-color: rgba($cor-primaria-fixa, 0.25);
+  }
+
+  .card-body { position: relative; z-index: 1; }
+}
+
+// Ícone de comprovante anexado na tabela
+.comprovante {
+  font-size: 1.25rem;
+  color: $cor-primaria;
+}
+
+// Totais no rodapé da tabela
+.totais {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $esp-md $esp-lg;
+  font-size: $fs-caps;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  .valor { @include texto-numerico; font-weight: 700; letter-spacing: 0; text-transform: none; margin-left: $esp-xxs; }
+}

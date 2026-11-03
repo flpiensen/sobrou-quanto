@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SobrouQuanto?</title>
+  </head>
+  <body>
+    <!-- Página de entrada: quem já fez login vai para o Dashboard;
+         quem ainda não fez, vai para a tela de login. -->
+    <script type="module">
+      import { obterSessao } from "./index.js";
+      import { ROTAS } from "./util/rotas.js";
+
+      location.replace(obterSessao() ? ROTAS.inicio : ROTAS.login);
+    </script>
+  </body>
+</html>

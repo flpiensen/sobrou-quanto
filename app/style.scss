@@ -1,0 +1,26 @@
+// =============================================================
+// style.scss — CSS GLOBAL do SobrouQuanto? (compila para app/style.css)
+//
+// Tudo o que vale para TODAS as páginas fica aqui: os Design
+// Tokens, o Bootstrap 5.3 personalizado, a estrutura comum
+// (navbar, cards, botões) e os estados criados pelo JavaScript.
+// Os parciais (arquivos com _ no começo) ficam em app/scss/.
+//
+// Cada página linka primeiro este style.css e depois o CSS dela
+// (app/pages/<pagina>/<pagina>.css), gerado do .scss da mesma pasta.
+// =============================================================
+
+// 1) Design Tokens e mixins (não geram CSS; só definem valores e atalhos)
+@use "scss/variables";
+@use "scss/mixins";
+
+// 2) Bootstrap 5.3 compilado com as cores e fontes do projeto
+@use "scss/bootstrap";
+
+// 3) Estilos globais e estrutura comum a todas as páginas
+@use "scss/base";
+@use "scss/layout";
+@use "scss/componentes";
+
+// 4) Estados criados pelo JavaScript (lista vazia, avisos, modo escuro)
+@use "scss/estados";

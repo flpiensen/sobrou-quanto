@@ -1,0 +1,43 @@
+.kpi-periodo {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(0, 105, 72, 0.35);
+}
+.kpi-periodo::after {
+  content: "";
+  position: absolute;
+  top: -3.5rem;
+  right: -3.5rem;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  background-color: rgba(133, 248, 196, 0.25);
+}
+.kpi-periodo .card-body {
+  position: relative;
+  z-index: 1;
+}
+
+.comprovante {
+  font-size: 1.25rem;
+  color: #006948;
+}
+
+.totais {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.totais .valor {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: 0.25rem;
+}

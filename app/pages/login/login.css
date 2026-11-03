@@ -1,0 +1,115 @@
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 3rem 0;
+}
+
+.login-card {
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.login-hero {
+  background: linear-gradient(135deg, rgba(133, 248, 196, 0.35) 0%, var(--sq-superficie-alt) 55%, rgba(218, 226, 253, 0.6) 100%);
+  border-right: 1px solid var(--sq-borda-suave);
+  padding: 1.5rem;
+}
+@media (min-width: 768px) {
+  .login-hero {
+    padding: 3rem;
+  }
+}
+@media (min-width: 992px) {
+  .login-hero {
+    padding: 3rem 3rem;
+  }
+}
+.login-hero .titulo-hero {
+  font-size: clamp(2rem, 1.4rem + 2.2vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+.login-hero .titulo-hero .destaque {
+  color: #006948;
+}
+.login-hero .lead {
+  font-size: 1rem;
+  color: var(--sq-texto-suave);
+}
+.login-hero .recursos {
+  border-top: 1px solid var(--sq-borda-suave);
+  padding-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--sq-texto-suave);
+}
+
+.mini-saldo .valor-lg {
+  white-space: nowrap;
+}
+.mini-saldo .cotacao-mini {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--sq-borda-suave);
+  border-radius: 0.25rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+.mini-saldo .cotacao-mini .moeda {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 700;
+  color: var(--sq-texto);
+}
+
+.login-form {
+  padding: 1.5rem;
+}
+@media (min-width: 768px) {
+  .login-form {
+    padding: 3rem;
+  }
+}
+@media (min-width: 992px) {
+  .login-form {
+    padding: 4rem 5rem;
+  }
+}
+.login-form .titulo-form {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.divisor-texto {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sq-texto-suave);
+  white-space: nowrap;
+}
+.divisor-texto::before, .divisor-texto::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--sq-borda-suave);
+}
+
+.iniciais {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: #dae2fd;
+  color: #3f465c;
+  font-size: 0.75rem;
+  font-weight: 700;
+}

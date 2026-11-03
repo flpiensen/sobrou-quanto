@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | SobrouQuanto?</title>
+
+    <!-- Fontes do Design System (instaladas via NPM: @fontsource) -->
+    <link rel="stylesheet" href="../../../node_modules/@fontsource/plus-jakarta-sans/400.css" />
+    <link rel="stylesheet" href="../../../node_modules/@fontsource/plus-jakarta-sans/500.css" />
+    <link rel="stylesheet" href="../../../node_modules/@fontsource/plus-jakarta-sans/600.css" />
+    <link rel="stylesheet" href="../../../node_modules/@fontsource/plus-jakarta-sans/700.css" />
+    <link rel="stylesheet" href="../../../node_modules/@fontsource/jetbrains-mono/400.css" />
+    <link rel="stylesheet" href="../../../node_modules/@fontsource/jetbrains-mono/500.css" />
+    <link rel="stylesheet" href="../../../node_modules/@fontsource/jetbrains-mono/600.css" />
+    <link rel="stylesheet" href="../../../node_modules/@fontsource/jetbrains-mono/700.css" />
+
+    <!-- Bootstrap Icons (NPM) -->
+    <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
+
+    <!-- CSS global (Bootstrap 5.3 personalizado + tema), gerado de app/style.scss -->
+    <link rel="stylesheet" href="../../style.css" />
+    <!-- CSS desta página, gerado do login.scss desta pasta -->
+    <link rel="stylesheet" href="./login.css" />
+
+    <!-- Aplica o Modo Escuro antes de desenhar a página (evita "piscar" claro) -->
+    <script>
+      if (localStorage.getItem("sq:tema") === "escuro") {
+        document.documentElement.dataset.tema = "escuro";
+        document.documentElement.dataset.bsTheme = "dark";
+      }
+    </script>
+  </head>
+  <!-- usar innerHTML-->
+  <!-- d-flex + flex-column + min-vh-100: base do "sticky footer" -->
+  <body class="d-flex flex-column min-vh-100">
+    <!-- ===================== LOGIN E CADASTRO (Épico 1) ===================== -->
+    <main class="login-wrapper flex-grow-1">
+      <div class="container-xl px-3 px-lg-4">
+        <div class="card login-card">
+          <div class="row g-0">
+            <!-- Metade esquerda: apresentação do produto -->
+            <div class="col-lg-6 login-hero d-flex flex-column gap-4">
+              <div class="d-flex align-items-center gap-3">
+                <span class="logo-tile"><i class="bi bi-piggy-bank-fill"></i></span>
+                <span class="logo-texto">
+                  <span class="nome">SobrouQuanto?</span>
+                  <span class="slogan">Gestão Financeira Pessoal</span>
+                </span>
+              </div>
+
+              <div>
+                <span class="chip-status chip-neutro chip-sans mb-3"><span class="ponto"></span> Controle do seu fluxo de caixa</span>
+                <h1 class="titulo-hero mb-3">
+                  Descubra com precisão <span class="destaque">quanto sobrou</span> no final do mês.
+                </h1>
+                <p class="lead mb-0">
+                  Registre receitas e despesas, defina limites por categoria e acompanhe o seu saldo sem planilhas.
+                </p>
+              </div>
+
+              <!-- Mini card com dados reais: cotações da AwesomeAPI e status do JSON Server -->
+              <div class="card mini-saldo" style="max-width: 28rem">
+                <div class="card-body p-4">
+                  <div class="d-flex justify-content-between align-items-center gap-2 pb-3 border-bottom">
+                    <span class="eyebrow d-flex align-items-center gap-2"><i class="bi bi-currency-exchange fs-5 text-body"></i> Câmbio comercial agora</span>
+                    <span class="small text-body-secondary mono" id="horaCotacao"></span>
+                  </div>
+                  <div class="d-flex flex-column gap-2 py-3 border-bottom" id="cotacoesLogin">
+                    <span class="small text-body-secondary"><span class="spinner-border spinner-border-sm me-1"></span> Consultando a AwesomeAPI...</span>
+                  </div>
+                  <div class="d-flex justify-content-between pt-3 small text-body-secondary">
+                    <span><i class="bi bi-diagram-3 text-primary me-1"></i> Dados da AwesomeAPI</span>
+                    <span id="statusServidor"><span class="spinner-border spinner-border-sm"></span></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recursos em destaque -->
+              <div class="recursos mt-auto">
+                <div class="row g-3">
+                  <div class="col-sm-4 d-flex align-items-center gap-2">
+                    <span class="icone-tile tile-sm tile-receita rounded-circle"><i class="bi bi-graph-up"></i></span> Cotações ao Vivo
+                  </div>
+                  <div class="col-sm-4 d-flex align-items-center gap-2">
+                    <span class="icone-tile tile-sm tile-azul rounded-circle"><i class="bi bi-tags"></i></span> Limites por Categoria
+                  </div>
+                  <div class="col-sm-4 d-flex align-items-center gap-2">
+                    <span class="icone-tile tile-sm tile-neutro rounded-circle"><i class="bi bi-cloud-arrow-up"></i></span> Comprovantes Anexos
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Metade direita: formulários (login e cadastro alternam) -->
+            <div class="col-lg-6 login-form d-flex flex-column justify-content-center">
+              <!-- Mensagem de erro geral (credenciais erradas, servidor desligado...) -->
+              <div class="alert alert-danger d-none small" id="erroAcesso" role="alert"></div>
+
+              <!-- ===== LOGIN (US01) ===== -->
+              <section id="painelLogin">
+                <h2 class="titulo-form mb-1">Acesse sua conta</h2>
+                <p class="subtitulo mb-4">Digite suas credenciais para gerenciar suas finanças com clareza.</p>
+
+                <!-- novalidate: a validação é feita pelo JavaScript (regex) -->
+                <form id="formLogin" class="d-flex flex-column gap-3" novalidate>
+                  <div>
+                    <label for="email" class="form-label">E-mail de Acesso</label>
+                    <div class="input-group input-icone">
+                      <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                      <input type="email" class="form-control" id="email" placeholder="seu.email@exemplo.com" autocomplete="email" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="senha" class="form-label">Senha</label>
+                    <div class="input-group input-icone">
+                      <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                      <input type="password" class="form-control" id="senha" placeholder="••••••••" autocomplete="current-password" />
+                      <button type="button" class="input-group-text btn-ver-senha" data-ver-senha="senha" aria-label="Mostrar senha"><i class="bi bi-eye"></i></button>
+                    </div>
+                  </div>
+
+                  <div class="form-check mb-0">
+                    <input class="form-check-input" type="checkbox" id="lembrar" />
+                    <label class="form-check-label small" for="lembrar">Lembrar-me neste dispositivo</label>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">
+                    Entrar no SobrouQuanto <i class="bi bi-arrow-right"></i>
+                  </button>
+                </form>
+
+                <p class="text-center small text-body-secondary border-top pt-4 mt-4 mb-0">
+                  Ainda não tem conta no SobrouQuanto?
+                  <a href="#cadastro" class="fw-semibold" data-alternar="cadastro">Cadastre-se gratuitamente</a>
+                </p>
+              </section>
+
+              <!-- ===== CADASTRO DE CONTA (POST /clientes) ===== -->
+              <section id="painelCadastro" class="d-none">
+                <h2 class="titulo-form mb-1">Crie sua conta</h2>
+                <p class="subtitulo mb-4">Seus dados ficam salvos no JSON Server (arquivo server/db.json).</p>
+
+                <form id="formCadastro" class="d-flex flex-column gap-3" novalidate>
+                  <div>
+                    <label for="cadNome" class="form-label">Nome completo</label>
+                    <div class="input-group input-icone">
+                      <span class="input-group-text"><i class="bi bi-person"></i></span>
+                      <input type="text" class="form-control" id="cadNome" placeholder="Nome e sobrenome" maxlength="60" autocomplete="name" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="cadEmail" class="form-label">E-mail</label>
+                    <div class="input-group input-icone">
+                      <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                      <input type="email" class="form-control" id="cadEmail" placeholder="seu.email@exemplo.com" autocomplete="email" />
+                    </div>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label for="cadSenha" class="form-label">Senha</label>
+                      <div class="input-group input-icone">
+                        <input type="password" class="form-control" id="cadSenha" placeholder="••••••••" autocomplete="new-password" aria-describedby="ajudaSenha" />
+                        <button type="button" class="input-group-text btn-ver-senha" data-ver-senha="cadSenha" aria-label="Mostrar senha"><i class="bi bi-eye"></i></button>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <label for="cadConfirmar" class="form-label">Confirmar senha</label>
+                      <div class="input-group input-icone">
+                        <input type="password" class="form-control" id="cadConfirmar" placeholder="••••••••" autocomplete="new-password" />
+                      </div>
+                    </div>
+                    <div class="form-text mt-1" id="ajudaSenha">Mínimo de 6 caracteres, com letras e números.</div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">
+                    Criar conta e entrar <i class="bi bi-arrow-right"></i>
+                  </button>
+                </form>
+
+                <p class="text-center small text-body-secondary border-top pt-4 mt-4 mb-0">
+                  Já tem uma conta?
+                  <a href="#login" class="fw-semibold" data-alternar="login">Entrar</a>
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- ===================== RODAPÉ ===================== -->
+    <!-- mt-auto: o rodapé é empurrado para o fim da tela -->
+    <footer class="sq-footer mt-auto">
+      <div class="container-fluid limite-conteudo px-3 px-lg-4 d-flex flex-column flex-md-row justify-content-between gap-2">
+        <span>&copy; <span data-ano>2026</span> SobrouQuanto? · Projeto acadêmico TSI32B · UTFPR</span>
+        <div class="d-flex flex-wrap gap-3">
+          <span><i class="bi bi-hdd-stack"></i> Dados no JSON Server</span>
+          <span><i class="bi bi-currency-exchange"></i> Cotações via AwesomeAPI</span>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap JS (NPM) — necessário para Offcanvas, Dropdown, Modal e Toast -->
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script da página (ES Module: importa app/index.js, os services e os utils) -->
+    <script type="module" src="./login.js"></script>
+  </body>
+</html>

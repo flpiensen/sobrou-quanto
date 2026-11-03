@@ -1,0 +1,123 @@
+.kpi-saldo {
+  background: radial-gradient(circle at 100% 0%, rgba(133, 248, 196, 0.35) 0%, transparent 45%), var(--sq-superficie);
+}
+
+.rosca {
+  --receitas: 64%;
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: conic-gradient(#006948 0 var(--receitas), #ef4444 var(--receitas) 100%);
+  flex-shrink: 0;
+}
+.rosca::before {
+  content: "";
+  position: absolute;
+  inset: 1.125rem;
+  border-radius: 50%;
+  background-color: var(--sq-superficie);
+}
+.rosca .centro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.25;
+}
+.rosca .centro .rotulo {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--sq-texto-suave);
+}
+.rosca .centro .percentual {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.rosca .centro .estado {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #006948;
+}
+
+.legenda-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--sq-superficie-alt);
+  border: 1px solid var(--sq-borda-suave);
+}
+.legenda-item .marcador {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.legenda-item .titulo {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.legenda-item .sub {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--sq-texto-suave);
+}
+.legenda-item .valor {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  margin-left: auto;
+}
+
+.cotacao-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--sq-superficie-alt);
+  border: 1px solid var(--sq-borda-suave);
+}
+.cotacao-item .moeda-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--sq-superficie);
+  border: 1px solid var(--sq-borda-suave);
+  font-size: 1.125rem;
+  color: var(--sq-texto-suave);
+}
+.cotacao-item .nome {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.cotacao-item .par {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--sq-texto-suave);
+  margin-left: 0.25rem;
+}
+.cotacao-item .atualizado {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--sq-texto-suave);
+}
+.cotacao-item .preco {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}

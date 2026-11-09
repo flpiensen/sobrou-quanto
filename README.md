@@ -41,7 +41,7 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 
 ## 🌐 Site em Produção - GitHub Pages
 
-- [Link do Projeto publicado no GitHub Pages](https://flpiensen.github.io/sobrou-quanto/)
+- Link do projeto publicado no GitHub Pages: *a partir da Entrega 3*.
 
 ---
 
@@ -59,18 +59,20 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
    npm install
    ```
 
-2. **Subir a API fake (JSON Server)** — deixe este terminal aberto:
+2. **Abrir com o Live Server:** no VS Code, clique com o botão direito no `index.html` da raiz e escolha *Open with Live Server*. O CSS já vem compilado no repositório (`app/style.css` e o `.css` de cada página), então não é preciso rodar o Sass para ver o site.
+
+3. **Subir a API fake (JSON Server)** para entrar no sistema — deixe este terminal aberto:
    ```bash
    npm run api
    ```
-   Os dados ficam no arquivo `server/db.json`, que começa vazio.
+   Os dados ficam no arquivo `server/db.json`.
 
-3. **Abrir a aplicação** em `http://localhost:3000` (o próprio JSON Server também entrega as páginas). Sem sessão, a aplicação leva para o login (`app/pages/login/index.html`).
-   Se preferir o Live Server, abra o `index.html` da raiz por ele: o arquivo `.vscode/settings.json` já impede que ele recarregue a página a cada gravação no `db.json`.
+   Com o JSON Server ligado, a aplicação também abre em `http://localhost:3000` (ele entrega as páginas). Sem sessão, a aplicação leva para o login (`app/pages/login/index.html`).
+   No Live Server, o arquivo `.vscode/settings.json` impede que a página recarregue a cada gravação no `db.json`.
 
-4. **Criar a conta** em "Cadastre-se gratuitamente", depois cadastrar as **categorias** e registrar as **movimentações**. O dashboard, os limites e as notificações são calculados a partir desses cadastros.
+5. **Criar a conta** em "Cadastre-se gratuitamente", depois cadastrar as **categorias** e registrar as **movimentações**. O dashboard, os limites e as notificações são calculados a partir desses cadastros.
 
-5. **(Opcional) Editar os estilos:** `npm run sass` recompila cada `.scss` da pasta `app/` para o `.css` ao lado dele a cada alteração.
+6. **(Opcional) Editar os estilos:** `npm run sass` recompila cada `.scss` da pasta `app/` para o `.css` ao lado dele a cada alteração.
 
 > Os scripts são ES Modules: abrir o HTML com duplo clique (`file://`) não funciona; use sempre um servidor (passo 3).
 
@@ -82,6 +84,7 @@ Segue o padrão do projeto de exemplo da disciplina ([gerador-relatorio-medico](
 index.html                       redireciona para app/index.html
 server/db.json                   banco da API fake (JSON Server)
 docs/                            prd.md, architecture.md, sdd.md
+  telas/                         prints da aplicação (README)
 app/
   index.html                     entrada: leva ao Dashboard ou ao login
   index.js                       JS global: sessão, navbar, notificações, modo escuro
@@ -89,11 +92,13 @@ app/
   scss/                          parciais do CSS global
     _variables.scss              Design Tokens
     _mixins.scss                 mixins reutilizáveis
+    _functions.scss              funções próprias (@function)
     _bootstrap.scss              variáveis do Bootstrap + import
     _base.scss, _layout.scss, _componentes.scss, _estados.scss
   pages/
     dashboard/                   index.html + dashboard.scss/.css + dashboard.js
     login/                       index.html + login.scss/.css + login.js
+      img/                       ilustração em WebP (várias larguras) + JPG de fallback
     transacoes/                  index.html + transacoes.scss/.css + transacoes.js
     categorias/                  index.html + categorias.scss/.css + categorias.js
     perfil/                      index.html + perfil.scss/.css + perfil.js
@@ -104,21 +109,33 @@ app/
     calculos.js, render.js, validacao.js, comprovante.js, rotas.js
 ```
 
+## 🖼️ Telas da Aplicação
+
+| Página | Desktop | Celular |
+|---|---|---|
+| Login | <img src="./docs/telas/login-desktop.webp" alt="Login no desktop" width="420"> | <img src="./docs/telas/login-mobile.webp" alt="Login no celular" width="180"> |
+| Dashboard | <img src="./docs/telas/dashboard-desktop.webp" alt="Dashboard no desktop" width="420"> | <img src="./docs/telas/dashboard-mobile.webp" alt="Dashboard no celular" width="180"> |
+| Transações | <img src="./docs/telas/transacoes-desktop.webp" alt="Transações no desktop" width="420"> | <img src="./docs/telas/transacoes-mobile.webp" alt="Transações no celular" width="180"> |
+| Categorias | <img src="./docs/telas/categorias-desktop.webp" alt="Categorias no desktop" width="420"> | <img src="./docs/telas/categorias-mobile.webp" alt="Categorias no celular" width="180"> |
+| Perfil | <img src="./docs/telas/perfil-desktop.webp" alt="Perfil no desktop" width="420"> | <img src="./docs/telas/perfil-mobile.webp" alt="Perfil no celular" width="180"> |
+
+---
+
 ## 📊 Checklist de Indicadores de Desempenho (IDs)
 
 > **Nota:** Marque com `[x]` apenas os itens que foram efetivamente implementados na aplicação e que você domina para explicação na defesa técnica.
 
 ### RA1 - Utilizar Frameworks CSS para estilização de elementos HTML e criação de layouts responsivos
 - [x] **ID01:** Prototipa interfaces adaptáveis para no mínimo os tamanhos de tela mobile e desktop, usando ferramentas de IA (Stitch) e/ou design (Figma).
-- [ ] **ID02:** Implementa layout responsivo com Framework CSS (Bootstrap) usando Flexbox ou Grid do próprio framework.
-- [ ] **ID03:** Implementa layout responsivo com CSS puro, usando Flexbox ou Grid Layout.
-- [ ] **ID04:** Utiliza componentes prontos de um Framework CSS (ex.: card, button) e componentes JavaScript do framework (ex.: modal, navbar).
-- [ ] **ID05:** Cria layout fluido usando unidades relativas (`vw`, `vh`, `%`, `em`, `rem`) no lugar de unidades fixas (`px`).
-- [ ] **ID06:** Aplica um Design System consistente (cores, tipografia, padrões de componentes) em toda a aplicação.
-- [ ] **ID07:** Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
-- [ ] **ID08:** Aplica tipografia responsiva (media queries mobile first) ou tipografia fluida (`clamp()` + unidades relativas).
-- [ ] **ID09:** Aplica técnicas de responsividade de imagens usando CSS (`object-fit`, containers com unidades relativas).
-- [ ] **ID10:** Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo (`srcset`, `picture`).
+- [x] **ID02:** Implementa layout responsivo com Framework CSS (Bootstrap) usando Flexbox ou Grid do próprio framework.
+- [x] **ID03:** Implementa layout responsivo com CSS puro, usando Flexbox ou Grid Layout.
+- [x] **ID04:** Utiliza componentes prontos de um Framework CSS (ex.: card, button) e componentes JavaScript do framework (ex.: modal, navbar).
+- [x] **ID05:** Cria layout fluido usando unidades relativas (`vw`, `vh`, `%`, `em`, `rem`) no lugar de unidades fixas (`px`).
+- [x] **ID06:** Aplica um Design System consistente (cores, tipografia, padrões de componentes) em toda a aplicação.
+- [x] **ID07:** Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
+- [x] **ID08:** Aplica tipografia responsiva (media queries mobile first) ou tipografia fluida (`clamp()` + unidades relativas).
+- [x] **ID09:** Aplica técnicas de responsividade de imagens usando CSS (`object-fit`, containers com unidades relativas).
+- [x] **ID10:** Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo (`srcset`, `picture`).
 
 ### RA2 - Realizar tratamento de formulários e aplicar validações customizadas no lado cliente
 - [ ] **ID11:** Implementa validação HTML nativa (campos obrigatórios, tipos, limites de caracteres) com mensagens de erro/sucesso no lado cliente.
@@ -128,7 +145,7 @@ app/
 
 ### RA3 - Aplicar ferramentas para otimização do processo de desenvolvimento web
 - [x] **ID15:** Configura ambiente com Node.js e NPM para gerenciamento de pacotes e dependências.
-- [ ] **ID16:** Utiliza boas práticas de versionamento no Git / GitHub (branch `main`, uso de `.gitignore`).
+- [x] **ID16:** Utiliza boas práticas de versionamento no Git / GitHub (branch `main`, uso de `.gitignore`).
 - [x] **ID17:** Mantém um `README.md` padronizado, conforme template da disciplina, com checklist preenchido.
 - [x] **ID18:** Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido (`/docs`, `/server` e `/app` com `pages/<pagina>` — HTML, CSS e JS de cada tela —, `service/`, `util/` e o `style.css` global).
 - [ ] **ID19:** Configura linters e formatadores (ESLint, Prettier) para manter qualidade e padronização do código.

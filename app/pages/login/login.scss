@@ -4,6 +4,7 @@
 // =============================================================
 @use "../../scss/variables" as *;
 @use "../../scss/mixins" as *;
+@use "../../scss/functions" as *;
 
 .login-wrapper {
   display: flex;
@@ -36,6 +37,19 @@
   }
 
   .lead { font-size: $fs-corpo; color: var(--sq-texto-suave); }
+
+  // Ilustração otimizada (WebP + <picture>/srcset no HTML)
+  .login-ilustracao img {
+    display: block;
+    width: 100%;            // acompanha a largura da coluna
+    height: auto;
+    aspect-ratio: 8 / 3;    // celular: faixa baixa, não empurra o formulário
+    object-fit: cover;      // preenche a caixa recortando, sem distorcer
+    border-radius: $raio-md;
+    box-shadow: $sombra-2;
+
+    @include a-partir-de($bp-lg) { aspect-ratio: 2 / 1; } // desktop: recorte 2:1
+  }
 
   .recursos {
     border-top: 1px solid var(--sq-borda-suave);
@@ -98,8 +112,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: px-para-rem(28px);  // função própria (_functions.scss)
+  height: px-para-rem(28px);
   border-radius: 50%;
   background-color: $cor-secundaria-container;
   color: $cor-on-secundaria-cont;

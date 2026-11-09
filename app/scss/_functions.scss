@@ -1,0 +1,12 @@
+// =============================================================
+// _functions.scss — Funções próprias do projeto
+// Diferente do mixin (que devolve um BLOCO de CSS), a função
+// devolve um VALOR, que pode ser usado em qualquer propriedade.
+// =============================================================
+@use "sass:math";
+
+// Converte pixels do protótipo (Stitch) em rem (1rem = 16px).
+// Uso: width: px-para-rem(28px);  →  width: 1.75rem;
+@function px-para-rem($px, $base: 16px) {
+  @return math.div($px, $base) * 1rem;
+}

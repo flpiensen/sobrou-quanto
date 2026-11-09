@@ -59,6 +59,29 @@
                 </p>
               </div>
 
+              <!-- Ilustração otimizada: WebP + <picture> + srcset.
+                   O navegador baixa UM arquivo só, o menor que serve para a tela. -->
+              <picture class="login-ilustracao">
+                <!-- Celular e tablet (até 991px): recorte mais baixo (8:3) -->
+                <source
+                  media="(max-width: 991.98px)"
+                  type="image/webp"
+                  srcset="./img/login-ilustracao-mobile-480.webp 480w, ./img/login-ilustracao-mobile-960.webp 960w"
+                  sizes="100vw" />
+                <!-- Desktop: recorte 2:1, em três larguras -->
+                <source
+                  type="image/webp"
+                  srcset="./img/login-ilustracao-800.webp 800w, ./img/login-ilustracao-1200.webp 1200w, ./img/login-ilustracao-1600.webp 1600w"
+                  sizes="(min-width: 1400px) 564px, 40vw" />
+                <!-- Fallback: navegador sem suporte a WebP recebe o JPG -->
+                <img
+                  src="./img/login-ilustracao-800.jpg"
+                  alt="Ilustração de um cofrinho com moedas e um gráfico de barras em alta"
+                  width="800"
+                  height="400"
+                  decoding="async" />
+              </picture>
+
               <!-- Mini card com dados reais: cotações da AwesomeAPI e status do JSON Server -->
               <div class="card mini-saldo" style="max-width: 28rem">
                 <div class="card-body p-4">

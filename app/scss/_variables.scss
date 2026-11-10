@@ -1,6 +1,6 @@
 // =============================================================
 // _variables.scss — Design Tokens do SobrouQuanto?
-// Fonte: docs/sdd.md (tokens gerados pelo Stitch).
+// Fonte: docs/sdd.md, seção "Colors" (paleta principal e tons de apoio).
 //
 // São variáveis "frias": o Sass troca cada uma pelo valor fixo
 // na hora de compilar. No CSS final elas não existem mais.
@@ -73,13 +73,13 @@ $bp-lg: 992px;
 $bp-xl: 1200px;
 
 // =============================================================
-// Tokens complementares extraídos do protótipo (Stitch)
+// Tons de apoio (sdd.md) e tokens complementares do protótipo
 // =============================================================
 
 // ---------- Containers de cor (fundos suaves) ----------
-$cor-primaria-fixa:       #85f8c4; // primary-fixed — fundo de chips/ícones verdes
+$cor-primaria-fixa:       #85f8c4; // Primária clara — fundo de chips/ícones verdes
 $cor-primaria-fixa-dim:   #68dba9; // primary-fixed-dim
-$cor-erro-container:      #ffdad6; // error-container — fundo de ícones/alertas vermelhos
+$cor-erro-container:      #ffdad6; // Erro claro — fundo de ícones/alertas vermelhos
 $cor-secundaria-container:#dae2fd; // secondary-container — item ativo do menu
 $cor-on-secundaria-cont:  #3f465c; // on-secondary-fixed-variant — texto do item ativo
 $cor-terciaria-fixa:      #ffddb8; // tertiary-fixed — fundo âmbar
@@ -87,8 +87,8 @@ $cor-terciaria-fixa:      #ffddb8; // tertiary-fixed — fundo âmbar
 // ---------- Superfícies intermediárias ----------
 $cor-superficie-cont:     #eceef0; // surface-container
 $cor-superficie-variante: #e0e3e5; // surface-variant
-$cor-contorno:            #6d7a72; // outline (bordas fortes, ícones neutros)
-$cor-borda-suave:         #d7dfd9; // outline-variant a 60% (bordas de cards)
+$cor-contorno:            #6d7a72; // Contorno — placeholders, ícones neutros, botão fechar
+$cor-borda-suave:         #d7dfd9; // Borda suave — contorno de cards e divisórias
 
 // ---------- Paleta das categorias (protótipo) ----------
 $categorias: (

@@ -1,53 +1,5 @@
 ---
 name: SobrouQuanto?
-colors:
-  surface: '#f7f9fb'
-  surface-dim: '#d8dadc'
-  surface-bright: '#f7f9fb'
-  surface-container-lowest: '#ffffff'
-  surface-container-low: '#f2f4f6'
-  surface-container: '#eceef0'
-  surface-container-high: '#e6e8ea'
-  surface-container-highest: '#e0e3e5'
-  on-surface: '#191c1e'
-  on-surface-variant: '#3d4a42'
-  inverse-surface: '#2d3133'
-  inverse-on-surface: '#eff1f3'
-  outline: '#6d7a72'
-  outline-variant: '#bccac0'
-  surface-tint: '#006c4a'
-  primary: '#006948'
-  on-primary: '#ffffff'
-  primary-container: '#00855d'
-  on-primary-container: '#f5fff7'
-  inverse-primary: '#68dba9'
-  secondary: '#565e74'
-  on-secondary: '#ffffff'
-  secondary-container: '#dae2fd'
-  on-secondary-container: '#5c647a'
-  tertiary: '#825100'
-  on-tertiary: '#ffffff'
-  tertiary-container: '#a36700'
-  on-tertiary-container: '#fffbff'
-  error: '#ba1a1a'
-  on-error: '#ffffff'
-  error-container: '#ffdad6'
-  on-error-container: '#93000a'
-  primary-fixed: '#85f8c4'
-  primary-fixed-dim: '#68dba9'
-  on-primary-fixed: '#002114'
-  on-primary-fixed-variant: '#005137'
-  secondary-fixed: '#dae2fd'
-  secondary-fixed-dim: '#bec6e0'
-  on-secondary-fixed: '#131b2e'
-  on-secondary-fixed-variant: '#3f465c'
-  tertiary-fixed: '#ffddb8'
-  tertiary-fixed-dim: '#ffb95f'
-  on-tertiary-fixed: '#2a1700'
-  on-tertiary-fixed-variant: '#653e00'
-  background: '#f7f9fb'
-  on-background: '#191c1e'
-  surface-variant: '#e0e3e5'
 typography:
   display-hero:
     fontFamily: Plus Jakarta Sans
@@ -141,21 +93,58 @@ O design system estabelece uma identidade visual contemporânea, segura e crista
 
 ## Colors
 
-A paleta fundamenta-se na estabilidade institucional e na distinção funcional imediata de entradas, saídas e métricas de mercado.
+A paleta fundamenta-se na estabilidade institucional e na distinção funcional imediata de entradas, saídas e métricas de mercado. Os valores abaixo são exatamente os usados no código (`app/scss/_variables.scss`).
 
-### Aplicação e Semântica
+### Paleta principal
 
-- **Primária (Verde Esmeralda - `#059669` base, `#10B981` destaque/hover):** Representa saúde financeira, liquidez e progresso. Utilizada em CTAs principais, saldos positivos consolidados e marcos de metas cumpridas.
-- **Secundária / Estrutural (Azul Marinho / Slate Profundo - `#0F172A` e `#1E293B`):** Confere autoridade, solidez institucional e constância. Usada em barras de navegação lateral, cabeçalhos de seções, ícones de estrutura e tipografia de alto impacto.
-- **Suporte Semântico de Fluxo:**
-  - **Receitas & Superávit (Verde Menta - `#22C55E`):** Indicador visual de injeção de capital, transferências recebidas e saldos operacionais.
-  - **Despesas & Passivos (Vermelho Coral - `#EF4444`):** Alertas de estouro de teto, vencimentos imediatos e débitos consolidados.
-  - **Cotações & Avisos (Âmbar Dourado - `#F59E0B`):** Notificações preventivas, status neutro/pendente e indicadores de oscilação cambial.
-- **Superfícies e Neutros:**
-  - **Fundo Base:** `#F8FAFC` (Slate 50), atenuando a fadiga ocular em sessões prolongadas de análise financeira.
-  - **Superfícies de Dados (Cards / Modais):** `#FFFFFF` puro, isolando visualmente blocos de informação analítica.
-  - **Bordas Estruturais:** `#E2E8F0` (Slate 200) para demarcação periférica com opacidade sutil.
-  - **Texto Base & Auxiliar:** `#1E293B` (Slate 800) para leitura primária; `#64748B` (Slate 500) para metadados e legendas secundárias.
+| Papel | Cor | Uso |
+| --- | --- | --- |
+| **Fundo** | `#f7f9fb` | Fundo de todas as páginas, destacando os cards brancos. |
+| **Superfície** | `#ffffff` | Cards, modais, dropdowns e campos de formulário. |
+| **Texto** | `#191c1e` | Títulos, valores e textos de leitura. |
+| **Texto secundário** | `#3d4a42` | Legendas, rótulos e informações de apoio. |
+| **Primária** | `#006948` | Botões principais, links, item ativo e saldos positivos. Representa saúde financeira e progresso. |
+| **Destaque** | `#00855d` | Hover dos elementos na cor primária. |
+| **Borda** | `#bccac0` | Contorno de campos de formulário e botões secundários. |
+| **Sucesso (receita)** | `#006948` | Receitas e saldo positivo. É a mesma cor da primária: o verde do app significa "dinheiro entrando". |
+| **Erro (despesa)** | `#ba1a1a` | Despesas, limite estourado, exclusão e mensagens de erro. |
+| **Aviso (cotação)** | `#825100` | Cotações de moedas e avisos neutros/pendentes. |
+
+### Tons de apoio
+
+Versões claras da paleta principal, usadas só como fundo suave (nunca em texto):
+
+| Papel | Cor | Uso |
+| --- | --- | --- |
+| Primária clara | `#85f8c4` | Fundo de ícones e chips de receita (com transparência). |
+| Erro claro | `#ffdad6` | Fundo de ícones e avisos de despesa. |
+| Superfície alternativa | `#f2f4f6` | Hover de linhas da tabela e botões neutros. |
+| Borda suave | `#d7dfd9` | Contorno de cards e divisórias. |
+| Contorno | `#6d7a72` | Placeholders, ícones neutros e botão de fechar. |
+
+As **cores das categorias** (laranja, verde, azul, roxo etc.) não fazem parte da identidade: são escolhidas pelo usuário ao cadastrar uma categoria e ficam no mapa `$categorias`.
+
+### Dos tokens ao código
+
+As variáveis Sass do projeto ficam em `app/scss/_variables.scss` e são entregues ao Bootstrap em `app/scss/_bootstrap.scss`, **antes** do `@import` do framework (as variáveis do Bootstrap têm `!default`, então vale o valor definido antes):
+
+| Token | Valor | Variável Sass do projeto | Variável do Bootstrap |
+| --- | --- | --- | --- |
+| Fundo | `#f7f9fb` | `$cor-fundo` | `$body-bg` |
+| Superfície | `#ffffff` | `$cor-superficie` | padrão do `$card-bg` e `$dropdown-bg` (branco) |
+| Texto | `#191c1e` | `$cor-texto` | `$body-color`, `$headings-color` |
+| Texto secundário | `#3d4a42` | `$cor-texto-suave` | `$body-secondary-color` |
+| Primária | `#006948` | `$cor-primaria` | `$primary`, `$link-color`, `$input-focus-border-color` |
+| Destaque | `#00855d` | `$cor-primaria-destaque` | — (usada nas regras próprias de hover) |
+| Borda | `#bccac0` | `$cor-borda` | `$input-border-color` |
+| Borda suave | `#d7dfd9` | `$cor-borda-suave` | `$border-color`, `$card-border-color` |
+| Sucesso | `#006948` | `$cor-receita` | `$success` |
+| Erro | `#ba1a1a` | `$cor-despesa` | `$danger` |
+| Aviso | `#825100` | `$cor-terciaria` | `$warning` |
+| Fonte do texto | `Plus Jakarta Sans` | `$fonte-base` | `$font-family-sans-serif` |
+| Fonte dos valores | `JetBrains Mono` | `$fonte-numerica` | `$font-family-monospace` |
+
+O **Modo Escuro** reaproveita os mesmos papéis com variáveis CSS próprias (`--sq-fundo`, `--sq-texto`, `--sq-texto-suave` etc.), trocadas quando a página recebe `data-tema="escuro"`.
 
 ## Typography
 
@@ -181,9 +170,9 @@ O layout desktop de finanças adota uma estrutura em grade de 12 colunas com nav
 A profundidade é executada através de **Ambient Diffuse Layers** combinadas com **Low-Contrast Outlines**, transmitindo modernidade sem pesar visualmente o ambiente de dados.
 
 ### Níveis de Profundidade
-1. **Level 0 (Base Canvas):** Superfície `#F8FAFC`, neutra e sem sombras.
-2. **Level 1 (Cards Analíticos & Tabelas):** Fundo `#FFFFFF`, contorno externo nítido de `1px solid #E2E8F0` e sombra ambiental ultra-suave `0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03)`.
-3. **Level 2 (Dropdowns, Filtros Popover e Tooltips):** `0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04)`, contorno `1px solid #CBD5E1`.
+1. **Level 0 (Base Canvas):** cor de Fundo (`#f7f9fb`), neutra e sem sombras.
+2. **Level 1 (Cards Analíticos & Tabelas):** cor de Superfície (`#ffffff`), contorno externo nítido de `1px solid` na Borda suave (`#d7dfd9`) e sombra ambiental ultra-suave `0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03)`.
+3. **Level 2 (Dropdowns, Filtros Popover e Tooltips):** `0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04)`, contorno `1px solid` na Borda (`#bccac0`).
 4. **Level 3 (Modais de Cadastro e Drawer Lateral de Comprovantes):** `0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04)`, acompanhado por backdrop scrim em `rgba(15, 23, 42, 0.45)` com leve desfoque (`backdrop-filter: blur(4px)`).
 
 ## Shapes
@@ -197,29 +186,29 @@ Adota-se uma curvatura balanceada contemporânea de nível **2 (Rounded)**:
 ## Components
 
 ### 1. Cards de Indicadores (KPIs)
-- **Estrutura:** Fundo `#FFFFFF`, borda `#E2E8F0`, raio `rounded-lg` (16px), padding `1.5rem`.
-- **Conteúdo:** Rótulo em `caption-caps` (`#64748B`), valor financeiro consolidado em `label-numeric-lg` (`#0F172A`).
-- **Rodapé de Contexto:** Variação percentual com ícone direcional integrado: badge verde menta suave (`#DCFCE7` com texto `#15803D`) para crescimento de receita, e coral suave (`#FEE2E2` com texto `#B91C1C`) para aceleração de despesas.
+- **Estrutura:** Superfície (`#ffffff`), Borda suave (`#d7dfd9`), raio `rounded-lg` (16px), padding `1.5rem`.
+- **Conteúdo:** Rótulo em `caption-caps` na cor de Texto secundário (`#3d4a42`), valor financeiro consolidado em `label-numeric-lg` na cor de Texto (`#191c1e`).
+- **Rodapé de Contexto:** Variação percentual com ícone direcional integrado: badge com fundo Primária clara e texto Primária (`#006948`) para crescimento de receita, e fundo Erro claro (`#ffdad6`) com texto Erro (`#ba1a1a`) para aceleração de despesas.
 
 ### 2. Botões
-- **Primário:** Fundo `#059669`, texto branco `#FFFFFF`, tipografia `Plus Jakarta Sans` peso 600, padding vertical `0.625rem`, horizontal `1.25rem`, `rounded-lg`. Hover: transição suave para `#047857`. Foco visível com anel duplo: offset de 2px e anel `#10B981`.
-- **Secundário:** Fundo `#FFFFFF`, borda `1.5px solid #E2E8F0`, texto `#1E293B`. Hover: fundo `#F1F5F9`.
-- **Ação Rápida Negativa / Estorno:** Fundo suave `#FEF2F2`, texto `#EF4444`, borda `#FCA5A5`.
+- **Primário:** fundo Primária (`#006948`), texto branco (`#ffffff`), tipografia `Plus Jakarta Sans` peso 600, padding vertical `0.625rem`, horizontal `1.25rem`, `rounded-lg`. Hover: transição suave para o Destaque (`#00855d`). Foco visível com anel na cor Primária.
+- **Secundário:** fundo Superfície (`#ffffff`), borda `1px solid` na Borda (`#bccac0`), texto na cor de Texto. Hover: fundo Superfície alternativa (`#f2f4f6`).
+- **Ação Rápida Negativa / Estorno:** fundo Erro claro (`#ffdad6`) e texto Erro (`#ba1a1a`).
 
 ### 3. Badges de Categoria & Status Cambial
-- **Categorias (Alimentação, Transporte, Lazer):** Estilo pílula (`rounded-full`), fundo neutro matizado (ex: `#F1F5F9`), texto `#334155`, ícone monocromático de 14px à esquerda.
-- **Status Cambial (Dólar, Euro):** Pílula contendo par de moedas, taxa em `label-numeric-sm`, e micro-seta de volatilidade (verde subindo / vermelho descendo / âmbar estável).
+- **Categorias (Alimentação, Transporte, Lazer):** Estilo pílula (`rounded-full`), fundo Superfície alternativa (`#f2f4f6`), texto na cor de Texto, ícone monocromático de 14px à esquerda.
+- **Status Cambial (Dólar, Euro):** Pílula contendo par de moedas, taxa em `label-numeric-sm`, e micro-seta de volatilidade (Primária subindo / Erro descendo / Aviso estável).
 
 ### 4. Tabela de Transações Financeiras
-- **Linhas e Alternância:** Fundo base branco, linhas pares alternadas com `zebra-striping` discreto em `#F8FAFC`.
-- **Espaçamento e Tipografia:** Células com altura de 48px; descrições em `body-md` (`#1E293B`); quantias sempre alinhadas à direita em `JetBrains Mono`.
+- **Linhas e Alternância:** Fundo base branco, destaque da linha no hover em Superfície alternativa (`#f2f4f6`).
+- **Espaçamento e Tipografia:** Células com altura de 48px; descrições em `body-md` na cor de Texto; quantias sempre alinhadas à direita em `JetBrains Mono`.
 - **Ações Contextuais:** Botões de edição/exclusão exibidos via opacidade 0 para 1 no hover da linha.
 
 ### 5. Campos de Entrada (Inputs)
-- **Estrutura:** Altura de 44px, raio `rounded-lg`, fundo `#FFFFFF`, borda `1.5px solid #CBD5E1`.
-- **Foco:** Borda `#059669` com anel de brilho suave `rgba(5, 150, 105, 0.15)`.
-- **Input de Moeda:** Prefixo `R$` fixo em `#64748B` com o valor digitado formatado instantaneamente via tipografia tabular.
+- **Estrutura:** Altura de 44px, raio `rounded-lg`, fundo Superfície (`#ffffff`), borda `1px solid` na Borda (`#bccac0`).
+- **Foco:** borda Primária (`#006948`) com anel de brilho suave `rgba(0, 105, 72, 0.15)`.
+- **Input de Moeda:** Prefixo `R$` fixo na cor de Contorno (`#6d7a72`) com o valor digitado formatado instantaneamente via tipografia tabular.
 
 ### 6. Modais com Dropzone de Comprovantes
-- **Modal:** Largura máxima de 560px, cabeçalho limpo com botão fechar em `#94A3B8`.
-- **Área de Anexo (Dropzone):** Borda tracejada de `2px dashed #CBD5E1`, fundo `#F8FAFC`, canto `rounded-lg`. No estado `dragover`: borda ativa `#059669` e fundo `#ECFDF5`. Ícone central de upload acompanhado de mensagem clara: *"Arraste PDF, PNG ou JPG até 10MB"*.
+- **Modal:** Largura máxima de 560px, cabeçalho limpo com botão fechar na cor de Contorno (`#6d7a72`).
+- **Área de Anexo (Dropzone):** Borda tracejada de `2px dashed` na Borda (`#bccac0`), fundo Superfície alternativa (`#f2f4f6`), canto `rounded-lg`. Enquanto um arquivo é arrastado por cima: borda Primária (`#006948`) e fundo Primária clara com transparência. Ícone central de upload acompanhado de mensagem clara: *"Arraste PDF, PNG ou JPG até 10MB"*.

@@ -12,8 +12,8 @@
 // ---------- Cores do tema ----------
 $primary:   v.$cor-primaria;
 $secondary: v.$cor-secundaria;
-$success:   v.$cor-receita;
-$danger:    v.$cor-despesa;
+$success:   v.$cor-primaria;
+$danger:    v.$cor-erro;
 $warning:   v.$cor-terciaria;
 $light:     v.$cor-superficie-alt;
 
@@ -34,10 +34,8 @@ $headings-color:         v.$cor-texto;
 
 // ---------- Bordas e cantos (borderRadius do protótipo) ----------
 $border-color:       v.$cor-borda-suave;
-$border-radius-sm:   0.25rem;
 $border-radius:      0.5rem;   // rounded-lg do Stitch (cards, botões, inputs)
 $border-radius-lg:   0.75rem;  // rounded-xl (modais)
-$border-radius-xl:   1rem;
 $border-radius-pill: v.$raio-pill;
 $box-shadow-sm:      v.$sombra-1;
 $box-shadow:         v.$sombra-2;
@@ -76,7 +74,6 @@ $table-hover-bg:       rgba(v.$cor-superficie-alt, 0.7);
 
 // ---------- Navbar, modal, badges ----------
 $navbar-padding-y:               0.75rem;
-$modal-content-border-radius:    0.75rem;
 $modal-header-padding:           1.25rem 1.5rem;
 $modal-inner-padding:            1.5rem;
 $modal-backdrop-opacity:         0.45;

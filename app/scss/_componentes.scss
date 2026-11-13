@@ -37,8 +37,8 @@
 .mono { @include texto-numerico; }
 .valor-lg { @include texto-numerico(1.5rem); font-weight: 600; letter-spacing: -0.02em; }
 .valor-xl { font-size: $fs-display; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
-.valor-positivo { color: $cor-receita !important; }
-.valor-negativo { color: $cor-despesa !important; }
+.valor-positivo { color: $cor-primaria !important; }
+.valor-negativo { color: $cor-erro !important; }
 
 // ---------- Cards ----------
 // O .card do Bootstrap já vem com borda e cantos do protótipo;

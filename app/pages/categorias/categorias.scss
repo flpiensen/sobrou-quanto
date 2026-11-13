@@ -12,8 +12,8 @@
   border-radius: $raio-pill;
 
   .progress { height: 100%; }
-  .progress:first-child .progress-bar { background-color: $cor-despesa; }
-  .progress:last-child .progress-bar  { background-color: $cor-receita; }
+  .progress:first-child .progress-bar { background-color: $cor-erro; }
+  .progress:last-child .progress-bar  { background-color: $cor-primaria; }
 }
 
 .legenda-volume {

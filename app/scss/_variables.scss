@@ -8,16 +8,10 @@
 // =============================================================
 
 // ---------- Cores de marca ----------
-$cor-primaria:           #006948; // primary — verde (CTAs, saldo positivo)
-$cor-primaria-destaque:  #00855d; // primary-container — hover/destaque
+$cor-primaria:           #006948; // primary — verde (CTAs, receitas, saldo positivo)
 $cor-secundaria:         #565e74; // secondary — elementos estruturais
 $cor-terciaria:          #825100; // tertiary — âmbar (cotações, avisos)
 $cor-erro:               #ba1a1a; // error — vermelho (despesas, alertas)
-
-// ---------- Apelidos semânticos (o "significado" da cor) ----------
-$cor-receita: $cor-primaria;
-$cor-despesa: $cor-erro;
-$cor-cotacao: $cor-terciaria;
 
 // ---------- Superfícies e texto ----------
 $cor-fundo:          #f7f9fb; // background
@@ -34,7 +28,6 @@ $fonte-numerica: 'JetBrains Mono', ui-monospace, monospace; // valores em R$
 // Escala tipográfica em rem (1rem = 16px)
 $fs-display:  2.25rem;   // 36px — display-hero
 $fs-h1:       1.75rem;   // 28px — headline-lg
-$fs-h2:       1.375rem;  // 22px — headline-md
 $fs-h3:       1.125rem;  // 18px — headline-sm
 $fs-corpo:    1rem;      // 16px — body-lg
 $fs-corpo-md: 0.875rem;  // 14px — body-md
@@ -55,7 +48,6 @@ $raio-sm:   0.25rem;
 $raio:      0.5rem;
 $raio-md:   0.75rem;
 $raio-lg:   1rem;
-$raio-xl:   1.5rem;
 $raio-pill: 9999px;
 
 // ---------- Sombras (níveis de elevação do sdd.md) ----------
@@ -70,7 +62,6 @@ $transicao: 150ms ease-in-out;
 $bp-sm: 576px;
 $bp-md: 768px;
 $bp-lg: 992px;
-$bp-xl: 1200px;
 
 // =============================================================
 // Tokens complementares extraídos do protótipo (Stitch)
@@ -78,11 +69,9 @@ $bp-xl: 1200px;
 
 // ---------- Containers de cor (fundos suaves) ----------
 $cor-primaria-fixa:       #85f8c4; // primary-fixed — fundo de chips/ícones verdes
-$cor-primaria-fixa-dim:   #68dba9; // primary-fixed-dim
 $cor-erro-container:      #ffdad6; // error-container — fundo de ícones/alertas vermelhos
 $cor-secundaria-container:#dae2fd; // secondary-container — item ativo do menu
 $cor-on-secundaria-cont:  #3f465c; // on-secondary-fixed-variant — texto do item ativo
-$cor-terciaria-fixa:      #ffddb8; // tertiary-fixed — fundo âmbar
 
 // ---------- Superfícies intermediárias ----------
 $cor-superficie-cont:     #eceef0; // surface-container

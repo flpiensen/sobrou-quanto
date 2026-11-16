@@ -131,11 +131,11 @@ As variáveis Sass do projeto ficam em `app/scss/_variables.scss` e são entregu
 | --- | --- | --- | --- |
 | Fundo | `#f7f9fb` | `$cor-fundo` | `$body-bg` |
 | Superfície | `#ffffff` | `$cor-superficie` | padrão do `$card-bg` e `$dropdown-bg` (branco) |
-| Texto | `#191c1e` | `$cor-texto` | `$body-color`, `$headings-color` |
+| Texto | `#191c1e` | `$cor-texto` | `$body-color` |
 | Texto secundário | `#3d4a42` | `$cor-texto-suave` | `$body-secondary-color` |
-| Primária | `#006948` | `$cor-primaria` | `$primary`, `$link-color`, `$input-focus-border-color` |
-| Borda | `#bccac0` | `$cor-borda` | `$input-border-color` |
-| Borda suave | `#d7dfd9` | (valor direto) | `$border-color`, `$card-border-color` |
+| Primária | `#006948` | `$cor-primaria` | `$primary` (o Bootstrap usa a primária também nos links e no foco dos campos) |
+| Borda | `#bccac0` | `$cor-borda` | — (usada nas regras próprias de borda) |
+| Borda suave | `#d7dfd9` | (valor direto) | `$border-color` |
 | Sucesso | `#006948` | `$cor-primaria` | `$success` |
 | Erro | `#ba1a1a` | `$cor-erro` | `$danger` |
 | Aviso | `#825100` | `$cor-aviso` | `$warning` |

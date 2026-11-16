@@ -6,7 +6,7 @@
 @use "variables" as *;
 
 // Mobile first: aplica o bloco a partir de uma largura de tela.
-// Uso: @include a-partir-de($bp-md) { ... }
+// Uso: @include a-partir-de(768px) { ... }
 @mixin a-partir-de($largura) {
   @media (min-width: $largura) {
     @content; // @content = o bloco que você escrever dentro do @include
@@ -16,19 +16,19 @@
 // Card "nível 1" do sdd.md: fundo, borda, cantos e sombra suave.
 // Fundo e texto usam as variáveis quentes (--sq-*), para o card
 // também mudar quando o Modo Escuro for ativado.
-@mixin card-base($arredondamento: $raio-lg) {
+@mixin card-base($arredondamento: 1rem) {
   background-color: var(--sq-superficie);
   color: var(--sq-texto);
   border: 1px solid $cor-borda;
   border-radius: $arredondamento;
-  box-shadow: $sombra-1;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
 }
 
 // Card de KPI do Dashboard (Saldo, Receitas, Despesas).
 // Mesmo formato para os três; só a cor de destaque muda.
 @mixin card-resumo($cor) {
   @include card-base;
-  padding: $esp-lg;
+  padding: 1.5rem;
   border-left: 4px solid $cor;
 
   .valor {
@@ -38,7 +38,7 @@
 
 // Valores monetários: fonte mono com algarismos tabulares,
 // para os centavos ficarem alinhados em colunas.
-@mixin texto-numerico($tamanho: $fs-corpo-md) {
+@mixin texto-numerico($tamanho: 0.875rem) {
   font-family: $fonte-numerica;
   font-size: $tamanho;
   font-variant-numeric: tabular-nums;

@@ -8,7 +8,7 @@
 // Card de saldo com brilho verde no canto (como no protótipo)
 .kpi-saldo {
   background:
-    radial-gradient(circle at 100% 0%, rgba($cor-primaria-fixa, 0.35) 0%, transparent 45%),
+    radial-gradient(circle at 100% 0%, rgba(#85f8c4, 0.35) 0%, transparent 45%),
     var(--sq-superficie);
 }
 
@@ -45,9 +45,9 @@
     text-align: center;
     line-height: 1.25;
 
-    .rotulo { font-size: $fs-caps; text-transform: uppercase; letter-spacing: 0.05em; color: var(--sq-texto-suave); }
-    .percentual { @include texto-numerico($fs-corpo); font-weight: 700; }
-    .estado { font-size: $fs-legenda; font-weight: 600; color: $cor-primaria; }
+    .rotulo { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--sq-texto-suave); }
+    .percentual { @include texto-numerico(1rem); font-weight: 700; }
+    .estado { font-size: 0.75rem; font-weight: 600; color: $cor-primaria; }
   }
 }
 
@@ -55,25 +55,25 @@
 .legenda-item {
   display: flex;
   align-items: center;
-  gap: $esp-sm;
-  padding: $esp-sm $esp-md;
-  border-radius: $raio;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
   background-color: var(--sq-superficie-alt);
   border: 1px solid var(--sq-borda-suave);
 
   .marcador { width: 0.75rem; height: 0.75rem; border-radius: 50%; flex-shrink: 0; }
-  .titulo { display: block; font-size: $fs-corpo-md; font-weight: 500; }
-  .sub { display: block; font-size: $fs-legenda; color: var(--sq-texto-suave); }
-  .valor { @include texto-numerico($fs-corpo-md); font-weight: 700; margin-left: auto; }
+  .titulo { display: block; font-size: 0.875rem; font-weight: 500; }
+  .sub { display: block; font-size: 0.75rem; color: var(--sq-texto-suave); }
+  .valor { @include texto-numerico(0.875rem); font-weight: 700; margin-left: auto; }
 }
 
 // ---------- Cotações (US05) ----------
 .cotacao-item {
   display: flex;
   align-items: center;
-  gap: $esp-md;
-  padding: $esp-md;
-  border-radius: $raio;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
   background-color: var(--sq-superficie-alt);
   border: 1px solid var(--sq-borda-suave);
 
@@ -90,8 +90,8 @@
     color: var(--sq-texto-suave);
   }
 
-  .nome { font-size: $fs-corpo-md; font-weight: 600; }
-  .par { font-size: $fs-caps; font-weight: 600; color: var(--sq-texto-suave); margin-left: $esp-xxs; }
-  .atualizado { display: block; font-size: $fs-legenda; color: var(--sq-texto-suave); }
-  .preco { @include texto-numerico($fs-corpo-md); font-weight: 700; }
+  .nome { font-size: 0.875rem; font-weight: 600; }
+  .par { font-size: 0.6875rem; font-weight: 600; color: var(--sq-texto-suave); margin-left: 0.25rem; }
+  .atualizado { display: block; font-size: 0.75rem; color: var(--sq-texto-suave); }
+  .preco { @include texto-numerico(0.875rem); font-weight: 700; }
 }

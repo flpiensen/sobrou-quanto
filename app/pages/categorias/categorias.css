@@ -14,7 +14,7 @@
 
 .legenda-volume {
   font-size: 0.75rem;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
 }
 .legenda-volume .ponto {
   display: inline-block;
@@ -26,9 +26,9 @@
 
 .filtros-pilula .btn {
   border-radius: 9999px;
-  background-color: var(--sq-superficie-cont);
+  background-color: #eceef0;
   border: 0;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
   font-weight: 500;
 }
 .filtros-pilula .btn-check:checked + .btn {
@@ -49,12 +49,12 @@
 }
 .categoria-card .sub {
   font-size: 0.75rem;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
 }
 .categoria-card .rotulo {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
 }
 .categoria-card .limite {
   display: flex;
@@ -62,7 +62,7 @@
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
 }
 .categoria-card .card-footer {
   display: flex;
@@ -162,7 +162,7 @@
   opacity: 0;
 }
 .paleta-cores .btn-check:checked + label {
-  box-shadow: 0 0 0 2px var(--sq-superficie), 0 0 0 4px #006948;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #006948;
 }
 .paleta-cores .btn-check:checked + label i {
   opacity: 1;
@@ -197,9 +197,9 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
   padding: 0.75rem;
-  border: 1px solid var(--sq-borda-suave);
+  border: 1px solid #d7dfd9;
   border-radius: 0.5rem;
-  background-color: var(--sq-superficie-alt);
+  background-color: #f2f4f6;
 }
 @media (min-width: 576px) {
   .grade-icones {
@@ -212,10 +212,10 @@
   justify-content: center;
   height: 3rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--sq-borda-suave);
-  background-color: var(--sq-superficie);
+  border: 1px solid #d7dfd9;
+  background-color: #ffffff;
   font-size: 1.125rem;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
   cursor: pointer;
 }
 .grade-icones .btn-check:checked + label {

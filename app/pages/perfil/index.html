@@ -18,18 +18,11 @@
     <!-- Bootstrap Icons (NPM) -->
     <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
 
-    <!-- CSS global (Bootstrap 5.3 personalizado + tema), gerado de app/style.scss -->
+    <!-- CSS global (Bootstrap 5.3 personalizado), gerado de app/style.scss -->
     <link rel="stylesheet" href="../../style.css" />
     <!-- CSS desta página, gerado do perfil.scss desta pasta -->
     <link rel="stylesheet" href="./perfil.css" />
 
-    <!-- Aplica o Modo Escuro antes de desenhar a página (evita "piscar" claro) -->
-    <script>
-      if (localStorage.getItem("sq:tema") === "escuro") {
-        document.documentElement.dataset.tema = "escuro";
-        document.documentElement.dataset.bsTheme = "dark";
-      }
-    </script>
   </head>
 
   <!-- d-flex + flex-column + min-vh-100: base do "sticky footer" -->
@@ -262,14 +255,6 @@
                     <span class="descricao">Avisar no sininho 3 dias antes de despesas agendadas e quando uma categoria passar de 80% do limite</span>
                   </label>
                   <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="alertas" data-preferencia="alertas" /></div>
-                </div>
-                <div class="preferencia">
-                  <label for="modoEscuro">
-                    <span class="titulo">Modo Escuro (Dark Mode)</span>
-                    <span class="badge text-bg-light border fw-normal ms-1" id="rotuloTema">Claro</span>
-                    <span class="descricao">Alternar tema de alto contraste para ambientes com pouca luz</span>
-                  </label>
-                  <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="modoEscuro" data-preferencia="modoEscuro" /></div>
                 </div>
                 <div class="preferencia">
                   <label for="cotacoesAuto">

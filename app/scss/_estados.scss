@@ -1,6 +1,6 @@
 // =============================================================
 // _estados.scss — Estados criados pelo JavaScript
-// (lista vazia, carregando, avisos, avatar com iniciais, modo escuro)
+// (lista vazia, carregando, avisos, avatar com iniciais)
 // =============================================================
 @use "variables" as *;
 
@@ -41,7 +41,7 @@
   gap: 0.25rem;
   padding: 1.5rem 1rem;
   text-align: center;
-  color: var(--sq-texto-suave);
+  color: $cor-texto-suave;
   font-size: 0.875rem;
 
   > i { font-size: 1.5rem; }
@@ -59,13 +59,13 @@
 
   .icone-tile { width: 3.5rem; height: 3.5rem; font-size: 1.5rem; }
   strong { font-size: 1.0625rem; }
-  p { max-width: 28rem; margin: 0; color: var(--sq-texto-suave); font-size: 0.875rem; }
+  p { max-width: 28rem; margin: 0; color: $cor-texto-suave; font-size: 0.875rem; }
 }
 
 // Dentro da grade de categorias o estado vazio ganha um cartão
 #vazioCategorias .estado-vazio {
-  background-color: var(--sq-superficie);
-  border: 1px dashed var(--sq-borda);
+  background-color: $cor-superficie;
+  border: 1px dashed $cor-borda;
   border-radius: 1rem;
 }
 
@@ -89,8 +89,8 @@
 }
 
 .badge-categoria.cat-neutro {
-  background-color: var(--sq-superficie-cont);
-  color: var(--sq-texto-suave);
+  background-color: #eceef0;
+  color: $cor-texto-suave;
 }
 
 .chip-status.chip-offline .ponto { background-color: $cor-erro; }
@@ -121,7 +121,7 @@
 .exemplo-csv {
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  background-color: var(--sq-superficie-cont);
+  background-color: #eceef0;
   font-size: 0.75rem;
   white-space: pre-wrap;
   word-break: break-word;
@@ -129,7 +129,7 @@
 
 // ---------- Avisos (Toast do Bootstrap) ----------
 .toast {
-  --bs-toast-bg: var(--sq-superficie); // fundo sólido (o padrão do Bootstrap é translúcido)
+  --bs-toast-bg: $cor-superficie; // fundo sólido (o padrão do Bootstrap é translúcido)
   border: 0;
   border-left: 4px solid $cor-primaria;
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12);
@@ -137,53 +137,4 @@
   &.aviso-sucesso i.bi { color: $cor-primaria; }
   &.aviso-erro { border-left-color: $cor-erro; i.bi { color: $cor-erro; } }
   &.aviso-info { border-left-color: #2563eb; i.bi { color: #2563eb; } }
-}
-
-// ---------- Modo escuro (US11) ----------
-// Fundos, textos e bordas já mudam pelas variáveis --sq-* (_base.scss).
-// Aqui ficam só os ajustes de cores "de marca" que ficariam escuras demais.
-[data-tema="escuro"] {
-  .card,
-  .modal-content,
-  .dropdown-menu,
-  .toast {
-    --bs-card-bg: var(--sq-superficie);
-    --bs-modal-bg: var(--sq-superficie);
-    --bs-dropdown-bg: var(--sq-superficie);
-    --bs-toast-bg: var(--sq-superficie);
-    --bs-card-border-color: var(--sq-borda-suave);
-    border-color: var(--sq-borda-suave);
-    background-color: var(--sq-superficie);
-    color: var(--sq-texto);
-  }
-
-  .table {
-    --bs-table-bg: transparent;
-    --bs-table-color: var(--sq-texto);
-    --bs-table-hover-bg: var(--sq-superficie-alt);
-    --bs-table-hover-color: var(--sq-texto);
-  }
-
-  .form-control,
-  .form-select,
-  .input-group-text {
-    background-color: var(--sq-superficie-alt);
-    border-color: var(--sq-borda);
-    color: var(--sq-texto);
-  }
-
-  // Verde e vermelho mais claros para ter contraste no fundo escuro
-  .text-primary,
-  .valor-positivo,
-  .logo-texto .nome,
-  .rosca .estado,
-  a:not(.btn):not(.dropdown-item):not(.nav-link):not(.item):not(.item-acao) {
-    color: #4cd6a0 !important;
-  }
-  .text-danger,
-  .valor-negativo { color: #ff8a80 !important; }
-
-  .login-hero { background: linear-gradient(135deg, #12332a 0%, var(--sq-superficie) 60%, #1f2a3a 100%); }
-  .rosca.vazia { background: var(--sq-borda); }
-  .alerta-insight { background-color: rgba($cor-primaria, 0.2); }
 }

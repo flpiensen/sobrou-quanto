@@ -20,8 +20,8 @@
 
 // Metade esquerda com fundo em degradê suave
 .login-hero {
-  background: linear-gradient(135deg, rgba(#85f8c4, 0.35) 0%, var(--sq-superficie-alt) 55%, rgba(#dae2fd, 0.6) 100%);
-  border-right: 1px solid var(--sq-borda-suave);
+  background: linear-gradient(135deg, rgba(#85f8c4, 0.35) 0%, #f2f4f6 55%, rgba(#dae2fd, 0.6) 100%);
+  border-right: 1px solid #d7dfd9;
   padding: 1.5rem; // celular: mais espaço útil
 
   @include a-partir-de(768px) { padding: 3rem; }
@@ -36,7 +36,7 @@
     .destaque { color: $cor-primaria; }
   }
 
-  .lead { font-size: 1rem; color: var(--sq-texto-suave); }
+  .lead { font-size: 1rem; color: $cor-texto-suave; }
 
   // Ilustração otimizada (WebP + <picture>/srcset no HTML)
   .login-ilustracao img {
@@ -52,10 +52,10 @@
   }
 
   .recursos {
-    border-top: 1px solid var(--sq-borda-suave);
+    border-top: 1px solid #d7dfd9;
     padding-top: 1.5rem;
     font-size: 0.875rem;
-    color: var(--sq-texto-suave);
+    color: $cor-texto-suave;
   }
 }
 
@@ -69,11 +69,11 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.25rem 0.5rem;
-    border: 1px solid var(--sq-borda-suave);
+    border: 1px solid #d7dfd9;
     border-radius: 0.25rem;
     @include texto-numerico(0.75rem);
 
-    .moeda { font-family: $fonte-base; font-weight: 700; color: var(--sq-texto); }
+    .moeda { font-family: $fonte-base; font-weight: 700; color: $cor-texto; }
   }
 }
 
@@ -95,7 +95,7 @@
   font-size: 0.6875rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--sq-texto-suave);
+  color: $cor-texto-suave;
   white-space: nowrap;
 
   &::before,
@@ -103,7 +103,7 @@
     content: "";
     flex: 1;
     height: 1px;
-    background-color: var(--sq-borda-suave);
+    background-color: #d7dfd9;
   }
 }
 

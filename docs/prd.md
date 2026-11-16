@@ -40,4 +40,4 @@ Abaixo estão as funcionalidades principais do MVP (Minimum Viable Product), org
 - *US10 - Visualizar e Editar Perfil:* Como um Cliente, quero acessar uma tela de perfil para visualizar e atualizar meus dados pessoais.
 - *Critérios de Aceitação:* A tela deve conter a foto de perfil (avatar editável), Nome Completo, Profissão/Ocupação e uma área de Bio/Descrição.
 - *US11 - Preferências da Conta:* Como um Cliente, quero gerenciar configurações básicas da minha experiência de uso.
-- *Critérios de Aceitação:* O sistema deve disponibilizar botões do tipo "switch" para ativar/desativar "Receber alertas de vencimento" e "Modo Escuro".
+- *Critérios de Aceitação:* O sistema deve disponibilizar botões do tipo "switch" para ativar/desativar "Receber alertas de vencimento", "Cotações automáticas no Dashboard" e "Lembrete de comprovantes".

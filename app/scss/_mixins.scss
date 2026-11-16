@@ -14,11 +14,9 @@
 }
 
 // Card "nível 1" do sdd.md: fundo, borda, cantos e sombra suave.
-// Fundo e texto usam as variáveis quentes (--sq-*), para o card
-// também mudar quando o Modo Escuro for ativado.
 @mixin card-base($arredondamento: 1rem) {
-  background-color: var(--sq-superficie);
-  color: var(--sq-texto);
+  background-color: $cor-superficie;
+  color: $cor-texto;
   border: 1px solid $cor-borda;
   border-radius: $arredondamento;
   box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);

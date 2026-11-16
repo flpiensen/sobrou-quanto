@@ -18,7 +18,7 @@
 
 .legenda-volume {
   font-size: 0.75rem;
-  color: var(--sq-texto-suave);
+  color: $cor-texto-suave;
 
   .ponto { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; margin-right: 0.25rem; }
 }
@@ -27,9 +27,9 @@
 .filtros-pilula {
   .btn {
     border-radius: 9999px;
-    background-color: var(--sq-superficie-cont);
+    background-color: #eceef0;
     border: 0;
-    color: var(--sq-texto-suave);
+    color: $cor-texto-suave;
     font-weight: 500;
   }
 
@@ -45,8 +45,8 @@
   .card-body { display: flex; flex-direction: column; gap: 1rem; }
 
   .nome { font-size: 1.125rem; font-weight: 600; margin-bottom: 0; }
-  .sub { font-size: 0.75rem; color: var(--sq-texto-suave); }
-  .rotulo { font-size: 0.75rem; font-weight: 600; color: var(--sq-texto-suave); }
+  .sub { font-size: 0.75rem; color: $cor-texto-suave; }
+  .rotulo { font-size: 0.75rem; font-weight: 600; color: $cor-texto-suave; }
 
   .limite {
     display: flex;
@@ -54,7 +54,7 @@
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.02em;
-    color: var(--sq-texto-suave);
+    color: $cor-texto-suave;
   }
 
   .card-footer {
@@ -97,7 +97,7 @@
 
   // Cor selecionada: anel e ícone de "check"
   .btn-check:checked + label {
-    box-shadow: 0 0 0 2px var(--sq-superficie), 0 0 0 4px $cor-primaria;
+    box-shadow: 0 0 0 2px $cor-superficie, 0 0 0 4px $cor-primaria;
     i { opacity: 1; }
   }
 
@@ -112,9 +112,9 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
   padding: 0.75rem;
-  border: 1px solid var(--sq-borda-suave);
+  border: 1px solid #d7dfd9;
   border-radius: 0.5rem;
-  background-color: var(--sq-superficie-alt);
+  background-color: #f2f4f6;
 
   @include a-partir-de(576px) { grid-template-columns: repeat(8, 1fr); }
 
@@ -124,10 +124,10 @@
     justify-content: center;
     height: 3rem; // altura fixa: não cresce com a largura do modal
     border-radius: 0.5rem;
-    border: 1px solid var(--sq-borda-suave);
-    background-color: var(--sq-superficie);
+    border: 1px solid #d7dfd9;
+    background-color: $cor-superficie;
     font-size: 1.125rem;
-    color: var(--sq-texto-suave);
+    color: $cor-texto-suave;
     cursor: pointer;
   }
 

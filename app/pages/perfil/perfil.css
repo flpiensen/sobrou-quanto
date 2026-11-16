@@ -10,7 +10,7 @@
   border-radius: 50%;
   background-color: #006948;
   color: #fff;
-  border: 3px solid var(--sq-superficie);
+  border: 3px solid #ffffff;
 }
 
 .avatar-lg img {
@@ -23,7 +23,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem 0;
-  border-bottom: 1px solid var(--sq-borda-suave);
+  border-bottom: 1px solid #d7dfd9;
 }
 .preferencia:last-child {
   border-bottom: 0;
@@ -36,7 +36,7 @@
 .preferencia .descricao {
   display: block;
   font-size: 0.75rem;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
 }
 .preferencia .form-switch .form-check-input {
   width: 2.75rem;
@@ -47,10 +47,10 @@
 .status-sessao {
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: var(--sq-superficie-alt);
-  border: 1px solid var(--sq-borda-suave);
+  background-color: #f2f4f6;
+  border: 1px solid #d7dfd9;
   font-size: 0.75rem;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
 }
 
 .item-acao {
@@ -59,15 +59,15 @@
   gap: 0.75rem;
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--sq-borda);
+  border: 1px solid #bccac0;
   border-radius: 0.5rem;
-  background-color: var(--sq-superficie);
-  color: var(--sq-texto);
+  background-color: #ffffff;
+  color: #191c1e;
   font-weight: 500;
   text-align: left;
 }
 .item-acao:hover {
-  background-color: var(--sq-superficie-alt);
+  background-color: #f2f4f6;
 }
 
 .integracao {
@@ -76,8 +76,8 @@
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  background-color: var(--sq-superficie-alt);
-  border: 1px solid var(--sq-borda-suave);
+  background-color: #f2f4f6;
+  border: 1px solid #d7dfd9;
 }
 .integracao .nome {
   display: block;
@@ -88,5 +88,5 @@
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
 }

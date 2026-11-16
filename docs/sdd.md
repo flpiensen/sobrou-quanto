@@ -142,8 +142,6 @@ As variáveis Sass do projeto ficam em `app/scss/_variables.scss` e são entregu
 | Fonte do texto | `Plus Jakarta Sans` | `$fonte-base` | `$font-family-sans-serif` |
 | Fonte dos valores | `JetBrains Mono` | `$fonte-numerica` | `$font-family-monospace` |
 
-O **Modo Escuro** reaproveita os mesmos papéis com variáveis CSS próprias (`--sq-fundo`, `--sq-texto`, `--sq-texto-suave` etc.), trocadas quando a página recebe `data-tema="escuro"`.
-
 ## Typography
 
 O pareamento tipográfico resolve dois propósitos distintos: legibilidade acolhedora em dados textuais e alinhamento milimétrico em dados quantitativos.

@@ -12,7 +12,7 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background-color: rgba($cor-primaria-fixa, 0.6);
+  background-color: rgba(#85f8c4, 0.6);
   color: $cor-primaria;
   font-weight: 700;
   font-size: 0.9375rem;
@@ -38,14 +38,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $esp-xxs;
-  padding: $esp-lg $esp-md;
+  gap: 0.25rem;
+  padding: 1.5rem 1rem;
   text-align: center;
   color: var(--sq-texto-suave);
-  font-size: $fs-corpo-md;
+  font-size: 0.875rem;
 
   > i { font-size: 1.5rem; }
-  small { font-size: $fs-legenda; }
+  small { font-size: 0.75rem; }
 }
 
 // ---------- Estado vazio das listas e tabelas ----------
@@ -53,20 +53,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $esp-sm;
-  padding: $esp-xl $esp-md;
+  gap: 0.75rem;
+  padding: 2rem 1rem;
   text-align: center;
 
   .icone-tile { width: 3.5rem; height: 3.5rem; font-size: 1.5rem; }
   strong { font-size: 1.0625rem; }
-  p { max-width: 28rem; margin: 0; color: var(--sq-texto-suave); font-size: $fs-corpo-md; }
+  p { max-width: 28rem; margin: 0; color: var(--sq-texto-suave); font-size: 0.875rem; }
 }
 
 // Dentro da grade de categorias o estado vazio ganha um cartão
 #vazioCategorias .estado-vazio {
   background-color: var(--sq-superficie);
   border: 1px dashed var(--sq-borda);
-  border-radius: $raio-lg;
+  border-radius: 1rem;
 }
 
 // ---------- Selos ----------
@@ -75,7 +75,7 @@
   width: fit-content;
   margin-top: 0.25rem;
   padding: 0 0.4rem;
-  border-radius: $raio-pill;
+  border-radius: 9999px;
   background-color: rgba(#d97706, 0.15);
   color: #b45309;
   font-family: $fonte-base;
@@ -97,14 +97,14 @@
 
 // ---------- Gráfico de rosca sem dados ----------
 .rosca.vazia {
-  background: $cor-superficie-variante;
+  background: #e0e3e5;
 }
 
 .alerta-insight.alerta-negativo {
-  background-color: rgba($cor-erro-container, 0.5);
+  background-color: rgba(#ffdad6, 0.5);
   border-color: rgba($cor-erro, 0.3);
 
-  .icone-tile { background-color: $cor-erro-container; color: $cor-erro; }
+  .icone-tile { background-color: #ffdad6; color: $cor-erro; }
 }
 
 // ---------- Botão de atualizar girando ----------
@@ -119,10 +119,10 @@
 
 // ---------- Importação CSV: exemplo do formato ----------
 .exemplo-csv {
-  padding: $esp-sm $esp-md;
-  border-radius: $raio;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
   background-color: var(--sq-superficie-cont);
-  font-size: $fs-legenda;
+  font-size: 0.75rem;
   white-space: pre-wrap;
   word-break: break-word;
 }

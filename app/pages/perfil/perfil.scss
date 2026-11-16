@@ -22,7 +22,7 @@
 }
 
 .avatar-lg img {
-  box-shadow: 0 0 0 4px rgba($cor-primaria-fixa, 0.5);
+  box-shadow: 0 0 0 4px rgba(#85f8c4, 0.5);
 }
 
 // Linhas de preferência (texto + switch)
@@ -30,25 +30,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: $esp-md;
-  padding: $esp-md 0;
+  gap: 1rem;
+  padding: 1rem 0;
   border-bottom: 1px solid var(--sq-borda-suave);
 
   &:last-child { border-bottom: 0; padding-bottom: 0; }
 
-  .titulo { font-size: $fs-corpo-md; font-weight: 600; }
-  .descricao { display: block; font-size: $fs-legenda; color: var(--sq-texto-suave); }
+  .titulo { font-size: 0.875rem; font-weight: 600; }
+  .descricao { display: block; font-size: 0.75rem; color: var(--sq-texto-suave); }
 
   .form-switch .form-check-input { width: 2.75rem; height: 1.5rem; cursor: pointer; }
 }
 
 // Caixa de status da sessão
 .status-sessao {
-  padding: $esp-md;
-  border-radius: $raio;
+  padding: 1rem;
+  border-radius: 0.5rem;
   background-color: var(--sq-superficie-alt);
   border: 1px solid var(--sq-borda-suave);
-  font-size: $fs-legenda;
+  font-size: 0.75rem;
   color: var(--sq-texto-suave);
 }
 
@@ -56,11 +56,11 @@
 .item-acao {
   display: flex;
   align-items: center;
-  gap: $esp-sm;
+  gap: 0.75rem;
   width: 100%;
-  padding: $esp-sm $esp-md;
+  padding: 0.75rem 1rem;
   border: 1px solid var(--sq-borda);
-  border-radius: $raio;
+  border-radius: 0.5rem;
   background-color: var(--sq-superficie);
   color: var(--sq-texto);
   font-weight: 500;
@@ -73,12 +73,12 @@
 .integracao {
   display: flex;
   align-items: center;
-  gap: $esp-sm;
-  padding: $esp-sm $esp-md;
-  border-radius: $raio;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
   background-color: var(--sq-superficie-alt);
   border: 1px solid var(--sq-borda-suave);
 
   .nome { display: block; font-weight: 600; }
-  .detalhe { display: block; @include texto-numerico($fs-legenda); color: var(--sq-texto-suave); }
+  .detalhe { display: block; @include texto-numerico(0.75rem); color: var(--sq-texto-suave); }
 }

@@ -9,7 +9,7 @@
 // Barra empilhada Despesas x Receitas
 .barra-volume {
   height: 0.5rem;
-  border-radius: $raio-pill;
+  border-radius: 9999px;
 
   .progress { height: 100%; }
   .progress:first-child .progress-bar { background-color: $cor-erro; }
@@ -17,16 +17,16 @@
 }
 
 .legenda-volume {
-  font-size: $fs-legenda;
+  font-size: 0.75rem;
   color: var(--sq-texto-suave);
 
-  .ponto { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; margin-right: $esp-xxs; }
+  .ponto { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; margin-right: 0.25rem; }
 }
 
 // Filtros em "pílula" (Todas / Despesas / Receitas) com .btn-check
 .filtros-pilula {
   .btn {
-    border-radius: $raio-pill;
+    border-radius: 9999px;
     background-color: var(--sq-superficie-cont);
     border: 0;
     color: var(--sq-texto-suave);
@@ -42,16 +42,16 @@
 
 // Card de categoria
 .categoria-card {
-  .card-body { display: flex; flex-direction: column; gap: $esp-md; }
+  .card-body { display: flex; flex-direction: column; gap: 1rem; }
 
-  .nome { font-size: $fs-h3; font-weight: 600; margin-bottom: 0; }
-  .sub { font-size: $fs-legenda; color: var(--sq-texto-suave); }
-  .rotulo { font-size: $fs-legenda; font-weight: 600; color: var(--sq-texto-suave); }
+  .nome { font-size: 1.125rem; font-weight: 600; margin-bottom: 0; }
+  .sub { font-size: 0.75rem; color: var(--sq-texto-suave); }
+  .rotulo { font-size: 0.75rem; font-weight: 600; color: var(--sq-texto-suave); }
 
   .limite {
     display: flex;
     justify-content: space-between;
-    font-size: $fs-legenda;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     color: var(--sq-texto-suave);
@@ -60,13 +60,13 @@
   .card-footer {
     display: flex;
     justify-content: flex-end;
-    gap: $esp-md;
+    gap: 1rem;
     background-color: transparent;
-    padding-top: $esp-sm;
-    padding-bottom: $esp-sm;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 
-  .btn-link { font-size: $fs-legenda; text-decoration: none; padding: $esp-xxs; }
+  .btn-link { font-size: 0.75rem; text-decoration: none; padding: 0.25rem; }
 }
 
 // Barras de progresso coloridas por categoria
@@ -79,7 +79,7 @@
 .paleta-cores {
   display: flex;
   flex-wrap: wrap;
-  gap: $esp-sm;
+  gap: 0.75rem;
 
   label {
     display: inline-flex;
@@ -110,20 +110,20 @@
 .grade-icones {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: $esp-xs;
-  padding: $esp-sm;
+  gap: 0.5rem;
+  padding: 0.75rem;
   border: 1px solid var(--sq-borda-suave);
-  border-radius: $raio;
+  border-radius: 0.5rem;
   background-color: var(--sq-superficie-alt);
 
-  @include a-partir-de($bp-sm) { grid-template-columns: repeat(8, 1fr); }
+  @include a-partir-de(576px) { grid-template-columns: repeat(8, 1fr); }
 
   label {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 3rem; // altura fixa: não cresce com a largura do modal
-    border-radius: $raio;
+    border-radius: 0.5rem;
     border: 1px solid var(--sq-borda-suave);
     background-color: var(--sq-superficie);
     font-size: 1.125rem;
@@ -134,6 +134,6 @@
   .btn-check:checked + label {
     border-color: $cor-primaria;
     color: $cor-primaria;
-    background-color: rgba($cor-primaria-fixa, 0.3);
+    background-color: rgba(#85f8c4, 0.3);
   }
 }

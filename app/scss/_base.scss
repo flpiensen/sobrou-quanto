@@ -16,12 +16,12 @@
 :root {
   --sq-fundo:           #{$cor-fundo};
   --sq-superficie:      #{$cor-superficie};
-  --sq-superficie-alt:  #{$cor-superficie-alt};
-  --sq-superficie-cont: #{$cor-superficie-cont};
+  --sq-superficie-alt:  #{#f2f4f6};
+  --sq-superficie-cont: #{#eceef0};
   --sq-texto:           #{$cor-texto};
   --sq-texto-suave:     #{$cor-texto-suave};
   --sq-borda:           #{$cor-borda};
-  --sq-borda-suave:     #{$cor-borda-suave};
+  --sq-borda-suave:     #{#d7dfd9};
 }
 
 // Ativado pelo JS (index.js → aplicarTema) com:
@@ -46,7 +46,7 @@
 body {
   background-color: var(--sq-fundo);
   color: var(--sq-texto);
-  transition: background-color $transicao, color $transicao;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
 }
 
 // Qualquer elemento com valor em R$

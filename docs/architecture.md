@@ -126,7 +126,7 @@ Criados pela tela de cadastro (login.html → "Cadastre-se").
 
 `foto`: Foto de perfil reduzida para 256x256 em um `<canvas>` e salva em Base64. Sem foto, a interface mostra as iniciais do nome.
 
-`preferencias`: `{ alertas, modoEscuro, cotacoesAuto, lembreteComprovante }` (US11).
+`preferencias`: `{ alertas, cotacoesAuto, lembreteComprovante }` (US11).
 
 `criadoEm` / `atualizadoEm`: Datas usadas em "Membro desde" e "Última alteração".
 
@@ -197,7 +197,7 @@ Os scripts são **ES Modules** (`<script type="module">`), por isso a aplicaçã
 | Arquivo | Responsabilidade |
 |---|---|
 | `app/service/api.service.js` | `fetch` com `async/await` para o JSON Server e a AwesomeAPI, com tratamento de erros |
-| `app/index.js` | Sessão (sessionStorage/localStorage), proteção das páginas, navbar, modo escuro, hash da senha |
+| `app/index.js` | Sessão (sessionStorage/localStorage), proteção das páginas, navbar, hash da senha |
 | `app/util/validacao.js` | Expressões regulares, máscaras de valor e telefone, mensagens de erro nos campos |
 | `app/util/calculos.js` | Regras de negócio: saldo, totais do mês, uso do limite das categorias |
 | `app/util/render.js` | Formatação (moeda, datas) e trechos de HTML reaproveitados |

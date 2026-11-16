@@ -87,7 +87,7 @@ docs/                            prd.md, architecture.md, sdd.md
   telas/                         prints da aplicação (README)
 app/
   index.html                     entrada: leva ao Dashboard ou ao login
-  index.js                       JS global: sessão, navbar, notificações, modo escuro
+  index.js                       JS global: sessão, navbar, notificações
   style.scss / style.css         CSS GLOBAL: Bootstrap personalizado + tema
   scss/                          parciais do CSS global
     _variables.scss              Design Tokens

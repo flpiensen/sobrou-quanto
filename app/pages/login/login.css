@@ -10,8 +10,8 @@
 }
 
 .login-hero {
-  background: linear-gradient(135deg, rgba(133, 248, 196, 0.35) 0%, var(--sq-superficie-alt) 55%, rgba(218, 226, 253, 0.6) 100%);
-  border-right: 1px solid var(--sq-borda-suave);
+  background: linear-gradient(135deg, rgba(133, 248, 196, 0.35) 0%, #f2f4f6 55%, rgba(218, 226, 253, 0.6) 100%);
+  border-right: 1px solid #d7dfd9;
   padding: 1.5rem;
 }
 @media (min-width: 768px) {
@@ -35,7 +35,7 @@
 }
 .login-hero .lead {
   font-size: 1rem;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
 }
 .login-hero .login-ilustracao img {
   display: block;
@@ -52,10 +52,10 @@
   }
 }
 .login-hero .recursos {
-  border-top: 1px solid var(--sq-borda-suave);
+  border-top: 1px solid #d7dfd9;
   padding-top: 1.5rem;
   font-size: 0.875rem;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
 }
 
 .mini-saldo .valor-lg {
@@ -67,7 +67,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
-  border: 1px solid var(--sq-borda-suave);
+  border: 1px solid #d7dfd9;
   border-radius: 0.25rem;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 0.75rem;
@@ -76,7 +76,7 @@
 .mini-saldo .cotacao-mini .moeda {
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-weight: 700;
-  color: var(--sq-texto);
+  color: #191c1e;
 }
 
 .login-form {
@@ -105,14 +105,14 @@
   font-size: 0.6875rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--sq-texto-suave);
+  color: #3d4a42;
   white-space: nowrap;
 }
 .divisor-texto::before, .divisor-texto::after {
   content: "";
   flex: 1;
   height: 1px;
-  background-color: var(--sq-borda-suave);
+  background-color: #d7dfd9;
 }
 
 .iniciais {

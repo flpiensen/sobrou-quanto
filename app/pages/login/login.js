@@ -131,7 +131,7 @@ formCadastro.addEventListener("submit", async (evento) => {
       telefone: "",
       bio: "",
       foto: null,
-      preferencias: { alertas: true, modoEscuro: false, cotacoesAuto: true, lembreteComprovante: true },
+      preferencias: { alertas: true, cotacoesAuto: true, lembreteComprovante: true },
       criadoEm: agora,
       atualizadoEm: agora,
     });

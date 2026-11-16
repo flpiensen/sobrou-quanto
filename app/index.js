@@ -3,7 +3,7 @@
 //  • sessão do cliente (sessionStorage / localStorage)
 //  • proteção das páginas internas (só entra quem fez login)
 //  • navbar com nome e foto do cliente (US02)
-//  • notificações, modo escuro e status das APIs
+//  • notificações e status das APIs
 // =============================================================
 
 import { buscarCotacoes, carregarDadosDoCliente, verificarJsonServer } from "./service/api.service.js";
@@ -51,13 +51,6 @@ export async function gerarHash(texto) {
   const bytes = new TextEncoder().encode(texto);
   const resumo = await crypto.subtle.digest("SHA-256", bytes);
   return [...new Uint8Array(resumo)].map((b) => b.toString(16).padStart(2, "0")).join("");
-}
-
-// ---------- Modo escuro (US11) ----------
-export function aplicarTema(escuro) {
-  document.documentElement.dataset.tema = escuro ? "escuro" : "claro";
-  document.documentElement.dataset.bsTheme = escuro ? "dark" : "light"; // modo de cor do Bootstrap 5.3
-  localStorage.setItem("sq:tema", escuro ? "escuro" : "claro");
 }
 
 // ---------- Chip de status da navbar ----------
@@ -121,7 +114,6 @@ export async function iniciarPagina() {
 
   try {
     const dados = await carregarDadosDoCliente(sessao.id);
-    aplicarTema(Boolean(dados.cliente.preferencias?.modoEscuro));
     atualizarLayout(dados);
     return dados;
   } catch (erro) {

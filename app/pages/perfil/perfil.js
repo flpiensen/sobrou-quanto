@@ -4,7 +4,7 @@
 // =============================================================
 
 import { api, buscarCotacoes, verificarJsonServer } from "../../service/api.service.js";
-import { aplicarTema, atualizarLayout, gerarHash, iniciarPagina, salvarSessao, sessaoLembrada } from "../../index.js";
+import { atualizarLayout, gerarHash, iniciarPagina, salvarSessao, sessaoLembrada } from "../../index.js";
 import { botaoCarregando, conteudoAvatar, formatarDataHora, mostrarAviso } from "../../util/render.js";
 import { aplicarMascaraTelefone, limparAoDigitar, limparValidacao, REGEX, validarCampos } from "../../util/validacao.js";
 
@@ -44,9 +44,8 @@ function renderizarPerfil() {
   document.querySelector("#ultimaAlteracao").textContent = `Última alteração: ${formatarDataHora(cliente.atualizadoEm)}`;
 
   // Preferências (valores padrão para contas antigas)
-  const preferencias = { alertas: true, modoEscuro: false, cotacoesAuto: true, lembreteComprovante: true, ...cliente.preferencias };
+  const preferencias = { alertas: true, cotacoesAuto: true, lembreteComprovante: true, ...cliente.preferencias };
   document.querySelectorAll("[data-preferencia]").forEach((chave) => (chave.checked = preferencias[chave.dataset.preferencia]));
-  document.querySelector("#rotuloTema").textContent = preferencias.modoEscuro ? "Escuro" : "Claro";
 }
 
 function preencherFormulario() {
@@ -159,14 +158,12 @@ document.querySelector("#removerFoto").addEventListener("click", async () => {
 document.querySelectorAll("[data-preferencia]").forEach((chave) =>
   chave.addEventListener("change", async () => {
     const preferencias = { ...dados.cliente.preferencias, [chave.dataset.preferencia]: chave.checked };
-    if (chave.dataset.preferencia === "modoEscuro") aplicarTema(chave.checked);
 
     try {
       await salvarCliente({ preferencias });
       mostrarAviso("Preferência salva.");
     } catch (erro) {
       chave.checked = !chave.checked; // desfaz se não conseguiu salvar
-      if (chave.dataset.preferencia === "modoEscuro") aplicarTema(chave.checked);
       mostrarAviso(erro.message, "erro");
     }
   })

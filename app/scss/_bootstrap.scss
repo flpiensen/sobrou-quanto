@@ -21,6 +21,9 @@ $warning: v.$cor-aviso;
 $body-bg:              v.$cor-fundo;
 $body-color:           v.$cor-texto;
 $body-secondary-color: v.$cor-texto-suave;
+$body-emphasis-color:  v.$cor-texto;
+$body-secondary-bg:    v.$cor-fundo;
+$body-tertiary-bg:     v.$cor-fundo;
 
 // Fontes
 $font-family-sans-serif: v.$fonte-base;
@@ -31,8 +34,22 @@ $font-size-base:         0.875rem; // 14px, como no protótipo
 $border-radius: 0.5rem;
 $border-color:  v.$cor-borda;
 
+// Trilho das barras de progresso
+$progress-bg: v.$cor-borda;
+
 // O projeto não tem modo escuro: não gera as regras de tema escuro
 $enable-dark-mode: false;
+
+// Só as cores do design system viram variáveis CSS (--bs-*).
+// Sem isso o Bootstrap cria azul, roxo, rosa, 9 cinzas, info, light, dark...
+$colors: ();
+$grays:  ();
+$theme-colors: (
+  "primary": $primary,
+  "success": $success,
+  "warning": $warning,
+  "danger":  $danger
+);
 
 // O Bootstrap 5.3 ainda pede @import (e não @use).
 // O aviso de "deprecated" é silenciado no script "sass" do package.json.
@@ -42,6 +59,12 @@ $enable-dark-mode: false;
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
+
+// Mesmo corte nos tons claros que o Bootstrap gera para cada cor
+$tirar: "secondary", "info", "light", "dark";
+$theme-colors-text:          map.remove($theme-colors-text, $tirar...);
+$theme-colors-bg-subtle:     map.remove($theme-colors-bg-subtle, $tirar...);
+$theme-colors-border-subtle: map.remove($theme-colors-border-subtle, $tirar...);
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
 

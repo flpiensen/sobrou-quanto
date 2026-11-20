@@ -60,6 +60,20 @@ $theme-colors: (
 );
 $table-variants: (); // sem as tabelas coloridas (.table-primary, .table-danger...)
 
+// Onde o Bootstrap usaria um tom próprio (cinza, preto transparente,
+// rosa, amarelo), usamos uma das 8 cores. E nada de sombra nem degradê.
+$body-tertiary-color:      v.$cor-texto-suave;
+$border-color-translucent: v.$cor-borda;
+$link-hover-color:         v.$cor-primaria;
+$focus-ring-color:         v.$cor-borda;
+$code-color:               v.$cor-texto;
+$mark-bg:                  v.$cor-fundo;
+$gradient:                 none;
+$box-shadow:               none;
+$box-shadow-sm:            none;
+$box-shadow-lg:            none;
+$box-shadow-inset:         none;
+
 // O Bootstrap 5.3 ainda pede @import (e não @use).
 // O aviso de "deprecated" é silenciado no script "sass" do package.json.
 
@@ -69,11 +83,12 @@ $table-variants: (); // sem as tabelas coloridas (.table-primary, .table-danger.
 @import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
 
-// Mesmo corte nos tons claros que o Bootstrap gera para cada cor
-$tirar: "secondary", "info", "light", "dark";
-$theme-colors-text:          map.remove($theme-colors-text, $tirar...);
-$theme-colors-bg-subtle:     map.remove($theme-colors-bg-subtle, $tirar...);
-$theme-colors-border-subtle: map.remove($theme-colors-border-subtle, $tirar...);
+// Tons que os alertas usam para cada cor: o texto na própria cor,
+// o fundo na cor Fundo e a borda na cor Borda (sem tons claros calculados)
+$theme-colors-text: ("primary": v.$cor-primaria, "success": v.$cor-primaria, "warning": v.$cor-aviso, "danger": v.$cor-erro);
+$theme-colors-bg-subtle: ("primary": v.$cor-fundo, "success": v.$cor-fundo, "warning": v.$cor-fundo, "danger": v.$cor-fundo);
+$theme-colors-border-subtle: ("primary": v.$cor-borda, "success": v.$cor-borda, "warning": v.$cor-borda, "danger": v.$cor-borda);
+
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
 

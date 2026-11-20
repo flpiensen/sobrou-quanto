@@ -29,7 +29,7 @@ Sucesso não é uma 9ª cor: é a própria Primária. No app, o verde sempre sig
 
 ### Das cores para o código
 
-Cada cor vira **uma** variável Sass em `app/scss/_variables.scss`. Em `app/scss/_bootstrap.scss`, essas variáveis são entregues ao Bootstrap **antes** do `@import` dele (as variáveis do Bootstrap usam `!default`, então vale o valor que foi definido antes). O Bootstrap também fica limitado a essas cores: os mapas `$colors`, `$grays` e `$table-variants` estão vazios e `$theme-colors` tem só primary, success, warning e danger.
+Cada cor vira **uma** variável Sass em `app/scss/_variables.scss`. Em `app/scss/_bootstrap.scss`, essas variáveis são entregues ao Bootstrap **antes** do `@import` dele (as variáveis do Bootstrap usam `!default`, então vale o valor que foi definido antes). O Bootstrap também fica limitado a essas cores: os mapas `$colors`, `$grays` e `$table-variants` estão vazios e `$theme-colors` tem só primary, success, warning e danger. Os tons que o Bootstrap criaria por conta própria (texto terciário, borda translúcida, fundo e borda dos alertas, cor de código, marca-texto) também apontam para essas 8 cores, e as sombras e o degradê ficam desligados (`none`).
 
 | Cor | Variável Sass do projeto | Variável do Bootstrap |
 | --- | --- | --- |

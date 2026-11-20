@@ -12,7 +12,7 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background-color: rgba(#85f8c4, 0.6);
+  background-color: $cor-fundo;
   color: $cor-primaria;
   font-weight: 700;
   font-size: 0.9375rem;
@@ -76,20 +76,19 @@
   margin-top: 0.25rem;
   padding: 0 0.4rem;
   border-radius: 9999px;
-  background-color: rgba(#d97706, 0.15);
-  color: #b45309;
+  background-color: $cor-fundo;
+  color: $cor-aviso;
   font-family: $fonte-base;
   font-size: 0.6875rem;
   font-weight: 600;
 }
 
 .badge-status.agendada {
-  background-color: rgba(#d97706, 0.12);
-  color: #b45309;
+  background-color: $cor-fundo;
+  color: $cor-aviso;
 }
 
 .badge-categoria.cat-neutro {
-  background-color: #eceef0;
   color: $cor-texto-suave;
 }
 
@@ -97,14 +96,14 @@
 
 // ---------- Gráfico de rosca sem dados ----------
 .rosca.vazia {
-  background: #e0e3e5;
+  background: $cor-borda;
 }
 
 .alerta-insight.alerta-negativo {
-  background-color: rgba(#ffdad6, 0.5);
-  border-color: rgba($cor-erro, 0.3);
+  background-color: $cor-fundo;
+  border-color: $cor-erro;
 
-  .icone-tile { background-color: #ffdad6; color: $cor-erro; }
+  .icone-tile { color: $cor-erro; }
 }
 
 // ---------- Botão de atualizar girando ----------
@@ -121,7 +120,7 @@
 .exemplo-csv {
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  background-color: #eceef0;
+  background-color: $cor-fundo;
   font-size: 0.75rem;
   white-space: pre-wrap;
   word-break: break-word;
@@ -132,9 +131,8 @@
   --bs-toast-bg: $cor-superficie; // fundo sólido (o padrão do Bootstrap é translúcido)
   border: 0;
   border-left: 4px solid $cor-primaria;
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12);
 
   &.aviso-sucesso i.bi { color: $cor-primaria; }
   &.aviso-erro { border-left-color: $cor-erro; i.bi { color: $cor-erro; } }
-  &.aviso-info { border-left-color: #2563eb; i.bi { color: #2563eb; } }
+  &.aviso-info { border-left-color: $cor-primaria; i.bi { color: $cor-primaria; } }
 }

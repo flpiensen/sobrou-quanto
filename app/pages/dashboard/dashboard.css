@@ -1,14 +1,10 @@
-.kpi-saldo {
-  background: radial-gradient(circle at 100% 0%, rgba(133, 248, 196, 0.35) 0%, transparent 45%), #ffffff;
-}
-
 .rosca {
   --receitas: 64%;
   position: relative;
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
-  background: conic-gradient(#006948 0 var(--receitas), #ef4444 var(--receitas) 100%);
+  background: conic-gradient(#006948 0 var(--receitas), #ba1a1a var(--receitas) 100%);
   flex-shrink: 0;
 }
 .rosca::before {
@@ -52,8 +48,8 @@
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  background-color: #f2f4f6;
-  border: 1px solid #d7dfd9;
+  background-color: #f7f9fb;
+  border: 1px solid #bccac0;
 }
 .legenda-item .marcador {
   width: 0.75rem;
@@ -85,8 +81,8 @@
   gap: 1rem;
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: #f2f4f6;
-  border: 1px solid #d7dfd9;
+  background-color: #f7f9fb;
+  border: 1px solid #bccac0;
 }
 .cotacao-item .moeda-icone {
   display: inline-flex;
@@ -96,7 +92,7 @@
   height: 2.5rem;
   border-radius: 50%;
   background-color: #ffffff;
-  border: 1px solid #d7dfd9;
+  border: 1px solid #bccac0;
   font-size: 1.125rem;
   color: #3d4a42;
 }

@@ -18,10 +18,10 @@
   border-radius: 0.75rem;
 }
 
-// Metade esquerda com fundo em degradê suave
+// Metade esquerda com o fundo do design system
 .login-hero {
-  background: linear-gradient(135deg, rgba(#85f8c4, 0.35) 0%, #f2f4f6 55%, rgba(#dae2fd, 0.6) 100%);
-  border-right: 1px solid #d7dfd9;
+  background-color: $cor-fundo;
+  border-right: 1px solid $cor-borda;
   padding: 1.5rem; // celular: mais espaço útil
 
   @include a-partir-de(768px) { padding: 3rem; }
@@ -46,13 +46,12 @@
     aspect-ratio: 8 / 3;    // celular: faixa baixa, não empurra o formulário
     object-fit: cover;      // preenche a caixa recortando, sem distorcer
     border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
 
     @include a-partir-de(992px) { aspect-ratio: 2 / 1; } // desktop: recorte 2:1
   }
 
   .recursos {
-    border-top: 1px solid #d7dfd9;
+    border-top: 1px solid $cor-borda;
     padding-top: 1.5rem;
     font-size: 0.875rem;
     color: $cor-texto-suave;
@@ -69,7 +68,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.25rem 0.5rem;
-    border: 1px solid #d7dfd9;
+    border: 1px solid $cor-borda;
     border-radius: 0.25rem;
     @include texto-numerico(0.75rem);
 
@@ -103,7 +102,7 @@
     content: "";
     flex: 1;
     height: 1px;
-    background-color: #d7dfd9;
+    background-color: $cor-borda;
   }
 }
 
@@ -115,8 +114,8 @@
   width: px-para-rem(28px);  // função própria (_functions.scss)
   height: px-para-rem(28px);
   border-radius: 50%;
-  background-color: #dae2fd;
-  color: #3f465c;
+  background-color: $cor-fundo;
+  color: $cor-texto-suave;
   font-size: 0.75rem;
   font-weight: 700;
 }

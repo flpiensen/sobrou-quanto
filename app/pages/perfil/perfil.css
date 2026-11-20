@@ -9,12 +9,8 @@
   height: 2rem;
   border-radius: 50%;
   background-color: #006948;
-  color: #fff;
+  color: #ffffff;
   border: 3px solid #ffffff;
-}
-
-.avatar-lg img {
-  box-shadow: 0 0 0 4px rgba(133, 248, 196, 0.5);
 }
 
 .preferencia {
@@ -23,7 +19,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem 0;
-  border-bottom: 1px solid #d7dfd9;
+  border-bottom: 1px solid #bccac0;
 }
 .preferencia:last-child {
   border-bottom: 0;
@@ -47,8 +43,8 @@
 .status-sessao {
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: #f2f4f6;
-  border: 1px solid #d7dfd9;
+  background-color: #f7f9fb;
+  border: 1px solid #bccac0;
   font-size: 0.75rem;
   color: #3d4a42;
 }
@@ -67,7 +63,7 @@
   text-align: left;
 }
 .item-acao:hover {
-  background-color: #f2f4f6;
+  background-color: #f7f9fb;
 }
 
 .integracao {
@@ -76,8 +72,8 @@
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  background-color: #f2f4f6;
-  border: 1px solid #d7dfd9;
+  background-color: #f7f9fb;
+  border: 1px solid #bccac0;
 }
 .integracao .nome {
   display: block;

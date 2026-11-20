@@ -1,7 +1,7 @@
 .kpi-periodo {
   position: relative;
   overflow: hidden;
-  border-color: rgba(0, 105, 72, 0.35);
+  border-color: #006948;
 }
 .kpi-periodo::after {
   content: "";
@@ -11,7 +11,7 @@
   width: 9rem;
   height: 9rem;
   border-radius: 50%;
-  background-color: rgba(133, 248, 196, 0.25);
+  background-color: #f7f9fb;
 }
 .kpi-periodo .card-body {
   position: relative;

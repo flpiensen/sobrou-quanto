@@ -17,6 +17,23 @@
       "criadoEm": "2026-10-16T00:34:49.312Z",
       "atualizadoEm": "2026-10-16T00:34:49.312Z",
       "id": 1
+    },
+    {
+      "nome": "Felipe Iensen",
+      "email": "felipecandoipr@gmail.com",
+      "senhaHash": "9b0df4c80047f67b7f8f0d1e15677ddcaaf7871b7c4cdaea96fa4a34ee6ac276",
+      "profissao": "",
+      "telefone": "",
+      "bio": "",
+      "foto": null,
+      "preferencias": {
+        "alertas": true,
+        "cotacoesAuto": true,
+        "lembreteComprovante": true
+      },
+      "criadoEm": "2026-11-20T19:24:47.240Z",
+      "atualizadoEm": "2026-11-20T19:24:47.240Z",
+      "id": 2
     }
   ],
   "categorias": [],

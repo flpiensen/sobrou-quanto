@@ -80,7 +80,7 @@ export function badgeCategoria(categoria) {
 export function estadoVazio({ icone, titulo, texto, acao = "" }) {
   return `
     <div class="estado-vazio">
-      <span class="icone-tile tile-neutro rounded-circle"><i class="bi ${icone}"></i></span>
+      <span class="icone-tile tile-neutro"><i class="bi ${icone}"></i></span>
       <strong>${titulo}</strong>
       <p>${texto}</p>
       ${acao}
@@ -93,7 +93,7 @@ export function mostrarAviso(mensagem, tipo = "sucesso") {
   if (!area) {
     area = document.createElement("div");
     area.id = "areaAvisos";
-    area.className = "toast-container position-fixed bottom-0 end-0 p-3";
+    area.className = "toast-container area-avisos";
     document.body.append(area);
   }
 
@@ -102,9 +102,9 @@ export function mostrarAviso(mensagem, tipo = "sucesso") {
   aviso.className = `toast aviso-${tipo}`;
   aviso.setAttribute("role", tipo === "erro" ? "alert" : "status");
   aviso.innerHTML = `
-    <div class="d-flex align-items-start gap-2 p-3">
-      <i class="bi ${icones[tipo]} fs-5"></i>
-      <div class="flex-grow-1">${escaparHtml(mensagem)}</div>
+    <div class="aviso-conteudo">
+      <i class="bi ${icones[tipo]}"></i>
+      <div class="aviso-texto">${escaparHtml(mensagem)}</div>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
     </div>`;
   area.append(aviso);

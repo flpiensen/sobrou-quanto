@@ -1,5 +1,6 @@
 /* Barra empilhada Despesas x Receitas */
 .barra-volume {
+  margin-bottom: 0.5rem;
   height: 0.5rem;
   border-radius: 9999px;
 }
@@ -17,6 +18,11 @@
 }
 
 .legenda-volume {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--cor-borda);
   font-size: 0.75rem;
   color: var(--cor-texto-suave);
 }
@@ -30,7 +36,14 @@
 }
 
 /* Filtros em "pílula" (Todas / Despesas / Receitas) com .btn-check */
+.filtros-pilula {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .filtros-pilula .btn {
+  --bs-btn-padding-x: 1rem;
   border-radius: 9999px;
   background-color: var(--cor-fundo);
   border: 0;
@@ -63,12 +76,14 @@
 }
 
 .categoria-card .rotulo {
+  display: block;
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--cor-texto-suave);
 }
 
 .categoria-card .limite {
+  margin-bottom: 0.25rem;
   display: flex;
   justify-content: space-between;
   font-size: 0.75rem;
@@ -131,4 +146,99 @@
   border-color: var(--cor-primaria);
   color: var(--cor-primaria);
   background-color: var(--cor-fundo);
+}
+
+/* Cabeçalho da página */
+.cabecalho-categorias .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (min-width: 992px) {
+  .cabecalho-categorias .card-body {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.titulo-com-icone {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.titulo-com-icone .titulo-pagina {
+  margin-bottom: 0;
+}
+
+/* Volume categorizado */
+.volume .cabecalho-secao,
+.volume .valor-lg {
+  margin-bottom: 1rem;
+}
+
+.ponto-despesa {
+  background-color: var(--cor-erro);
+}
+
+.ponto-receita {
+  background-color: var(--cor-primaria);
+}
+
+.saude-orcamento {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-orcamento {
+  font-weight: 600;
+}
+
+/* Filtros e busca */
+.barra-filtros {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+@media (min-width: 768px) {
+  .barra-filtros {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.busca-categorias {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.busca-categorias .input-group {
+  max-width: 15rem;
+}
+
+/* Uso do limite no card: verde, âmbar a partir de 70% e vermelho a partir de 90% */
+.uso-limite {
+  margin-top: auto;
+}
+
+.progress-bar.barra-ok {
+  background-color: var(--cor-primaria);
+}
+
+.progress-bar.barra-alerta {
+  background-color: var(--cor-aviso);
+}
+
+.progress-bar.barra-estourada {
+  background-color: var(--cor-erro);
 }

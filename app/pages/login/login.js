@@ -14,18 +14,18 @@ const erroAcesso = document.querySelector("#erroAcesso");
 
 function mostrarErro(mensagem) {
   erroAcesso.textContent = mensagem;
-  erroAcesso.classList.remove("d-none");
+  erroAcesso.hidden = false;
 }
 
 function esconderErro() {
-  erroAcesso.classList.add("d-none");
+  erroAcesso.hidden = true;
 }
 
 // Alternar entre login e cadastro
 function mostrarPainel(nome) {
   esconderErro();
-  painelLogin.classList.toggle("d-none", nome !== "login");
-  painelCadastro.classList.toggle("d-none", nome !== "cadastro");
+  painelLogin.hidden = nome !== "login";
+  painelCadastro.hidden = nome !== "cadastro";
   limparValidacao(formLogin);
   limparValidacao(formCadastro);
   (nome === "login" ? formLogin : formCadastro).querySelector("input").focus();
@@ -150,10 +150,10 @@ async function carregarCotacoes() {
       .map((m) => {
         const subiu = m.variacao >= 0;
         return `
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="cotacao-linha">
             <span class="cotacao-mini"><span class="moeda">${m.codigo}</span> ${m.nome}</span>
-            <span class="mono fw-semibold">${formatarMoeda(m.valor)}
-              <small class="${subiu ? "text-primary" : "text-danger"} ms-1">
+            <span class="cotacao-valor">${formatarMoeda(m.valor)}
+              <small class="${subiu ? "texto-positivo" : "texto-negativo"}">
                 <i class="bi ${subiu ? "bi-caret-up-fill" : "bi-caret-down-fill"}"></i>${formatarPercentual(Math.abs(m.variacao), 2)}
               </small>
             </span>
@@ -163,15 +163,15 @@ async function carregarCotacoes() {
     const hora = new Date(Math.max(...moedas.map((m) => m.atualizadoEm)));
     document.querySelector("#horaCotacao").textContent = hora.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
   } catch (erro) {
-    area.innerHTML = `<span class="small text-danger"><i class="bi bi-wifi-off me-1"></i>${erro.message}</span>`;
+    area.innerHTML = `<span class="small texto-negativo"><i class="bi bi-wifi-off icone-texto"></i>${erro.message}</span>`;
   }
 }
 
 async function verificarServidor() {
   const { online } = await verificarJsonServer();
   document.querySelector("#statusServidor").innerHTML = online
-    ? '<i class="bi bi-circle-fill text-primary me-1" style="font-size: 0.5rem"></i> JSON Server conectado'
-    : '<i class="bi bi-circle-fill text-danger me-1" style="font-size: 0.5rem"></i> JSON Server offline';
+    ? '<i class="bi bi-circle-fill ponto-status texto-positivo icone-texto"></i> JSON Server conectado'
+    : '<i class="bi bi-circle-fill ponto-status texto-negativo icone-texto"></i> JSON Server offline';
   if (!online) mostrarErro("O JSON Server está desligado. No terminal do projeto, rode: npm run api");
 }
 

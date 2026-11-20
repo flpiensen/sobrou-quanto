@@ -1,6 +1,6 @@
 # Design System – SobrouQuanto?
 
-Guia visual do SobrouQuanto?, um controle de finanças pessoais simples. Ele define as **8 cores**, as 2 fontes e os poucos padrões de forma que o app usa. Tudo o que está aqui existe no código, em `app/scss/_variables.scss`.
+Guia visual do SobrouQuanto?, um controle de finanças pessoais simples. Ele define as **8 cores**, as 2 fontes e os poucos padrões de forma que o app usa. Tudo o que está aqui existe no código, no início do `app/style.css`.
 
 ## Identidade visual
 
@@ -29,38 +29,41 @@ Sucesso não é uma 9ª cor: é a própria Primária. No app, o verde sempre sig
 
 ### Das cores para o código
 
-Cada cor vira **uma** variável Sass em `app/scss/_variables.scss`. Em `app/scss/_bootstrap.scss`, essas variáveis são entregues ao Bootstrap **antes** do `@import` dele (as variáveis do Bootstrap usam `!default`, então vale o valor que foi definido antes). O Bootstrap também fica limitado a essas cores: os mapas `$colors`, `$grays` e `$table-variants` estão vazios e `$theme-colors` tem só primary, success, warning e danger. Os tons que o Bootstrap criaria por conta própria (texto terciário, borda translúcida, fundo e borda dos alertas, cor de código, marca-texto) também apontam para essas 8 cores, e as sombras e o degradê ficam desligados (`none`).
+Cada cor vira **uma** variável do CSS no `:root` do `app/style.css` e é usada com `var(--nome)` em todo o app. Logo abaixo, essas variáveis são entregues ao Bootstrap: ele já vem pronto (`bootstrap.min.css`) e lê as próprias variáveis (`--bs-...`), que recebem as nossas cores. Os tons que o Bootstrap usaria por conta própria (fundo e borda dos alertas, borda translúcida, foco dos campos) também apontam para essas 8 cores, e a sombra fica desligada (`--bs-box-shadow: none`).
 
-| Cor | Variável Sass do projeto | Variável do Bootstrap |
+| Cor | Variável do projeto | Variável do Bootstrap que recebe a cor |
 | --- | --- | --- |
-| Fundo | `$cor-fundo` | `$body-bg`, `$body-secondary-bg`, `$body-tertiary-bg` |
-| Superfície | `$cor-superficie` | `$card-bg`, `$modal-content-bg`, `$dropdown-bg`, `$offcanvas-bg-color`, `$table-bg` |
-| Texto | `$cor-texto` | `$body-color`, `$body-emphasis-color` |
-| Texto secundário | `$cor-texto-suave` | `$body-secondary-color` |
-| Primária | `$cor-primaria` | `$primary` e `$success` |
-| Borda | `$cor-borda` | `$border-color` e `$progress-bg` |
-| Erro | `$cor-erro` | `$danger` |
-| Aviso | `$cor-aviso` | `$warning` |
+| Fundo | `--cor-fundo` | `--bs-body-bg`, `--bs-secondary-bg`, `--bs-tertiary-bg` |
+| Superfície | `--cor-superficie` | `--bs-card-bg`, `--bs-modal-bg`, `--bs-dropdown-bg`, `--bs-offcanvas-bg`, `--bs-table-bg` |
+| Texto | `--cor-texto` | `--bs-body-color`, `--bs-emphasis-color` |
+| Texto secundário | `--cor-texto-suave` | `--bs-secondary-color` |
+| Primária | `--cor-primaria` | `--bs-primary`, `--bs-success`, `--bs-link-color` e as variáveis do `.btn-primary` |
+| Borda | `--cor-borda` | `--bs-border-color` e `--bs-progress-bg` |
+| Erro | `--cor-erro` | `--bs-danger` e as variáveis do `.btn-danger` |
+| Aviso | `--cor-aviso` | `--bs-warning` |
+
+Algumas variáveis do Bootstrap pedem a cor em números R, G, B (as terminadas em `-rgb`, como `--bs-primary-rgb: 0, 105, 72`). É a mesma cor, só escrita de outro jeito, porque o Bootstrap monta o `rgba()` das classes `text-primary`, `bg-danger` etc. com elas.
+
 
 ## Tipografia
 
-| Fonte | Variável Sass | Variável do Bootstrap | Uso |
+| Fonte | Variável do projeto | Variável do Bootstrap | Uso |
 | --- | --- | --- | --- |
-| Plus Jakarta Sans | `$fonte-base` | `$font-family-sans-serif` | Todo o texto da interface. |
-| JetBrains Mono | `$fonte-numerica` | `$font-family-monospace` | Valores em R$, percentuais, datas e cotações. |
+| Plus Jakarta Sans | `--fonte-base` | `--bs-body-font-family` | Todo o texto da interface. |
+| JetBrains Mono | `--fonte-numerica` | `--bs-font-monospace` | Valores em R$, percentuais, datas e cotações. |
 
-O tamanho base é 14px (`$font-size-base: 0.875rem`). O título da tela de login usa tipografia fluida com `clamp()`, de 32px no celular a 44px no desktop.
+O tamanho base é 14px (`--bs-body-font-size: 0.875rem`). O título da tela de login usa tipografia fluida com `clamp()`, de 32px no celular a 44px no desktop.
 
 ## Layout
 
-- **Mobile first:** os estilos partem do celular e crescem com o mixin `a-partir-de()` e as classes de grid do Bootstrap (576, 768, 992 e 1200px).
+- **Mobile first:** os estilos partem do celular e crescem com media queries `@media (min-width: ...)` e as classes de grid do Bootstrap (576, 768, 992 e 1200px).
 - **Barra de navegação:** verde, fixa no topo (`sticky-top`). Abaixo de 992px, os links vão para um menu lateral (offcanvas) branco.
 - **Conteúdo:** largura máxima de 1440px (`.limite-conteudo`), centralizado, com o grid de 12 colunas do Bootstrap.
 - **Espaçamentos:** em `rem`, seguindo a escala do Bootstrap (0.25rem, 0.5rem, 1rem, 1.5rem, 3rem).
 
 ## Formas
 
-- **Cantos:** `$border-radius: 0.5rem` (8px) em cards, botões, campos e menus.
+- **Cantos:** `--bs-border-radius: 0.5rem` (8px) em cards, botões, campos e menus.
 - **Pílulas:** `border-radius: 9999px` em chips de status, badges de categoria e filtros.
 - **Círculos:** avatar e pontos de status.
 - **Profundidade:** sem sombras. Página na cor Fundo; cards e modais na cor Superfície com borda de 1px na cor Borda.

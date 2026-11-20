@@ -1,19 +1,29 @@
+/* =============================================================
+   dashboard.css — Estilos exclusivos da página: Painel geral e cotações (Épico 2)
+   O CSS global (app/style.css) é linkado antes no HTML.
+   ============================================================= */
+
+/* ---------- Gráfico de rosca (US04) ---------- */
+/* Feito só com CSS: o conic-gradient pinta as fatias e o
+   pseudo-elemento ::before "fura" o centro do círculo. */
 .rosca {
   --receitas: 64%;
   position: relative;
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
-  background: conic-gradient(#006948 0 var(--receitas), #ba1a1a var(--receitas) 100%);
+  background: conic-gradient(var(--cor-primaria) 0 var(--receitas), var(--cor-erro) var(--receitas) 100%);
   flex-shrink: 0;
 }
+
 .rosca::before {
   content: "";
   position: absolute;
   inset: 1.125rem;
   border-radius: 50%;
-  background-color: #ffffff;
+  background-color: var(--cor-superficie);
 }
+
 .rosca .centro {
   position: absolute;
   inset: 0;
@@ -24,66 +34,76 @@
   text-align: center;
   line-height: 1.25;
 }
+
 .rosca .centro .rotulo {
   font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
 }
+
 .rosca .centro .percentual {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--fonte-numerica);
   font-size: 1rem;
   font-variant-numeric: tabular-nums;
   font-weight: 700;
 }
+
 .rosca .centro .estado {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #006948;
+  color: var(--cor-primaria);
 }
 
+/* Linhas da legenda do gráfico (Receitas totais / Despesas pagas) */
 .legenda-item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  background-color: #f7f9fb;
-  border: 1px solid #bccac0;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
 }
+
 .legenda-item .marcador {
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 50%;
   flex-shrink: 0;
 }
+
 .legenda-item .titulo {
   display: block;
   font-size: 0.875rem;
   font-weight: 500;
 }
+
 .legenda-item .sub {
   display: block;
   font-size: 0.75rem;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
 }
+
 .legenda-item .valor {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--fonte-numerica);
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
   font-weight: 700;
   margin-left: auto;
 }
 
+/* ---------- Cotações (US05) ---------- */
 .cotacao-item {
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: #f7f9fb;
-  border: 1px solid #bccac0;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
 }
+
 .cotacao-item .moeda-icone {
   display: inline-flex;
   align-items: center;
@@ -91,28 +111,32 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background-color: #ffffff;
-  border: 1px solid #bccac0;
+  background-color: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
   font-size: 1.125rem;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
 }
+
 .cotacao-item .nome {
   font-size: 0.875rem;
   font-weight: 600;
 }
+
 .cotacao-item .par {
   font-size: 0.6875rem;
   font-weight: 600;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
   margin-left: 0.25rem;
 }
+
 .cotacao-item .atualizado {
   display: block;
   font-size: 0.75rem;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
 }
+
 .cotacao-item .preco {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--fonte-numerica);
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
   font-weight: 700;

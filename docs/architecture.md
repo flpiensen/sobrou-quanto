@@ -32,7 +32,7 @@ graph TD
 * **Framework CSS:** [Bootstrap](https://getbootstrap.com/) (`v5.3.8`)
   * **Uso:** Sistema de grid responsivo (Flexbox) e componentes prontos (Navbar, Cards, Modais, Forms, Dropdowns) via classes utilitárias e o bundle JS próprio (inclui Popper para tooltips/dropdowns). Não depende de jQuery.
   * **Inclusão:**
-    * CSS: compilado pelo Sass a partir de `node_modules/bootstrap/scss` com as cores e fontes do Design System, dentro do CSS global `app/style.css` (ver Sass abaixo).
+    * CSS: `node_modules/bootstrap/dist/css/bootstrap.min.css` (NPM, pronto). As cores e fontes do Design System entram pelo CSS global `app/style.css`, que é linkado logo depois (ver CSS abaixo).
     * JS: `node_modules/bootstrap/dist/js/bootstrap.bundle.min.js` (NPM, já inclui o Popper)
 
 * **Ícones:** [Bootstrap Icons](https://icons.getbootstrap.com/) (`v1.13.1`)
@@ -43,9 +43,9 @@ graph TD
   * **Uso:** Plus Jakarta Sans na interface e JetBrains Mono nos valores monetários e cotações (algarismos tabulares), conforme o Design System.
   * **Inclusão (via NPM):** `node_modules/@fontsource/plus-jakarta-sans/{400..700}.css` e `node_modules/@fontsource/jetbrains-mono/{400..700}.css`
 
-* **Pré-processador CSS:** [Sass](https://sass-lang.com/) (`v1.105`, dependência de desenvolvimento)
-  * **Uso:** Os Design Tokens (cores, tipografia, espaçamentos e raios) ficam em `app/scss/_variables.scss` e os mixins em `app/scss/_mixins.scss`. A parcial `_bootstrap.scss` sobrescreve as variáveis do Bootstrap (`$primary`, `$danger`, `$font-family-sans-serif` etc.) antes de compilá-lo, e o `app/style.scss` (CSS global) carrega com `@use` o Bootstrap personalizado, a base, o layout, os componentes e os estados. Cada página tem o seu próprio `.scss` em `app/pages/<pagina>/`, que usa as variáveis e mixins e acrescenta só os estilos da tela.
-  * **Compilação:** `npm run sass` (modo watch) ou `npm run sass:build` (minificado) compila cada `.scss` da pasta `app/` para um `.css` na mesma pasta. Cada página linka o `app/style.css` (global) e depois o CSS dela.
+* **CSS:** CSS puro, sem pré-processador e sem passo de compilação
+  * **Uso:** O CSS global `app/style.css` declara os Design Tokens do `docs/sdd.md` como variáveis do CSS no `:root` (`--cor-primaria`, `--fonte-base` etc.), entrega essas cores e fontes ao Bootstrap pelas variáveis dele (`--bs-body-bg`, `--bs-primary`, `--bs-btn-bg` etc.) e tem a estrutura comum (navbar, cards, formulários, estados). Cada página tem o seu próprio `.css` em `app/pages/<pagina>/`, que usa as mesmas variáveis e acrescenta só os estilos da tela.
+  * **Ordem no HTML:** `bootstrap.min.css` → `app/style.css` (global) → CSS da página.
 
 * **API Pública de Cotações:** [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas) (`v1`)
   * **Uso:** Consumo de cotações de moedas em tempo real para exibição no Dashboard.
@@ -201,4 +201,4 @@ Os scripts são **ES Modules** (`<script type="module">`), por isso a aplicaçã
 | `app/service/notificacao.service.js` | Notificações do sininho geradas a partir dos dados |
 | `app/util/comprovante.js` | Upload do comprovante (tipo, tamanho, arrastar e soltar) |
 | `app/util/rotas.js` | Endereço de cada página (caminhos relativos, funcionam no Live Server, no JSON Server e no GitHub Pages) |
-| `app/pages/<pagina>/<pagina>.js` | Código específico de cada tela, ao lado do seu `index.html` e `.scss` |
+| `app/pages/<pagina>/<pagina>.js` | Código específico de cada tela, ao lado do seu `index.html` e `.css` |

@@ -16,8 +16,6 @@
     "doc": "docs"
   },
   "scripts": {
-    "sass": "sass --watch --load-path=node_modules --quiet-deps --silence-deprecation=import --no-source-map app:app",
-    "sass:build": "sass --load-path=node_modules --quiet-deps --silence-deprecation=import --no-source-map --style=compressed app:app",
     "api": "json-server --watch server/db.json --port 3000 --static ."
   },
   "dependencies": {
@@ -27,7 +25,6 @@
     "bootstrap-icons": "^1.13.1"
   },
   "devDependencies": {
-    "json-server": "^0.17.4",
-    "sass": "^1.105.1"
+    "json-server": "^0.17.4"
   }
 }

@@ -27,9 +27,8 @@ jobs:
           node-version: 20
           cache: npm
 
-      # Instala as dependências e compila o Sass (app/**/*.scss -> .css)
+      # Instala as dependências (o CSS é puro, não precisa compilar)
       - run: npm ci
-      - run: npm run sass:build
 
       # Monta o site: a pasta app/, o index.html da raiz e só as
       # bibliotecas usadas no navegador (Bootstrap, ícones e fontes)

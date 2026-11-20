@@ -1,102 +1,126 @@
+/* =============================================================
+   login.css — Estilos exclusivos da página: Login e cadastro de conta (Épico 1)
+   O CSS global (app/style.css) é linkado antes no HTML.
+   ============================================================= */
 .login-wrapper {
   display: flex;
   align-items: center;
   padding: 3rem 0;
 }
 
+/* Card dividido em duas metades (apresentação | formulário) */
 .login-card {
   overflow: hidden;
   border-radius: 0.75rem;
 }
 
+/* Metade esquerda com o fundo do design system */
 .login-hero {
-  background-color: #f7f9fb;
-  border-right: 1px solid #bccac0;
-  padding: 1.5rem;
+  background-color: var(--cor-fundo);
+  border-right: 1px solid var(--cor-borda);
+  padding: 1.5rem; /* celular: mais espaço útil */
 }
+
 @media (min-width: 768px) {
   .login-hero {
     padding: 3rem;
   }
 }
+
 @media (min-width: 992px) {
   .login-hero {
     padding: 3rem 3rem;
   }
 }
+
 .login-hero .titulo-hero {
-  font-size: clamp(2rem, 1.4rem + 2.2vw, 2.75rem);
+  font-size: clamp(2rem, 1.4rem + 2.2vw, 2.75rem); /* tipografia fluida */
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.12;
 }
+
 .login-hero .titulo-hero .destaque {
-  color: #006948;
+  color: var(--cor-primaria);
 }
+
 .login-hero .lead {
   font-size: 1rem;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
 }
+
+/* Ilustração otimizada (WebP + <picture>/srcset no HTML) */
 .login-hero .login-ilustracao img {
   display: block;
-  width: 100%;
+  width: 100%; /* acompanha a largura da coluna */
   height: auto;
-  aspect-ratio: 8/3;
-  object-fit: cover;
+  aspect-ratio: 8/3; /* celular: faixa baixa, não empurra o formulário */
+  object-fit: cover; /* preenche a caixa recortando, sem distorcer */
   border-radius: 0.75rem;
 }
+
+/* desktop: recorte 2:1 */
 @media (min-width: 992px) {
   .login-hero .login-ilustracao img {
     aspect-ratio: 2/1;
   }
 }
+
 .login-hero .recursos {
-  border-top: 1px solid #bccac0;
+  border-top: 1px solid var(--cor-borda);
   padding-top: 1.5rem;
   font-size: 0.875rem;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
 }
 
+/* Mini card de saldo da apresentação */
 .mini-saldo .valor-lg {
   white-space: nowrap;
 }
+
 .mini-saldo .cotacao-mini {
   display: flex;
   white-space: nowrap;
   align-items: center;
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
-  border: 1px solid #bccac0;
+  border: 1px solid var(--cor-borda);
   border-radius: 0.25rem;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--fonte-numerica);
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
 }
+
 .mini-saldo .cotacao-mini .moeda {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-family: var(--fonte-base);
   font-weight: 700;
-  color: #191c1e;
+  color: var(--cor-texto);
 }
 
+/* Metade direita: formulário */
 .login-form {
   padding: 1.5rem;
 }
+
 @media (min-width: 768px) {
   .login-form {
     padding: 3rem;
   }
 }
+
 @media (min-width: 992px) {
   .login-form {
     padding: 4rem 5rem;
   }
 }
+
 .login-form .titulo-form {
   font-size: 1.75rem;
   font-weight: 700;
   letter-spacing: -0.015em;
 }
 
+/* Divisor "OU ACESSE COM CONTA DE DEMONSTRAÇÃO" */
 .divisor-texto {
   display: flex;
   align-items: center;
@@ -104,25 +128,27 @@
   font-size: 0.6875rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
   white-space: nowrap;
 }
+
 .divisor-texto::before, .divisor-texto::after {
   content: "";
   flex: 1;
   height: 1px;
-  background-color: #bccac0;
+  background-color: var(--cor-borda);
 }
 
+/* Iniciais do usuário demo (círculo "LO") */
 .iniciais {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.75rem;
+  width: 1.75rem; /* 28px do protótipo */
   height: 1.75rem;
   border-radius: 50%;
-  background-color: #f7f9fb;
-  color: #3d4a42;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-suave);
   font-size: 0.75rem;
   font-weight: 700;
 }

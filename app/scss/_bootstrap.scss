@@ -29,7 +29,7 @@ $font-size-base:         0.875rem; // 14px, como no protótipo
 
 // Bordas
 $border-radius: 0.5rem;
-$border-color:  #d7dfd9;
+$border-color:  v.$cor-borda;
 
 // O projeto não tem modo escuro: não gera as regras de tema escuro
 $enable-dark-mode: false;

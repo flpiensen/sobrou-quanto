@@ -14,7 +14,7 @@
 .sq-navbar {
   min-height: 4rem;
   background-color: $cor-superficie;
-  border-bottom: 1px solid #d7dfd9;
+  border-bottom: 1px solid $cor-borda;
 
   .navbar-brand {
     display: flex;
@@ -27,7 +27,7 @@
   .divisor {
     width: 1px;
     height: 2rem;
-    background-color: #d7dfd9;
+    background-color: $cor-borda;
   }
 
   // Links do menu em formato de "pílula"
@@ -44,11 +44,11 @@
 
     i { font-size: 1.125rem; }
 
-    &:hover { background-color: #f2f4f6; color: $cor-texto; }
+    &:hover { background-color: $cor-fundo; color: $cor-texto; }
 
     &.active {
-      background-color: #dae2fd;
-      color: #3f465c;
+      background-color: $cor-fundo;
+      color: $cor-primaria;
       font-weight: 600;
     }
   }
@@ -63,7 +63,7 @@
   height: 2.5rem;
   border-radius: 0.5rem;
   background-color: $cor-primaria;
-  color: #fff;
+  color: $cor-superficie;
   font-size: 1.25rem;
   flex-shrink: 0;
 }
@@ -149,7 +149,7 @@
 
 // ---------- Rodapé ----------
 .sq-footer {
-  border-top: 1px solid #d7dfd9;
+  border-top: 1px solid $cor-borda;
   background-color: $cor-fundo;
   font-size: 0.75rem;
   color: $cor-texto-suave;
@@ -167,16 +167,15 @@
   max-width: calc(100vw - 2rem); // nunca passa da largura da tela no celular
   padding: 0;
   overflow: hidden;
-  border-color: #d7dfd9;
+  border-color: $cor-borda;
   border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
 
   .cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #d7dfd9;
+    border-bottom: 1px solid $cor-borda;
     font-size: 0.875rem;
   }
 
@@ -185,20 +184,20 @@
     align-items: flex-start;
     gap: 0.75rem;
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #d7dfd9;
+    border-bottom: 1px solid $cor-borda;
     color: $cor-texto;
     text-decoration: none;
     transition: background-color 150ms ease-in-out;
 
-    &:hover { background-color: #f2f4f6; }
+    &:hover { background-color: $cor-fundo; }
 
     // Não lida: fundo verde bem suave + bolinha à direita
-    &.nao-lida { background-color: rgba(#85f8c4, 0.12); }
-    &.nao-lida:hover { background-color: rgba(#85f8c4, 0.22); }
+    &.nao-lida { background-color: $cor-fundo; }
+    &.nao-lida:hover { background-color: $cor-fundo; }
 
     .titulo { display: block; font-size: 0.875rem; font-weight: 600; line-height: 1.3; }
     .texto  { display: block; font-size: 0.75rem; color: $cor-texto-suave; margin-top: 0.125rem; }
-    .tempo  { display: block; @include texto-numerico(0.75rem); color: #6d7a72; margin-top: 0.25rem; }
+    .tempo  { display: block; @include texto-numerico(0.75rem); color: $cor-texto-suave; margin-top: 0.25rem; }
     .mono   { font-size: inherit; white-space: nowrap; } // não separa "R$" do valor
 
     .marcador {
@@ -219,7 +218,7 @@
     font-weight: 600;
     text-decoration: none;
 
-    &:hover { background-color: #f2f4f6; }
+    &:hover { background-color: $cor-fundo; }
   }
 }
 

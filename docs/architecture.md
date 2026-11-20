@@ -44,7 +44,7 @@ graph TD
   * **Inclusão (via NPM):** `node_modules/@fontsource/plus-jakarta-sans/{400..700}.css` e `node_modules/@fontsource/jetbrains-mono/{400..700}.css`
 
 * **Pré-processador CSS:** [Sass](https://sass-lang.com/) (`v1.105`, dependência de desenvolvimento)
-  * **Uso:** Os Design Tokens (cores, tipografia, espaçamentos, raios e sombras) ficam em `app/scss/_variables.scss` e os mixins em `app/scss/_mixins.scss`. A parcial `_bootstrap.scss` sobrescreve as variáveis do Bootstrap (`$primary`, `$danger`, `$font-family-sans-serif` etc.) antes de compilá-lo, e o `app/style.scss` (CSS global) carrega com `@use` o Bootstrap personalizado, a base, o layout, os componentes e os estados. Cada página tem o seu próprio `.scss` em `app/pages/<pagina>/`, que usa as variáveis e mixins e acrescenta só os estilos da tela.
+  * **Uso:** Os Design Tokens (cores, tipografia, espaçamentos e raios) ficam em `app/scss/_variables.scss` e os mixins em `app/scss/_mixins.scss`. A parcial `_bootstrap.scss` sobrescreve as variáveis do Bootstrap (`$primary`, `$danger`, `$font-family-sans-serif` etc.) antes de compilá-lo, e o `app/style.scss` (CSS global) carrega com `@use` o Bootstrap personalizado, a base, o layout, os componentes e os estados. Cada página tem o seu próprio `.scss` em `app/pages/<pagina>/`, que usa as variáveis e mixins e acrescenta só os estilos da tela.
   * **Compilação:** `npm run sass` (modo watch) ou `npm run sass:build` (minificado) compila cada `.scss` da pasta `app/` para um `.css` na mesma pasta. Cada página linka o `app/style.css` (global) e depois o CSS dela.
 
 * **API Pública de Cotações:** [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas) (`v1`)

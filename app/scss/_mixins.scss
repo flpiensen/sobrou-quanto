@@ -13,27 +13,6 @@
   }
 }
 
-// Card "nível 1" do sdd.md: fundo, borda, cantos e sombra suave.
-@mixin card-base($arredondamento: 1rem) {
-  background-color: $cor-superficie;
-  color: $cor-texto;
-  border: 1px solid $cor-borda;
-  border-radius: $arredondamento;
-  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
-}
-
-// Card de KPI do Dashboard (Saldo, Receitas, Despesas).
-// Mesmo formato para os três; só a cor de destaque muda.
-@mixin card-resumo($cor) {
-  @include card-base;
-  padding: 1.5rem;
-  border-left: 4px solid $cor;
-
-  .valor {
-    color: $cor;
-  }
-}
-
 // Valores monetários: fonte mono com algarismos tabulares,
 // para os centavos ficarem alinhados em colunas.
 @mixin texto-numerico($tamanho: 0.875rem) {

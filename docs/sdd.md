@@ -89,7 +89,7 @@ O design system estabelece uma identidade visual contemporânea, segura e crista
 ### Estilo Visual
 - **Modern Corporate & Clean Precision:** Síntese equilibrada entre rigor corporativo bancário e a leveza de ferramentas SaaS modernas. 
 - **Clareza de Dados (Data-Dense yet Airy):** Hierarquia visual rigorosa, permitindo leitura instantânea de saldos consolidados, fluxos de caixa e variações cambiais sem sobrecarga cognitiva.
-- **Micro-interações Sofisticadas:** Estados sutis de foco, transições de hover em 150ms e micro-sombras difusas que reforçam tangibilidade sem ornamentação supérflua.
+- **Micro-interações Sofisticadas:** Estados sutis de foco e transições de hover em 150ms, sem sombras nem degradês: cards separados só pela borda.
 
 ## Colors
 
@@ -109,19 +109,11 @@ A paleta fundamenta-se na estabilidade institucional e na distinção funcional 
 | **Erro (despesa)** | `#ba1a1a` | Despesas, limite estourado, exclusão e mensagens de erro. |
 | **Aviso (cotação)** | `#825100` | Cotações de moedas e avisos neutros/pendentes. |
 
-### Tons de apoio
+### Regra de uso
 
-Versões claras da paleta principal, usadas só como fundo suave (nunca em texto). Não viraram variáveis: o valor é escrito direto no CSS, porque cada uma é usada em poucos lugares.
+O código usa **só as 8 cores da paleta principal**, sempre pelas variáveis de `app/scss/_variables.scss`. Não há tons extras, transparências (`rgba`), degradês nem sombras. Quando um elemento precisa de um fundo diferente do card (ícones, chips, botões neutros, hover), ele usa a cor de **Fundo**.
 
-| Papel | Cor | Uso |
-| --- | --- | --- |
-| Primária clara | `#85f8c4` | Fundo de ícones e chips de receita (com transparência). |
-| Erro claro | `#ffdad6` | Fundo de ícones e avisos de despesa. |
-| Superfície alternativa | `#f2f4f6` | Hover de linhas da tabela e botões neutros. |
-| Borda suave | `#d7dfd9` | Contorno de cards e divisórias. |
-| Contorno | `#6d7a72` | Placeholders, ícones neutros e botão de fechar. |
-
-As **cores das categorias** (laranja, verde, azul, roxo etc.) não fazem parte da identidade: são escolhidas pelo usuário ao cadastrar uma categoria e ficam no mapa `$categorias`.
+As **cores das categorias** (laranja, vermelho, verde, azul, roxo, âmbar, rosa e ciano) não fazem parte da identidade: são escolhidas pelo usuário ao cadastrar uma categoria. Cada uma é escrita uma única vez, no fim de `app/scss/_componentes.scss`.
 
 ### Dos tokens ao código
 
@@ -134,8 +126,7 @@ As variáveis Sass do projeto ficam em `app/scss/_variables.scss` e são entregu
 | Texto | `#191c1e` | `$cor-texto` | `$body-color` |
 | Texto secundário | `#3d4a42` | `$cor-texto-suave` | `$body-secondary-color` |
 | Primária | `#006948` | `$cor-primaria` | `$primary` (o Bootstrap usa a primária também nos links e no foco dos campos) |
-| Borda | `#bccac0` | `$cor-borda` | — (usada nas regras próprias de borda) |
-| Borda suave | `#d7dfd9` | (valor direto) | `$border-color` |
+| Borda | `#bccac0` | `$cor-borda` | `$border-color` |
 | Sucesso | `#006948` | `$cor-primaria` | `$success` |
 | Erro | `#ba1a1a` | `$cor-erro` | `$danger` |
 | Aviso | `#825100` | `$cor-aviso` | `$warning` |
@@ -163,13 +154,10 @@ O layout desktop de finanças adota uma estrutura em grade de 12 colunas com nav
 
 ## Elevation & Depth
 
-A profundidade é executada através de **Ambient Diffuse Layers** combinadas com **Low-Contrast Outlines**, transmitindo modernidade sem pesar visualmente o ambiente de dados.
+A profundidade é feita só com cor de fundo e borda, sem sombras:
 
-### Níveis de Profundidade
-1. **Level 0 (Base Canvas):** cor de Fundo (`#f7f9fb`), neutra e sem sombras.
-2. **Level 1 (Cards Analíticos & Tabelas):** cor de Superfície (`#ffffff`), contorno externo nítido de `1px solid` na Borda suave (`#d7dfd9`) e sombra ambiental ultra-suave `0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03)`.
-3. **Level 2 (Dropdowns, Filtros Popover e Tooltips):** `0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04)`, contorno `1px solid` na Borda (`#bccac0`).
-4. **Level 3 (Modais de Cadastro e Drawer Lateral de Comprovantes):** `0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04)`, acompanhado por backdrop scrim em `rgba(15, 23, 42, 0.45)` com leve desfoque (`backdrop-filter: blur(4px)`).
+1. **Nível 0 (página):** cor de Fundo (`#f7f9fb`).
+2. **Nível 1 (cards, tabelas, dropdowns e modais):** cor de Superfície (`#ffffff`) com contorno `1px solid` na Borda (`#bccac0`). O modal usa o fundo escurecido padrão do Bootstrap.
 
 ## Shapes
 
@@ -182,29 +170,29 @@ Adota-se uma curvatura balanceada contemporânea de nível **2 (Rounded)**:
 ## Components
 
 ### 1. Cards de Indicadores (KPIs)
-- **Estrutura:** Superfície (`#ffffff`), Borda suave (`#d7dfd9`), raio `rounded-lg` (16px), padding `1.5rem`.
+- **Estrutura:** Superfície (`#ffffff`), Borda (`#bccac0`), raio `rounded-lg` (16px), padding `1.5rem`.
 - **Conteúdo:** Rótulo em `caption-caps` na cor de Texto secundário (`#3d4a42`), valor financeiro consolidado em `label-numeric-lg` na cor de Texto (`#191c1e`).
-- **Rodapé de Contexto:** Variação percentual com ícone direcional integrado: badge com fundo Primária clara e texto Primária (`#006948`) para crescimento de receita, e fundo Erro claro (`#ffdad6`) com texto Erro (`#ba1a1a`) para aceleração de despesas.
+- **Rodapé de Contexto:** Variação percentual com ícone direcional integrado: badge com fundo na cor de Fundo e texto Primária (`#006948`) para crescimento de receita, e fundo Fundo (`#f7f9fb`) com texto Erro (`#ba1a1a`) para aceleração de despesas.
 
 ### 2. Botões
 - **Primário:** fundo Primária (`#006948`), texto branco (`#ffffff`), tipografia `Plus Jakarta Sans` peso 600, padding vertical `0.625rem`, horizontal `1.25rem`, `rounded-lg`. Hover: o Bootstrap escurece a Primária automaticamente. Foco visível com anel na cor Primária.
-- **Secundário:** fundo Superfície (`#ffffff`), borda `1px solid` na Borda (`#bccac0`), texto na cor de Texto. Hover: fundo Superfície alternativa (`#f2f4f6`).
-- **Ação Rápida Negativa / Estorno:** fundo Erro claro (`#ffdad6`) e texto Erro (`#ba1a1a`).
+- **Secundário:** fundo Superfície (`#ffffff`), borda `1px solid` na Borda (`#bccac0`), texto na cor de Texto. Hover: fundo Fundo (`#f7f9fb`).
+- **Ação Rápida Negativa / Estorno:** fundo Fundo (`#f7f9fb`) e texto Erro (`#ba1a1a`).
 
 ### 3. Badges de Categoria & Status Cambial
-- **Categorias (Alimentação, Transporte, Lazer):** Estilo pílula (`rounded-full`), fundo Superfície alternativa (`#f2f4f6`), texto na cor de Texto, ícone monocromático de 14px à esquerda.
+- **Categorias (Alimentação, Transporte, Lazer):** Estilo pílula (`rounded-full`), fundo Fundo (`#f7f9fb`), texto na cor de Texto, ícone monocromático de 14px à esquerda.
 - **Status Cambial (Dólar, Euro):** Pílula contendo par de moedas, taxa em `label-numeric-sm`, e micro-seta de volatilidade (Primária subindo / Erro descendo / Aviso estável).
 
 ### 4. Tabela de Transações Financeiras
-- **Linhas e Alternância:** Fundo base branco, destaque da linha no hover em Superfície alternativa (`#f2f4f6`).
+- **Linhas e Alternância:** Fundo base branco, destaque da linha no hover em Fundo (`#f7f9fb`).
 - **Espaçamento e Tipografia:** Células com altura de 48px; descrições em `body-md` na cor de Texto; quantias sempre alinhadas à direita em `JetBrains Mono`.
 - **Ações Contextuais:** Botões de edição/exclusão exibidos via opacidade 0 para 1 no hover da linha.
 
 ### 5. Campos de Entrada (Inputs)
 - **Estrutura:** Altura de 44px, raio `rounded-lg`, fundo Superfície (`#ffffff`), borda `1px solid` na Borda (`#bccac0`).
-- **Foco:** borda Primária (`#006948`) com anel de brilho suave `rgba(0, 105, 72, 0.15)`.
-- **Input de Moeda:** Prefixo `R$` fixo na cor de Contorno (`#6d7a72`) com o valor digitado formatado instantaneamente via tipografia tabular.
+- **Foco:** borda Primária (`#006948`) com o anel de foco padrão do Bootstrap (gerado a partir de `$primary`).
+- **Input de Moeda:** Prefixo `R$` fixo na cor de Texto secundário (`#3d4a42`) com o valor digitado formatado instantaneamente via tipografia tabular.
 
 ### 6. Modais com Dropzone de Comprovantes
-- **Modal:** Largura máxima de 560px, cabeçalho limpo com botão fechar na cor de Contorno (`#6d7a72`).
-- **Área de Anexo (Dropzone):** Borda tracejada de `2px dashed` na Borda (`#bccac0`), fundo Superfície alternativa (`#f2f4f6`), canto `rounded-lg`. Enquanto um arquivo é arrastado por cima: borda Primária (`#006948`) e fundo Primária clara com transparência. Ícone central de upload acompanhado de mensagem clara: *"Arraste PDF, PNG ou JPG até 10MB"*.
+- **Modal:** Largura máxima de 560px, cabeçalho limpo com botão fechar na cor de Texto secundário (`#3d4a42`).
+- **Área de Anexo (Dropzone):** Borda tracejada de `2px dashed` na Borda (`#bccac0`), fundo Fundo (`#f7f9fb`), canto `rounded-lg`. Enquanto um arquivo é arrastado por cima: borda Primária (`#006948`) e fundo na cor de Fundo. Ícone central de upload acompanhado de mensagem clara: *"Arraste PDF, PNG ou JPG até 10MB"*.

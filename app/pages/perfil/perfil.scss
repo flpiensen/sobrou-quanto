@@ -17,12 +17,8 @@
   height: 2rem;
   border-radius: 50%;
   background-color: $cor-primaria;
-  color: #fff;
+  color: $cor-superficie;
   border: 3px solid $cor-superficie;
-}
-
-.avatar-lg img {
-  box-shadow: 0 0 0 4px rgba(#85f8c4, 0.5);
 }
 
 // Linhas de preferência (texto + switch)
@@ -32,7 +28,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem 0;
-  border-bottom: 1px solid #d7dfd9;
+  border-bottom: 1px solid $cor-borda;
 
   &:last-child { border-bottom: 0; padding-bottom: 0; }
 
@@ -46,8 +42,8 @@
 .status-sessao {
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: #f2f4f6;
-  border: 1px solid #d7dfd9;
+  background-color: $cor-fundo;
+  border: 1px solid $cor-borda;
   font-size: 0.75rem;
   color: $cor-texto-suave;
 }
@@ -66,7 +62,7 @@
   font-weight: 500;
   text-align: left;
 
-  &:hover { background-color: #f2f4f6; }
+  &:hover { background-color: $cor-fundo; }
 }
 
 // Integrações (AwesomeAPI, JSON Server)
@@ -76,8 +72,8 @@
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  background-color: #f2f4f6;
-  border: 1px solid #d7dfd9;
+  background-color: $cor-fundo;
+  border: 1px solid $cor-borda;
 
   .nome { display: block; font-weight: 600; }
   .detalhe { display: block; @include texto-numerico(0.75rem); color: $cor-texto-suave; }

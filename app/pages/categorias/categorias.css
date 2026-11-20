@@ -26,14 +26,14 @@
 
 .filtros-pilula .btn {
   border-radius: 9999px;
-  background-color: #eceef0;
+  background-color: #f7f9fb;
   border: 0;
   color: #3d4a42;
   font-weight: 500;
 }
 .filtros-pilula .btn-check:checked + .btn {
   background-color: #006948;
-  color: #fff;
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -80,71 +80,7 @@
 
 .progress {
   height: 0.375rem;
-  background-color: #e0e3e5;
-}
-
-.progress-bar.barra-laranja {
-  background-color: #ea580c;
-}
-
-.texto-laranja {
-  color: #ea580c;
-}
-
-.progress-bar.barra-vermelho {
-  background-color: #dc2626;
-}
-
-.texto-vermelho {
-  color: #dc2626;
-}
-
-.progress-bar.barra-verde {
-  background-color: #059669;
-}
-
-.texto-verde {
-  color: #059669;
-}
-
-.progress-bar.barra-azul {
-  background-color: #2563eb;
-}
-
-.texto-azul {
-  color: #2563eb;
-}
-
-.progress-bar.barra-roxo {
-  background-color: #7c3aed;
-}
-
-.texto-roxo {
-  color: #7c3aed;
-}
-
-.progress-bar.barra-ambar {
-  background-color: #d97706;
-}
-
-.texto-ambar {
-  color: #d97706;
-}
-
-.progress-bar.barra-rosa {
-  background-color: #db2777;
-}
-
-.texto-rosa {
-  color: #db2777;
-}
-
-.progress-bar.barra-ciano {
-  background-color: #0891b2;
-}
-
-.texto-ciano {
-  color: #0891b2;
+  background-color: #bccac0;
 }
 
 .paleta-cores {
@@ -160,41 +96,18 @@
   height: 2rem;
   border-radius: 50%;
   cursor: pointer;
-  color: #fff;
+  color: #ffffff;
   font-size: 0.875rem;
 }
 .paleta-cores label i {
-  opacity: 0;
+  display: none;
 }
 .paleta-cores .btn-check:checked + label {
-  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #006948;
+  outline: 2px solid #006948;
+  outline-offset: 2px;
 }
 .paleta-cores .btn-check:checked + label i {
-  opacity: 1;
-}
-.paleta-cores .cor-laranja {
-  background-color: #ea580c;
-}
-.paleta-cores .cor-vermelho {
-  background-color: #dc2626;
-}
-.paleta-cores .cor-verde {
-  background-color: #059669;
-}
-.paleta-cores .cor-azul {
-  background-color: #2563eb;
-}
-.paleta-cores .cor-roxo {
-  background-color: #7c3aed;
-}
-.paleta-cores .cor-ambar {
-  background-color: #d97706;
-}
-.paleta-cores .cor-rosa {
-  background-color: #db2777;
-}
-.paleta-cores .cor-ciano {
-  background-color: #0891b2;
+  display: inline-block;
 }
 
 .grade-icones {
@@ -202,9 +115,9 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
   padding: 0.75rem;
-  border: 1px solid #d7dfd9;
+  border: 1px solid #bccac0;
   border-radius: 0.5rem;
-  background-color: #f2f4f6;
+  background-color: #f7f9fb;
 }
 @media (min-width: 576px) {
   .grade-icones {
@@ -217,7 +130,7 @@
   justify-content: center;
   height: 3rem;
   border-radius: 0.5rem;
-  border: 1px solid #d7dfd9;
+  border: 1px solid #bccac0;
   background-color: #ffffff;
   font-size: 1.125rem;
   color: #3d4a42;
@@ -226,5 +139,5 @@
 .grade-icones .btn-check:checked + label {
   border-color: #006948;
   color: #006948;
-  background-color: rgba(133, 248, 196, 0.3);
+  background-color: #f7f9fb;
 }

@@ -9,7 +9,7 @@
 .kpi-periodo {
   position: relative;
   overflow: hidden;
-  border-color: rgba($cor-primaria, 0.35);
+  border-color: $cor-primaria;
 
   &::after {
     content: "";
@@ -19,7 +19,7 @@
     width: 9rem;
     height: 9rem;
     border-radius: 50%;
-    background-color: rgba(#85f8c4, 0.25);
+    background-color: $cor-fundo;
   }
 
   .card-body { position: relative; z-index: 1; }

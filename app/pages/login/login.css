@@ -10,8 +10,8 @@
 }
 
 .login-hero {
-  background: linear-gradient(135deg, rgba(133, 248, 196, 0.35) 0%, #f2f4f6 55%, rgba(218, 226, 253, 0.6) 100%);
-  border-right: 1px solid #d7dfd9;
+  background-color: #f7f9fb;
+  border-right: 1px solid #bccac0;
   padding: 1.5rem;
 }
 @media (min-width: 768px) {
@@ -44,7 +44,6 @@
   aspect-ratio: 8/3;
   object-fit: cover;
   border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
 }
 @media (min-width: 992px) {
   .login-hero .login-ilustracao img {
@@ -52,7 +51,7 @@
   }
 }
 .login-hero .recursos {
-  border-top: 1px solid #d7dfd9;
+  border-top: 1px solid #bccac0;
   padding-top: 1.5rem;
   font-size: 0.875rem;
   color: #3d4a42;
@@ -67,7 +66,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
-  border: 1px solid #d7dfd9;
+  border: 1px solid #bccac0;
   border-radius: 0.25rem;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 0.75rem;
@@ -112,7 +111,7 @@
   content: "";
   flex: 1;
   height: 1px;
-  background-color: #d7dfd9;
+  background-color: #bccac0;
 }
 
 .iniciais {
@@ -122,8 +121,8 @@
   width: 1.75rem;
   height: 1.75rem;
   border-radius: 50%;
-  background-color: #dae2fd;
-  color: #3f465c;
+  background-color: #f7f9fb;
+  color: #3d4a42;
   font-size: 0.75rem;
   font-weight: 700;
 }

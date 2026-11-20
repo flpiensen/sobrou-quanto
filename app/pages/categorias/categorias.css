@@ -1,21 +1,30 @@
+/* =============================================================
+   categorias.css — Estilos exclusivos da página: Gestão de categorias (Épico 3)
+   O CSS global (app/style.css) é linkado antes no HTML.
+   =============================================================
+   Barra empilhada Despesas x Receitas */
 .barra-volume {
   height: 0.5rem;
   border-radius: 9999px;
 }
+
 .barra-volume .progress {
   height: 100%;
 }
+
 .barra-volume .progress:first-child .progress-bar {
-  background-color: #ba1a1a;
+  background-color: var(--cor-erro);
 }
+
 .barra-volume .progress:last-child .progress-bar {
-  background-color: #006948;
+  background-color: var(--cor-primaria);
 }
 
 .legenda-volume {
   font-size: 0.75rem;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
 }
+
 .legenda-volume .ponto {
   display: inline-block;
   width: 0.5rem;
@@ -24,46 +33,54 @@
   margin-right: 0.25rem;
 }
 
+/* Filtros em "pílula" (Todas / Despesas / Receitas) com .btn-check */
 .filtros-pilula .btn {
   border-radius: 9999px;
-  background-color: #f7f9fb;
+  background-color: var(--cor-fundo);
   border: 0;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
   font-weight: 500;
 }
+
 .filtros-pilula .btn-check:checked + .btn {
-  background-color: #006948;
-  color: #ffffff;
+  background-color: var(--cor-primaria);
+  color: var(--cor-superficie);
   font-weight: 600;
 }
 
+/* Card de categoria */
 .categoria-card .card-body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
+
 .categoria-card .nome {
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 0;
 }
+
 .categoria-card .sub {
   font-size: 0.75rem;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
 }
+
 .categoria-card .rotulo {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
 }
+
 .categoria-card .limite {
   display: flex;
   justify-content: space-between;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
 }
+
 .categoria-card .card-footer {
   display: flex;
   justify-content: flex-end;
@@ -72,44 +89,50 @@
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
+
 .categoria-card .btn-link {
   font-size: 0.75rem;
   text-decoration: none;
   padding: 0.25rem;
 }
 
+/* Barras de progresso: mais finas que o padrão do Bootstrap (1rem) */
 .progress {
   height: 0.375rem;
 }
 
+/* ---------- Modal: grade de ícones ---------- */
 .grade-icones {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
   padding: 0.75rem;
-  border: 1px solid #bccac0;
+  border: 1px solid var(--cor-borda);
   border-radius: 0.5rem;
-  background-color: #f7f9fb;
+  background-color: var(--cor-fundo);
 }
+
 @media (min-width: 576px) {
   .grade-icones {
     grid-template-columns: repeat(8, 1fr);
   }
 }
+
 .grade-icones label {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 3rem;
+  height: 3rem; /* altura fixa: não cresce com a largura do modal */
   border-radius: 0.5rem;
-  border: 1px solid #bccac0;
-  background-color: #ffffff;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-superficie);
   font-size: 1.125rem;
-  color: #3d4a42;
+  color: var(--cor-texto-suave);
   cursor: pointer;
 }
+
 .grade-icones .btn-check:checked + label {
-  border-color: #006948;
-  color: #006948;
-  background-color: #f7f9fb;
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+  background-color: var(--cor-fundo);
 }

@@ -30,8 +30,8 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
   * **Justificativa:** Framework CSS mais adotado do mercado, com documentação extensa, grande comunidade e projeto ativo no GitHub (licença MIT). Seu sistema de grid em Flexbox resolve com facilidade a responsividade mobile/desktop do protótipo, e os componentes prontos (Navbar, Cards, Modais, Forms) cobrem os elementos identificados no protótipo do Stitch. A partir da v5 não depende mais de jQuery.
 * **[Bootstrap Icons](https://icons.getbootstrap.com/)**
   * **Justificativa:** Biblioteca de ícones oficial do Bootstrap, com integração nativa — usada nos ícones de categoria (`bi-basket`, `bi-cash-coin`, etc.) e da interface como um todo.
-* **[Sass (SCSS)](https://sass-lang.com/)** — dependência de desenvolvimento
-  * **Justificativa:** Pré-processador CSS usado para centralizar os Design Tokens do `docs/sdd.md` em variáveis, reaproveitar estilos com mixins e personalizar o Bootstrap (cores, fontes e bordas) antes da compilação. O CSS global sai de `app/style.scss` (tokens, mixins, Bootstrap personalizado e componentes comuns, com os parciais em `app/scss/`) e cada página tem o seu próprio `.scss` na pasta dela. O `npm run sass` compila cada `.scss` para um `.css` na mesma pasta.
+* **CSS puro** (sem pré-processador)
+  * **Justificativa:** Projeto simples, sem passo de compilação. O Bootstrap entra pronto (`bootstrap.min.css`) e o CSS global `app/style.css` guarda os Design Tokens do `docs/sdd.md` em variáveis do CSS (`--cor-primaria` etc.), entrega essas cores ao Bootstrap pelas variáveis dele (`--bs-...`) e tem a estrutura comum. Cada página tem o seu próprio `.css` na pasta dela.
 
 ### **API Pública**
 * **[AwesomeAPI (Cotações de Moedas)](https://docs.awesomeapi.com.br/api-de-moedas)**
@@ -52,14 +52,14 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 
 ### Passo a Passo
 
-1. **Clonar o repositório e instalar as dependências** (Bootstrap, ícones, fontes, Sass e JSON Server):
+1. **Clonar o repositório e instalar as dependências** (Bootstrap, ícones, fontes e JSON Server):
    ```bash
    git clone https://github.com/flpiensen/sobrou-quanto.git
    cd sobrou-quanto
    npm install
    ```
 
-2. **Abrir com o Live Server:** no VS Code, clique com o botão direito no `index.html` da raiz e escolha *Open with Live Server*. O CSS já vem compilado no repositório (`app/style.css` e o `.css` de cada página), então não é preciso rodar o Sass para ver o site.
+2. **Abrir com o Live Server:** no VS Code, clique com o botão direito no `index.html` da raiz e escolha *Open with Live Server*. O CSS é escrito direto nos arquivos `.css` (`app/style.css` e o `.css` de cada página), sem compilação.
 
 3. **Subir a API fake (JSON Server)** para entrar no sistema — deixe este terminal aberto:
    ```bash
@@ -71,8 +71,6 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
    No Live Server, o arquivo `.vscode/settings.json` impede que a página recarregue a cada gravação no `db.json`.
 
 5. **Criar a conta** em "Cadastre-se gratuitamente", depois cadastrar as **categorias** e registrar as **movimentações**. O dashboard, os limites e as notificações são calculados a partir desses cadastros.
-
-6. **(Opcional) Editar os estilos:** `npm run sass` recompila cada `.scss` da pasta `app/` para o `.css` ao lado dele a cada alteração.
 
 > Os scripts são ES Modules: abrir o HTML com duplo clique (`file://`) não funciona; use sempre um servidor (passo 3).
 
@@ -88,20 +86,14 @@ docs/                            prd.md, architecture.md, sdd.md
 app/
   index.html                     entrada: leva ao Dashboard ou ao login
   index.js                       JS global: sessão, navbar, notificações
-  style.scss / style.css         CSS GLOBAL: Bootstrap personalizado + tema
-  scss/                          parciais do CSS global
-    _variables.scss              Design Tokens
-    _mixins.scss                 mixins reutilizáveis
-    _functions.scss              funções próprias (@function)
-    _bootstrap.scss              variáveis do Bootstrap + import
-    _base.scss, _layout.scss, _componentes.scss, _estados.scss
+  style.css                      CSS GLOBAL: Design Tokens, cores do Bootstrap e estrutura comum
   pages/
-    dashboard/                   index.html + dashboard.scss/.css + dashboard.js
-    login/                       index.html + login.scss/.css + login.js
+    dashboard/                   index.html + dashboard.css + dashboard.js
+    login/                       index.html + login.css + login.js
       img/                       ilustração em WebP (várias larguras) + JPG de fallback
-    transacoes/                  index.html + transacoes.scss/.css + transacoes.js
-    categorias/                  index.html + categorias.scss/.css + categorias.js
-    perfil/                      index.html + perfil.scss/.css + perfil.js
+    transacoes/                  index.html + transacoes.css + transacoes.js
+    categorias/                  index.html + categorias.css + categorias.js
+    perfil/                      index.html + perfil.css + perfil.js
   service/
     api.service.js               fetch para o JSON Server e a AwesomeAPI
     notificacao.service.js       notificações do sininho
@@ -132,7 +124,7 @@ app/
 - [x] **ID04:** Utiliza componentes prontos de um Framework CSS (ex.: card, button) e componentes JavaScript do framework (ex.: modal, navbar).
 - [x] **ID05:** Cria layout fluido usando unidades relativas (`vw`, `vh`, `%`, `em`, `rem`) no lugar de unidades fixas (`px`).
 - [x] **ID06:** Aplica um Design System consistente (cores, tipografia, padrões de componentes) em toda a aplicação.
-- [x] **ID07:** Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
+- [ ] **ID07:** Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
 - [x] **ID08:** Aplica tipografia responsiva (media queries mobile first) ou tipografia fluida (`clamp()` + unidades relativas).
 - [x] **ID09:** Aplica técnicas de responsividade de imagens usando CSS (`object-fit`, containers com unidades relativas).
 - [x] **ID10:** Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo (`srcset`, `picture`).

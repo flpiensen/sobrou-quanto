@@ -2,14 +2,9 @@
 // _base.scss — Estilos globais
 // =============================================================
 @use "variables" as *;
-@use "mixins" as *;
 
 body {
   background-color: $cor-fundo;
   color: $cor-texto;
 }
 
-// Qualquer elemento com valor em R$
-.valor-monetario {
-  @include texto-numerico;
-}

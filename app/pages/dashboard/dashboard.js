@@ -175,7 +175,7 @@ function renderizarRecentes() {
         <tr>
           <td>
             <div class="d-flex align-items-center gap-3">
-              <span class="icone-tile tile-sm ${categoria ? `tile-${categoria.cor}` : "tile-neutro"}"><i class="bi ${categoria ? categoria.icone : "bi-question-circle"}"></i></span>
+              <span class="icone-tile tile-sm ${categoria ? `tile-${categoria.tipo.toLowerCase()}` : "tile-neutro"}"><i class="bi ${categoria ? categoria.icone : "bi-question-circle"}"></i></span>
               <div><span class="descricao">${escaparHtml(t.descricao)}</span><span class="detalhe">${receita ? "Receita" : "Despesa"}${t.comprovante ? ' • <i class="bi bi-paperclip"></i> comprovante' : ""}</span></div>
             </div>
           </td>

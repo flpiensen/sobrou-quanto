@@ -37,6 +37,14 @@ $border-color:  v.$cor-borda;
 // Trilho das barras de progresso
 $progress-bg: v.$cor-borda;
 
+// Cards, modais, menus e tabelas brancos sobre o fundo da página
+// (o padrão do Bootstrap é usar a mesma cor do fundo)
+$card-bg:            v.$cor-superficie;
+$modal-content-bg:   v.$cor-superficie;
+$dropdown-bg:        v.$cor-superficie;
+$offcanvas-bg-color: v.$cor-superficie;
+$table-bg:           v.$cor-superficie;
+
 // O projeto não tem modo escuro: não gera as regras de tema escuro
 $enable-dark-mode: false;
 
@@ -50,6 +58,7 @@ $theme-colors: (
   "warning": $warning,
   "danger":  $danger
 );
+$table-variants: (); // sem as tabelas coloridas (.table-primary, .table-danger...)
 
 // O Bootstrap 5.3 ainda pede @import (e não @use).
 // O aviso de "deprecated" é silenciado no script "sass" do package.json.

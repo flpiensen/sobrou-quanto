@@ -78,7 +78,7 @@ export function badgeCategoria(categoria) {
   if (!categoria) {
     return `<span class="badge-categoria cat-neutro"><i class="bi bi-question-circle"></i> Sem categoria</span>`;
   }
-  return `<span class="badge-categoria cat-${categoria.cor}"><i class="bi ${categoria.icone}"></i> ${escaparHtml(categoria.nome)}</span>`;
+  return `<span class="badge-categoria cat-${categoria.tipo.toLowerCase()}"><i class="bi ${categoria.icone}"></i> ${escaparHtml(categoria.nome)}</span>`;
 }
 
 // Bloco de "estado vazio": aparece quando ainda não há nada cadastrado

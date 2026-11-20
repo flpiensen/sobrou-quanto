@@ -63,7 +63,7 @@ export function marcarInvalido(campo, mensagem) {
   campo.setAttribute("aria-invalid", "true");
 
   // A mensagem fica depois do input-group (se houver) para não quebrar o layout
-  const ancora = campo.closest(".input-group, .segmentado, .paleta-cores, .grade-icones") || campo;
+  const ancora = campo.closest(".input-group, .segmentado, .grade-icones") || campo;
   let feedback = ancora.nextElementSibling;
   if (!feedback || !feedback.classList.contains("feedback-campo")) {
     feedback = document.createElement("div");
@@ -76,7 +76,7 @@ export function marcarInvalido(campo, mensagem) {
 export function marcarValido(campo) {
   campo.classList.remove("is-invalid");
   campo.removeAttribute("aria-invalid");
-  const ancora = campo.closest(".input-group, .segmentado, .paleta-cores, .grade-icones") || campo;
+  const ancora = campo.closest(".input-group, .segmentado, .grade-icones") || campo;
   const feedback = ancora.nextElementSibling;
   if (feedback && feedback.classList.contains("feedback-campo")) feedback.remove();
 }

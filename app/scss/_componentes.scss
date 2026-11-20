@@ -381,23 +381,7 @@
   .page-link { border-radius: 0.25rem !important; font-family: $fonte-numerica; }
 }
 
-// ---------- Cores das categorias ----------
-// As 8 cores que o usuário pode escolher para uma categoria.
-// O JavaScript monta a classe com o nome da cor (ex.: tile-azul).
-// .tile-, .cat- e .texto- pintam o texto; .barra- e .cor- pintam o fundo.
-.tile-laranja, .cat-laranja, .texto-laranja { color: #ea580c; }
-.barra-laranja, .cor-laranja { background-color: #ea580c; }
-.tile-vermelho, .cat-vermelho, .texto-vermelho { color: #dc2626; }
-.barra-vermelho, .cor-vermelho { background-color: #dc2626; }
-.tile-verde, .cat-verde, .texto-verde { color: #059669; }
-.barra-verde, .cor-verde { background-color: #059669; }
-.tile-azul, .cat-azul, .texto-azul { color: #2563eb; }
-.barra-azul, .cor-azul { background-color: #2563eb; }
-.tile-roxo, .cat-roxo, .texto-roxo { color: #7c3aed; }
-.barra-roxo, .cor-roxo { background-color: #7c3aed; }
-.tile-ambar, .cat-ambar, .texto-ambar { color: #d97706; }
-.barra-ambar, .cor-ambar { background-color: #d97706; }
-.tile-rosa, .cat-rosa, .texto-rosa { color: #db2777; }
-.barra-rosa, .cor-rosa { background-color: #db2777; }
-.tile-ciano, .cat-ciano, .texto-ciano { color: #0891b2; }
-.barra-ciano, .cor-ciano { background-color: #0891b2; }
+// ---------- Cor das categorias ----------
+// Categoria de receita fica verde (primária) e de despesa, vermelha (erro).
+.badge-categoria.cat-receita { color: $cor-primaria; }
+.badge-categoria.cat-despesa { color: $cor-erro; }

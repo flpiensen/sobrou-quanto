@@ -11,10 +11,11 @@
 // empurra o rodapé para o fim da tela, mesmo com pouco conteúdo.
 
 // ---------- Navbar ----------
+// Barra verde (cor primária, a mesma do logo) com textos brancos.
+// A classe navbar-dark do Bootstrap deixa o ícone do menu branco.
 .sq-navbar {
   min-height: 4rem;
-  background-color: $cor-superficie;
-  border-bottom: 1px solid $cor-borda;
+  background-color: $cor-primaria;
 
   .navbar-brand {
     display: flex;
@@ -51,6 +52,23 @@
       color: $cor-primaria;
       font-weight: 600;
     }
+  }
+
+  // Logo invertido: quadrado branco com o porquinho verde
+  .logo-tile { background-color: $cor-superficie; color: $cor-primaria; }
+  .logo-texto .nome,
+  .logo-texto .slogan,
+  .btn-notificacao { color: $cor-superficie; }
+  .btn-notificacao .ponto { border-color: $cor-primaria; }
+
+  // No desktop o menu fica dentro da barra verde: textos brancos.
+  // No celular ele abre no offcanvas branco e mantém as cores acima.
+  @include a-partir-de(992px) {
+    .nav-link { color: $cor-superficie; }
+    .nav-link:hover,
+    .nav-link.active { background-color: $cor-superficie; color: $cor-primaria; }
+    .usuario-info .nome,
+    .usuario-info .plano { color: $cor-superficie; }
   }
 }
 

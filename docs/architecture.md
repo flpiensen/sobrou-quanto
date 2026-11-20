@@ -82,7 +82,6 @@ erDiagram
         string nome "Ex: Alimentação, Salário"
         string tipo "RECEITA ou DESPESA"
         string icone "Classe Bootstrap Icon (ex: bi-house)"
-        string cor "Cor de identificação (ex: laranja)"
         float limite "Teto mensal (DESPESA) ou meta mensal (RECEITA)"
     }
 
@@ -140,8 +139,6 @@ Criados pela tela de cadastro (login.html → "Cadastre-se").
 `tipo`: Entrada (RECEITA) ou saída (DESPESA).
 
 `icone`: Classe do Bootstrap Icons (ex: bi-house).
-
-`cor`: Cor da paleta (laranja, vermelho, verde, azul, roxo, ambar, rosa ou ciano).
 
 `limite`: Para DESPESA é o teto de gastos do mês; para RECEITA é a meta de recebimento. A barra de progresso mostra (movimentado no mês ÷ limite).
 

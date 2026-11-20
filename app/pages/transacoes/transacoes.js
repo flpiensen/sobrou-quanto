@@ -499,7 +499,7 @@ function renderizarPrevia() {
           ${linhasCsv
             .slice(0, 8)
             .map(
-              (l) => `<tr class="${l.erro ? "table-danger" : ""}">
+              (l) => `<tr>
                 <td class="mono">${l.numero}</td>
                 <td class="data">${l.erro ? `<span class="text-danger">${l.erro}</span>` : formatarData(l.movimentacao.data)}</td>
                 <td>${escaparHtml(l.movimentacao.descricao)}</td>

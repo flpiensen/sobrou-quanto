@@ -74,12 +74,12 @@ function renderizarVolume() {
 function estadoDoLimite(categoria, percentual) {
   const pct = formatarPercentual(percentual, 0);
   if (categoria.tipo === "RECEITA") {
-    return { texto: `${pct} recebido`, classeTexto: "text-primary", barra: `barra-${categoria.cor}` };
+    return { texto: `${pct} recebido`, classeTexto: "text-primary", barra: "bg-primary" };
   }
-  if (percentual >= 100) return { texto: "Limite excedido", classeTexto: "text-danger", barra: "barra-vermelho" };
-  if (percentual >= 90) return { texto: `${pct} alerta`, classeTexto: "text-danger", barra: "barra-vermelho" };
-  if (percentual >= 70) return { texto: `${pct} atingido`, classeTexto: `texto-${categoria.cor}`, barra: `barra-${categoria.cor}` };
-  return { texto: `${pct} usado`, classeTexto: "text-primary", barra: `barra-${categoria.cor}` };
+  if (percentual >= 100) return { texto: "Limite excedido", classeTexto: "text-danger", barra: "bg-danger" };
+  if (percentual >= 90) return { texto: `${pct} alerta`, classeTexto: "text-danger", barra: "bg-danger" };
+  if (percentual >= 70) return { texto: `${pct} atingido`, classeTexto: "text-warning", barra: "bg-warning" };
+  return { texto: `${pct} usado`, classeTexto: "text-primary", barra: "bg-primary" };
 }
 
 function cardCategoria({ categoria, valorMes, percentual, quantidade }) {
@@ -92,7 +92,7 @@ function cardCategoria({ categoria, valorMes, percentual, quantidade }) {
       <div class="card categoria-card h-100">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-start">
-            <span class="icone-tile tile-${categoria.cor}"><i class="bi ${categoria.icone}"></i></span>
+            <span class="icone-tile tile-${categoria.tipo.toLowerCase()}"><i class="bi ${categoria.icone}"></i></span>
             <span class="badge-tipo ${receita ? "receita" : "despesa"} mono">${receita ? "Receita" : "Despesa"}</span>
           </div>
           <div>
@@ -178,8 +178,6 @@ function abrirModal(categoria = null) {
     campoNome.value = categoria.nome;
     campoLimite.value = formatarNumero(categoria.limite);
     form.querySelector(`[name=tipoCategoria][value=${categoria.tipo}]`).checked = true;
-    const cor = form.querySelector(`[name=cor][value="${categoria.cor}"]`);
-    if (cor) cor.checked = true;
     const icone = form.querySelector(`[name=icone][value="${categoria.icone}"]`);
     if (icone) icone.checked = true;
   }
@@ -195,7 +193,6 @@ form.addEventListener("submit", async (evento) => {
   const nome = campoNome.value.trim().replace(/\s+/g, " ");
   const tipo = form.querySelector("[name=tipoCategoria]:checked").value;
   const limite = converterValor(campoLimite.value);
-  const cor = form.querySelector("[name=cor]:checked");
   const icone = form.querySelector("[name=icone]:checked");
 
   // Não pode haver duas categorias com o mesmo nome e tipo
@@ -207,12 +204,11 @@ form.addEventListener("submit", async (evento) => {
     { campo: campoNome, valido: nome.length >= 2, mensagem: "Informe o nome da categoria (mínimo de 2 letras)." },
     { campo: campoNome, valido: !repetida, mensagem: `Você já tem uma categoria de ${tipo === "RECEITA" ? "receita" : "despesa"} com esse nome.` },
     { campo: campoLimite, valido: limite > 0, mensagem: "Informe um valor maior que zero (ex.: 1.500,00)." },
-    { campo: form.querySelector("[name=cor]"), valido: Boolean(cor), mensagem: "Escolha uma cor." },
     { campo: form.querySelector("[name=icone]"), valido: Boolean(icone), mensagem: "Escolha um ícone." },
   ]);
   if (!valido) return;
 
-  const categoria = { nome, tipo, limite, cor: cor.value, icone: icone.value };
+  const categoria = { nome, tipo, limite, icone: icone.value };
   const botao = document.querySelector("#salvarCategoria");
   botaoCarregando(botao, true);
 

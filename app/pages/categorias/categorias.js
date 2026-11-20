@@ -54,14 +54,14 @@ function renderizarVolume() {
 
   const status = document.querySelector("#statusOrcamento");
   if (!total) {
-    status.className = "fw-semibold text-body-secondary";
-    status.innerHTML = '<i class="bi bi-dash-circle me-1"></i> Sem movimentações no mês';
+    status.className = "status-orcamento texto-apoio";
+    status.innerHTML = '<i class="bi bi-dash-circle icone-texto"></i> Sem movimentações no mês';
   } else if (totais.saldo >= 0) {
-    status.className = "fw-semibold text-primary";
-    status.innerHTML = '<i class="bi bi-check-circle me-1"></i> Equilibrado';
+    status.className = "status-orcamento texto-positivo";
+    status.innerHTML = '<i class="bi bi-check-circle icone-texto"></i> Equilibrado';
   } else {
-    status.className = "fw-semibold text-danger";
-    status.innerHTML = '<i class="bi bi-exclamation-circle me-1"></i> Despesas acima das receitas';
+    status.className = "status-orcamento texto-negativo";
+    status.innerHTML = '<i class="bi bi-exclamation-circle icone-texto"></i> Despesas acima das receitas';
   }
 }
 
@@ -69,12 +69,12 @@ function renderizarVolume() {
 function estadoDoLimite(categoria, percentual) {
   const pct = formatarPercentual(percentual, 0);
   if (categoria.tipo === "RECEITA") {
-    return { texto: `${pct} recebido`, classeTexto: "text-primary", barra: "bg-primary" };
+    return { texto: `${pct} recebido`, classeTexto: "texto-positivo", barra: "barra-ok" };
   }
-  if (percentual >= 100) return { texto: "Limite excedido", classeTexto: "text-danger", barra: "bg-danger" };
-  if (percentual >= 90) return { texto: `${pct} alerta`, classeTexto: "text-danger", barra: "bg-danger" };
-  if (percentual >= 70) return { texto: `${pct} atingido`, classeTexto: "text-warning", barra: "bg-warning" };
-  return { texto: `${pct} usado`, classeTexto: "text-primary", barra: "bg-primary" };
+  if (percentual >= 100) return { texto: "Limite excedido", classeTexto: "texto-negativo", barra: "barra-estourada" };
+  if (percentual >= 90) return { texto: `${pct} alerta`, classeTexto: "texto-negativo", barra: "barra-estourada" };
+  if (percentual >= 70) return { texto: `${pct} atingido`, classeTexto: "texto-aviso", barra: "barra-alerta" };
+  return { texto: `${pct} usado`, classeTexto: "texto-positivo", barra: "barra-ok" };
 }
 
 function cardCategoria({ categoria, valorMes, percentual, quantidade }) {
@@ -84,9 +84,9 @@ function cardCategoria({ categoria, valorMes, percentual, quantidade }) {
 
   return `
     <div class="col">
-      <div class="card categoria-card h-100">
+      <div class="card categoria-card">
         <div class="card-body">
-          <div class="d-flex justify-content-between align-items-start">
+          <div class="cabecalho-card">
             <span class="icone-tile tile-${categoria.tipo.toLowerCase()}"><i class="bi ${categoria.icone}"></i></span>
             <span class="badge-tipo ${receita ? "receita" : "despesa"} mono">${receita ? "Receita" : "Despesa"}</span>
           </div>
@@ -95,11 +95,11 @@ function cardCategoria({ categoria, valorMes, percentual, quantidade }) {
             <span class="sub">${quantidade === 1 ? "1 transação associada" : `${quantidade} transações associadas`}</span>
           </div>
           <div>
-            <span class="rotulo d-block">${receita ? "Recebido no Mês" : "Gasto no Mês"}</span>
-            <span class="valor-lg d-block${receita ? " text-primary" : ""}">${formatarMoeda(valorMes)}</span>
+            <span class="rotulo">${receita ? "Recebido no Mês" : "Gasto no Mês"}</span>
+            <span class="valor-lg${receita ? " texto-positivo" : ""}">${formatarMoeda(valorMes)}</span>
           </div>
-          <div class="mt-auto">
-            <div class="limite mb-1">
+          <div class="uso-limite">
+            <div class="limite">
               <span>${receita ? "Meta mensal" : "Limite"}: ${formatarMoeda(categoria.limite)}</span>
               <span class="${estado.classeTexto}">${estado.texto}</span>
             </div>
@@ -110,8 +110,8 @@ function cardCategoria({ categoria, valorMes, percentual, quantidade }) {
           </div>
         </div>
         <div class="card-footer">
-          <button type="button" class="btn btn-link text-body-secondary" data-editar="${categoria.id}"><i class="bi bi-pencil"></i> Editar</button>
-          <button type="button" class="btn btn-link text-danger" data-excluir="${categoria.id}"><i class="bi bi-trash3"></i> Excluir</button>
+          <button type="button" class="btn btn-link btn-discreto" data-editar="${categoria.id}"><i class="bi bi-pencil"></i> Editar</button>
+          <button type="button" class="btn btn-link btn-excluir" data-excluir="${categoria.id}"><i class="bi bi-trash3"></i> Excluir</button>
         </div>
       </div>
     </div>`;

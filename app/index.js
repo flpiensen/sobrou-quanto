@@ -62,8 +62,8 @@ async function preencherChip() {
     const { moedas } = await buscarCotacoes();
     const dolar = moedas.find((m) => m.codigo === "USD");
     const subiu = dolar.variacao >= 0;
-    chip.innerHTML = `USD/BRL <strong class="text-body">${formatarMoeda(dolar.valor)}</strong>
-      <i class="bi ${subiu ? "bi-graph-up-arrow text-primary" : "bi-graph-down-arrow text-danger"}"
+    chip.innerHTML = `USD/BRL <strong class="texto-forte">${formatarMoeda(dolar.valor)}</strong>
+      <i class="bi ${subiu ? "bi-graph-up-arrow texto-positivo" : "bi-graph-down-arrow texto-negativo"}"
          title="${formatarPercentual(dolar.variacao, 2)} hoje"></i>`;
   } catch {
     chip.classList.add("chip-offline");
@@ -124,11 +124,11 @@ export function mostrarFalhaConexao(mensagem) {
   if (main && !document.querySelector("#alertaConexao")) {
     main.insertAdjacentHTML(
       "afterbegin",
-      `<div class="alert alert-danger d-flex align-items-start gap-2 mb-4" id="alertaConexao" role="alert">
-         <i class="bi bi-plug fs-5"></i>
+      `<div class="alert alert-danger alerta-servidor" id="alertaConexao" role="alert">
+         <i class="bi bi-plug"></i>
          <div>
            <strong>Sem conexão com o banco de dados.</strong> ${escaparHtml(mensagem)}
-           <button type="button" class="btn btn-sm btn-danger ms-2" onclick="location.reload()">Tentar de novo</button>
+           <button type="button" class="btn btn-sm btn-danger" onclick="location.reload()">Tentar de novo</button>
          </div>
        </div>`
     );

@@ -107,17 +107,17 @@ function linhaTabela(t) {
     ? `<button type="button" class="btn-acao" data-ver-comprovante="${t.comprovante.id}" title="Abrir ${escaparHtml(t.comprovante.nome)}" aria-label="Abrir comprovante">
          <i class="bi ${t.comprovante.tipo === "application/pdf" ? "bi-file-earmark-pdf" : "bi-paperclip"} comprovante"></i>
        </button>`
-    : '<span class="text-body-secondary" title="Sem comprovante">–</span>';
+    : '<span class="texto-apoio" title="Sem comprovante">–</span>';
 
   return `
     <tr>
       <td class="data">${formatarData(t.data)}${selo}</td>
       <td><span class="descricao">${escaparHtml(t.descricao)}</span><span class="detalhe">${escaparHtml(t.conta || "")}</span></td>
       <td>${badgeCategoria(buscarCategoria(t.categoriaId))}</td>
-      <td class="text-center"><span class="badge-tipo ${receita ? "receita" : "despesa"}">${receita ? "Receita" : "Despesa"}</span></td>
-      <td class="text-center">${anexo}</td>
-      <td class="valor text-end ${receita ? "valor-positivo" : "valor-negativo"}">${formatarComSinal(t.valor, t.tipo)}</td>
-      <td class="text-center text-nowrap">
+      <td class="coluna-tipo"><span class="badge-tipo ${receita ? "receita" : "despesa"}">${receita ? "Receita" : "Despesa"}</span></td>
+      <td class="coluna-comprovante">${anexo}</td>
+      <td class="valor ${receita ? "valor-positivo" : "valor-negativo"}">${formatarComSinal(t.valor, t.tipo)}</td>
+      <td class="coluna-acoes">
         <button type="button" class="btn-acao" data-editar="${t.id}" aria-label="Editar"><i class="bi bi-pencil"></i></button>
         <button type="button" class="btn-acao excluir" data-excluir="${t.id}" aria-label="Excluir"><i class="bi bi-trash3"></i></button>
       </td>
@@ -149,19 +149,19 @@ function renderizarResumo(totais) {
   document.querySelector("#kpiReceitas").textContent = formatarMoeda(totais.receitas);
   document.querySelector("#kpiDespesas").textContent = formatarMoeda(totais.despesas);
   document.querySelector("#kpiReceitasInfo").innerHTML =
-    `<i class="bi bi-arrow-down-left me-1"></i> ${totais.qtdReceitas === 1 ? "1 entrada" : `${totais.qtdReceitas} entradas`} no filtro`;
+    `<i class="bi bi-arrow-down-left icone-texto"></i> ${totais.qtdReceitas === 1 ? "1 entrada" : `${totais.qtdReceitas} entradas`} no filtro`;
   document.querySelector("#kpiDespesasInfo").innerHTML =
-    `<i class="bi bi-arrow-up-right me-1"></i> ${totais.qtdDespesas === 1 ? "1 saída" : `${totais.qtdDespesas} saídas`} no filtro`;
+    `<i class="bi bi-arrow-up-right icone-texto"></i> ${totais.qtdDespesas === 1 ? "1 saída" : `${totais.qtdDespesas} saídas`} no filtro`;
 
   const saldo = document.querySelector("#kpiSaldo");
   saldo.textContent = formatarMoeda(totais.saldo);
-  saldo.classList.toggle("text-primary", totais.saldo >= 0);
-  saldo.classList.toggle("text-danger", totais.saldo < 0);
+  saldo.classList.toggle("texto-positivo", totais.saldo >= 0);
+  saldo.classList.toggle("texto-negativo", totais.saldo < 0);
 
   const info = document.querySelector("#kpiSaldoInfo");
-  if (!totais.qtdReceitas && !totais.qtdDespesas) info.innerHTML = '<i class="bi bi-dash-circle me-1"></i> Sem movimentações no filtro';
-  else if (totais.saldo >= 0) info.innerHTML = '<i class="bi bi-check-circle text-primary me-1"></i> Período superavitário';
-  else info.innerHTML = '<i class="bi bi-exclamation-circle text-danger me-1"></i> Período deficitário';
+  if (!totais.qtdReceitas && !totais.qtdDespesas) info.innerHTML = '<i class="bi bi-dash-circle icone-texto"></i> Sem movimentações no filtro';
+  else if (totais.saldo >= 0) info.innerHTML = '<i class="bi bi-check-circle texto-positivo icone-texto"></i> Período superavitário';
+  else info.innerHTML = '<i class="bi bi-exclamation-circle texto-negativo icone-texto"></i> Período deficitário';
 
   document.querySelector("#rodapeReceitas").textContent = formatarMoeda(totais.receitas);
   document.querySelector("#rodapeDespesas").textContent = formatarMoeda(totais.despesas);
@@ -222,7 +222,7 @@ function preencherCategoriasDoForm(selecionada = campoCategoria.value) {
     opcoes.map((c) => `<option value="${c.id}">${escaparHtml(c.nome)}</option>`).join("");
   campoCategoria.value = opcoes.some((c) => String(c.id) === String(selecionada)) ? selecionada : "";
   campoCategoria.disabled = !opcoes.length;
-  document.querySelector("#semCategorias").classList.toggle("d-none", opcoes.length > 0);
+  document.querySelector("#semCategorias").hidden = opcoes.length > 0;
 }
 
 form.querySelectorAll("[name=tipo]").forEach((radio) => radio.addEventListener("change", () => preencherCategoriasDoForm()));
@@ -478,35 +478,35 @@ function renderizarPrevia() {
   botao.innerHTML = `<i class="bi bi-check-lg"></i> Importar ${validas.length} ${validas.length === 1 ? "movimentação" : "movimentações"}`;
 
   if (!linhasCsv.length) {
-    previa.innerHTML = '<div class="alert alert-warning small mb-0">O arquivo está vazio.</div>';
+    previa.innerHTML = '<div class="alert alert-warning small">O arquivo está vazio.</div>';
     return;
   }
 
   previa.innerHTML = `
-    <div class="d-flex flex-wrap gap-3 small mb-2">
-      <span class="text-primary fw-semibold"><i class="bi bi-check-circle"></i> ${validas.length} válidas</span>
-      ${invalidas.length ? `<span class="text-danger fw-semibold"><i class="bi bi-x-circle"></i> ${invalidas.length} com erro (serão ignoradas)</span>` : ""}
+    <div class="resumo-importacao small">
+      <span class="texto-positivo"><i class="bi bi-check-circle"></i> ${validas.length} válidas</span>
+      ${invalidas.length ? `<span class="texto-negativo"><i class="bi bi-x-circle"></i> ${invalidas.length} com erro (serão ignoradas)</span>` : ""}
     </div>
-    <div class="table-responsive border rounded-3">
-      <table class="table table-sm tabela-sq mb-0">
-        <thead><tr><th>Linha</th><th>Data</th><th>Descrição</th><th>Categoria</th><th class="text-end">Valor</th></tr></thead>
+    <div class="table-responsive previa-tabela">
+      <table class="table table-sm tabela-sq">
+        <thead><tr><th>Linha</th><th>Data</th><th>Descrição</th><th>Categoria</th><th class="coluna-valor">Valor</th></tr></thead>
         <tbody>
           ${linhasCsv
             .slice(0, 8)
             .map(
               (l) => `<tr>
                 <td class="mono">${l.numero}</td>
-                <td class="data">${l.erro ? `<span class="text-danger">${l.erro}</span>` : formatarData(l.movimentacao.data)}</td>
+                <td class="data">${l.erro ? `<span class="texto-negativo">${l.erro}</span>` : formatarData(l.movimentacao.data)}</td>
                 <td>${escaparHtml(l.movimentacao.descricao)}</td>
-                <td>${l.categoria ? badgeCategoria(l.categoria) : `<span class="small text-body-secondary">${l.categoriaTexto ? `"${escaparHtml(l.categoriaTexto)}" não encontrada` : "Sem categoria"}</span>`}</td>
-                <td class="valor text-end ${l.movimentacao.tipo === "RECEITA" ? "valor-positivo" : "valor-negativo"}">${l.erro ? "–" : formatarComSinal(l.movimentacao.valor, l.movimentacao.tipo)}</td>
+                <td>${l.categoria ? badgeCategoria(l.categoria) : `<span class="small texto-apoio">${l.categoriaTexto ? `"${escaparHtml(l.categoriaTexto)}" não encontrada` : "Sem categoria"}</span>`}</td>
+                <td class="valor ${l.movimentacao.tipo === "RECEITA" ? "valor-positivo" : "valor-negativo"}">${l.erro ? "–" : formatarComSinal(l.movimentacao.valor, l.movimentacao.tipo)}</td>
               </tr>`
             )
             .join("")}
         </tbody>
       </table>
     </div>
-    ${linhasCsv.length > 8 ? `<small class="text-body-secondary">Mostrando 8 de ${linhasCsv.length} linhas.</small>` : ""}`;
+    ${linhasCsv.length > 8 ? `<small class="texto-apoio">Mostrando 8 de ${linhasCsv.length} linhas.</small>` : ""}`;
 }
 
 document.querySelector("#arquivoCsv").addEventListener("change", async (evento) => {
@@ -514,7 +514,7 @@ document.querySelector("#arquivoCsv").addEventListener("change", async (evento) 
   if (!arquivo) return;
   if (!/\.csv$/i.test(arquivo.name)) {
     linhasCsv = [];
-    document.querySelector("#previaCsv").innerHTML = '<div class="alert alert-danger small mb-0">Escolha um arquivo com extensão .csv.</div>';
+    document.querySelector("#previaCsv").innerHTML = '<div class="alert alert-danger small">Escolha um arquivo com extensão .csv.</div>';
     document.querySelector("#confirmarImportacao").disabled = true;
     return;
   }

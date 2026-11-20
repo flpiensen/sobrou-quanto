@@ -98,3 +98,166 @@
   font-variant-numeric: tabular-nums;
   color: var(--cor-texto-suave);
 }
+
+/* Cabeçalho com linha embaixo */
+.cabecalho-pagina {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+@media (min-width: 768px) {
+  .cabecalho-pagina {
+    align-items: flex-end;
+  }
+}
+
+.coluna-perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Foto, nome e ações da foto */
+.identificacao .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.nome-cliente {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.nome-cliente h2 {
+  margin-bottom: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.ponto-ativo {
+  display: inline-block;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background-color: var(--cor-primaria);
+}
+
+.membro-desde {
+  margin-bottom: 1rem;
+  color: var(--cor-texto-suave);
+}
+
+.acoes-foto {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 576px) {
+  .identificacao .card-body {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .nome-cliente,
+  .acoes-foto {
+    justify-content: flex-start;
+  }
+}
+
+/* Dados cadastrais */
+.dados-cadastrais .cabecalho-secao {
+  margin-bottom: 1.5rem;
+}
+
+.rodape-formulario {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--cor-borda);
+}
+
+@media (min-width: 576px) {
+  .rodape-formulario {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.etiqueta {
+  --bs-badge-color: var(--cor-texto);
+  --bs-badge-font-weight: 400;
+  border: 1px solid var(--cor-borda);
+  font-family: var(--fonte-numerica);
+  font-size: 0.875rem;
+}
+
+.preferencia .form-check {
+  margin-bottom: 0;
+}
+
+/* Segurança e integrações */
+.seguranca .card-body,
+.integracoes .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.seguranca .cabecalho-secao > .bi {
+  font-size: 1.25rem;
+  color: var(--cor-primaria);
+}
+
+.status-topo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.status-ativo {
+  font-weight: 600;
+  color: var(--cor-primaria);
+}
+
+.status-sessao .mono {
+  display: block;
+  color: var(--cor-texto);
+}
+
+.item-acao .bi-chevron-right {
+  margin-left: auto;
+}
+
+.item-acao.item-sair {
+  color: var(--cor-erro);
+  text-decoration: none;
+}
+
+.integracao .dados {
+  flex-grow: 1;
+}
+
+.latencia {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.25rem;
+}
+
+.btn-ping {
+  --bs-btn-padding-x: 0;
+  --bs-btn-padding-y: 0;
+  font-family: var(--fonte-numerica);
+  font-weight: 600;
+}

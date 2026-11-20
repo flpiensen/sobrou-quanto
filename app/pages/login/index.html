@@ -27,15 +27,15 @@
 
   </head>
   <!-- usar innerHTML-->
-  <body class="d-flex flex-column min-vh-100">
+  <body class="pagina">
     <!-- Login e cadastro -->
-    <main class="login-wrapper flex-grow-1">
-      <div class="container-xl px-3 px-lg-4">
+    <main class="login-wrapper">
+      <div class="container-xl">
         <div class="card login-card">
           <div class="row g-0">
             <!-- Metade esquerda: apresentação do produto -->
-            <div class="col-lg-6 login-hero d-flex flex-column gap-4">
-              <div class="d-flex align-items-center gap-3">
+            <div class="col-lg-6 login-hero">
+              <div class="marca">
                 <span class="logo-tile"><i class="bi bi-piggy-bank-fill"></i></span>
                 <span class="logo-texto">
                   <span class="nome">SobrouQuanto?</span>
@@ -44,11 +44,11 @@
               </div>
 
               <div>
-                <span class="chip-status chip-neutro chip-sans mb-3"><span class="ponto"></span> Controle do seu fluxo de caixa</span>
-                <h1 class="titulo-hero mb-3">
+                <span class="chip-status chip-neutro chip-sans"><span class="ponto"></span> Controle do seu fluxo de caixa</span>
+                <h1 class="titulo-hero">
                   Descubra com precisão <span class="destaque">quanto sobrou</span> no final do mês.
                 </h1>
-                <p class="lead mb-0">
+                <p class="lead">
                   Registre receitas e despesas, defina limites por categoria e acompanhe o seu saldo sem planilhas.
                 </p>
               </div>
@@ -76,50 +76,50 @@
               </picture>
 
               <!-- Mini card com dados reais: cotações da AwesomeAPI e status do JSON Server -->
-              <div class="card mini-saldo" style="max-width: 28rem">
-                <div class="card-body p-4">
-                  <div class="d-flex justify-content-between align-items-center gap-2 pb-3 border-bottom">
-                    <span class="eyebrow d-flex align-items-center gap-2"><i class="bi bi-currency-exchange fs-5 text-body"></i> Câmbio comercial agora</span>
-                    <span class="small text-body-secondary mono" id="horaCotacao"></span>
+              <div class="card mini-saldo">
+                <div class="card-body">
+                  <div class="cabecalho-secao">
+                    <span class="eyebrow"><i class="bi bi-currency-exchange"></i> Câmbio comercial agora</span>
+                    <span class="small texto-apoio mono" id="horaCotacao"></span>
                   </div>
-                  <div class="d-flex flex-column gap-2 py-3 border-bottom" id="cotacoesLogin">
-                    <span class="small text-body-secondary"><span class="spinner-border spinner-border-sm me-1"></span> Consultando a AwesomeAPI...</span>
+                  <div class="cotacoes-login" id="cotacoesLogin">
+                    <span class="small texto-apoio"><span class="spinner-border spinner-border-sm icone-texto"></span> Consultando a AwesomeAPI...</span>
                   </div>
-                  <div class="d-flex justify-content-between pt-3 small text-body-secondary">
-                    <span><i class="bi bi-diagram-3 text-primary me-1"></i> Dados da AwesomeAPI</span>
+                  <div class="mini-saldo-rodape small texto-apoio">
+                    <span><i class="bi bi-diagram-3 icone-texto icone-destaque"></i> Dados da AwesomeAPI</span>
                     <span id="statusServidor"><span class="spinner-border spinner-border-sm"></span></span>
                   </div>
                 </div>
               </div>
 
               <!-- Recursos em destaque -->
-              <div class="recursos mt-auto">
+              <div class="recursos">
                 <div class="row g-3">
-                  <div class="col-sm-4 d-flex align-items-center gap-2">
-                    <span class="icone-tile tile-sm tile-receita rounded-circle"><i class="bi bi-graph-up"></i></span> Cotações ao Vivo
+                  <div class="col-sm-4 recurso">
+                    <span class="icone-tile tile-sm tile-receita"><i class="bi bi-graph-up"></i></span> Cotações ao Vivo
                   </div>
-                  <div class="col-sm-4 d-flex align-items-center gap-2">
-                    <span class="icone-tile tile-sm tile-azul rounded-circle"><i class="bi bi-tags"></i></span> Limites por Categoria
+                  <div class="col-sm-4 recurso">
+                    <span class="icone-tile tile-sm tile-azul"><i class="bi bi-tags"></i></span> Limites por Categoria
                   </div>
-                  <div class="col-sm-4 d-flex align-items-center gap-2">
-                    <span class="icone-tile tile-sm tile-neutro rounded-circle"><i class="bi bi-cloud-arrow-up"></i></span> Comprovantes Anexos
+                  <div class="col-sm-4 recurso">
+                    <span class="icone-tile tile-sm tile-neutro"><i class="bi bi-cloud-arrow-up"></i></span> Comprovantes Anexos
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- Metade direita: formulários (login e cadastro alternam) -->
-            <div class="col-lg-6 login-form d-flex flex-column justify-content-center">
+            <div class="col-lg-6 login-form">
               <!-- Mensagem de erro geral (credenciais erradas, servidor desligado...) -->
-              <div class="alert alert-danger d-none small" id="erroAcesso" role="alert"></div>
+              <div class="alert alert-danger small" id="erroAcesso" hidden role="alert"></div>
 
               <!-- Login -->
               <section id="painelLogin">
-                <h2 class="titulo-form mb-1">Acesse sua conta</h2>
-                <p class="subtitulo mb-4">Digite suas credenciais para gerenciar suas finanças com clareza.</p>
+                <h2 class="titulo-form">Acesse sua conta</h2>
+                <p class="subtitulo">Digite suas credenciais para gerenciar suas finanças com clareza.</p>
 
                 <!-- novalidate: a validação é feita pelo JavaScript (regex) -->
-                <form id="formLogin" class="d-flex flex-column gap-3" novalidate>
+                <form id="formLogin" novalidate>
                   <div>
                     <label for="email" class="form-label">E-mail de Acesso</label>
                     <div class="input-group input-icone">
@@ -137,28 +137,28 @@
                     </div>
                   </div>
 
-                  <div class="form-check mb-0">
+                  <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="lembrar" />
                     <label class="form-check-label small" for="lembrar">Lembrar-me neste dispositivo</label>
                   </div>
 
-                  <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">
+                  <button type="submit" class="btn btn-primary btn-lg btn-entrar">
                     Entrar no SobrouQuanto <i class="bi bi-arrow-right"></i>
                   </button>
                 </form>
 
-                <p class="text-center small text-body-secondary border-top pt-4 mt-4 mb-0">
+                <p class="alternar-conta small">
                   Ainda não tem conta no SobrouQuanto?
-                  <a href="#cadastro" class="fw-semibold" data-alternar="cadastro">Cadastre-se gratuitamente</a>
+                  <a href="#cadastro" data-alternar="cadastro">Cadastre-se gratuitamente</a>
                 </p>
               </section>
 
               <!-- Cadastro de conta -->
-              <section id="painelCadastro" class="d-none">
-                <h2 class="titulo-form mb-1">Crie sua conta</h2>
-                <p class="subtitulo mb-4">Seus dados ficam salvos no JSON Server (arquivo server/db.json).</p>
+              <section id="painelCadastro" hidden>
+                <h2 class="titulo-form">Crie sua conta</h2>
+                <p class="subtitulo">Seus dados ficam salvos no JSON Server (arquivo server/db.json).</p>
 
-                <form id="formCadastro" class="d-flex flex-column gap-3" novalidate>
+                <form id="formCadastro" novalidate>
                   <div>
                     <label for="cadNome" class="form-label">Nome completo</label>
                     <div class="input-group input-icone">
@@ -189,17 +189,17 @@
                         <input type="password" class="form-control" id="cadConfirmar" placeholder="••••••••" autocomplete="new-password" />
                       </div>
                     </div>
-                    <div class="form-text mt-1" id="ajudaSenha">Mínimo de 6 caracteres, com letras e números.</div>
+                    <div class="form-text" id="ajudaSenha">Mínimo de 6 caracteres, com letras e números.</div>
                   </div>
 
-                  <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">
+                  <button type="submit" class="btn btn-primary btn-lg btn-entrar">
                     Criar conta e entrar <i class="bi bi-arrow-right"></i>
                   </button>
                 </form>
 
-                <p class="text-center small text-body-secondary border-top pt-4 mt-4 mb-0">
+                <p class="alternar-conta small">
                   Já tem uma conta?
-                  <a href="#login" class="fw-semibold" data-alternar="login">Entrar</a>
+                  <a href="#login" data-alternar="login">Entrar</a>
                 </p>
               </section>
             </div>
@@ -208,10 +208,10 @@
       </div>
     </main>
     <!-- Rodapé -->
-    <footer class="sq-footer mt-auto">
-      <div class="container-fluid limite-conteudo px-3 px-lg-4 d-flex flex-column flex-md-row justify-content-between gap-2">
+    <footer class="sq-footer">
+      <div class="container-fluid limite-conteudo rodape-conteudo">
         <span>&copy; <span data-ano>2026</span> SobrouQuanto? · Projeto acadêmico TSI32B · UTFPR</span>
-        <div class="d-flex flex-wrap gap-3">
+        <div class="rodape-fontes">
           <span><i class="bi bi-hdd-stack"></i> Dados no JSON Server</span>
           <span><i class="bi bi-currency-exchange"></i> Cotações via AwesomeAPI</span>
         </div>

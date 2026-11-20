@@ -152,6 +152,13 @@ body {
   color: var(--cor-texto);
 }
 
+/* O main cresce e empurra o rodapé para o fim da tela */
+.pagina {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 /* Navbar */
 .sq-navbar {
   min-height: 4rem;
@@ -167,6 +174,7 @@ body {
 
 /* Divisória vertical entre grupos */
 .sq-navbar .divisor {
+  display: none;
   width: 1px;
   height: 2rem;
   background-color: var(--cor-borda);
@@ -177,7 +185,6 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem !important;
   border-radius: 0.5rem;
   color: var(--cor-texto-suave);
   font-size: 0.875rem;
@@ -198,6 +205,11 @@ body {
   background-color: var(--cor-fundo);
   color: var(--cor-primaria);
   font-weight: 600;
+}
+
+/* .navbar-nav no seletor para vencer o padding que o Bootstrap dá aos links */
+.sq-navbar .navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
 }
 
 /* Logo invertido: quadrado branco com o porquinho verde */
@@ -337,12 +349,14 @@ body {
 
 /* Área principal */
 .sq-main {
+  flex-grow: 1;
   padding-top: 1.5rem;
   padding-bottom: 3rem;
 }
 
 /* Rodapé */
 .sq-footer {
+  margin-top: auto;
   border-top: 1px solid var(--cor-borda);
   background-color: var(--cor-fundo);
   font-size: 0.75rem;
@@ -356,8 +370,36 @@ body {
 
 /* Largura máxima do conteúdo */
 .limite-conteudo {
-  max-width: 90rem;
-} /* 1440px */
+  max-width: 90rem; /* 1440px */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 992px) {
+  .limite-conteudo {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.rodape-conteudo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .rodape-conteudo {
+    flex-direction: row;
+  }
+}
+
+.rodape-fontes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 
 /* Dropdown de notificações (sininho) */
 .dropdown-notificacoes {
@@ -484,6 +526,9 @@ body {
 }
 
 .titulo-secao {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: -0.005em;
@@ -503,6 +548,7 @@ body {
 }
 
 .valor-lg {
+  display: block;
   font-family: var(--fonte-numerica);
   font-size: 1.5rem;
   font-variant-numeric: tabular-nums;
@@ -511,18 +557,21 @@ body {
 }
 
 .valor-xl {
+  display: block;
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
-.valor-positivo {
-  color: var(--cor-primaria) !important;
+.valor-positivo,
+.table .valor-positivo {
+  color: var(--cor-primaria);
 }
 
-.valor-negativo {
-  color: var(--cor-erro) !important;
+.valor-negativo,
+.table .valor-negativo {
+  color: var(--cor-erro);
 }
 
 /* Cards */
@@ -534,6 +583,7 @@ body {
 }
 
 .kpi-card .kpi-rodape {
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -882,6 +932,10 @@ body {
 }
 
 .arquivo-anexo .nome {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 0.75rem;
   font-weight: 600;
 }
@@ -936,6 +990,7 @@ body {
 
 /* Alerta de destaque (insight) */
 .alerta-insight {
+  margin-top: auto;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -956,12 +1011,13 @@ body {
   --bs-pagination-font-size: 0.75rem;
   --bs-pagination-padding-x: 0.75rem;
   --bs-pagination-color: var(--cor-texto);
+  --bs-pagination-border-radius: 0.25rem;
   margin-bottom: 0;
   gap: 0.25rem;
 }
 
 .pagination .page-link {
-  border-radius: 0.25rem !important;
+  border-radius: 0.25rem;
   font-family: var(--fonte-numerica);
 }
 
@@ -1040,6 +1096,7 @@ body {
 }
 
 .estado-vazio .icone-tile {
+  border-radius: 50%;
   width: 3.5rem;
   height: 3.5rem;
   font-size: 1.5rem;
@@ -1160,4 +1217,337 @@ body {
 
 .toast.aviso-info i.bi {
   color: var(--cor-primaria);
+}
+
+/* Navbar: partes que mudam entre celular e desktop */
+.navbar-celular {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sq-navbar .navbar-toggler {
+  border: 0;
+}
+
+.sq-navbar .offcanvas-header {
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.sq-navbar .navbar-nav {
+  gap: 0.25rem;
+}
+
+.divisor-menu {
+  margin-right: 1rem;
+}
+
+.navbar-usuario {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.notificacoes-desktop {
+  display: none;
+}
+
+.usuario-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+@media (min-width: 992px) {
+  .navbar-celular,
+  .nav-perfil {
+    display: none;
+  }
+
+  .sq-navbar .divisor,
+  .notificacoes-desktop {
+    display: block;
+  }
+
+  .sq-navbar .offcanvas-body {
+    align-items: center;
+  }
+
+  .navbar-usuario {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0;
+    margin-left: auto;
+  }
+}
+
+.contador-notificacoes {
+  margin-left: 0.25rem;
+  border-radius: 50rem;
+  background-color: var(--cor-erro);
+  color: var(--cor-superficie);
+}
+
+.dropdown-notificacoes .cabecalho .btn {
+  --bs-btn-padding-x: 0;
+  --bs-btn-padding-y: 0;
+}
+
+.dropdown-notificacoes .item .conteudo {
+  flex-grow: 1;
+}
+
+.dropdown-notificacoes .rodape .bi {
+  margin-right: 0.25rem;
+}
+
+.dropdown-item .bi {
+  margin-right: 0.5rem;
+}
+
+.item-sair,
+.item-sair:hover {
+  color: var(--cor-erro);
+  text-decoration: none;
+}
+
+/* Cabeçalho das páginas: título de um lado, ações do outro */
+.cabecalho-pagina {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .cabecalho-pagina {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Linhas de cards do grid */
+.linha-cards {
+  margin-bottom: 1.5rem;
+}
+
+/* Cards sozinhos numa coluna ficam com a altura da linha */
+.row > [class*="col"] > .card:only-child {
+  height: 100%;
+}
+
+/* Cards soltos na página ficam separados um do outro */
+.limite-conteudo > .card:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.cabecalho-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+/* Título de seção dentro do card, com linha embaixo */
+.cabecalho-secao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.titulo-secao .bi,
+.icone-destaque {
+  color: var(--cor-primaria);
+}
+
+.extrato {
+  overflow: hidden;
+}
+
+/* Textos */
+.texto-apoio,
+.table .texto-apoio {
+  color: var(--cor-texto-suave);
+}
+
+.texto-forte {
+  color: var(--cor-texto);
+}
+
+.texto-positivo {
+  color: var(--cor-primaria);
+}
+
+.texto-negativo {
+  color: var(--cor-erro);
+}
+
+.texto-aviso {
+  color: var(--cor-aviso);
+}
+
+/* Rótulo pequeno ao lado de um campo ou contador */
+.rotulo-auxiliar {
+  font-size: 0.875em;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+  white-space: nowrap;
+}
+
+/* Ícone seguido de texto */
+.icone-texto {
+  margin-right: 0.25rem;
+}
+
+/* Bolinha de status (online, ativa) */
+.ponto-status {
+  font-size: 0.45rem;
+  vertical-align: middle;
+}
+
+/* Botão de link sem cor de link */
+.btn-discreto {
+  --bs-btn-color: var(--cor-texto-suave);
+  --bs-btn-hover-color: var(--cor-texto-suave);
+  --bs-btn-active-color: var(--cor-texto-suave);
+  text-decoration: none;
+}
+
+.btn-excluir {
+  --bs-btn-color: var(--cor-erro);
+  --bs-btn-hover-color: var(--cor-erro);
+  --bs-btn-active-color: var(--cor-erro);
+  text-decoration: none;
+}
+
+/* Tabelas: alinhamento de cada coluna */
+.tabela-sq .coluna-tipo,
+.tabela-sq .coluna-comprovante,
+.tabela-sq .coluna-situacao,
+.tabela-sq .coluna-acoes {
+  text-align: center;
+}
+
+.tabela-sq .coluna-acoes {
+  white-space: nowrap;
+}
+
+.tabela-sq .coluna-valor,
+.tabela-sq .valor {
+  text-align: right;
+}
+
+/* Formulários */
+/* Rótulo de um grupo de opções (span), acima das opções */
+span.form-label,
+span.form-label-caps {
+  display: block;
+}
+
+.prefixo-moeda {
+  font-family: var(--fonte-numerica);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.feedback-campo {
+  display: block;
+}
+
+/* Modais */
+.cabecalho-modal {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.formulario-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formulario-modal p,
+.formulario-modal pre {
+  margin-bottom: 0;
+}
+
+/* Modal de confirmação de exclusão */
+.confirmacao {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.confirmacao .icone-tile {
+  margin-bottom: 1rem;
+  border-radius: 50%;
+}
+
+.confirmacao h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.confirmacao p {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+}
+
+.confirmacao + .modal-footer {
+  justify-content: center;
+}
+
+/* Aviso de servidor desligado */
+.alerta-servidor {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.alerta-servidor > .bi {
+  font-size: 1.25rem;
+}
+
+.alerta-servidor .btn {
+  margin-left: 0.5rem;
+}
+
+/* Avisos no canto da tela */
+.toast-container.area-avisos {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+}
+
+.aviso-conteudo {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.aviso-conteudo > .bi {
+  font-size: 1.25rem;
+}
+
+.aviso-texto {
+  flex-grow: 1;
 }

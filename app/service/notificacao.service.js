@@ -132,7 +132,7 @@ export function renderizarNotificacoes(lista, clienteId) {
           return `
           <a class="item${nova ? " nao-lida" : ""}" href="${n.link}" data-notificacao="${n.id}">
             <span class="icone-tile tile-sm ${n.tile}"><i class="bi ${n.icone}"></i></span>
-            <span class="flex-grow-1">
+            <span class="conteudo">
               <span class="titulo">${n.titulo}</span>
               <span class="texto">${n.texto}</span>
               <span class="tempo">${n.tempo}</span>
@@ -151,7 +151,7 @@ export function renderizarNotificacoes(lista, clienteId) {
 
   document.querySelectorAll("[data-notificacoes-contador]").forEach((badge) => {
     badge.textContent = naoLidas.length === 1 ? "1 nova" : `${naoLidas.length} novas`;
-    badge.classList.toggle("d-none", naoLidas.length === 0);
+    badge.hidden = naoLidas.length === 0;
   });
 
   document.querySelectorAll(".btn-notificacao").forEach((botao) => {

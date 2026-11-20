@@ -37,30 +37,31 @@ function renderizarCards(anoMes) {
   // Saldo: Receitas - Despesas
   const saldo = document.querySelector("#kpiSaldo");
   saldo.textContent = formatarMoeda(totais.saldo);
-  saldo.classList.toggle("text-danger", totais.saldo < 0);
+  saldo.classList.toggle("texto-negativo", totais.saldo < 0);
 
   // Comparação com o mês anterior (só se o mês anterior tiver movimentações)
   const tendencia = document.querySelector("#kpiSaldoTendencia");
   if (!semDados && (anterior.qtdReceitas || anterior.qtdDespesas) && anterior.saldo !== 0) {
     const variacao = ((totais.saldo - anterior.saldo) / Math.abs(anterior.saldo)) * 100;
     const subiu = variacao >= 0;
-    tendencia.className = `tendencia ${subiu ? "alta" : "baixa"} mt-2`;
+    tendencia.className = `tendencia ${subiu ? "alta" : "baixa"}`;
+    tendencia.hidden = false;
     tendencia.innerHTML = `<i class="bi ${subiu ? "bi-graph-up-arrow" : "bi-graph-down-arrow"}"></i> ${subiu ? "+" : ""}${formatarPercentual(variacao)} vs mês anterior`;
   } else {
-    tendencia.className = "tendencia mt-2 d-none";
+    tendencia.hidden = true;
   }
 
   // Saúde financeira: quanto da renda sobrou
   const saude = document.querySelector("#kpiSaude");
   const taxa = totais.receitas ? (totais.saldo / totais.receitas) * 100 : null;
   let rotulo = "Sem movimentações";
-  let cor = "text-body-secondary";
+  let cor = "texto-apoio";
   if (!semDados) {
-    if (taxa === null || taxa < 0) [rotulo, cor] = ["Atenção", "text-danger"];
-    else if (taxa >= 20) [rotulo, cor] = ["Excelente", "text-primary"];
-    else [rotulo, cor] = ["Equilibrada", "text-primary"];
+    if (taxa === null || taxa < 0) [rotulo, cor] = ["Atenção", "texto-negativo"];
+    else if (taxa >= 20) [rotulo, cor] = ["Excelente", "texto-positivo"];
+    else [rotulo, cor] = ["Equilibrada", "texto-positivo"];
   }
-  saude.innerHTML = `<i class="bi bi-circle-fill ${cor} me-1" style="font-size: 0.5rem"></i> Saúde Financeira: <strong class="${cor}">${rotulo}</strong>`;
+  saude.innerHTML = `<i class="bi bi-circle-fill ponto-status ${cor} icone-texto"></i> Saúde Financeira: <strong class="${cor}">${rotulo}</strong>`;
 
   // Saldo acumulado de todas as movimentações até o fim do mês escolhido
   const acumulado = calcularTotais(dados.transacoes.filter((t) => t.data.slice(0, 7) <= anoMes)).saldo;
@@ -69,7 +70,7 @@ function renderizarCards(anoMes) {
   // Receitas
   document.querySelector("#kpiReceitas").textContent = formatarMoeda(totais.receitas);
   document.querySelector("#kpiReceitasQtd").innerHTML =
-    `<i class="bi bi-check-circle text-primary me-1"></i> ${plural(totais.qtdReceitas, "entrada registrada", "entradas registradas")}`;
+    `<i class="bi bi-check-circle texto-positivo icone-texto"></i> ${plural(totais.qtdReceitas, "entrada registrada", "entradas registradas")}`;
   const metaReceitas = dados.categorias.filter((c) => c.tipo === "RECEITA").reduce((s, c) => s + c.limite, 0);
   document.querySelector("#kpiReceitasSub").textContent = metaReceitas
     ? `Meta das categorias: ${formatarMoeda(metaReceitas)}`
@@ -85,7 +86,7 @@ function renderizarCards(anoMes) {
     ? `${formatarPercentual((totais.despesas / teto) * 100)} do teto mensal orçado (${formatarMoeda(teto)})`
     : "Defina limites nas categorias para acompanhar o teto";
   document.querySelector("#kpiDespesasQtd").innerHTML =
-    `<i class="bi bi-receipt-cutoff text-danger me-1"></i> ${plural(totais.qtdDespesas, "saída no mês", "saídas no mês")}`;
+    `<i class="bi bi-receipt-cutoff texto-negativo icone-texto"></i> ${plural(totais.qtdDespesas, "saída no mês", "saídas no mês")}`;
   document.querySelector("#kpiDespesasMedia").textContent =
     `Média: ${formatarMoeda(totais.despesas / diasConsiderados(anoMes))}/dia`;
 
@@ -123,7 +124,7 @@ function renderizarGrafico(anoMes, { totais, taxa, semDados }) {
 
   const economia = document.querySelector("#economiaLiquida");
   economia.textContent = `${totais.saldo >= 0 ? "+" : "-"} ${formatarMoeda(Math.abs(totais.saldo))}`;
-  economia.classList.toggle("text-danger", totais.saldo < 0);
+  economia.classList.toggle("texto-negativo", totais.saldo < 0);
 
   // Mensagem de acordo com o resultado do mês
   const insight = document.querySelector("#insight");
@@ -132,16 +133,16 @@ function renderizarGrafico(anoMes, { totais, taxa, semDados }) {
 
   if (semDados) {
     texto.innerHTML = dados.categorias.length
-      ? `<strong class="text-primary">Tudo pronto!</strong> Registre receitas e despesas de ${formatarMes(anoMes).toLowerCase()} em <a href="${ROTAS.transacoes}#nova">Transações</a> para ver o seu resumo aqui.`
-      : `<strong class="text-primary">Comece por aqui:</strong> cadastre suas <a href="${ROTAS.categorias}">categorias</a> e depois registre suas movimentações.`;
+      ? `<strong class="texto-positivo">Tudo pronto!</strong> Registre receitas e despesas de ${formatarMes(anoMes).toLowerCase()} em <a href="${ROTAS.transacoes}#nova">Transações</a> para ver o seu resumo aqui.`
+      : `<strong class="texto-positivo">Comece por aqui:</strong> cadastre suas <a href="${ROTAS.categorias}">categorias</a> e depois registre suas movimentações.`;
   } else if (totais.saldo < 0) {
-    texto.innerHTML = `<strong class="text-danger">Atenção!</strong> As despesas passaram as receitas em ${formatarMoeda(Math.abs(totais.saldo))} neste mês. Revise as categorias com maior gasto.`;
+    texto.innerHTML = `<strong class="texto-negativo">Atenção!</strong> As despesas passaram as receitas em ${formatarMoeda(Math.abs(totais.saldo))} neste mês. Revise as categorias com maior gasto.`;
   } else if (taxa === null) {
-    texto.innerHTML = '<strong class="text-primary">Sem receitas no mês.</strong> Registre suas entradas para calcular quanto sobrou.';
+    texto.innerHTML = '<strong class="texto-positivo">Sem receitas no mês.</strong> Registre suas entradas para calcular quanto sobrou.';
   } else if (taxa >= 20) {
-    texto.innerHTML = `<strong class="text-primary">Excelente ritmo!</strong> Você guardou ${formatarPercentual(taxa)} da sua renda neste mês.`;
+    texto.innerHTML = `<strong class="texto-positivo">Excelente ritmo!</strong> Você guardou ${formatarPercentual(taxa)} da sua renda neste mês.`;
   } else {
-    texto.innerHTML = `<strong class="text-primary">No azul!</strong> Sobraram ${formatarPercentual(taxa)} da renda neste mês. Tente chegar a 20% para formar uma reserva.`;
+    texto.innerHTML = `<strong class="texto-positivo">No azul!</strong> Sobraram ${formatarPercentual(taxa)} da renda neste mês. Tente chegar a 20% para formar uma reserva.`;
   }
 }
 
@@ -169,20 +170,20 @@ function renderizarRecentes() {
       return `
         <tr>
           <td>
-            <div class="d-flex align-items-center gap-3">
+            <div class="movimentacao">
               <span class="icone-tile tile-sm ${categoria ? `tile-${categoria.tipo.toLowerCase()}` : "tile-neutro"}"><i class="bi ${categoria ? categoria.icone : "bi-question-circle"}"></i></span>
               <div><span class="descricao">${escaparHtml(t.descricao)}</span><span class="detalhe">${receita ? "Receita" : "Despesa"}${t.comprovante ? ' • <i class="bi bi-paperclip"></i> comprovante' : ""}</span></div>
             </div>
           </td>
           <td class="data">${dataCurta(t.data)}</td>
           <td>${badgeCategoria(categoria)}</td>
-          <td class="text-body-secondary"><i class="bi bi-wallet2 me-1"></i> ${escaparHtml(t.conta || "–")}</td>
-          <td class="text-center">${
+          <td class="texto-apoio"><i class="bi bi-wallet2 icone-texto"></i> ${escaparHtml(t.conta || "–")}</td>
+          <td class="coluna-situacao">${
             agendada
               ? '<span class="badge-status agendada"><i class="bi bi-clock"></i> Agendada</span>'
               : '<span class="badge-status"><i class="bi bi-check-lg"></i> Concluída</span>'
           }</td>
-          <td class="valor text-end ${receita ? "valor-positivo" : "valor-negativo"}">${formatarComSinal(t.valor, t.tipo)}</td>
+          <td class="valor ${receita ? "valor-positivo" : "valor-negativo"}">${formatarComSinal(t.valor, t.tipo)}</td>
         </tr>`;
     })
     .join("");
@@ -203,7 +204,7 @@ function renderizarRecentes() {
     vazio.innerHTML = "";
   }
 
-  document.querySelector("#infoRecentes").parentElement.classList.toggle("d-none", !todas.length);
+  document.querySelector("#infoRecentes").parentElement.hidden = !todas.length;
   document.querySelector("#infoRecentes").textContent = todas.length
     ? `Mostrando ${lista.length} de ${plural(encontradas.length, "movimentação", "movimentações")}${termo ? " encontradas" : ""}`
     : "";
@@ -241,12 +242,12 @@ async function carregarCotacoes(forcar = false) {
         return `
           <div class="cotacao-item">
             <span class="moeda-icone"><i class="bi ${ICONES_MOEDA[m.codigo]}"></i></span>
-            <div class="flex-grow-1">
+            <div class="moeda-dados">
               <span class="nome">${escaparHtml(m.nome)}</span><span class="par">${m.codigo}/BRL</span>
               <span class="atualizado">${tempoDesde(m.atualizadoEm)}</span>
             </div>
-            <div class="text-end">
-              <span class="preco d-block">${formatarMoeda(m.valor)}</span>
+            <div class="moeda-valor">
+              <span class="preco">${formatarMoeda(m.valor)}</span>
               <span class="tendencia ${subiu ? "alta" : "baixa"}">
                 <i class="bi ${subiu ? "bi-arrow-up" : "bi-arrow-down"}"></i> ${subiu ? "+" : ""}${formatarPercentual(m.variacao, 2)}
               </span>
@@ -254,14 +255,14 @@ async function carregarCotacoes(forcar = false) {
           </div>`;
       })
       .join("");
-    status.innerHTML = `<i class="bi bi-circle-fill text-primary" style="font-size: .45rem; vertical-align: middle"></i> Online${latencia ? ` • ${latencia}ms` : ""}`;
+    status.innerHTML = `<i class="bi bi-circle-fill ponto-status texto-positivo"></i> Online${latencia ? ` • ${latencia}ms` : ""}`;
   } catch (erro) {
     lista.innerHTML = `
-      <div class="alert alert-warning small mb-0 d-flex gap-2">
+      <div class="alert alert-warning small alerta-cotacoes">
         <i class="bi bi-wifi-off"></i>
-        <div>${escaparHtml(erro.message)} <button type="button" class="btn btn-link btn-sm p-0 align-baseline" data-tentar-cotacoes>Tentar de novo</button></div>
+        <div>${escaparHtml(erro.message)} <button type="button" class="btn btn-link btn-sm btn-tentar" data-tentar-cotacoes>Tentar de novo</button></div>
       </div>`;
-    status.innerHTML = '<i class="bi bi-circle-fill text-danger" style="font-size: .45rem; vertical-align: middle"></i> Indisponível';
+    status.innerHTML = '<i class="bi bi-circle-fill ponto-status texto-negativo"></i> Indisponível';
   } finally {
     botao.disabled = false;
     botao.querySelector("i").classList.remove("girando");

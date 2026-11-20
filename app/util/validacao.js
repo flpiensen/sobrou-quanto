@@ -63,7 +63,7 @@ export function marcarInvalido(campo, mensagem) {
   let feedback = ancora.nextElementSibling;
   if (!feedback || !feedback.classList.contains("feedback-campo")) {
     feedback = document.createElement("div");
-    feedback.className = "invalid-feedback d-block feedback-campo";
+    feedback.className = "invalid-feedback feedback-campo";
     ancora.after(feedback);
   }
   feedback.textContent = mensagem;

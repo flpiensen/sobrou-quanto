@@ -42,15 +42,15 @@ export function configurarComprovante() {
 
   function mostrarErro(texto) {
     mensagemErro.textContent = texto;
-    mensagemErro.classList.remove("d-none");
+    mensagemErro.hidden = false;
   }
 
   function mostrarCartao(nome, tipo, tamanho, info) {
     const ehPdf = tipo === "application/pdf";
-    iconeArquivo.className = `bi ${ehPdf ? "bi-file-earmark-pdf" : "bi-file-earmark-image"} fs-4 text-primary`;
+    iconeArquivo.className = `bi ${ehPdf ? "bi-file-earmark-pdf" : "bi-file-earmark-image"}`;
     nomeArquivo.textContent = nome;
     infoArquivo.textContent = `${formatarTamanho(tamanho)} • ${info}`;
-    cartao.classList.remove("d-none");
+    cartao.hidden = false;
   }
 
   function limpar() {
@@ -58,12 +58,12 @@ export function configurarComprovante() {
     arquivoNovo = null;
     existente = null;
     removido = false;
-    cartao.classList.add("d-none");
-    mensagemErro.classList.add("d-none");
+    cartao.hidden = true;
+    mensagemErro.hidden = true;
   }
 
   function escolher(arquivo) {
-    mensagemErro.classList.add("d-none");
+    mensagemErro.hidden = true;
 
     if (!TIPOS_ACEITOS.includes(arquivo.type)) {
       inputArquivo.value = "";
@@ -109,7 +109,7 @@ export function configurarComprovante() {
     }
     if (existente) removido = true;
     arquivoNovo = null;
-    cartao.classList.add("d-none");
+    cartao.hidden = true;
   });
 
   return {

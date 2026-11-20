@@ -47,3 +47,120 @@
   text-transform: none;
   margin-left: 0.25rem;
 }
+
+/* Resumo do período */
+.kpi-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.resumo-periodo .icone-tile {
+  border-radius: 50%;
+}
+
+.resumo-periodo .kpi-periodo .icone-tile {
+  border-radius: 0.5rem;
+}
+
+.resumo-periodo .valor-lg {
+  margin-bottom: 0.5rem;
+}
+
+.kpi-periodo .eyebrow {
+  color: var(--cor-primaria);
+}
+
+/* Filtros */
+.filtros .card-body {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.filtros .row {
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .limpar-filtros {
+    text-align: right;
+  }
+}
+
+/* Paginação */
+.paginacao-area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.info-paginacao {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .info-paginacao {
+    display: inline;
+  }
+}
+
+/* Modal de movimentação */
+.campo-valor {
+  font-family: var(--fonte-numerica);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.rotulos-comprovante {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link-arquivo {
+  color: var(--cor-primaria);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.erro-arquivo {
+  margin-top: 0.5rem;
+  color: var(--cor-erro);
+}
+
+.arquivo-anexo {
+  margin-top: 0.5rem;
+}
+
+.arquivo-anexo > .bi {
+  font-size: 1.5rem;
+  color: var(--cor-primaria);
+}
+
+.arquivo-dados {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+/* Prévia da importação CSV */
+.resumo-importacao {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.resumo-importacao span {
+  font-weight: 600;
+}
+
+.previa-tabela {
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.5rem;
+}
+
+.previa-csv .alert,
+.previa-csv .table {
+  margin-bottom: 0;
+}

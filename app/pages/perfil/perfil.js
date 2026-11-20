@@ -32,7 +32,7 @@ function renderizarPerfil() {
   const { cliente } = dados;
   document.querySelector("#avatarPerfil").innerHTML = conteudoAvatar(cliente);
   document.querySelector("#perfilNome").textContent = cliente.nome;
-  document.querySelector("#removerFoto").classList.toggle("d-none", !cliente.foto);
+  document.querySelector("#removerFoto").hidden = !cliente.foto;
 
   const desde = new Date(cliente.criadoEm).toLocaleDateString("pt-BR", { month: "long", year: "numeric" });
   document.querySelector("#membroDesde").textContent = `Membro desde ${desde}`;
@@ -208,8 +208,8 @@ formSenha.addEventListener("submit", async (evento) => {
 
 function selo(online, textoOnline, textoOffline) {
   return online
-    ? `<i class="bi bi-circle-fill" style="font-size: .4rem"></i> ${textoOnline}`
-    : `<i class="bi bi-circle-fill text-danger" style="font-size: .4rem"></i> ${textoOffline}`;
+    ? `<i class="bi bi-circle-fill ponto-status"></i> ${textoOnline}`
+    : `<i class="bi bi-circle-fill ponto-status texto-negativo"></i> ${textoOffline}`;
 }
 
 async function testarIntegracoes() {

@@ -1,8 +1,4 @@
-/* =============================================================
-   categorias.css — Estilos exclusivos da página: Gestão de categorias (Épico 3)
-   O CSS global (app/style.css) é linkado antes no HTML.
-   =============================================================
-   Barra empilhada Despesas x Receitas */
+/* Barra empilhada Despesas x Receitas */
 .barra-volume {
   height: 0.5rem;
   border-radius: 9999px;
@@ -101,7 +97,7 @@
   height: 0.375rem;
 }
 
-/* ---------- Modal: grade de ícones ---------- */
+/* Modal: grade de ícones */
 .grade-icones {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

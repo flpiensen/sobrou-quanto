@@ -1,8 +1,4 @@
-/* =============================================================
-   perfil.css — Estilos exclusivos da página: Perfil e preferências (Épico 5)
-   O CSS global (app/style.css) é linkado antes no HTML.
-   =============================================================
-   Selo de verificado sobre a foto grande */
+/* Selo de verificado sobre a foto grande */
 .avatar-lg .selo {
   position: absolute;
   right: 0;

@@ -1,15 +1,4 @@
-/* =============================================================
-   style.css — CSS GLOBAL do SobrouQuanto?
-
-   Vale para TODAS as páginas. Cada página linka, nesta ordem:
-   1) o Bootstrap pronto (node_modules/bootstrap/dist/css/bootstrap.min.css)
-   2) este style.css (cores do Design System + estrutura comum)
-   3) o CSS da própria página (app/pages/<pagina>/<pagina>.css)
-   ============================================================= */
-
-/* ---------- Design System: as 8 cores e as 2 fontes (docs/sdd.md) ---------- */
-/* Variáveis do CSS: são declaradas uma vez aqui e usadas com var(--nome).
-   Mudou uma cor aqui? Muda no app inteiro. */
+/* Cores e fontes do Design System */
 :root {
   --cor-primaria:    #006948; /* verde: logo, barra, botões, links, receitas */
   --cor-erro:        #ba1a1a; /* vermelho: despesas, alertas */
@@ -24,11 +13,7 @@
   --fonte-numerica: 'JetBrains Mono', ui-monospace, monospace; /* valores em R$ */
 }
 
-/* ---------- Bootstrap com as cores do Design System ---------- */
-/* O Bootstrap já vem pronto e lê as próprias variáveis (--bs-...).
-   Aqui elas recebem as nossas cores e fontes. Algumas pedem a cor em
-   números R, G, B (as terminadas em -rgb): é a mesma cor, só escrita
-   de outro jeito, porque o Bootstrap monta o rgba() com elas. */
+/* Bootstrap com as cores do projeto (as variáveis -rgb são a mesma cor em R, G, B) */
 :root {
   --bs-body-bg: var(--cor-fundo);
   --bs-body-color: var(--cor-texto);
@@ -59,7 +44,7 @@
   --bs-warning: var(--cor-aviso);
   --bs-warning-rgb: 130, 81, 0;
 
-  /* Alertas: texto na própria cor, fundo na cor Fundo e borda na cor Borda */
+  /* Alertas */
   --bs-danger-text-emphasis: var(--cor-erro);
   --bs-danger-bg-subtle: var(--cor-fundo);
   --bs-danger-border-subtle: var(--cor-borda);
@@ -73,8 +58,7 @@
   --bs-form-invalid-border-color: var(--cor-erro);
 }
 
-/* Botões: o Bootstrap escreve a cor dentro de cada classe,
-   então trocamos as variáveis de cada botão usado no app */
+/* Botões */
 .btn {
   --bs-btn-font-size: 0.875rem;
 }
@@ -103,7 +87,7 @@
   --bs-btn-focus-shadow-rgb: 186, 26, 26;
 }
 
-/* Campos: tamanho do texto do app e foco na cor primária */
+/* Campos */
 .form-control,
 .form-select,
 .input-group-text {
@@ -126,8 +110,7 @@
   --bs-btn-close-focus-shadow: 0 0 0 0.25rem var(--cor-borda);
 }
 
-/* Cards, modais, menus e tabelas brancos sobre o fundo da página
-   (o padrão do Bootstrap é usar a mesma cor do fundo) */
+/* Fundo branco em cards, modais, menus e tabelas */
 .card {
   --bs-card-bg: var(--cor-superficie);
 }
@@ -163,20 +146,13 @@
   --bs-progress-bg: var(--cor-borda);
 }
 
-/* ---------- Página ---------- */
+/* Página */
 body {
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
 }
 
-/* ---------- Sticky footer ---------- */
-/* O <body> recebe as classes "d-flex flex-column min-vh-100" e o
-   <main> recebe "flex-grow-1": o main ocupa o espaço que sobra e
-   empurra o rodapé para o fim da tela, mesmo com pouco conteúdo. */
-
-/* ---------- Navbar ---------- */
-/* Barra verde (cor primária, a mesma do logo) com textos brancos.
-   A classe navbar-dark do Bootstrap deixa o ícone do menu branco. */
+/* Navbar */
 .sq-navbar {
   min-height: 4rem;
   background-color: var(--cor-primaria);
@@ -189,7 +165,7 @@ body {
   margin-right: 2rem;
 }
 
-/* Divisória vertical entre grupos (como no protótipo) */
+/* Divisória vertical entre grupos */
 .sq-navbar .divisor {
   width: 1px;
   height: 2rem;
@@ -240,8 +216,7 @@ body {
   border-color: var(--cor-primaria);
 }
 
-/* No desktop o menu fica dentro da barra verde: textos brancos.
-   No celular ele abre no offcanvas branco e mantém as cores acima. */
+/* Desktop: menu dentro da barra verde */
 @media (min-width: 992px) {
   .sq-navbar .nav-link {
     color: var(--cor-superficie);
@@ -360,13 +335,13 @@ body {
   color: var(--cor-texto-suave);
 }
 
-/* ---------- Área principal ---------- */
+/* Área principal */
 .sq-main {
   padding-top: 1.5rem;
   padding-bottom: 3rem;
 }
 
-/* ---------- Rodapé ---------- */
+/* Rodapé */
 .sq-footer {
   border-top: 1px solid var(--cor-borda);
   background-color: var(--cor-fundo);
@@ -379,12 +354,12 @@ body {
   color: var(--cor-primaria);
 }
 
-/* Largura máxima do conteúdo (max-content-width do sdd.md) */
+/* Largura máxima do conteúdo */
 .limite-conteudo {
   max-width: 90rem;
 } /* 1440px */
 
-/* ---------- Dropdown de notificações (sininho) ---------- */
+/* Dropdown de notificações (sininho) */
 .dropdown-notificacoes {
   width: 23rem;
   max-width: calc(100vw - 2rem); /* nunca passa da largura da tela no celular */
@@ -418,7 +393,7 @@ body {
   background-color: var(--cor-fundo);
 }
 
-/* Não lida: fundo verde bem suave + bolinha à direita */
+/* Notificação não lida */
 .dropdown-notificacoes .item.nao-lida {
   background-color: var(--cor-fundo);
 }
@@ -478,8 +453,7 @@ body {
   background-color: var(--cor-fundo);
 }
 
-/* No celular/tablet (abaixo de 992px) o painel de notificações ocupa a
-   largura da tela, logo abaixo da navbar, em vez de "pendurar" no sininho. */
+/* Celular e tablet: o painel ocupa a largura da tela, logo abaixo da navbar */
 @media (max-width: 991.98px) {
   .dropdown-notificacoes[data-bs-popper] {
     position: fixed;
@@ -491,8 +465,8 @@ body {
   }
 }
 
-/* ---------- Tipografia utilitária do Design System ---------- */
-/* "Sobretítulo" em caixa alta (caption-caps) */
+/* Tipografia */
+/* Sobretítulo em caixa alta */
 .eyebrow {
   display: block;
   font-size: 0.6875rem;
@@ -551,7 +525,7 @@ body {
   color: var(--cor-erro) !important;
 }
 
-/* ---------- Cards ---------- */
+/* Cards */
 /* Card de indicador (KPI) */
 .kpi-card .card-body {
   display: flex;
@@ -601,7 +575,7 @@ body {
   color: var(--cor-texto-suave);
 }
 
-/* ---------- Chips e badges ---------- */
+/* Chips e badges */
 /* Chip de status (ex.: "Cotações atualizadas") */
 .chip-status {
   display: inline-flex;
@@ -714,7 +688,7 @@ body {
   color: var(--cor-primaria);
 }
 
-/* ---------- Tabelas ---------- */
+/* Tabelas */
 .tabela-sq {
   margin-bottom: 0;
 }
@@ -792,8 +766,8 @@ body {
   color: var(--cor-texto-suave);
 }
 
-/* ---------- Formulários ---------- */
-/* Rótulo em caixa alta usado nos formulários do protótipo */
+/* Formulários */
+/* Rótulo em caixa alta dos formulários */
 .form-label-caps {
   font-size: 0.6875rem;
   font-weight: 600;
@@ -919,7 +893,7 @@ body {
   color: var(--cor-texto-suave);
 }
 
-/* ---------- Modais ---------- */
+/* Modais */
 .modal-header .modal-title {
   display: flex;
   align-items: center;
@@ -932,7 +906,7 @@ body {
   border-top: 1px solid var(--cor-borda);
 }
 
-/* ---------- Botões ---------- */
+/* Botões */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -960,7 +934,7 @@ body {
   white-space: nowrap;
 }
 
-/* ---------- Alerta de destaque (insight) ---------- */
+/* Alerta de destaque (insight) */
 .alerta-insight {
   display: flex;
   align-items: center;
@@ -977,7 +951,7 @@ body {
   color: var(--cor-superficie);
 }
 
-/* ---------- Paginação ---------- */
+/* Paginação */
 .pagination {
   --bs-pagination-font-size: 0.75rem;
   --bs-pagination-padding-x: 0.75rem;
@@ -991,7 +965,7 @@ body {
   font-family: var(--fonte-numerica);
 }
 
-/* ---------- Cor das categorias ---------- */
+/* Cor das categorias */
 /* Categoria de receita fica verde (primária) e de despesa, vermelha (erro). */
 .badge-categoria.cat-receita {
   color: var(--cor-primaria);
@@ -1001,7 +975,7 @@ body {
   color: var(--cor-erro);
 }
 
-/* ---------- Avatar sem foto: iniciais do nome ---------- */
+/* Avatar sem foto: iniciais do nome */
 .avatar-iniciais {
   display: inline-flex;
   align-items: center;
@@ -1022,7 +996,7 @@ body {
   font-size: 2rem;
 }
 
-/* ---------- Sininho: o ponto vermelho só aparece com notificações novas ---------- */
+/* Sininho: o ponto vermelho só aparece com notificações novas */
 .btn-notificacao .ponto {
   display: none;
 }
@@ -1055,7 +1029,7 @@ body {
   font-size: 0.75rem;
 }
 
-/* ---------- Estado vazio das listas e tabelas ---------- */
+/* Estado vazio das listas e tabelas */
 .estado-vazio {
   display: flex;
   flex-direction: column;
@@ -1089,7 +1063,7 @@ body {
   border-radius: 1rem;
 }
 
-/* ---------- Selos ---------- */
+/* Selos */
 .badge-agendada {
   display: block;
   width: fit-content;
@@ -1116,7 +1090,7 @@ body {
   background-color: var(--cor-erro);
 }
 
-/* ---------- Gráfico de rosca sem dados ---------- */
+/* Gráfico de rosca sem dados */
 .rosca.vazia {
   background: var(--cor-borda);
 }
@@ -1130,7 +1104,7 @@ body {
   color: var(--cor-erro);
 }
 
-/* ---------- Botão de atualizar girando ---------- */
+/* Botão de atualizar girando */
 @keyframes girar {
   to {
     transform: rotate(360deg);
@@ -1142,7 +1116,7 @@ body {
   animation: girar 0.8s linear infinite;
 }
 
-/* ---------- Login: botão de mostrar senha ---------- */
+/* Login: botão de mostrar senha */
 .btn-ver-senha {
   cursor: pointer;
 }
@@ -1151,7 +1125,7 @@ body {
   color: var(--cor-primaria);
 }
 
-/* ---------- Importação CSV: exemplo do formato ---------- */
+/* Importação CSV: exemplo do formato */
 .exemplo-csv {
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
@@ -1161,9 +1135,9 @@ body {
   word-break: break-word;
 }
 
-/* ---------- Avisos (Toast do Bootstrap) ---------- */
+/* Avisos (Toast do Bootstrap) */
 .toast {
-  --bs-toast-bg: var(--cor-superficie); /* fundo sólido (o padrão do Bootstrap é translúcido) */
+  --bs-toast-bg: var(--cor-superficie); /* fundo sólido */
   border: 0;
   border-left: 4px solid var(--cor-primaria);
 }

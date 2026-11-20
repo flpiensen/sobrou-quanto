@@ -1,8 +1,4 @@
-/* =============================================================
-   transacoes.css — Estilos exclusivos da página: Extrato e movimentações (Épico 4)
-   O CSS global (app/style.css) é linkado antes no HTML.
-   =============================================================
-   Card "Saldo do período" com círculo decorativo no canto */
+/* Card "Saldo do período" com círculo decorativo no canto */
 .kpi-periodo {
   position: relative;
   overflow: hidden;

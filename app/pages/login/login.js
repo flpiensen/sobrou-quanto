@@ -1,7 +1,3 @@
-// =============================================================
-// login.js — Login (US01) e cadastro de conta
-// =============================================================
-
 import { api, buscarCotacoes, verificarJsonServer } from "../../service/api.service.js";
 import { gerarHash, obterSessao, PAGINA_INICIAL, salvarSessao } from "../../index.js";
 import { botaoCarregando, formatarMoeda, formatarPercentual } from "../../util/render.js";
@@ -25,7 +21,7 @@ function esconderErro() {
   erroAcesso.classList.add("d-none");
 }
 
-// ---------- Alternar entre login e cadastro ----------
+// Alternar entre login e cadastro
 function mostrarPainel(nome) {
   esconderErro();
   painelLogin.classList.toggle("d-none", nome !== "login");
@@ -43,7 +39,7 @@ document.querySelectorAll("[data-alternar]").forEach((link) =>
 );
 if (location.hash === "#cadastro") mostrarPainel("cadastro");
 
-// ---------- Mostrar / esconder senha ----------
+// Mostrar / esconder senha
 document.querySelectorAll("[data-ver-senha]").forEach((botao) =>
   botao.addEventListener("click", () => {
     const campo = document.getElementById(botao.dataset.verSenha);
@@ -57,7 +53,7 @@ document.querySelectorAll("[data-ver-senha]").forEach((botao) =>
 limparAoDigitar(formLogin);
 limparAoDigitar(formCadastro);
 
-// ---------- Login: GET /clientes?email=... ----------
+// Login: GET /clientes?email=...
 formLogin.addEventListener("submit", async (evento) => {
   evento.preventDefault();
   esconderErro();
@@ -93,7 +89,7 @@ formLogin.addEventListener("submit", async (evento) => {
   }
 });
 
-// ---------- Cadastro: POST /clientes ----------
+// Cadastro: POST /clientes
 formCadastro.addEventListener("submit", async (evento) => {
   evento.preventDefault();
   esconderErro();
@@ -145,7 +141,7 @@ formCadastro.addEventListener("submit", async (evento) => {
   }
 });
 
-// ---------- Painel de apresentação: dados reais ----------
+// Painel de apresentação: dados reais
 async function carregarCotacoes() {
   const area = document.querySelector("#cotacoesLogin");
   try {

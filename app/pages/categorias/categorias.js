@@ -1,8 +1,3 @@
-// =============================================================
-// categorias.js — Gestão de categorias (US06)
-// GET, POST, PATCH e DELETE em /categorias
-// =============================================================
-
 import { api } from "../../service/api.service.js";
 import { calcularTotais, mesAtual, resumirCategorias, transacoesDoMes } from "../../util/calculos.js";
 import { atualizarLayout, iniciarPagina } from "../../index.js";
@@ -36,7 +31,7 @@ const campoLimite = document.querySelector("#limiteCategoria");
 aplicarMascaraValor(campoLimite);
 limparAoDigitar(form);
 
-// ---------- Desenho da página ----------
+// Desenho da página
 
 function renderizarVolume() {
   const mes = mesAtual();
@@ -165,7 +160,7 @@ function renderizarTudo() {
   atualizarLayout(dados);
 }
 
-// ---------- Modal de cadastro / edição ----------
+// Modal de cadastro / edição
 
 function abrirModal(categoria = null) {
   idEmEdicao = categoria ? categoria.id : null;
@@ -238,7 +233,7 @@ form.addEventListener("submit", async (evento) => {
   }
 });
 
-// ---------- Exclusão ----------
+// Exclusão
 
 function pedirExclusao(categoria) {
   idParaExcluir = categoria.id;
@@ -255,15 +250,13 @@ document.querySelector("#confirmarExcluirCategoria").addEventListener("click", a
   botaoCarregando(botao, true, "Excluindo...");
 
   try {
-    // 1) Desvincula as movimentações. Importante: o JSON Server apaga em cascata
-    //    os registros com "categoriaId" igual ao id excluído!
+    // Desvincula as movimentações antes: o JSON Server apaga em cascata quem tem esse categoriaId
     const vinculadas = dados.transacoes.filter((t) => String(t.categoriaId) === String(idParaExcluir));
     for (const t of vinculadas) {
       const nova = await api.atualizar("transacoes", t.id, { categoriaId: null });
       dados.transacoes = dados.transacoes.map((x) => (x.id === t.id ? nova : x));
     }
 
-    // 2) Exclui a categoria
     await api.excluir("categorias", idParaExcluir);
     dados.categorias = dados.categorias.filter((c) => String(c.id) !== String(idParaExcluir));
 
@@ -277,7 +270,7 @@ document.querySelector("#confirmarExcluirCategoria").addEventListener("click", a
   }
 });
 
-// ---------- Eventos ----------
+// Eventos
 
 // O botão "Nova Categoria" do cabeçalho e o do estado vazio
 document.addEventListener("click", (evento) => {
@@ -298,7 +291,7 @@ document.addEventListener("click", (evento) => {
 document.querySelectorAll("[name=filtro]").forEach((radio) => radio.addEventListener("change", renderizarCategorias));
 busca.addEventListener("input", renderizarCategorias);
 
-// ---------- Início ----------
+// Início
 try {
   dados = await iniciarPagina();
   renderizarTudo();

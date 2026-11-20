@@ -1,9 +1,4 @@
-/* =============================================================
-   dashboard.css — Estilos exclusivos da página: Painel geral e cotações (Épico 2)
-   O CSS global (app/style.css) é linkado antes no HTML.
-   ============================================================= */
-
-/* ---------- Gráfico de rosca (US04) ---------- */
+/* Gráfico de rosca */
 /* Feito só com CSS: o conic-gradient pinta as fatias e o
    pseudo-elemento ::before "fura" o centro do círculo. */
 .rosca {
@@ -93,7 +88,7 @@
   margin-left: auto;
 }
 
-/* ---------- Cotações (US05) ---------- */
+/* Cotações */
 .cotacao-item {
   display: flex;
   align-items: center;

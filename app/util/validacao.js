@@ -1,7 +1,3 @@
-// =============================================================
-// validacao.js — Validação de formulários com Expressões Regulares
-// =============================================================
-
 export const REGEX = {
   // algo@algo.dominio (sem espaços, com pelo menos 2 letras no final)
   email: /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i,
@@ -29,7 +25,7 @@ export function converterValor(texto) {
   return Number(limpo.replaceAll(".", "").replace(",", "."));
 }
 
-// Máscara monetária automática (US07): o usuário digita só números
+// Máscara monetária automática: o usuário digita só números
 // e o campo vai se formatando como dinheiro: 1 → 0,01 → 0,12 → 1,23 → 12,34
 export function aplicarMascaraValor(input) {
   input.addEventListener("input", () => {

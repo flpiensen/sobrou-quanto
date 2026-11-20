@@ -1,8 +1,3 @@
-// =============================================================
-// calculos.js — Regras de negócio: saldo, totais e limites
-// Tudo é calculado a partir das movimentações cadastradas.
-// =============================================================
-
 // Data de hoje no formato do input date ("2026-10-05"), no fuso do usuário
 export function hojeIso() {
   const agora = new Date();

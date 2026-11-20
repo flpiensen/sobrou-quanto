@@ -1,13 +1,3 @@
-// =============================================================
-// notificacao.service.js — Notificações do sininho
-// Geradas a partir dos dados cadastrados (nada é fixo no HTML):
-//  • despesas que vencem nos próximos 3 dias (US11: alertas de vencimento)
-//  • categorias que passaram de 80% ou 100% do limite do mês
-//  • metas de receita alcançadas
-//  • mês com mais despesas do que receitas
-//  • despesas do mês ainda sem comprovante
-// =============================================================
-
 import { calcularTotais, diasAte, mesAtual, resumirCategorias, situacao, transacoesDoMes } from "../util/calculos.js";
 import { escaparHtml, formatarData, formatarMoeda, formatarPercentual } from "../util/render.js";
 
@@ -114,7 +104,7 @@ export function gerarNotificacoes({ cliente, categorias, transacoes }) {
   return lista;
 }
 
-// ---------- Lidas / não lidas (localStorage, por cliente) ----------
+// Lidas / não lidas (localStorage, por cliente)
 
 const chaveLidas = (clienteId) => `sq:notificacoes-lidas:${clienteId}`;
 
@@ -126,7 +116,7 @@ function salvarLidas(clienteId, ids) {
   localStorage.setItem(chaveLidas(clienteId), JSON.stringify([...new Set(ids)]));
 }
 
-// ---------- Desenho no DOM ----------
+// Desenho no DOM
 
 export function renderizarNotificacoes(lista, clienteId) {
   const lidas = obterLidas(clienteId);

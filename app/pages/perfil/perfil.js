@@ -1,8 +1,3 @@
-// =============================================================
-// perfil.js — Perfil (US10) e Preferências (US11)
-// PATCH /clientes/:id
-// =============================================================
-
 import { api, buscarCotacoes, verificarJsonServer } from "../../service/api.service.js";
 import { atualizarLayout, gerarHash, iniciarPagina, salvarSessao, sessaoLembrada } from "../../index.js";
 import { botaoCarregando, conteudoAvatar, formatarDataHora, mostrarAviso } from "../../util/render.js";
@@ -31,7 +26,7 @@ async function salvarCliente(alteracoes) {
   return cliente;
 }
 
-// ---------- Desenho ----------
+// Desenho
 
 function renderizarPerfil() {
   const { cliente } = dados;
@@ -67,7 +62,7 @@ function renderizarSessao() {
     : "Encerrada automaticamente ao fechar a janela do navegador.";
 }
 
-// ---------- US10: dados cadastrais ----------
+// Dados cadastrais
 
 form.addEventListener("submit", async (evento) => {
   evento.preventDefault();
@@ -106,7 +101,7 @@ form.addEventListener("submit", async (evento) => {
   }
 });
 
-// ---------- Foto de perfil ----------
+// Foto de perfil
 // A imagem é reduzida para 256x256 num <canvas> antes de ir para o db.json
 function reduzirImagem(arquivo, tamanho = 256) {
   return new Promise((resolve, reject) => {
@@ -153,7 +148,7 @@ document.querySelector("#removerFoto").addEventListener("click", async () => {
   }
 });
 
-// ---------- US11: preferências (salvas na hora) ----------
+// Preferências (salvas na hora)
 
 document.querySelectorAll("[data-preferencia]").forEach((chave) =>
   chave.addEventListener("change", async () => {
@@ -169,7 +164,7 @@ document.querySelectorAll("[data-preferencia]").forEach((chave) =>
   })
 );
 
-// ---------- Redefinir senha ----------
+// Redefinir senha
 
 const formSenha = document.querySelector("#formSenha");
 const modalSenhaElemento = document.querySelector("#modalSenha");
@@ -209,7 +204,7 @@ formSenha.addEventListener("submit", async (evento) => {
   }
 });
 
-// ---------- Integrações: teste real das duas APIs ----------
+// Integrações: teste real das duas APIs
 
 function selo(online, textoOnline, textoOffline) {
   return online
@@ -239,7 +234,7 @@ async function testarIntegracoes() {
 
 document.querySelector("#testarPing").addEventListener("click", testarIntegracoes);
 
-// ---------- Início ----------
+// Início
 renderizarSessao();
 testarIntegracoes();
 try {

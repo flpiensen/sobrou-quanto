@@ -1,8 +1,3 @@
-// =============================================================
-// dashboard.js — Painel geral (US03, US04 e US05)
-// Todos os números são calculados a partir das movimentações do JSON Server.
-// =============================================================
-
 import { buscarCotacoes } from "../../service/api.service.js";
 import { calcularTotais, diasAte, hojeIso, mesAnterior, mesAtual, ordenarPorData, situacao, transacoesDoMes } from "../../util/calculos.js";
 import { iniciarPagina } from "../../index.js";
@@ -26,7 +21,7 @@ let dados = { cliente: null, categorias: [], transacoes: [] };
 const buscarCategoria = (id) => dados.categorias.find((c) => String(c.id) === String(id));
 const plural = (n, singular, varios) => `${n} ${n === 1 ? singular : varios}`;
 
-// ---------- US03: cards de saldo, receitas e despesas ----------
+// Cards de saldo, receitas e despesas
 
 function diasConsiderados(anoMes) {
   const [ano, mes] = anoMes.split("-").map(Number);
@@ -97,7 +92,7 @@ function renderizarCards(anoMes) {
   return { totais, taxa, semDados };
 }
 
-// ---------- US04: gráfico de rosca (CSS conic-gradient) ----------
+// Gráfico de rosca (CSS conic-gradient)
 
 function renderizarGrafico(anoMes, { totais, taxa, semDados }) {
   const fluxo = totais.receitas + totais.despesas;
@@ -150,7 +145,7 @@ function renderizarGrafico(anoMes, { totais, taxa, semDados }) {
   }
 }
 
-// ---------- Últimas movimentações ----------
+// Últimas movimentações
 
 function dataCurta(dataIso) {
   const dias = diasAte(dataIso);
@@ -220,7 +215,7 @@ function renderizarMes() {
   renderizarGrafico(anoMes, renderizarCards(anoMes));
 }
 
-// ---------- US05: cotações (AwesomeAPI) ----------
+// Cotações (AwesomeAPI)
 
 const ICONES_MOEDA = { USD: "bi-currency-dollar", EUR: "bi-currency-euro", GBP: "bi-currency-pound" };
 
@@ -278,7 +273,7 @@ document.addEventListener("click", (evento) => {
   if (evento.target.closest("[data-tentar-cotacoes]")) carregarCotacoes(true);
 });
 
-// ---------- Início ----------
+// Início
 campoMes.value = mesAtual();
 campoMes.addEventListener("change", renderizarMes);
 filtroRecentes.addEventListener("input", renderizarRecentes);

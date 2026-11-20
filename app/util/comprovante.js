@@ -1,11 +1,3 @@
-// =============================================================
-// comprovante.js — Upload do comprovante no modal de movimentação
-// (US07: "deve haver um campo para anexar imagem (JPG/PNG) ou PDF")
-//
-// O cartão com o nome do arquivo só aparece DEPOIS que o usuário
-// escolhe um arquivo (clicando ou arrastando para a área tracejada).
-// =============================================================
-
 const TIPOS_ACEITOS = ["image/jpeg", "image/png", "application/pdf"];
 export const TAMANHO_MAXIMO = 2 * 1024 * 1024; // 2 MB em bytes
 

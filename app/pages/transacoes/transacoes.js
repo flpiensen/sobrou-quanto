@@ -1,8 +1,3 @@
-// =============================================================
-// transacoes.js — Movimentações financeiras
-// US07 (POST/PATCH), US08 (GET + filtros + importação CSV), US09 (DELETE)
-// =============================================================
-
 import { api } from "../../service/api.service.js";
 import { calcularTotais, hojeIso, mesAnterior, mesAtual, ordenarPorData, situacao } from "../../util/calculos.js";
 import { abrirComprovante, configurarComprovante, lerArquivo } from "../../util/comprovante.js";
@@ -65,7 +60,7 @@ async function recarregarTransacoes() {
   dados.transacoes = await api.listar("transacoes", { clienteId: dados.cliente.id });
 }
 
-// ---------- Filtros (US08) ----------
+// Filtros
 
 function preencherFiltros() {
   filtroPeriodo.querySelector("[value=mes]").textContent = `Mês atual (${formatarMes(mesAtual()).replace(" /", "")})`;
@@ -101,7 +96,7 @@ function aplicarFiltros() {
   });
 }
 
-// ---------- Desenho da tabela ----------
+// Desenho da tabela
 
 function linhaTabela(t) {
   const receita = t.tipo === "RECEITA";
@@ -215,7 +210,7 @@ function renderizarTudo() {
   atualizarLayout(dados);
 }
 
-// ---------- Modal de cadastro / edição (US07) ----------
+// Modal de cadastro / edição
 
 // O select de categorias mostra só as do tipo escolhido (Receita ou Despesa)
 function preencherCategoriasDoForm(selecionada = campoCategoria.value) {
@@ -340,7 +335,7 @@ form.addEventListener("submit", async (evento) => {
   }
 });
 
-// ---------- Exclusão (US09) ----------
+// Exclusão
 
 function pedirExclusao(transacao) {
   idParaExcluir = transacao.id;
@@ -366,7 +361,7 @@ document.querySelector("#confirmarExcluir").addEventListener("click", async (eve
   }
 });
 
-// ---------- Exportar CSV ----------
+// Exportar CSV
 
 function celulaCsv(texto) {
   const valor = String(texto ?? "");
@@ -405,7 +400,7 @@ document.querySelector("#exportarCsv").addEventListener("click", () => {
   URL.revokeObjectURL(link.href);
 });
 
-// ---------- Importar CSV (US08) ----------
+// Importar CSV
 
 function separarColunas(linha, separador) {
   const colunas = [];
@@ -562,7 +557,7 @@ modalImportarElemento.addEventListener("hidden.bs.modal", () => {
   document.querySelector("#confirmarImportacao").innerHTML = '<i class="bi bi-check-lg"></i> Importar';
 });
 
-// ---------- Eventos gerais ----------
+// Eventos gerais
 
 document.addEventListener("click", async (evento) => {
   const novo = evento.target.closest("[data-nova-movimentacao]");
@@ -588,7 +583,7 @@ document.addEventListener("click", async (evento) => {
   }
 });
 
-// Filtrar sem recarregar a página (US08)
+// Filtrar sem recarregar a página
 formFiltros.addEventListener("input", () => {
   paginaAtual = 1;
   renderizarExtrato();
@@ -601,7 +596,7 @@ formFiltros.addEventListener("reset", () =>
   })
 );
 
-// ---------- Início ----------
+// Início
 try {
   dados = await iniciarPagina();
   renderizarTudo();

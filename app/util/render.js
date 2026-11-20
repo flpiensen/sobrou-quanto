@@ -1,8 +1,3 @@
-// =============================================================
-// render.js — Formatação e pedaços de HTML reaproveitados
-// (manipulação do DOM usada por todas as páginas)
-// =============================================================
-
 const formatoMoeda = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 const formatoNumero = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 

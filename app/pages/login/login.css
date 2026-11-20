@@ -1,7 +1,3 @@
-/* =============================================================
-   login.css — Estilos exclusivos da página: Login e cadastro de conta (Épico 1)
-   O CSS global (app/style.css) é linkado antes no HTML.
-   ============================================================= */
 .login-wrapper {
   display: flex;
   align-items: center;
@@ -14,7 +10,7 @@
   border-radius: 0.75rem;
 }
 
-/* Metade esquerda com o fundo do design system */
+/* Metade esquerda */
 .login-hero {
   background-color: var(--cor-fundo);
   border-right: 1px solid var(--cor-borda);
@@ -144,7 +140,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.75rem; /* 28px do protótipo */
+  width: 1.75rem;
   height: 1.75rem;
   border-radius: 50%;
   background-color: var(--cor-fundo);

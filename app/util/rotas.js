@@ -1,11 +1,3 @@
-// =============================================================
-// rotas.js — Endereço de cada página do SobrouQuanto?
-//
-// Todas as telas ficam em app/pages/<pagina>/index.html. Os caminhos
-// são relativos, então funcionam no Live Server, no JSON Server
-// (npm run api) e no GitHub Pages.
-// =============================================================
-
 // Dentro de app/pages/<pagina>/ estamos 2 níveis abaixo da pasta app/
 const APP = location.pathname.includes("/app/pages/") ? "../../" : "";
 

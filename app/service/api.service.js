@@ -1,11 +1,3 @@
-// =============================================================
-// api.service.js — Comunicação com as APIs (Fetch API + async/await)
-//
-// 1) JSON Server (API fake): guarda os dados no arquivo server/db.json.
-//    Rode com: npm run api  →  http://localhost:3000
-// 2) AwesomeAPI (API pública): cotações do Dólar, Euro e Libra.
-// =============================================================
-
 // Se a página estiver sendo servida pelo próprio JSON Server (porta 3000),
 // usamos caminhos relativos. Caso contrário (ex.: Live Server na porta 5500),
 // apontamos para o endereço completo do JSON Server.
@@ -93,7 +85,7 @@ export async function verificarJsonServer() {
   }
 }
 
-// ---------- AwesomeAPI ----------
+// AwesomeAPI
 
 const CHAVE_CACHE_COTACOES = "sq:cotacoes";
 const VALIDADE_CACHE = 60 * 1000; // 1 minuto

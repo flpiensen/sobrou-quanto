@@ -1,11 +1,3 @@
-// =============================================================
-// index.js — Código comum a todas as páginas (carregado por todas elas)
-//  • sessão do cliente (sessionStorage / localStorage)
-//  • proteção das páginas internas (só entra quem fez login)
-//  • navbar com nome e foto do cliente (US02)
-//  • notificações e status das APIs
-// =============================================================
-
 import { buscarCotacoes, carregarDadosDoCliente, verificarJsonServer } from "./service/api.service.js";
 import { gerarNotificacoes, renderizarNotificacoes } from "./service/notificacao.service.js";
 import { conteudoAvatar, escaparHtml, formatarMoeda, formatarPercentual, mostrarAviso } from "./util/render.js";
@@ -17,10 +9,10 @@ export const PAGINA_INICIAL = ROTAS.inicio;
 // Ano atual no rodapé
 document.querySelectorAll("[data-ano]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
-// ---------- Sessão (US01) ----------
+// Sessão
 // Sem "Lembrar-me": sessionStorage (some ao fechar o navegador).
 // Com "Lembrar-me": localStorage (continua salvo no dispositivo).
-// Guardamos só o necessário para identificar o cliente — nunca a senha.
+// Guardamos só o necessário para identificar o cliente, nunca a senha.
 
 const CHAVE_SESSAO = "sq:sessao";
 
@@ -44,16 +36,14 @@ export function sessaoLembrada() {
   return localStorage.getItem(CHAVE_SESSAO) !== null;
 }
 
-// ---------- Senha ----------
-// A senha nunca é gravada em texto puro no db.json: guardamos o "hash"
-// SHA-256 dela (Web Crypto API, nativa do navegador).
+// Guarda só o hash SHA-256 da senha (Web Crypto API)
 export async function gerarHash(texto) {
   const bytes = new TextEncoder().encode(texto);
   const resumo = await crypto.subtle.digest("SHA-256", bytes);
   return [...new Uint8Array(resumo)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-// ---------- Chip de status da navbar ----------
+// Chip de status da navbar
 async function preencherChip() {
   const chip = document.querySelector("[data-chip]");
   if (!chip) return;
@@ -81,7 +71,7 @@ async function preencherChip() {
   }
 }
 
-// ---------- Navbar ----------
+// Navbar
 function preencherUsuario(cliente) {
   document.querySelectorAll("[data-usuario-avatar]").forEach((el) => (el.innerHTML = conteudoAvatar(cliente)));
   document.querySelectorAll("[data-usuario-nome]").forEach((el) => (el.textContent = cliente.nome));
@@ -95,7 +85,7 @@ export function atualizarLayout(dados) {
   renderizarNotificacoes(gerarNotificacoes(dados), dados.cliente.id);
 }
 
-// ---------- Inicialização das páginas internas ----------
+// Inicialização das páginas internas
 export async function iniciarPagina() {
   const sessao = obterSessao();
   if (!sessao) {
